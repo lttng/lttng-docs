@@ -10,5 +10,7 @@ from the PPA, follow these steps:
 <pre class="term">
 sudo apt-add-repository ppa:lttng/ppa
 sudo apt-get update
-sudo apt-get install lttng-tools lttng-modules-dkms liblttng-ust-dev
+sudo apt-get install lttng-tools
+sudo apt-get install lttng-modules-dkms
+sudo apt-get install liblttng-ust-dev
 </pre>

@@ -23,5 +23,7 @@ sudo zypper refresh
 and install `lttng-tools`, `lttng-modules` and `lttng-ust-devel`:
 
 <pre class="term">
-sudo zypper install lttng-tools lttng-modules lttng-ust-devel
+sudo zypper install lttng-tools
+sudo zypper install lttng-modules
+sudo zypper install lttng-ust-devel
 </pre>
