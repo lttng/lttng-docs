@@ -13,4 +13,4 @@ online using the links below:
     * <a href="/man/1/lttng-gen-tp" class="ext">`lttng-gen-tp`</a>
     * <a href="/man/3/lttng-ust" class="ext">`lttng-ust`</a>
     * <a href="/man/3/lttng-ust-cyg-profile" class="ext">`lttng-ust-cyg-profile`</a>
-    * <a href="/man/3/lttng-ust-cyg-dl" class="ext">`lttng-ust-cyg-dl`</a>
+    * <a href="/man/3/lttng-ust-dl" class="ext">`lttng-ust-dl`</a>
