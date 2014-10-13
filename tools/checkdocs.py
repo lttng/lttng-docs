@@ -72,7 +72,7 @@ def _get_toc_ids(path):
 
 def _check_file_links(toc_ids, path, c):
     ilinkp = re.compile(r'\[[^\]]+\]\(([^)]+)\)', flags=re.M)
-    elinkp = re.compile(r'<a\s+[^>]+>')
+    elinkp = re.compile(r'<a(?:\s+[^>]+|\s*)>')
 
     ret = True
 
