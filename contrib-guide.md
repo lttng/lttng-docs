@@ -93,6 +93,11 @@ The LTTng Documentation is
 <a href="https://github.com/lttng/lttng-docs" class="ext">public</a>.
 ```
 
+Sometimes, however, it is necessary to write internal links in plain
+HTML, for example in tip blocks, since Markdown code is not processed.
+In these cases, add the `int` CSS class as a hint to prevent the static
+analyzer from complaining (`tools/checkdocs.py`).
+
 
 #### abbreviations
 

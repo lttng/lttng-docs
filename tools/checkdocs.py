@@ -72,7 +72,7 @@ def _get_toc_ids(path):
 
 def _check_file_links(toc_ids, path, c):
     ilinkp = re.compile(r'\[[^\]]+\]\(([^)]+)\)', flags=re.M)
-    elinkp = re.compile(r'href="([^"]+)"')
+    elinkp = re.compile(r'<a\s+[^>]+>')
 
     ret = True
 
@@ -92,9 +92,26 @@ def _check_file_links(toc_ids, path, c):
             _perror(path, 'Dead internal link: "{}"'.format(link))
             ret = False
 
+    hrefp = re.compile(r'href="([^"]+)"')
+    classesp = re.compile(r'class="([^"]+)"')
+
     for link in elinks:
-        if link.startswith('#'):
-            _pwarn(path, 'External link starts with #: "{}"'.format(link))
+        href = hrefp.search(link)
+        classes = classesp.search(link)
+
+        if classes is None:
+            _pwarn(path, 'External link has no "ext" class: "{}"'.format(link))
+        else:
+            classes = classes.group(1).split(' ')
+
+            if 'int' not in classes and 'ext' not in classes:
+                _pwarn(path, 'External link has no "ext" class: "{}"'.format(link))
+
+        if href is not None:
+            if href.group(1).startswith('#'):
+                _pwarn(path, 'External link starts with #: "{}"'.format(href))
+        else:
+            _perror(path, 'External link with no "href": "{}"'.format(link))
             ret = False
 
     return ret

@@ -17,7 +17,7 @@ lttng list --kernel
 <p>
     <span class="t">Tip:</span>You can avoid using <code>sudo</code> in
     the previous and following commands if your user is part of the
-    <a href="/docs/#doc-lttng-sessiond"><code>tracing</code> group</a>.
+    <a href="/docs/#doc-lttng-sessiond" class="int"><code>tracing</code> group</a>.
 </p>
 </div>
 
