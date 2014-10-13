@@ -49,7 +49,7 @@ following configurations have the same ring buffer total size:
             div: 2,
             oR: 0.97,
             evDur: 300,
-            evPerSubBuf: 16,
+            evPerSubBuf: 17,
             consumerAfter: 25
         });
         var rb16 = rbBuildStdAnimated(doc, {
