@@ -13,7 +13,9 @@ You can automate all this using
 <a href="https://wiki.archlinux.org/index.php/yaourt" class="ext">Yaourt</a>.
 
 <pre class="term">
-yaourt -Sy lttng-tools lttng-modules lttng-ust
+yaourt -S lttng-tools
+yaourt -S lttng-modules
+yaourt -S lttng-ust
 </pre>
 
 If you're living on the edge, the AUR also contains the latest Git masters
