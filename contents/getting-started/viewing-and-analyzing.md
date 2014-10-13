@@ -23,7 +23,7 @@ Many ways exist to read your LTTng traces:
   * **<a href="http://projects.eclipse.org/projects/tools.tracecompass" class="ext">Trace Compass</a>**
     is an Eclipse plugin, the TMF plugin mentioned above moved to its own
     project, used to visualize and analyze various types of traces,
-    including LTTng. It also comes as a standalone application and can be
+    including LTTng's. It also comes as a standalone application and can be
     downloaded from
     <a href="http://secretaire.dorsal.polymtl.ca/~gbastien/TracingRCP/TraceCompass/" class="ext">here</a>
     for a daily build of the latest source code. A version containing some
