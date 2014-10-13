@@ -63,7 +63,7 @@ achieve this.
 So, in the end, this is what LTTng is: a powerful, open source set of
 tools to trace the Linux kernel and user applications. LTTng is
 composed of several components actively maintained and developed by
-its community.
+its <a href="/community/#where" class="ext">community</a>.
 
 Excluding proprietary solutions, a few competing software tracers
 exist for Linux.
