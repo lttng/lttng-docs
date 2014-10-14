@@ -227,3 +227,12 @@ consistent as possible:
   * Keep the text as impersonal as possible (minimize the use of
     _I_, _we_, _us_, etc.), except for user guides/tutorials where
     _we_ have an ongoing example.
+
+
+committing
+----------
+
+If you make a change to a single contents file, prefix your Git commit
+message's first line with the file ID followed by `: `, e.g:
+
+    archlinux: minor fix
