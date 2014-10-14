@@ -10,7 +10,7 @@ and
 <a href="https://aur.archlinux.org/packages/lttng-ust/" class="ext"><code>lttng-ust</code></a>.
 
 You can automate all this using
-<a href="https://wiki.archlinux.org/index.php/yaourt" class="ext">Yaourt</a>.
+<a href="https://wiki.archlinux.org/index.php/yaourt" class="ext">Yaourt</a>:
 
 <pre class="term">
 yaourt -S lttng-tools
