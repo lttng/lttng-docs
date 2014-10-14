@@ -16,19 +16,14 @@ Many ways exist to read your LTTng traces:
   * Babeltrace also includes a **Python binding** so that you may
     easily open and read an LTTng trace with your own script, benefiting
     from the power of Python.
-  * The **<a href="https://eclipse.org/downloads/packages/eclipse-ide-cc-developers/lunar" class="ext">
-    Eclise IDE for C/C++ Developers</a>**
-    includes the Tracing and Monitoring Framework (TMF) plugin which
-    supports LTTng traces, amongst others.
   * **<a href="http://projects.eclipse.org/projects/tools.tracecompass" class="ext">Trace Compass</a>**
-    is an Eclipse plugin, the TMF plugin mentioned above moved to its own
-    project, used to visualize and analyze various types of traces,
-    including LTTng's. It also comes as a standalone application and can be
-    downloaded from
+    is an Eclipse plugin used to visualize and analyze various types of
+    traces, including LTTng's. It also comes as a standalone application
+    and can be downloaded from
     <a href="http://secretaire.dorsal.polymtl.ca/~gbastien/TracingRCP/TraceCompass/" class="ext">here</a>
-    for a daily build of the latest source code. A version containing some
-    experimental features like Virtual Machine analysis and Critical Path
-    analysis is also available
+    for a daily build of the latest source code. A version containing
+    some experimental features like Virtual Machine analysis and
+    Critical Path analysis is also available
     <a href="http://secretaire.dorsal.polymtl.ca/~gbastien/TracingRCP/DorsalExperimental/" class="ext">here</a>.
 
 LTTng trace files are usually recorded in the `~/lttng-traces` directory.
