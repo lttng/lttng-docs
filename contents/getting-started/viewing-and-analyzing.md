@@ -55,7 +55,7 @@ babeltrace ~/lttng-traces/my-kernel-session | grep sys_
 Counting events is also straightforward:
 
 <pre class="term">
-babeltrace ~/lttng-traces/my-kernel-session | grep sys_read | wc -l
+babeltrace ~/lttng-traces/my-kernel-session | grep sys_read | wc --lines
 </pre>
 
 The text output of `babeltrace` is useful for isolating events by simple

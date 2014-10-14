@@ -69,12 +69,12 @@ list active tracing sessions by doing the following (assuming the relay
 daemon to connect to runs on the same host):
 
 <pre class="term">
-babeltrace -i lttng-live net://localhost
+babeltrace --input-format lttng-live net://localhost
 </pre>
 
 Then, choose a tracing session and start viewing events as they arrive
 using LTTng live, e.g.:
 
 <pre class="term">
-babeltrace -i lttng-live net://localhost/host/hostname/my-session
+babeltrace --input-format lttng-live net://localhost/host/hostname/my-session
 </pre>

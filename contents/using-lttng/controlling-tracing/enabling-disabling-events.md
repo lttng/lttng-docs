@@ -111,7 +111,7 @@ Disabling an event is simpler: you only need to provide the event
 name to the `disable-event` command:
 
 <pre class="term">
-lttng disable-event -u my_app:hello_you
+lttng disable-event --userspace my_app:hello_you
 </pre>
 
 This name has to match a name previously given to `enable-event` (it
