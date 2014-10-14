@@ -5,6 +5,7 @@ id: lttng-modules-tp-fast-assign
 This table describes possible entries for the `TP_fast_assign()` part
 of `LTTNG_TRACEPOINT_EVENT()`:
 
+<div class="table">
 <table class="func-desc">
     <thead>
         <tr>
@@ -148,3 +149,4 @@ of `LTTNG_TRACEPOINT_EVENT()`:
         </tr>
     </tbody>
 </table>
+</div>

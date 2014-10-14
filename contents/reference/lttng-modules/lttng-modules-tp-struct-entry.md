@@ -5,6 +5,7 @@ id: lttng-modules-tp-struct-entry
 This table describes possible entries for the `TP_STRUCT__entry()` part
 of `LTTNG_TRACEPOINT_EVENT()`:
 
+<div class="table">
 <table class="func-desc">
     <thead>
         <tr>
@@ -222,6 +223,7 @@ of `LTTNG_TRACEPOINT_EVENT()`:
         </tr>
     </tbody>
 </table>
+</div>
 
 The above macros should cover the majority of cases. For advanced items,
 see `probes/lttng-events.h`.

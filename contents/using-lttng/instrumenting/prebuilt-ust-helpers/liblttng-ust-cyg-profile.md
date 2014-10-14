@@ -28,6 +28,7 @@ stream is recorded without any missing events. Any kind of duplicate
 information is left out. This version registers the following
 tracepoints:
 
+<div class="table">
 <table class="func-desc">
     <thead>
         <tr>
@@ -65,6 +66,7 @@ tracepoints:
         </tr>
     </tbody>
 </table>
+</div>
 
 Assuming no event is lost, having only the function addresses on entry
 is enough for creating a call graph (remember that a recorded event
@@ -81,6 +83,7 @@ In these cases, the trace analyzer needs extra information to be
 able to reconstruct the program flow. This version registers the
 following tracepoints:
 
+<div class="table">
 <table class="func-desc">
     <thead>
         <tr>
@@ -133,6 +136,7 @@ following tracepoints:
         </tr>
     </tbody>
 </table>
+</div>
 
 To use one or the other variant with any user application, assuming at
 least one translation unit of the latter is compiled with the

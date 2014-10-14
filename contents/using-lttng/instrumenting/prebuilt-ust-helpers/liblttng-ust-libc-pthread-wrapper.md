@@ -8,6 +8,7 @@ POSIX threads functions.
 
 The following functions are traceable by `liblttng-ust-libc-wrapper.so`:
 
+<div class="table">
 <table class="func-desc">
     <thead>
         <tr>
@@ -70,10 +71,12 @@ The following functions are traceable by `liblttng-ust-libc-wrapper.so`:
         </tr>
     </tbody>
 </table>
+</div>
 
 The following functions are traceable by
 `liblttng-ust-pthread-wrapper.so`:
 
+<div class="table">
 <table class="func-desc">
     <thead>
         <tr>
@@ -120,6 +123,7 @@ The following functions are traceable by
         </tr>
     </tbody>
 </table>
+</div>
 
 All tracepoints have fields corresponding to the arguments of the
 function they instrument.

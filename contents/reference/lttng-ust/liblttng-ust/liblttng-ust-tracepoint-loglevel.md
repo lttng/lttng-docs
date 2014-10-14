@@ -5,6 +5,7 @@ id: liblttng-ust-tracepoint-loglevel
 The following table shows the available log level values for the
 `TRACEPOINT_LOGLEVEL()` macro:
 
+<div class="table">
 <table class="func-desc">
     <thead>
         <tr>
@@ -91,6 +92,7 @@ The following table shows the available log level values for the
         </tr>
     </tbody>
 </table>
+</div>
 
 Higher log level numbers imply the most verbosity (expect higher tracing
 throughput). Log levels 0 through 6 and log level 14 match

@@ -5,7 +5,7 @@ id: liblttng-ust-tp-fields
 The available macros to define tracepoint fields, which should be listed
 within `TP_FIELDS()` in `TRACEPOINT_EVENT()`, are:
 
-
+<div class="table">
 <table class="func-desc">
     <thead>
         <tr>
@@ -190,6 +190,7 @@ within `TP_FIELDS()` in `TRACEPOINT_EVENT()`, are:
         </tr>
     </tbody>
 </table>
+</div>
 
 The `_nowrite` versions omit themselves from the session trace, but are
 otherwise identical. This means the `_nowrite` fields won't be written

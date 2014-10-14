@@ -8,6 +8,7 @@ in the target application to be traced with LTTng.
 The helper's shared object, `liblttng-ust-dl.so`, registers the
 following tracepoints when preloaded:
 
+<div class="table">
 <table class="func-desc">
     <thead>
         <tr>
@@ -67,6 +68,7 @@ following tracepoints when preloaded:
         </tr>
     </tbody>
 </table>
+</div>
 
 To use this LTTng-UST helper with any user application, independently of
 how the latter is built, do:
