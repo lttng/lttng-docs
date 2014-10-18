@@ -23,5 +23,12 @@ lttng-gen-tp my-template.tp
 `my-template.c`, `my-template.o` and `my-template.h` will be created
 in the same directory.
 
+You may specify custom C flags passed to the compiler invoked by
+`lttng-gen-tp` using the `CFLAGS` environment variable:
+
+<pre class="term">
+CFLAGS=-I/custom/include/path lttng-gen-tp my-template.tp
+</pre>
+
 For more information on `lttng-gen-tp`, see
 <a href="/man/1/lttng-gen-tp" class="ext">its manpage</a>.
