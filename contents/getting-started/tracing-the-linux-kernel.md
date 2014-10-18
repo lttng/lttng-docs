@@ -13,19 +13,20 @@ Git like command line structure:
 lttng list --kernel
 </pre>
 
-<div class="tip">
-<p>
-    <span class="t">Tip:</span>You can avoid using <code>sudo</code> in
-    the previous and following commands if your user is part of the
-    <a href="/docs/#doc-lttng-sessiond" class="int"><code>tracing</code> group</a>.
-</p>
-</div>
-
 Before tracing, you need to create a session:
 
 <pre class="term">
 sudo lttng create my-session
 </pre>
+
+<div class="tip">
+<p>
+    <span class="t">Tip:</span>You can avoid using <code>sudo</code> in
+    the previous and following commands if your user is part of the
+    <a href="/docs/#doc-lttng-sessiond" class="int"><code>tracing</code>
+    group</a>.
+</p>
+</div>
 
 `my-session` is the tracing session name and could be anything you
 like. `auto` will be used if omitted.
