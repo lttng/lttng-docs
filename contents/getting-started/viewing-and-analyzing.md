@@ -130,7 +130,7 @@ def top5proc():
         last_ts = cur_ts
 
     # display top 10
-    for name, ns in exec_times.most_common()[:5]:
+    for name, ns in exec_times.most_common(5):
         s = ns / 1000000000
         print('{:20}{} s'.format(name, s))
 
