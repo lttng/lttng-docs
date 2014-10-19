@@ -7,7 +7,7 @@ Make sure LTTng-tools and LTTng-modules packages
 
 Since you're about to trace the Linux kernel itself, let's look at the
 available kernel events using the `lttng` tool, which has a
-Git like command line structure:
+Git-like command line structure:
 
 <pre class="term">
 lttng list --kernel
@@ -22,7 +22,7 @@ sudo lttng create my-session
 <div class="tip">
 <p>
     <span class="t">Tip:</span>You can avoid using <code>sudo</code> in
-    the previous and following commands if your user is part of the
+    the previous and following commands if your user is a member of the
     <a href="/docs/#doc-lttng-sessiond" class="int"><code>tracing</code>
     group</a>.
 </p>
@@ -62,7 +62,7 @@ sudo lttng destroy
 </pre>
 
 Although `destroy` looks scary here, it doesn't actually destroy the
-outputted traces: it only destroys the tracing session.
+outputted trace files: it only destroys the tracing session.
 
 What's next? Have a look at
 [Viewing and analyzing your traces](#doc-viewing-and-analyzing-your-traces)
