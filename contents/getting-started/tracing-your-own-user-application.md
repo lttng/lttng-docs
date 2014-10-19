@@ -18,9 +18,9 @@ Unlike `printf()`, though, `tracepoint()` does not use a format string to
 know the types of its arguments: the formats of all tracepoints must be
 defined before using them. So before even writing our _Hello world_ program,
 we need to define the format of our tracepoint. This is done by writing a
-**template file**, with a name usually ending with the `.tp` extension,
+**template file**, with a name usually ending with the `.tp` extension (for **t**race**p**oint),
 which the `lttng-gen-tp` tool (shipped with LTTng-UST) will use to generate
-an object file and a header to be included in our application source code.
+an object file (along with a `.c` file) and a header to be included in our application source code.
 
 Here's the whole flow:
 
