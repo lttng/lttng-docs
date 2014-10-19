@@ -23,7 +23,7 @@ faster, and nowadays, faster software means either more work done by
 the same hardware, or cheaper hardware for the same work.
 
 A _profiler_ is often the tool of choice to identify performance
-bottleneck. Profiling is suitable to identify _where_ performance is
+bottlenecks. Profiling is suitable to identify _where_ performance is
 lost in a given software; the profiler outputs a profile, a
 statistical summary of observed events, which you may use to know
 which functions took the most time to execute. However, a profiler
@@ -43,7 +43,7 @@ possibility of resolving a wide range of problems that are otherwise
 extremely challenging.
 
 Tracing is often compared to _logging_. However, tracers and loggers
-are two different tools, serving two different purposes. Tracers are
+are two different types of tools, serving two different purposes. Tracers are
 designed to record much lower-level events that occur much more
 frequently than log messages, often in the thousands per second range,
 with very little execution overhead. Logging is more appropriate for
