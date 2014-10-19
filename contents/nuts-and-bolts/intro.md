@@ -85,7 +85,7 @@ overhead amongst other solutions.  It produces trace files in the
 format, an optimized file format for production and analyses of
 multi-gigabyte data. LTTng is the result of close to 10 years of
 active development by a community of passionate developers. It is
-currently available on all major desktop and embedded Linux
+currently available on all major desktop, server, and embedded Linux
 distributions.
 
 The main interface for tracing control is a single command line tool
