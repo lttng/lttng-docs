@@ -15,4 +15,4 @@ for
 [tracing your own user space applications](#doc-tracing-your-own-user-application).
 When your traces are finally written and complete, the
 [Viewing and analyzing your traces](#doc-viewing-and-analyzing-your-traces)
-section of this chapter will help you do something useful with them.
+section of this chapter will help you analyze your tracepoint events to investigate.
