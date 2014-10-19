@@ -19,11 +19,11 @@ One major achievement in this field is, inarguably, the
 <a href="https://www.gnu.org/software/gdb/" class="ext">GNU debugger
 (GDB)</a>, which is an essential tool for developers to find and fix
 bugs. But even the best debugger won't help make your software run
-faster, and nowadays, faster softwares means either more work done by
+faster, and nowadays, faster software means either more work done by
 the same hardware, or cheaper hardware for the same work.
 
 A _profiler_ is often the tool of choice to identify performance
-bottleneck. Profiling is suitable to identify _where_ performance is
+bottlenecks. Profiling is suitable to identify _where_ performance is
 lost in a given software; the profiler outputs a profile, a
 statistical summary of observed events, which you may use to know
 which functions took the most time to execute. However, a profiler
@@ -43,7 +43,7 @@ possibility of resolving a wide range of problems that are otherwise
 extremely challenging.
 
 Tracing is often compared to _logging_. However, tracers and loggers
-are two different tools, serving two different purposes. Tracers are
+are two different types of tools, serving two different purposes. Tracers are
 designed to record much lower-level events that occur much more
 frequently than log messages, often in the thousands per second range,
 with very little execution overhead. Logging is more appropriate for
@@ -85,7 +85,7 @@ overhead amongst other solutions.  It produces trace files in the
 format, an optimized file format for production and analyses of
 multi-gigabyte data. LTTng is the result of close to 10 years of
 active development by a community of passionate developers. It is
-currently available on all major desktop and embedded Linux
+currently available on all major desktop, server, and embedded Linux
 distributions.
 
 The main interface for tracing control is a single command line tool
