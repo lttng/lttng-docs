@@ -8,10 +8,10 @@ tracing sessions (starting/stopping tracing, enabling/disabling events,
 etc.). Those components are bundled into the following packages:
 
   * **LTTng-tools**: Libraries and command line interface to control
-    tracing sessions
+    tracing sessions;
   * **LTTng-modules**: Linux kernel modules allowing Linux to be
-    traced using LTTng
-  * **LTTng-UST**: User space tracing library
+    traced using LTTng;
+  * **LTTng-UST**: User space tracing library.
 
 Most distributions mark the LTTng-modules and LTTng-UST packages as
 optional. In the following sections, we always provide the steps to
