@@ -19,7 +19,7 @@ One major achievement in this field is, inarguably, the
 <a href="https://www.gnu.org/software/gdb/" class="ext">GNU debugger
 (GDB)</a>, which is an essential tool for developers to find and fix
 bugs. But even the best debugger won't help make your software run
-faster, and nowadays, faster softwares means either more work done by
+faster, and nowadays, faster software means either more work done by
 the same hardware, or cheaper hardware for the same work.
 
 A _profiler_ is often the tool of choice to identify performance
