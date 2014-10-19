@@ -7,5 +7,5 @@ previous releases, you will need to build and install LTTng
 [from source](#doc-building-from-source), as no Ubuntu packages were
 available before version 12.04.
 
-Two sources of LTTng packages are available for Ubuntu: official
+Two repository types can provide LTTng packages for Ubuntu: official
 repositories and <abbr title="Personal Package Archive">PPA</abbr>.
