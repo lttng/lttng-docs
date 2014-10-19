@@ -12,4 +12,5 @@ following the procedures below, please inform the
 
 Support is also available for
 [enterprise distributions](#doc-enterprise-distributions) such as
-Red Hat Enterprise Linux (RHEL) and SUSE Linux Enterprise Server (SLES).
+Red Hat Enterprise Linux (RHEL), SUSE Linux Enterprise Server (SLES),
+and CentOS.
