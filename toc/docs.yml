@@ -98,6 +98,8 @@ cats:
                 title: Using <code>lttng-gen-tp</code>
               - id: defining-tracepoints
                 title: Defining tracepoints
+              - id: using-tracepoint-classes
+                title: Using tracepoint classes
               - id: assigning-log-levels
                 title: Assigning log levels to tracepoints
               - id: probing-the-application-source-code
