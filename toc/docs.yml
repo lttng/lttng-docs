@@ -23,8 +23,6 @@ cats:
             title: openSUSE
           - id: archlinux
             title: Arch Linux
-          - id: enterprise-distributions
-            title: "Enterprise distributions (<abbr title=\"Red Hat Enterprise Linux\">RHEL</abbr>, <abbr title=\"SUSE Linux Enterprise Server\">SLES</abbr>)"
       - id: embedded-distributions
         title: Embedded distributions
         cats:
@@ -32,6 +30,8 @@ cats:
             title: Buildroot
           - id: oe-yocto
             title: OpenEmbedded/Yocto
+      - id: enterprise-distributions
+        title: "Enterprise distributions (<abbr title=\"Red Hat Enterprise Linux\">RHEL</abbr>, <abbr title=\"SUSE Linux Enterprise Server\">SLES</abbr>)"
       - id: building-from-source
         title: Building from source
   - id: getting-started
@@ -98,6 +98,8 @@ cats:
                 title: Using <code>lttng-gen-tp</code>
               - id: defining-tracepoints
                 title: Defining tracepoints
+              - id: using-tracepoint-classes
+                title: Using tracepoint classes
               - id: assigning-log-levels
                 title: Assigning log levels to tracepoints
               - id: probing-the-application-source-code

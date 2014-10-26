@@ -22,5 +22,8 @@ you intend to trace user space applications.
 This chapter shows how to install the above packages on a Linux
 system. The easiest way is to use the package manager of the system's
 distribution ([desktop](#doc-desktop-distributions) or
-[embedded](#doc-embedded-distributions)). Otherwise, you can
+[embedded](#doc-embedded-distributions)). Support is also available for
+[enterprise distributions](#doc-enterprise-distributions), such as
+Red Hat Enterprise Linux (RHEL) and SUSE Linux Enterprise Server (SLES).
+Otherwise, you can
 [build the LTTng packages from source](#doc-building-from-source).

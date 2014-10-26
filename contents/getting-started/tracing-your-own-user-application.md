@@ -184,11 +184,10 @@ lttng start
 Go back to the running `hello` application and press Enter. All `tracepoint()`
 calls will be executed and the program will finally exit.
 
-Stop tracing and destroy the tracing session:
+Stop tracing:
 
 <pre class="term">
 lttng stop
-lttng destroy my-userspace-session
 </pre>
 
 Done! You may use `lttng view` to list the recorded events. This command
@@ -210,6 +209,14 @@ should output something like:
 [18:10:27.684343518] (+0.000000902) hostname hello_world:my_first_tracepoint: { cpu_id = 0 }, { my_string_field = "beyond", my_integer_field = 3 }
 [18:10:27.684357978] (+0.000014460) hostname hello_world:my_first_tracepoint: { cpu_id = 0 }, { my_string_field = "x^2", my_integer_field = 16 }
 ~~~
+
+When you're done, you may destroy the tracing session, which does _not_
+destroy the generated trace files, leaving them available for further
+analysis:
+
+<pre class="term">
+lttng destroy my-userspace-session
+</pre>
 
 The next section presents other alternatives to view and analyze your
 LTTng traces.
