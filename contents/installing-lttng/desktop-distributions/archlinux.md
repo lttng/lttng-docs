@@ -9,8 +9,8 @@ LTTng packages are available in the
 and
 <a href="https://aur.archlinux.org/packages/lttng-ust/" class="ext"><code>lttng-ust</code></a>.
 
-The 3 LTTng packages can be installed using the following
-<a href="https://wiki.archlinux.org/index.php/yaourt" class="ext">Yaourt</a> commands
+The three LTTng packages can be installed using the following
+<a href="https://wiki.archlinux.org/index.php/yaourt" class="ext">Yaourt</a> commands:
 
 <pre class="term">
 yaourt -S lttng-tools
