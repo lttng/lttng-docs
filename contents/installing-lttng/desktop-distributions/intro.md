@@ -9,3 +9,4 @@ Linux desktop distributions: [Ubuntu](#doc-ubuntu),
 LTTng is regularly tested on those. Should any issue arise when
 following the procedures below, please inform the
 <a href="/community" class="ext">community</a> about it.
+

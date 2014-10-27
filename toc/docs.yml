@@ -20,7 +20,7 @@ cats:
           - id: debian
             title: Debian
           - id: opensuse
-            title: openSUSE/RPM
+            title: openSUSE
           - id: archlinux
             title: Arch Linux
       - id: embedded-distributions
