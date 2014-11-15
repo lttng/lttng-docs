@@ -8,6 +8,7 @@ available using `yum`:
 <pre class="term">
 sudo yum install lttng-tools
 sudo yum install lttng-ust
+sudo yum install lttng-ust-devel
 </pre>
 
 LTTng-modules still needs to be built and installed from source. For that, 
