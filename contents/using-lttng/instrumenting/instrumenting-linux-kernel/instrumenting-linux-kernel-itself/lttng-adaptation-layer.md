@@ -28,6 +28,7 @@ Following our `hello_world` event example, here's the content of
 #if !defined(_TRACE_HELLO_H) || defined(TRACE_HEADER_MULTI_READ)
 #define _TRACE_HELLO_H
 
+#include "../../../probes/lttng-tracepoint-event.h"
 #include <linux/tracepoint.h>
 
 LTTNG_TRACEPOINT_EVENT(
