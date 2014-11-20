@@ -18,7 +18,7 @@ having multiple definitions depending on the context:
      specific rules which could lead to the transfer of actual
      occurring events (1) to recorded events (2).
 
-The whole [Core concepts](#doc-core-concepts) section focusses on the
+The whole [Core concepts](#doc-core-concepts) section focuses on the
 third definition. An event is always registered to _one or more_
 channels and may be enabled or disabled at will per channel. A disabled
 event will never lead to a recorded event, even if its channel
