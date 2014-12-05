@@ -17,8 +17,22 @@ sudo make install
 sudo ldconfig
 </pre>
 
-`-L/usr/lib32` is required for the build to find the 32-bit version
-of Userspace RCU.
+`-L/usr/lib32` is required for the build to find the 32-bit versions
+of Userspace RCU and other dependencies.
+
+<div class="tip">
+<p>
+    <span class="t">Note:</span>Depending on your Linux distribution,
+    32-bit libraries could be installed at a different location than
+    <code>/usr/lib32</code>. For example, Debian is known to install
+    some 32-bit libraries in <code>/usr/lib/i386-linux-gnu</code>.
+</p>
+<p>
+    In this case, make sure to set <code>LDFLAGS</code> to all the
+    relevant 32-bit library paths, e.g.,
+    <code>LDFLAGS="-L/usr/lib32 -L/usr/lib/i386-linux-gnu"</code>.
+</p>
+</div>
 
 <div class="tip">
 <p>
