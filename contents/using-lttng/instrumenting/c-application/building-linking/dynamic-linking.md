@@ -61,7 +61,7 @@ starts:
 <strong>LD_PRELOAD=/path/to/tp.so</strong> ./app
 </pre>
 
-You application will still work without this preloading, albeit without
+Your application will still work without this preloading, albeit without
 LTTng-UST tracing support:
 
 <pre class="term">
