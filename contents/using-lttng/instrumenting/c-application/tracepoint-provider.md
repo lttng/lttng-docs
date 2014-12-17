@@ -129,8 +129,8 @@ Include guard follows:
 #define _TP_H
 ~~~
 
-Add this precompiler conditionals to ensure the tracepoint event generation
-can include this file more than once.
+Add these precompiler conditionals to ensure the tracepoint event
+generation can include this file more than once.
 
 The `TRACEPOINT_EVENT()` macro is defined in a LTTng-UST header file which
 must be included:

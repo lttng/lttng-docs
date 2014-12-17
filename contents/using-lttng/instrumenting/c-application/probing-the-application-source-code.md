@@ -55,9 +55,12 @@ int main(int argc, char* argv[])
 }
 ~~~
 
-`TRACEPOINT_DEFINE` must be defined into exactly one translation unit (C
-source file) of the user application, before including the tracepoint provider
-header file. `TRACEPOINT_DEFINE` is discussed further in
+For each tracepoint provider, `TRACEPOINT_DEFINE` must be defined into
+exactly one translation unit (C source file) of the user application,
+before including the tracepoint provider header file. In other words,
+for a given tracepoint provider, you cannot define `TRACEPOINT_DEFINE`,
+and then include its header file in two separate C source files of
+the same application. `TRACEPOINT_DEFINE` is discussed further in
 [Building/linking tracepoint providers and the user application](#doc-building-tracepoint-providers-and-user-application).
 
 As another example, remember this definition we wrote in a previous

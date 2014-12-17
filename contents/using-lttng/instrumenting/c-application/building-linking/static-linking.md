@@ -39,10 +39,11 @@ int my_func(int a, const char* b)
 /* ... */
 ~~~
 
-Again, `TRACEPOINT_CREATE_PROBES` and `TRACEPOINT_DEFINE` must be
-defined in one, **and only one**, translation unit. Other C source
-files of the same application may include `tp.h` to use tracepoints
-with `tracepoint()`, but must not define
+Again, before including a given tracepoint provider header file,
+`TRACEPOINT_CREATE_PROBES` and `TRACEPOINT_DEFINE` must be defined in
+one, **and only one**, translation unit. Other C source files of the
+same application may include `tp.h` to use tracepoints with
+the `tracepoint()` macro, but must not define
 `TRACEPOINT_CREATE_PROBES`/`TRACEPOINT_DEFINE` again.
 
 This translation unit may be built as an object file by making sure to
@@ -63,8 +64,17 @@ separate object file by using a dedicated C source file to create probes:
 
 `TRACEPOINT_DEFINE` must be defined by a translation unit of the
 application. Since we're talking about static linking here, it could as
-well be defined in the file above, before `#include "tp.h"`. This is
-actually what [`lttng-gen-tp`](#doc-lttng-gen-tp) does.
+well be defined directly in the file above, before `#include "tp.h"`:
+
+~~~ c
+#define TRACEPOINT_CREATE_PROBES
+#define TRACEPOINT_DEFINE
+
+#include "tp.h"
+~~~
+
+This is actually what [`lttng-gen-tp`](#doc-lttng-gen-tp) does, and is
+the recommended practice.
 
 Build the tracepoint provider:
 

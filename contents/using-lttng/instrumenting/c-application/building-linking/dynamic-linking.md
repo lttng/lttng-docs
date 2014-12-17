@@ -19,10 +19,26 @@ The process to create the tracepoint provider shared object is pretty
 much the same as the static library method, except that:
 
   * since the tracepoint provider is not part of the application
-    anymore, `TRACEPOINT_DEFINE` _must_ be defined in one translation
-    unit (C source file) of the _application_;
+    anymore, `TRACEPOINT_DEFINE` _must_ be defined, for each tracepoint
+    provider, in exactly one translation unit (C source file) of the
+    _application_;
   * `TRACEPOINT_PROBE_DYNAMIC_LINKAGE` must be defined next to
     `TRACEPOINT_DEFINE`.
+
+Regarding `TRACEPOINT_DEFINE` and `TRACEPOINT_PROBE_DYNAMIC_LINKAGE`,
+the recommended practice is to use a separate C source file in your
+application to define them, and then include the tracepoint provider
+header files afterwards, e.g.:
+
+~~~ c
+#define TRACEPOINT_DEFINE
+#define TRACEPOINT_PROBE_DYNAMIC_LINKAGE
+
+/* include the header files of one or more tracepoint providers below */
+#include "tp1.h"
+#include "tp2.h"
+#include "tp3.h"
+~~~
 
 `TRACEPOINT_PROBE_DYNAMIC_LINKAGE` makes the macros included afterwards
 (by including the tracepoint provider header, which itself includes
@@ -67,3 +83,4 @@ LTTng-UST tracing support:
 <pre class="term">
 ./app
 </pre>
+
