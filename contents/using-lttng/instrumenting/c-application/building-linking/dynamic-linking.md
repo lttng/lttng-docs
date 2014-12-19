@@ -68,14 +68,47 @@ provider, but still needs `libdl`:
 gcc -o app other.o files.o of.o your.o app.o <strong>-ldl</strong>
 </pre>
 
-Now, to make LTTng-UST tracing available to the application,
-the `LD_PRELOAD` environment variable is used to preload the
-tracepoint provider shared library _before_ the application actually
-starts:
+Now, to make LTTng-UST tracing available to the application, the
+`LD_PRELOAD` environment variable is used to preload the tracepoint
+provider shared library _before_ the application actually starts:
 
 <pre class="term">
 <strong>LD_PRELOAD=/path/to/tp.so</strong> ./app
 </pre>
+
+<div class="tip">
+<p>
+    <span class="t">Note:</span>It is not safe to use
+    <code>dlclose()</code> on a tracepoint provider shared object that
+    is being actively used for tracing, due to a lack of reference
+    counting from LTTng-UST to the shared object.
+</p>
+
+<p>
+    For example, statically linking a tracepoint provider to a
+    shared object which is to be dynamically loaded by an application
+    (e.g., a plugin) is not safe: the shared object, which contains the
+    tracepoint provider, could be dynamically closed
+    (<code>dlclose()</code>) at any time by the application.
+</p>
+
+<p>
+    To instrument a shared object, either:
+</p>
+
+<ol>
+    <li>
+        Statically link the tracepoint provider to the
+        <em>application</em>, or
+    </li>
+    <li>
+        Build the tracepoint provider as a shared object (following
+        the procedure shown in this section), and preload it when
+        tracing is needed using the <code>LD_PRELOAD</code>
+        environment variable.
+    </li>
+</ol>
+</div>
 
 Your application will still work without this preloading, albeit without
 LTTng-UST tracing support:
