@@ -6,8 +6,17 @@ Documentation's source. Make sure you read it thoroughly before
 contributing a change.
 
 
-structure
----------
+branches
+--------
+
+The online documentation published at <http://lttng.org/docs/> is always
+compiled from the sources of this repository's latest stable branch.
+The `master` branch contains the current documentation of the upcoming
+LTTng release.
+
+
+structure of sources
+--------------------
 
 `toc/docs.yml` is a YAML tree of all chapters, sections and subsections.
 It indicates which unique ID is linked to which position in the

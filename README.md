@@ -7,7 +7,8 @@ This is the official repository of the
 To contribute:
 
   1. Fork this repo
-  2. Make your change, following the [contributor's guide](contrib-guide.md)
-  3. Create a pull request
+  2. Checkout the appropriate branch (`stable-2.x` or `master`)
+  3. Make your change, following the [contributor's guide](contrib-guide.md)
+  4. Create a pull request
 
 Thanks for your contributions and fixes!
