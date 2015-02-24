@@ -12,7 +12,8 @@ in source code/binary program, logical processor and time capturing
 some payload) being recorded as trace data. This specific condition is
 composed of:
 
-  1. A **domain** (kernel, user space or Java Util Logging) (required).
+  1. A **domain** (kernel, user space, `java.util.loggin`, or log4j)
+     (required).
   2. One or many **instrumentation points** in source code or binary
      program (tracepoint name, address, symbol name, function name,
      logger name, etc.) to be executed (required).
@@ -26,10 +27,10 @@ composed of:
 All conditions are specified using arguments passed to the
 `enable-event` command of the `lttng` tool.
 
-Condition 1 is specified using either `--kernel/-k` (kernel),
-`--userspace/-u` (user space) or `--jul/-j`
-(<abbr title="Java Util Logging">JUL</abbr>). Exactly one of those
-three arguments must be specified.
+Condition 1 is specified using either `--kernel`/`-k` (kernel),
+`--userspace`/`-u` (user space), `--jul`/`-j`
+(<abbr title="java.util.logging">JUL</abbr>), or `--log4j`/`-l` (log4j).
+Exactly one of those four arguments must be specified.
 
 Condition 2 is specified using one of:
 
@@ -85,6 +86,21 @@ The wildcard symbol, `*`, matches _anything_ and may only be used at
 the end of the string when specifying a _tracepoint_. Make sure to
 use it between single quotes in your favorite shell to avoid
 undesired shell expansion.
+
+System call events can be enabled individually, too:
+
+<pre class="term">
+lttng enable-event -k --syscall open
+lttng enable-event -k --syscall read
+lttng enable-event -k --syscall fork,chdir,pipe
+</pre>
+
+The complete list of available system call events can be
+obtained using
+
+<pre class="term">
+lttng list --kernel --syscall
+</pre>
 
 You can see a list of events (enabled or disabled) using
 

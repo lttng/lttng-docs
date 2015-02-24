@@ -5,11 +5,12 @@ id: domain
 A tracing _domain_ is the official term the LTTng project uses to
 designate a tracer category.
 
-There are currently three known domains:
+There are currently four known domains:
 
   * Linux kernel
   * user space
-  * Java Util Logging (JUL)
+  * `java.util.logging` (JUL)
+  * log4j
 
 Different tracers expose common features in their own interfaces, but,
 from a user's perspective, you still need to target a specific type of

@@ -16,7 +16,7 @@
     <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="1260" y1="-635" x2="1260" y2="-235"/>
     <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 880,-235 A 5,5 0 0 0 885,-230"/>
     <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 1255,-230 A 5,5 0 0 0 1260,-235"/>
-    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family: Helvetica, Arial, sans-serif;font-style:normal;font-weight:normal" x="1070" y="-431.1">
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1070" y="-431.1">
       <tspan x="1070" y="-431.1"></tspan>
     </text>
   </g>
@@ -35,7 +35,7 @@
     <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="1150" y1="-205" x2="1150" y2="-95"/>
     <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 910,-95 A 5,5 0 0 0 915,-90"/>
     <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 1145,-90 A 5,5 0 0 0 1150,-95"/>
-    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family: Helvetica, Arial, sans-serif;font-style:normal;font-weight:normal" x="1030" y="-146.1">
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1030" y="-146.1">
       <tspan x="1030" y="-146.1"></tspan>
     </text>
   </g>
@@ -54,7 +54,7 @@
     <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="990" y1="-595" x2="990" y2="-545"/>
     <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 890,-545 A 5,5 0 0 0 895,-540"/>
     <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 985,-540 A 5,5 0 0 0 990,-545"/>
-    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family: Helvetica, Arial, sans-serif;font-style:normal;font-weight:normal" x="940" y="-566.1">
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="940" y="-566.1">
       <tspan x="940" y="-566.1"></tspan>
     </text>
   </g>
@@ -73,12 +73,12 @@
     <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="980" y1="-575" x2="980" y2="-555"/>
     <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 900,-555 A 5,5 0 0 0 905,-550"/>
     <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 975,-550 A 5,5 0 0 0 980,-555"/>
-    <text font-size="9.03111" style="fill: #000000;text-anchor:middle;font-family: Helvetica, Arial, sans-serif;font-style:normal;font-weight:normal" x="940" y="-562.244">
+    <text font-size="9.03111" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="940" y="-562.244">
       <tspan x="940" y="-562.244">TP</tspan>
     </text>
   </g>
-  <text font-size="9.03097" style="fill: #000000;text-anchor:middle;font-family: Helvetica, Arial, sans-serif;font-style:normal;font-weight:normal" x="940" y="-587.007">
-    <tspan x="940" y="-587.007">C/C++ application</tspan>
+  <text font-size="9.03111" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="940" y="-586.875">
+    <tspan x="940" y="-586.875">C/C++ application</tspan>
   </text>
   <g>
     <rect style="fill: #d2edd2" x="895" y="-530" width="90" height="30"/>
@@ -95,7 +95,7 @@
     <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="990" y1="-525" x2="990" y2="-505"/>
     <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 890,-505 A 5,5 0 0 0 895,-500"/>
     <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 985,-500 A 5,5 0 0 0 990,-505"/>
-    <text font-size="9.03111" style="fill: #000000;text-anchor:middle;font-family: Helvetica, Arial, sans-serif;font-style:normal;font-weight:normal" x="940" y="-512.244">
+    <text font-size="9.03111" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="940" y="-512.244">
       <tspan x="940" y="-512.244">liblttng-ust</tspan>
     </text>
   </g>
@@ -115,7 +115,7 @@
     <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="1110" y1="-595" x2="1110" y2="-575"/>
     <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 1010,-575 A 5,5 0 0 0 1015,-570"/>
     <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 1105,-570 A 5,5 0 0 0 1110,-575"/>
-    <text font-size="9.03111" style="fill: #000000;text-anchor:middle;font-family: Helvetica, Arial, sans-serif;font-style:normal;font-weight:normal" x="1060" y="-582.244">
+    <text font-size="9.03111" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1060" y="-582.244">
       <tspan x="1060" y="-582.244">Java application</tspan>
     </text>
   </g>
@@ -134,7 +134,7 @@
     <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="1110" y1="-475" x2="1110" y2="-455"/>
     <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 1010,-455 A 5,5 0 0 0 1015,-450"/>
     <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 1105,-450 A 5,5 0 0 0 1110,-455"/>
-    <text font-size="9.03111" style="fill: #000000;text-anchor:middle;font-family: Helvetica, Arial, sans-serif;font-style:normal;font-weight:normal" x="1060" y="-462.244">
+    <text font-size="9.03111" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1060" y="-462.244">
       <tspan x="1060" y="-462.244">liblttng-ust</tspan>
     </text>
   </g>
@@ -154,8 +154,9 @@
     <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="1110" y1="-515" x2="1110" y2="-495"/>
     <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 1010,-495 A 5,5 0 0 0 1015,-490"/>
     <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 1105,-490 A 5,5 0 0 0 1110,-495"/>
-    <text font-size="9.03111" style="fill: #000000;text-anchor:middle;font-family: Helvetica, Arial, sans-serif;font-style:normal;font-weight:normal" x="1060" y="-502.244">
-      <tspan x="1060" y="-502.244">liblttng-ust-jul-jni</tspan>
+    <text font-size="9.03111" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1060" y="-507.889">
+      <tspan x="1060" y="-507.889">liblttng-ust-jul-jni</tspan>
+      <tspan x="1060" y="-496.6">liblttng-ust-log4j-jni</tspan>
     </text>
   </g>
   <g>
@@ -173,8 +174,8 @@
     <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="1110" y1="-555" x2="1110" y2="-535"/>
     <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 1010,-535 A 5,5 0 0 0 1015,-530"/>
     <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 1105,-530 A 5,5 0 0 0 1110,-535"/>
-    <text font-size="9.03111" style="fill: #000000;text-anchor:middle;font-family: Helvetica, Arial, sans-serif;font-style:normal;font-weight:normal" x="1060" y="-542.244">
-      <tspan x="1060" y="-542.244">liblttng-ust-jul.jar</tspan>
+    <text font-size="8.46667" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1060" y="-542.442">
+      <tspan x="1060" y="-542.442">liblttng-ust-agent.jar</tspan>
     </text>
   </g>
   <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="1060" y1="-530" x2="1060" y2="-520"/>
@@ -194,11 +195,11 @@
     <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="1250" y1="-595" x2="1250" y2="-529"/>
     <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 1150,-529 A 5,5 0 0 0 1155,-524"/>
     <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 1245,-524 A 5,5 0 0 0 1250,-529"/>
-    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family: Helvetica, Arial, sans-serif;font-style:normal;font-weight:normal" x="1200" y="-558.1">
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1200" y="-558.1">
       <tspan x="1200" y="-558.1"></tspan>
     </text>
   </g>
-  <text font-size="9.03097" style="fill: #000000;text-anchor:middle;font-family: Helvetica, Arial, sans-serif;font-style:normal;font-weight:normal" x="1200" y="-584.875">
+  <text font-size="9.03111" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1200" y="-584.875">
     <tspan x="1200" y="-584.875">Linux kernel</tspan>
   </text>
   <g>
@@ -216,7 +217,7 @@
     <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="1240" y1="-571" x2="1240" y2="-551"/>
     <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 1160,-551 A 5,5 0 0 0 1165,-546"/>
     <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 1235,-546 A 5,5 0 0 0 1240,-551"/>
-    <text font-size="9.03111" style="fill: #ffffff;text-anchor:middle;font-family: Helvetica, Arial, sans-serif;font-style:normal;font-weight:normal" x="1200" y="-558.244">
+    <text font-size="9.03111" style="fill: #ffffff;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1200" y="-558.244">
       <tspan x="1200" y="-558.244">LTTng modules</tspan>
     </text>
   </g>
@@ -235,7 +236,7 @@
     <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="1110" y1="-405" x2="1110" y2="-385"/>
     <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 1010,-385 A 5,5 0 0 0 1015,-380"/>
     <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 1105,-380 A 5,5 0 0 0 1110,-385"/>
-    <text font-size="9.03111" style="fill: #000000;text-anchor:middle;font-family: Helvetica, Arial, sans-serif;font-style:normal;font-weight:normal" x="1060" y="-392.244">
+    <text font-size="9.03111" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1060" y="-392.244">
       <tspan x="1060" y="-392.244">lttng-sessiond</tspan>
     </text>
   </g>
@@ -275,7 +276,7 @@
     <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="1110" y1="-343" x2="1110" y2="-323"/>
     <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 1010,-323 A 5,5 0 0 0 1015,-318"/>
     <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 1105,-318 A 5,5 0 0 0 1110,-323"/>
-    <text font-size="9.03111" style="fill: #000000;text-anchor:middle;font-family: Helvetica, Arial, sans-serif;font-style:normal;font-weight:normal" x="1060" y="-330.244">
+    <text font-size="9.03111" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1060" y="-330.244">
       <tspan x="1060" y="-330.244">lttng-consumerd</tspan>
     </text>
   </g>
@@ -316,7 +317,7 @@
     <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="1250" y1="-265" x2="1250" y2="-245"/>
     <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 1180,-245 A 5,5 0 0 0 1185,-240"/>
     <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 1245,-240 A 5,5 0 0 0 1250,-245"/>
-    <text font-size="9.03111" style="fill: #000000;text-anchor:middle;font-family: Helvetica, Arial, sans-serif;font-style:normal;font-weight:normal" x="1215" y="-252.244">
+    <text font-size="9.03111" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1215" y="-252.244">
       <tspan x="1215" y="-252.244">lttng (CLI)</tspan>
     </text>
   </g>
@@ -335,7 +336,7 @@
     <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="1250" y1="-305" x2="1250" y2="-285"/>
     <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 1180,-285 A 5,5 0 0 0 1185,-280"/>
     <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 1245,-280 A 5,5 0 0 0 1250,-285"/>
-    <text font-size="9.03111" style="fill: #000000;text-anchor:middle;font-family: Helvetica, Arial, sans-serif;font-style:normal;font-weight:normal" x="1215" y="-292.244">
+    <text font-size="9.03111" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1215" y="-292.244">
       <tspan x="1215" y="-292.244">liblttng-ctl</tspan>
     </text>
   </g>
@@ -354,10 +355,10 @@
     <polygon style="fill: #eb595e" points="1215,-312.236 1211,-320.236 1215,-318.236 1219,-320.236 "/>
     <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #eb595e" points="1215,-312.236 1211,-320.236 1215,-318.236 1219,-320.236 "/>
   </g>
-  <text font-size="11.2889" style="fill: #000000;text-anchor:middle;font-family: Helvetica, Arial, sans-serif;font-style:normal;font-weight:700" x="1060" y="-616.239">
-    <tspan x="1060" y="-616.239">Target (monitored) system</tspan>
+  <text font-size="11.2889" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="1060" y="-616.075">
+    <tspan x="1060" y="-616.075">Target (monitored) system</tspan>
   </text>
-  <text font-size="11.2889" style="fill: #000000;text-anchor:middle;font-family: Helvetica, Arial, sans-serif;font-style:normal;font-weight:700" x="1030" y="-116.075">
+  <text font-size="11.2889" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="1030" y="-116.075">
     <tspan x="1030" y="-116.075">Remote system</tspan>
   </text>
   <g>
@@ -375,7 +376,7 @@
     <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="1110" y1="-185" x2="1110" y2="-165"/>
     <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 1010,-165 A 5,5 0 0 0 1015,-160"/>
     <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 1105,-160 A 5,5 0 0 0 1110,-165"/>
-    <text font-size="9.03111" style="fill: #000000;text-anchor:middle;font-family: Helvetica, Arial, sans-serif;font-style:normal;font-weight:normal" x="1060" y="-172.244">
+    <text font-size="9.03111" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1060" y="-172.244">
       <tspan x="1060" y="-172.244">lttng-relayd</tspan>
     </text>
   </g>
@@ -388,7 +389,7 @@
     <path style="fill: #ffffff" d="M 920 -290.333 C 928.57,-297.583 932.855,-300 941.425,-300 C 949.995,-300 954.28,-297.583 962.85,-290.333 L 962.85,-251.667 C 954.28,-244.417 949.995,-242 941.425,-242 C 932.855,-242 928.57,-244.417 920,-251.667 L 920,-290.333z"/>
     <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 920 -290.333 C 928.57,-297.583 932.855,-300 941.425,-300 C 949.995,-300 954.28,-297.583 962.85,-290.333 L 962.85,-251.667 C 954.28,-244.417 949.995,-242 941.425,-242 C 932.855,-242 928.57,-244.417 920,-251.667 L 920,-290.333"/>
     <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 920 -290.333 C 928.57,-283.083 932.855,-280.667 941.425,-280.667 C 949.995,-280.667 954.28,-283.083 962.85,-290.333"/>
-    <text font-size="9.03097" style="fill: #000000;text-anchor:middle;font-family: Helvetica, Arial, sans-serif;font-style:normal;font-weight:normal" x="941.425" y="-268.989">
+    <text font-size="9.03111" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="941.425" y="-268.989">
       <tspan x="941.425" y="-268.989">CTF</tspan>
       <tspan x="941.425" y="-257.7">traces</tspan>
     </text>
@@ -402,12 +403,12 @@
     <path style="fill: #ffffff" d="M 920 -189.652 C 928.57,-196.902 932.855,-199.318 941.425,-199.318 C 949.995,-199.318 954.28,-196.902 962.85,-189.652 L 962.85,-150.985 C 954.28,-143.735 949.995,-141.318 941.425,-141.318 C 932.855,-141.318 928.57,-143.735 920,-150.985 L 920,-189.652z"/>
     <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 920 -189.652 C 928.57,-196.902 932.855,-199.318 941.425,-199.318 C 949.995,-199.318 954.28,-196.902 962.85,-189.652 L 962.85,-150.985 C 954.28,-143.735 949.995,-141.318 941.425,-141.318 C 932.855,-141.318 928.57,-143.735 920,-150.985 L 920,-189.652"/>
     <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 920 -189.652 C 928.57,-182.402 932.855,-179.985 941.425,-179.985 C 949.995,-179.985 954.28,-182.402 962.85,-189.652"/>
-    <text font-size="9.03097" style="fill: #000000;text-anchor:middle;font-family: Helvetica, Arial, sans-serif;font-style:normal;font-weight:normal" x="941.425" y="-168.307">
+    <text font-size="9.03111" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="941.425" y="-168.307">
       <tspan x="941.425" y="-168.307">CTF</tspan>
       <tspan x="941.425" y="-157.018">traces</tspan>
     </text>
   </g>
-  <text font-size="9.03111" style="fill: #000000;text-anchor:middle;font-family: Helvetica, Arial, sans-serif;font-style:normal;font-weight:normal" x="1030" y="-106.875">
+  <text font-size="9.03111" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1030" y="-106.875">
     <tspan x="1030" y="-106.875">(may be local as well)</tspan>
   </text>
   <g>
@@ -431,17 +432,17 @@
   </g>
   <g>
     <rect style="fill: #f0f0f0" x="1051.62" y="-265.275" width="16.75" height="10.55"/>
-    <text font-size="9.03097" style="fill: #000000;text-anchor:middle;font-family: Helvetica, Arial, sans-serif;font-style:normal;font-weight:normal" x="1060" y="-256.875">
+    <text font-size="9.03111" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1060" y="-256.875">
       <tspan x="1060" y="-256.875">TCP</tspan>
     </text>
   </g>
   <g>
     <rect style="fill: #f0f0f0" x="1131.62" y="-265.275" width="16.75" height="10.55"/>
-    <text font-size="9.03097" style="fill: #eb595e;text-anchor:middle;font-family: Helvetica, Arial, sans-serif;font-style:normal;font-weight:normal" x="1140" y="-256.875">
+    <text font-size="9.03111" style="fill: #eb595e;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1140" y="-256.875">
       <tspan x="1140" y="-256.875">TCP</tspan>
     </text>
   </g>
-  <text font-size="9.03097" style="fill: #eb595e;text-anchor:middle;font-family: Helvetica, Arial, sans-serif;font-style:normal;font-weight:normal" x="1220" y="-196.875">
+  <text font-size="9.03111" style="fill: #eb595e;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1220" y="-196.875">
     <tspan x="1220" y="-196.875">Control</tspan>
   </text>
   <g>
@@ -449,7 +450,7 @@
     <polygon style="fill: #000000" points="1257.76,-160 1249.76,-156 1251.76,-160 1249.76,-164 "/>
     <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1257.76,-160 1249.76,-156 1251.76,-160 1249.76,-164 "/>
   </g>
-  <text font-size="9.03097" style="fill: #000000;text-anchor:middle;font-family: Helvetica, Arial, sans-serif;font-style:normal;font-weight:normal" x="1220" y="-166.875">
+  <text font-size="9.03111" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1220" y="-166.875">
     <tspan x="1220" y="-166.875">Trace data</tspan>
   </text>
 </svg>

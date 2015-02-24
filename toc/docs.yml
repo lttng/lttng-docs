@@ -190,6 +190,8 @@ cats:
             title: Viewing events as they arrive
           - id: taking-a-snapshot
             title: Taking a snapshot
+          - id: mi
+            title: Machine interface
   - id: reference
     title: Reference
     cats:

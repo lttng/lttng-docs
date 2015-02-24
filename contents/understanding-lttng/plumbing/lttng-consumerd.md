@@ -33,7 +33,7 @@ collecting kernel trace data.
 
 As new tracing domains are added to LTTng, the development community's
 intent is to minimize the need for additionnal consumer daemon instances
-dedicated to them. For instance, the Java Util Logging (JUL) domain
+dedicated to them. For instance, the `java.util.logging` (JUL) domain
 events are in fact mapped to the user space domain, thus tracing this
 particular domain is handled by existing user space domain consumer
 daemons.
