@@ -12,7 +12,7 @@ in source code/binary program, logical processor and time capturing
 some payload) being recorded as trace data. This specific condition is
 composed of:
 
-  1. A **domain** (kernel, user space, `java.util.loggin`, or log4j)
+  1. A **domain** (kernel, user space, `java.util.logging`, or log4j)
      (required).
   2. One or many **instrumentation points** in source code or binary
      program (tracepoint name, address, symbol name, function name,
