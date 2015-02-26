@@ -6,7 +6,7 @@ The [Controlling tracing](#doc-controlling-tracing) section explains
 how to use the `lttng` tool to create and control tracing sessions.
 Although the `lttng` tool will load the appropriate _known_ LTTng kernel
 modules when needed (by launching `root`'s session daemon), it won't
-load your custom `linux-probe-hello` module by default. You need to
+load your custom `lttng-probe-hello` module by default. You need to
 manually start an LTTng session daemon as `root` and use the
 `--extra-kmod-probes` option to append your custom probe module to the
 default list:
@@ -22,7 +22,7 @@ want to use a few of them, you could use `--kmod-probes` instead,
 which specifies an absolute list:
 
 <pre class="term">
-sudo lttng-sessiond --kmod-probes=ext4,sched,hello
+sudo lttng-sessiond --kmod-probes=hello,ext4,net,block,signal,sched
 </pre>
 
 Confirm the custom probe module is loaded:
