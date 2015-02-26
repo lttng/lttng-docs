@@ -19,8 +19,8 @@ recorded to trace files _as well as_ being transmitted to a
 connected live viewer:
 
 <div class="img img-90">
-    <object data="/images/docs/lttng-live-relayd.svg" type="image/svg+xml">
-        <img src="/images/docs/lttng-live-relayd.svg">
+    <object data="/images/docs26/lttng-live-relayd.svg" type="image/svg+xml">
+        <img src="/images/docs26/lttng-live-relayd.svg">
     </object>
 </div>
 

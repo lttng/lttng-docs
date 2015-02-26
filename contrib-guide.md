@@ -187,7 +187,7 @@ Use
 
 ```html
 <div class="img img-70">
-    <img src="/images/docs/image-name.png" alt="Short description">
+    <img src="/images/docs26/image-name.png" alt="Short description">
 </div>
 ```
 
@@ -200,8 +200,8 @@ basic browsers:
 
 ```html
 <div class="img img-90">
-  <object data="/images/docs/image-name.svg" type="image/svg+xml">
-    <img src="/images/docs/image-name.png" alt="Short description">
+  <object data="/images/docs26/image-name.svg" type="image/svg+xml">
+    <img src="/images/docs26/image-name.png" alt="Short description">
   </object>
 </div>
 ```

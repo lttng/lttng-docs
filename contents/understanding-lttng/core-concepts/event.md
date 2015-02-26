@@ -38,8 +38,8 @@ The following illustration summarizes how tracing sessions, domains,
 channels and events are related:
 
 <div class="img img-90">
-<object data="/images/docs/core-concepts.svg" type="image/svg+xml">
-  <img src="/images/docs/core-concepts.svg">
+<object data="/images/docs26/core-concepts.svg" type="image/svg+xml">
+  <img src="/images/docs26/core-concepts.svg">
 </object>
 </div>
 

@@ -25,8 +25,8 @@ an object file (along with a `.c` file) and a header to be included in our appli
 Here's the whole flow:
 
 <div class="img img-80">
-    <object data="/images/docs/lttng-lttng-gen-tp.svg" type="image/svg+xml">
-        <img src="/images/docs/lttng-lttng-gen-tp.svg">
+    <object data="/images/docs26/lttng-lttng-gen-tp.svg" type="image/svg+xml">
+        <img src="/images/docs26/lttng-lttng-gen-tp.svg">
     </object>
 </div>
 
