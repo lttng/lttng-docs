@@ -27,15 +27,6 @@ user application and library tracing). It is controlled by a session
 daemon, which receives commands from a command line interface.
 
 
-### Version
-
-This online LTTng Documentation is always up-to-date with the most
-recent releases of LTTng packages. Older versions are always available
-as tagged commits in the documentation's
-<a href="https://github.com/lttng/lttng-docs" class="ext">official Git
-repository</a>.
-
-
 ### Convention
 
 Function and argument names, variable names, command names,
