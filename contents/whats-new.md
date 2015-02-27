@@ -25,3 +25,6 @@ lttng enable-event --kernel --syscall open,fork,chdir,pipe
 Finally, the `lttng` command line tool cannot only communicate with
 humans as it used to do, but also with machines thanks to its new
 [machine interface](#doc-mi) feature.
+
+To learn more about the new features of LTTng 2.6, see
+[this release announcement](//lttng.org/blog/2015/02/27/lttng-2.6-released/).
