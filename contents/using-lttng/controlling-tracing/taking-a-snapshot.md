@@ -29,8 +29,10 @@ lttng create --snapshot my-snapshot-session
 
 Next, enable channels, events and add context to channels as usual.
 Once a tracing session is created in snapshot mode, channels will be
-forced to use the overwrite mode (`--overwrite` option of the
-`enable-channel` command) and have an `mmap()` channel type
+forced to use the
+[overwrite](#doc-channel-overwrite-mode-vs-discard-mode) mode
+(`--overwrite` option of the `enable-channel` command; also called
+_flight recorder mode_) and have an `mmap()` channel type
 (`--output mmap`).
 
 Start tracing. When you're ready to take a snapshot, do:
