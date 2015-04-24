@@ -10,7 +10,7 @@ Make sure the LTTng-tools and LTTng-UST packages
 [are installed](#doc-installing-lttng).
 
 Tracing is just like having `printf()` calls at specific locations of
-your source code, albeit LTTng is much more faster and flexible than
+your source code, albeit LTTng is much faster and more flexible than
 `printf()`. In the LTTng realm, **`tracepoint()`** is analogous to
 `printf()`.
 
