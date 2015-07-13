@@ -10,8 +10,7 @@ For example, the following commands will add the LTTng repository for
 openSUSE&nbsp;13.1:
 
 <pre class="term">
-sudo -i
-curl http://download.opensuse.org/repositories/devel:/tools:/lttng/openSUSE_13.1/devel:tools:lttng.repo &gt; /etc/zypp/repos.d/lttng.repo
+sudo zypper addrepo http://download.opensuse.org/repositories/devel:/tools:/lttng/openSUSE_13.1/devel:tools:lttng.repo
 </pre>
 
 Then, refresh the package database:
