@@ -2,11 +2,12 @@
 id: debian
 ---
 
-Debian wheezy (stable) and previous versions are not supported; you
+Debian "wheezy" (stable) and previous versions are not supported; you
 need to build and install LTTng packages
 [from source](#doc-building-from-source) for those.
 
-Debian jessie (testing) and sid (unstable) have everything you need:
+Starting from Debian "jessie", packages are officially available
+using Apt:
 
 <pre class="term">
 sudo apt-get install lttng-tools
