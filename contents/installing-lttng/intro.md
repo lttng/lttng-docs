@@ -3,19 +3,19 @@ id: installing-lttng
 ---
 
 **LTTng** is a set of software components which interact to allow
-instrumenting the Linux kernel and user applications and controlling
-tracing sessions (starting/stopping tracing, enabling/disabling events,
-etc.). Those components are bundled into the following packages:
+instrumenting the Linux kernel and user applications as well as
+controlling tracing sessions (starting/stopping tracing,
+enabling/disabling events, and more). Those components are bundled into
+the following packages:
 
-  * **LTTng-tools**: Libraries and command line interface to control
-    tracing sessions
-  * **LTTng-modules**: Linux kernel modules allowing Linux to be
-    traced using LTTng
-  * **LTTng-UST**: User space tracing library
+  * **LTTng-tools**: libraries and command line interface to control
+    tracing sessions.
+  * **LTTng-modules**: Linux kernel modules for tracing the kernel.
+  * **LTTng-UST**: user space tracing library.
 
 Most distributions mark the LTTng-modules and LTTng-UST packages as
-optional. In the following sections, we always provide the steps to
-install all three, but be aware that LTTng-modules is only required if
+optional. In the following sections, the steps to install all three are
+always provided, but note that LTTng-modules is only required if
 you intend to trace the Linux kernel and LTTng-UST is only required if
 you intend to trace user space applications.
 
