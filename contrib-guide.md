@@ -190,28 +190,16 @@ Results of commands, if needed, should be presented in a simple
 Use
 
 ```html
-<div class="img img-70">
+<figure class="img img-70">
     <img src="/images/docs26/image-name.png" alt="Short description">
-</div>
+</figure>
 ```
+
+Replace `docs26` with the appropriate version tag depending on the
+checked out branch.
 
 to display an image. Change `img-70` to `img-` followed by the
 width percentage you wish.
-
-The SVG format is preferred. In this case, use the `<object>` tag to
-render an interactive SVG, with an inner raster image fallback for
-basic browsers:
-
-```html
-<div class="img img-90">
-  <object data="/images/docs26/image-name.svg" type="image/svg+xml">
-    <img src="/images/docs26/image-name.png" alt="Short description">
-  </object>
-</div>
-```
-
-An interactive SVG object allows its text to be selected, amongst other
-features.
 
 
 Convention
