@@ -65,7 +65,7 @@ TRACEPOINT_EVENT(
 The exact syntax is well explained in the
 [C application](#doc-c-application) instrumenting guide of the
 [Using LTTng](#doc-using-lttng) chapter, as well as in the
-<a href="/man/3/lttng-ust" class="ext">LTTng-UST manpage</a>.
+<a href="/man/3/lttng-ust" class="ext">LTTng-UST man page</a>.
 
 Save the above snippet as `hello-tp.tp` and run:
 

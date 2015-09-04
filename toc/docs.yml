@@ -203,7 +203,7 @@ cats:
     title: Reference
     cats:
       - id: online-lttng-manpages
-        title: Online <span class="reset-text-transform">LTTng</span> manpages
+        title: Online <span class="reset-text-transform">LTTng</span> man pages
       - id: lttng-ust-ref
         title: <span class="reset-text-transform">LTTng</span>-UST
         cats:

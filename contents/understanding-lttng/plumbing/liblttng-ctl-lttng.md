@@ -21,7 +21,7 @@ Every function/structure is thoroughly documented.
 The `lttng` program is the _de facto_ standard user interface to
 control LTTng tracing sessions. `lttng` uses `liblttng-ctl` to
 communicate with session daemons behind the scenes.
-<a href="/man/1/lttng" class="ext">Its manpage</a> is exhaustive, as
+<a href="/man/1/lttng" class="ext">Its man page</a> is exhaustive, as
 well as its command line help (<code>lttng <em>cmd</em> --help</code>,
 where <code><em>cmd</em></code> is the command name).
 

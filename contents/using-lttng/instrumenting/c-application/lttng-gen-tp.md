@@ -31,4 +31,4 @@ CFLAGS=-I/custom/include/path lttng-gen-tp my-template.tp
 </pre>
 
 For more information on `lttng-gen-tp`, see
-<a href="/man/1/lttng-gen-tp" class="ext">its manpage</a>.
+<a href="/man/1/lttng-gen-tp" class="ext">its man page</a>.

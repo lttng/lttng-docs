@@ -4,7 +4,7 @@ id: fine-tuning-channels
 
 There are various parameters that may be fine-tuned with the
 `enable-channel` command. The latter are well documented in
-<a href="/man/1/lttng" class="ext">the manpage of `lttng`</a>
+<a href="/man/1/lttng" class="ext">the man page of `lttng`</a>
 and in the [Channel](#doc-channel) section of the
 [Understanding LTTng](#doc-understanding-lttng) chapter. For basic
 tracing needs, their default values should be just fine, but here are a

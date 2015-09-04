@@ -14,10 +14,10 @@ automatically by the `lttng` command when needed. Trace data may
 be forwarded to the network and used elsewhere using an LTTng relay
 daemon (`lttng-relayd`).
 
-The manpages of `lttng`, `lttng-sessiond` and `lttng-relayd` are pretty
+The man pages of `lttng`, `lttng-sessiond` and `lttng-relayd` are pretty
 complete, thus this section is not an online copy of the latter (we
 leave this contents for the
-[Online LTTng manpages](#doc-online-lttng-manpages) section).
+[Online LTTng man pages](#doc-online-lttng-manpages) section).
 This section is rather a tour of LTTng
 features through practical examples and tips.
 

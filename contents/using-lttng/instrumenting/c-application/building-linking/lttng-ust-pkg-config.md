@@ -18,4 +18,4 @@ pkg-config --modversion lttng-ust
 </pre>
 
 For more information about pkg-config, see
-<a href="http://linux.die.net/man/1/pkg-config" class="ext">its manpage</a>.
+<a href="http://linux.die.net/man/1/pkg-config" class="ext">its man page</a>.
