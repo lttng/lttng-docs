@@ -70,9 +70,9 @@ time, some programming language skills.
 documentation</strong>: its source is available in a
 <a class="ext" href="https://github.com/lttng/lttng-docs">public Git
 repository</a>. Should you find any error in the contents of this text,
-any grammatical mistake or any dead link, we would be very grateful if
+any grammatical mistake, or any dead link, we would be very grateful if
 you would fill a GitHub issue for it or, even better, contribute a patch
-to this documentation using a GitHub pull request.</p>
+to this documentation by creating a pull request.</p>
 </div>
 
 ### Chapter descriptions
