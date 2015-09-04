@@ -16,13 +16,13 @@ composed of:
      (required).
   2. One or many **instrumentation points** in source code or binary
      program (tracepoint name, address, symbol name, function name,
-     logger name, amongst other types of probes) to be executed (required).
+     logger name, amongst other types of probes) to be executed
+     (required).
   3. A **log level** (each instrumentation point declares its own log
      level) or log level range to match (optional; only valid for user
      space domain).
   4. A **custom user expression**, or **filter**, that must evaluate to
-     _true_ when a tracepoint is executed (optional; only valid for user
-     space domain).
+     _true_ when a tracepoint is executed (optional).
 
 All conditions are specified using arguments passed to the
 `enable-event` command of the `lttng` tool.
@@ -80,6 +80,8 @@ lttng enable-event -k --tracepoint sched_switch
 lttng enable-event -k --tracepoint gpio_value
 lttng enable-event -k --function usb_probe_device usb_probe_device
 lttng enable-event -k --syscall --all
+lttng enable-event -k --tracepoint irq_handler_entry  \
+                   --filter 'irq == 28 || irq == 17'
 </pre>
 
 The wildcard symbol, `*`, matches _anything_ and may only be used at
@@ -89,8 +91,8 @@ undesired shell expansion.
 
 System call events can be enabled individually, too:
 
-<pre class="term">
-lttng enable-event -k --syscall open
+<pre class="term" style="position: relative">
+<div class="since">Since 2.6</div>lttng enable-event -k --syscall open
 lttng enable-event -k --syscall read
 lttng enable-event -k --syscall fork,chdir,pipe
 </pre>

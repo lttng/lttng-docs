@@ -20,7 +20,6 @@ source code), you need to specify which one is concerned when enabling
 an event because both domains could have existing events with the same
 name.
 
-Some features are not available in all domains. Filtering enabled
-events using custom expressions, for example, is currently not
-supported in the kernel domain, but support could be added in the
-future.
+Some features are reserved for some domains. Dynamic function entry/return
+instrumentation, for example, is currently only supported in the kernel
+domain, but support for other domains could be added in the future.
