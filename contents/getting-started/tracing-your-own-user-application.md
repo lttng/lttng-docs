@@ -44,7 +44,7 @@ arguments: an integer and a string:
 #define TRACEPOINT_PROVIDER hello_world
 
 #undef TRACEPOINT_INCLUDE
-#define TRACEPOINT_INCLUDE "./tp.h"
+#define TRACEPOINT_INCLUDE "./hello-tp.h"
 
 #if !defined(_HELLO_TP_H) || defined(TRACEPOINT_HEADER_MULTI_READ)
 #define _HELLO_TP_H
@@ -152,7 +152,7 @@ gcc -o hello hello.o hello-tp.o -llttng-ust -ldl</strong>
 
 Here's the whole build process:
 
-<div class="img">
+<div class="img img-100">
 <img src="/images/docs26/ust-flow.png" alt="User space tracing's build process">
 </div>
 
