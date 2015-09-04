@@ -17,10 +17,8 @@ As trace data is sent over the network to a relay daemon by a (possibly
 remote) consumer daemon, a _tee_ is created: trace data is recorded to
 trace files _as well as_ being transmitted to a connected live viewer:
 
-<div class="img img-90">
-    <object data="/images/docs26/lttng-live-relayd.svg" type="image/svg+xml">
-        <img src="/images/docs26/lttng-live-relayd.svg">
-    </object>
+<div class="img img-100">
+<img src="/images/docs26/lttng-live.png" alt="LTTng live">
 </div>
 
 In order to use this feature, a tracing session must created in live
