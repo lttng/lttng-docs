@@ -241,6 +241,7 @@ consistent as possible:
     _I_, _we_, _us_, etc.), except for user guides/tutorials where
     _we_ have an ongoing example with _you_.
   * Minimize the use of the future tense (_will_).
+  * Do not use Latin abbreviations (_e.g._, _i.e._, _etc._).
 
 
 Committing
