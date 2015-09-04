@@ -4,6 +4,11 @@ cats:
     title: What's new in LTTng 2.6?
   - id: nuts-and-bolts
     title: Nuts and bolts
+    cats:
+      - id: what-is-tracing
+        title: What is tracing?
+      - id: lttng-alternatives
+        title: Alternatives to LTTng
   - id: installing-lttng
     title: Installing <span class="reset-text-transform">LTTng</span>
     cats:
