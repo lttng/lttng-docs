@@ -1,7 +1,7 @@
 title: The <span class="reset-text-transform">LTTng</span> Documentation
 cats:
   - id: whats-new
-    title: What's new in LTTng 2.6?
+    title: What's new in LTTng 2.7?
   - id: nuts-and-bolts
     title: Nuts and bolts
     cats:

@@ -2,29 +2,58 @@
 id: whats-new
 ---
 
-Most of the changes of LTTng 2.6 are bug fixes, making the toolchain
-more stable than ever before. Still, LTTng 2.6 adds some interesting
-features to the project.
+LTTng 2.7 ships with a generous list of new features, with essential
+additions to all the project's components.
 
-LTTng 2.5 already supported the instrumentation and tracing of
-[Java applications](#doc-java-application) through `java.util.logging`
-(JUL). LTTng 2.6 goes one step further by supporting
-<a href="https://logging.apache.org/log4j/1.2/" class="ext">Apache log4j 1.2</a>.
-The new log4j domain is selected using the `--log4j` option in various
-commands of the `lttng` tool.
-
-LTTng-modules has supported system call tracing for a long time,
-but until now, it was only possible to record either all of them,
-or none of them. LTTng 2.6 allows the user to record specific
-system call events, for example:
+Dynamic filtering of user space tracepoints has been available for
+quite some time now
+(see [Enabling and disabling events](#doc-enabling-disabling-events)).
+LTTng 2.7 adds filtering support to kernel events as well. For example:
 
 <pre class="term">
-lttng enable-event --kernel --syscall open,fork,chdir,pipe
+lttng enable-event --kernel irq_handler_entry --filter 'irq == 28'
 </pre>
 
-Finally, the `lttng` command line tool is not only able to communicate
-with humans as it used to do, but also with machines thanks to its new
-[machine interface](#doc-mi) feature.
+LTTng 2.7 also adds wildcard support for kernel event names:
 
-To learn more about the new features of LTTng 2.6, see
-[the release announcement](//lttng.org/blog/2015/02/27/lttng-2.6-released/).
+<pre class="term">
+lttng enable-event --kernel 'sched_*'
+</pre>
+
+On the user space tracing side, the new [`tracelog()`](#doc-tracelog)
+facility allows users to easily migrate from logging to tracing.
+`tracelog()` is similar to [`tracef()`](#doc-tracef), but accepts
+an additional log level parameter.
+
+The new `--shm-path` option of `lttng create` can be used to specify the
+path where the shared memory holding the ring buffers are
+created. This feature is useful when used with persistent memory file
+systems to extract the latest recorded trace data in the event of a
+crash requiring a reboot. The new `lttng-crash` command line
+utility can extract trace data from such a file (see
+[Recording trace data on persistent memory file systems](#doc-persistent-memory-file-systems)).
+
+LTTng-modules 2.7 and LTTng-UST 2.7 can rely on user plugins
+to provide custom clock sources to their tracer.
+LTTng-UST can also load a user plugin to retrieve the current CPU number.
+This feature exists for very advanced use cases. See
+the <a href="https://github.com/lttng/lttng-ust/tree/master/doc/examples/clock-override" class="ext">clock-override</a>
+and <a href="https://github.com/lttng/lttng-ust/tree/master/doc/examples/getcpu-override" class="ext">getcpu-override</a>
+examples for more details.
+
+Python developers can now benefit from the new
+[LTTng-UST Python agent](#doc-python-application),
+a Python&nbsp;2/3-compatible package which allows standard Python logging
+using the `logging` module to output log entries to an LTTng trace.
+
+Last but not least, the new `lttng track` and `lttng untrack` commands
+make [<abbr title="process ID">PID</abbr> tracking](#doc-pid-tracking)
+super-fast for both the kernel and the user space domains. When one or
+more PIDs are tracked, only the processes having those PIDs are allowed
+to emit enabled events.
+
+Moreover, LTTng 2.7 boasts great stability, benifiting from piles of
+bug fixes and more-than-welcome internal refactorings.
+
+To learn more about the new features of LTTng 2.7, see
+<a href="" class="ext">the release announcement</a>.
