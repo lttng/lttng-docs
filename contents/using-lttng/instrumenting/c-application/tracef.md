@@ -12,7 +12,7 @@ super simple, albeit with notable disadvantages compared to custom,
 full-fledged tracepoint providers:
 
   * All generated events have the same provider/event names, respectively
-    `lttng-ust-tracef` and `event`.
+    `lttng_ust_tracef` and `event`.
   * There's no static type checking.
   * The only event field you actually get, named `msg`, is a string
     potentially containing the values you passed to the function
@@ -59,4 +59,9 @@ Execute the application as usual:
 </pre>
 
 Voilà! Use the `lttng` command line tool to
-[control tracing](#doc-controlling-tracing).
+[control tracing](#doc-controlling-tracing). You can enable `tracef()`
+events like this:
+
+<pre class="term">
+lttng enable-event --userspace 'lttng_ust_tracef:*'
+</pre>
