@@ -5,24 +5,22 @@ id: viewing-and-analyzing-your-traces
 This section describes how to visualize the data gathered after tracing
 the Linux kernel or a user space application.
 
-Many ways exist to read your LTTng traces:
+Many ways exist to read LTTng traces:
 
   * **`babeltrace`** is a command line utility which converts trace formats;
     it supports the format used by LTTng,
     <abbr title="Common Trace Format">CTF</abbr>, as well as a basic
     text output which may be `grep`ed. The `babeltrace` command is
     part of the
-    <a href="http://www.efficios.com/babeltrace" class="ext">Babeltrace</a> project.
-  * Babeltrace also includes a **Python binding** so that you may
+    <a href="http://diamon.org/babeltrace" class="ext">Babeltrace</a> project.
+  * Babeltrace also includes **Python bindings** so that you may
     easily open and read an LTTng trace with your own script, benefiting
     from the power of Python.
-  * **<a href="http://projects.eclipse.org/projects/tools.tracecompass" class="ext">Trace Compass</a>**
+  * **<a href="http://tracecompass.org/" class="ext">Trace Compass</a>**
     is an Eclipse plugin used to visualize and analyze various types of
-    traces, including LTTng's. It also comes as a standalone application
-    and can be downloaded from
-    <a href="http://projects.eclipse.org/projects/tools.tracecompass/downloads" class="ext">here</a>.
+    traces, including LTTng's. It also comes as a standalone application.
 
-LTTng trace files are usually recorded in the `~/lttng-traces` directory.
+LTTng trace files are recorded in the `~/lttng-traces` directory by default.
 Let's now view the trace and perform a basic analysis using
 `babeltrace`.
 
@@ -33,7 +31,7 @@ path to `babeltrace` with no options:
 babeltrace ~/lttng-traces/my-session
 </pre>
 
-`babeltrace` finds all traces within the given path recursively and
+`babeltrace` finds all traces recursively within the given path and
 prints all their events, merging them in order of time.
 
 Listing all the system calls of a Linux kernel trace with their arguments is
@@ -56,13 +54,13 @@ are not trivial to write using a shell. Moreover, reductions and even the
 most basic computations involving multiple events are virtually impossible
 to implement.
 
-Fortunately, Babeltrace ships with a Python 3 binding which makes it
+Fortunately, Babeltrace ships with Python 3 bindings which makes it
 really easy to read the events of an LTTng trace sequentially and compute
 the desired information.
 
-Here's a simple example using the Babeltrace Python binding. The following
+Here's a simple example using the Babeltrace Python bindings. The following
 script accepts an LTTng Linux kernel trace path as its first argument and
-outputs the short names of the top 5 running processes on CPU 0 during the
+prints the short names of the top 5 running processes on CPU 0 during the
 whole trace:
 
 ~~~ python
@@ -144,7 +142,7 @@ python3 top5proc.py ~/lttng-sessions/my-session-.../kernel
 
 Make sure the path you provide is the directory containing actual trace
 files (`channel0_0`, `metadata`, and the rest): the `babeltrace` utility
-recurses directories, but the Python binding does not.
+recurses directories, but the Python bindings do not.
 
 Here's an example of output:
 
