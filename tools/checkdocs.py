@@ -108,8 +108,8 @@ def _check_file_links(toc_ids, path, c):
                 _pwarn(path, 'External link has no "ext" class: "{}"'.format(link))
 
         if href is not None:
-            if href.group(1).startswith('#'):
-                _pwarn(path, 'External link starts with #: "{}"'.format(href))
+            if href.group(1).startswith('#') and 'int' not in classes:
+                _pwarn(path, 'External link starts with #: "{}"'.format(href.group(1)))
         else:
             _perror(path, 'External link with no "href": "{}"'.format(link))
             ret = False
