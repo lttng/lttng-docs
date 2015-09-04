@@ -6,7 +6,7 @@ The previous section helped you create a trace out of Linux kernel events.
 This section steps you through a simple example showing you how to trace
 a _Hello world_ program written in C.
 
-Make sure LTTng-tools and LTTng-UST packages
+Make sure the LTTng-tools and LTTng-UST packages
 [are installed](#doc-installing-lttng).
 
 Tracing is just like having `printf()` calls at specific locations of
@@ -17,37 +17,40 @@ your source code, albeit LTTng is much more faster and flexible than
 Unlike `printf()`, though, `tracepoint()` does not use a format string to
 know the types of its arguments: the formats of all tracepoints must be
 defined before using them. So before even writing our _Hello world_ program,
-we need to define the format of our tracepoint. This is done by writing a
-**template file**, with a name usually ending with the `.tp` extension (for **t**race**p**oint),
-which the `lttng-gen-tp` tool (shipped with LTTng-UST) uses to generate
-an object file (along with a `.c` file) and a header to be included in our application source code.
+we need to define the format of our tracepoint. This is done by creating a
+**tracepoint provider**, which consists of a tracepoint provider header
+(`.h` file) and a tracepoint provider definition (`.c` file).
 
-Here's the whole flow:
-
-<div class="img img-80">
-    <object data="/images/docs26/lttng-lttng-gen-tp.svg" type="image/svg+xml">
-        <img src="/images/docs26/lttng-lttng-gen-tp.svg">
-    </object>
-</div>
-
-The template file format is a list of tracepoint definitions
-and other optional definition entries which we skip for
-this quickstart. Each tracepoint is defined using the
+The tracepoint provider header contains some boilerplate as well as a
+list of tracepoint definitions and other optional definition entries
+which we skip for this quickstart. Each tracepoint is defined using the
 `TRACEPOINT_EVENT()` macro. For each tracepoint, you must provide:
 
-  * a **provider name**, which is the "scope" of this tracepoint (this usually
-    includes the company and project names)
+  * a **provider name**, which is the "scope" or namespace of this
+    tracepoint (this usually includes the company and project names)
   * a **tracepoint name**
-  * a **list of arguments** for the eventual `tracepoint()` call, each item being:
+  * a **list of arguments** for the eventual `tracepoint()` call, each
+    item being:
     * the argument C type
     * the argument name
   * a **list of fields**, which correspond to the actual fields of the
     recorded events for this tracepoint
 
-Here's a simple tracepoint definition example with two arguments: an integer
-and a string:
+Here's an example of a simple tracepoint provider header with two
+arguments: an integer and a string:
 
 ~~~ c
+#undef TRACEPOINT_PROVIDER
+#define TRACEPOINT_PROVIDER hello_world
+
+#undef TRACEPOINT_INCLUDE
+#define TRACEPOINT_INCLUDE "./tp.h"
+
+#if !defined(_HELLO_TP_H) || defined(TRACEPOINT_HEADER_MULTI_READ)
+#define _HELLO_TP_H
+
+#include <lttng/tracepoint.h>
+
 TRACEPOINT_EVENT(
     hello_world,
     my_first_tracepoint,
@@ -60,26 +63,33 @@ TRACEPOINT_EVENT(
         ctf_integer(int, my_integer_field, my_integer_arg)
     )
 )
+
+#endif /* _HELLO_TP_H */
+
+#include <lttng/tracepoint-event.h>
 ~~~
 
 The exact syntax is well explained in the
-[C application](#doc-c-application) instrumenting guide of the
+[C application](#doc-c-application) instrumentation guide of the
 [Using LTTng](#doc-using-lttng) chapter, as well as in the
 <a href="/man/3/lttng-ust" class="ext">LTTng-UST man page</a>.
 
-Save the above snippet as `hello-tp.tp` and run:
+Save the above snippet as `hello-tp.h`.
+
+Write the tracepoint provider definition as `hello-tp.c`:
+
+~~~ c
+#define TRACEPOINT_CREATE_PROBES
+#define TRACEPOINT_DEFINE
+
+#include "hello-tp.h"
+~~~
+
+Create the tracepoint provider:
 
 <pre class="term">
-lttng-gen-tp hello-tp.tp
+gcc -c -I. hello-tp.c
 </pre>
-
-The following files are created next to `hello-tp.tp`:
-
-  * `hello-tp.c`
-  * `hello-tp.o`
-  * `hello-tp.h`
-
-`hello-tp.o` is the compiled object file of `hello-tp.c`.
 
 Now, by including `hello-tp.h` in your own application, you may use the
 tracepoint defined above by properly refering to it when calling
@@ -89,19 +99,21 @@ tracepoint defined above by properly refering to it when calling
 #include <stdio.h>
 #include "hello-tp.h"
 
-int main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
     int x;
 
     puts("Hello, World!\nPress Enter to continue...");
 
-    /* The following getchar() call is only placed here for the purpose
+    /*
+     * The following getchar() call is only placed here for the purpose
      * of this demonstration, for pausing the application in order for
      * you to have time to list its events. It's not needed otherwise.
      */
     getchar();
 
-    /* A tracepoint() call. Arguments, as defined in hello-tp.tp:
+    /*
+     * A tracepoint() call. Arguments, as defined in hello-tp.h:
      *
      *     1st: provider name (always)
      *     2nd: tracepoint name (always)
@@ -126,19 +138,26 @@ int main(int argc, char* argv[])
 }
 ~~~
 
-Save this as `hello.c`, next to `hello-tp.tp`.
+Save this as `hello.c`, next to `hello-tp.c`.
 
-Notice `hello-tp.h`, the header file generated by `lttng-gen-tp` from
-our template file `hello-tp.tp`, is included by `hello.c`.
+Notice `hello-tp.h`, the tracepoint provider header, is included
+by `hello.c`.
 
 You are now ready to compile the application with LTTng-UST support:
 
 <pre class="term">
-gcc -o hello hello.c <strong>hello-tp.o -llttng-ust -ldl</strong>
+gcc -c hello.c
+gcc -o hello hello.o hello-tp.o -llttng-ust -ldl</strong>
 </pre>
 
+Here's the whole build process:
+
+<div class="img">
+<img src="/images/docs26/ust-flow.png" alt="User space tracing's build process">
+</div>
+
 If you followed the
-[Tracing the Linux kernel](#doc-tracing-the-linux-kernel) section, the
+[Tracing the Linux kernel](#doc-tracing-the-linux-kernel) tutorial, the
 following steps should look familiar.
 
 First, run the application with a few arguments:
@@ -166,7 +185,7 @@ under the `./hello` process.
 Create a tracing session:
 
 <pre class="term">
-lttng create my-userspace-session
+lttng create
 </pre>
 
 Enable the `hello_world:my_first_tracepoint` tracepoint:
@@ -192,8 +211,8 @@ lttng stop
 
 Done! You may use `lttng view` to list the recorded events. This command
 starts
-<a href="http://www.efficios.com/babeltrace" class="ext"><code>babeltrace</code></a>
-in the background, if it is installed:
+<a href="http://diamon.org/babeltrace" class="ext"><code>babeltrace</code></a>
+in the background, if it's installed:
 
 <pre class="term">
 lttng view
@@ -215,7 +234,7 @@ destroy the generated trace files, leaving them available for further
 analysis:
 
 <pre class="term">
-lttng destroy my-userspace-session
+lttng destroy
 </pre>
 
 The next section presents other alternatives to view and analyze your
