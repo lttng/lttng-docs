@@ -64,7 +64,7 @@ for an LTTng live connection. Otherwise, the desired URL may be
 specified using its `--live-port` option.
 
 The
-<a href="http://www.efficios.com/babeltrace" class="ext">`babeltrace`</a>
+<a href="http://diamon.org/babeltrace" class="ext">`babeltrace`</a>
 viewer supports LTTng live as one of its input formats. `babeltrace` is
 the default viewer when using `lttng view`. To use it manually, first
 list active tracing sessions by doing the following (assuming the relay

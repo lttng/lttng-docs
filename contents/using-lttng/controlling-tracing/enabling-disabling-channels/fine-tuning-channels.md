@@ -77,5 +77,5 @@ lower than 1&nbsp;MiB: they are the files currently being written.
 Since all those small files are valid LTTng trace files, LTTng trace
 viewers may read them. It is the viewer's responsibility to properly
 merge the streams so as to present an ordered list to the user.
-<a href="http://www.efficios.com/babeltrace" class="ext">Babeltrace</a>
+<a href="http://diamon.org/babeltrace" class="ext">Babeltrace</a>
 merges LTTng trace files correctly and is fast at doing it.

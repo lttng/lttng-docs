@@ -42,7 +42,7 @@ git clone git://git.lttng.org/lttng-ust.git
 git clone git://git.lttng.org/lttng-modules.git
 git clone git://git.lttng.org/lttng-tools.git
 git clone git://git.lttng.org/userspace-rcu.git
-git clone git://git.efficios.com/babeltrace.git
+git clone http://git.linuxfoundation.org/diamon/babeltrace.git
 
 cd userspace-rcu
 ./bootstrap && ./configure && make -j 4 && sudo make install

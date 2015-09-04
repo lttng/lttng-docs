@@ -35,7 +35,7 @@ exist for Linux:
 The main distinctive features of LTTng is that it produces correlated
 kernel and user space traces, as well as doing so with the lowest
 overhead amongst other solutions. It produces trace files in the
-<a href="http://www.efficios.com/ctf" class="ext"><abbr title="Common Trace Format">CTF</abbr></a>
+<a href="http://diamon.org/ctf" class="ext"><abbr title="Common Trace Format">CTF</abbr></a>
 format, an optimized file format for production and analyses of
 multi-gigabyte data. LTTng is the result of close to 10 years of
 active development by a community of passionate developers. It is

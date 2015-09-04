@@ -47,7 +47,7 @@ sudo lttng start
 </pre>
 
 Plug a few USB devices, then stop tracing and inspect the trace (if
-<a href="http://www.efficios.com/babeltrace" class="ext">Babeltrace</a>
+<a href="http://diamon.org/babeltrace" class="ext">Babeltrace</a>
 is installed):
 
 <pre class="term">
