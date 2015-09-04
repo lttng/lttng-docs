@@ -36,8 +36,8 @@ red arrows indicate control communications. The LTTng relay daemon is
 shown running on a remote system, although it could as well run on the
 target (monitored) system.
 
-<div class="img img-100">
+<figure class="img img-100">
 <img src="/images/docs26/plumbing-26.png" alt="LTTng plumbing">
-</div>
+</figure>
 
 Each component is described in the following subsections.

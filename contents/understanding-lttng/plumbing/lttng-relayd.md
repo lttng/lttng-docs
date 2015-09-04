@@ -30,9 +30,9 @@ _LTTng live_. LTTng live is an application protocol to view events as
 they arrive. The relay daemon still records events in trace files,
 but a _tee_ allows to inspect incoming events.
 
-<div class="img img-100">
+<figure class="img img-100">
 <img src="/images/docs26/lttng-live.png" alt="LTTng live">
-</div>
+</figure>
 
 Using LTTng live
 locally thus requires to run a local relay daemon.

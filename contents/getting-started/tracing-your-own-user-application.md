@@ -152,9 +152,9 @@ gcc -o hello hello.o hello-tp.o -llttng-ust -ldl</strong>
 
 Here's the whole build process:
 
-<div class="img img-100">
+<figure class="img img-100">
 <img src="/images/docs26/ust-flow.png" alt="User space tracing's build process">
-</div>
+</figure>
 
 If you followed the
 [Tracing the Linux kernel](#doc-tracing-the-linux-kernel) tutorial, the
