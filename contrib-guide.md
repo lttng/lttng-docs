@@ -88,8 +88,11 @@ Tip/note block:
 </div>
 ```
 
-Title should be `Tip:` for a tip and `Note:` for a note.
+Replace the `tip` class with `warn` for a warning block, and with `err`
+for an error message block (when JavaScript is needed but is disabled, etc.).
 
+Title should be `Tip:` for a tip, `Note:` for a note, `Warning:` for a
+warning, and `Error:` for an error.
 
 
 #### External links
