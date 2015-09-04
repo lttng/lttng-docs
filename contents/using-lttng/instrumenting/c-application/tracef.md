@@ -1,5 +1,6 @@
 ---
 id: tracef
+since: 2.5
 ---
 
 `tracef()` is a small LTTng-UST API to avoid defining your own

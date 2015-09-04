@@ -1,5 +1,6 @@
 ---
 id: jul
+since: 2.4
 ---
 
 Here's an example of tracing a Java application which is using

@@ -1,5 +1,6 @@
 ---
 id: proc-lttng-logger-abi
+since: 2.5
 ---
 
 The `lttng-tracer` Linux kernel module, installed by the LTTng-modules

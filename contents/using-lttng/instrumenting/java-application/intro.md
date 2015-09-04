@@ -1,5 +1,6 @@
 ---
 id: java-application
+since: 2.4
 ---
 
 LTTng-UST provides a _logging_ back-end for Java applications using

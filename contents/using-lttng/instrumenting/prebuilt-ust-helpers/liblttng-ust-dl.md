@@ -1,5 +1,6 @@
 ---
 id: liblttng‑ust‑dl
+since: 2.4
 ---
 
 This LTTng-UST helper causes all calls to `dlopen()` and `dlclose()`

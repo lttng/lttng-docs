@@ -1,5 +1,6 @@
 ---
 id: mi
+since: 2.6
 ---
 
 The `lttng` tool aims at providing a command output as human-readable as

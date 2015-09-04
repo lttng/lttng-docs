@@ -1,5 +1,6 @@
 ---
 id: liblttng‑ust‑libc‑pthread-wrapper
+since: 2.3
 ---
 
 `liblttng-ust-libc-wrapper.so` and `liblttng-ust-pthread-wrapper.so`

@@ -1,5 +1,6 @@
 ---
 id: saving-loading-tracing-session
+since: 2.5
 ---
 
 Configuring a tracing session may be long: creating and enabling

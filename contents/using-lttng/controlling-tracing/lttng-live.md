@@ -1,5 +1,6 @@
 ---
 id: lttng-live
+since: 2.4
 ---
 
 We have seen how trace files may be produced by LTTng out of generated

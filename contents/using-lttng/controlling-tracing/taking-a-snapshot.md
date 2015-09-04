@@ -1,5 +1,6 @@
 ---
 id: taking-a-snapshot
+since: 2.3
 ---
 
 The normal behavior of LTTng is to record trace data as trace files.
