@@ -61,7 +61,7 @@ session daemon. `lttng-sessiond` may also be started manually:
 lttng-sessiond
 </pre>
 
-This will start the session daemon in foreground. Use
+This starts the session daemon in foreground. Use
 
 <pre class="term">
 lttng-sessiond --daemonize
@@ -75,7 +75,7 @@ To kill the current user's session daemon, `pkill` may be used:
 pkill lttng-sessiond
 </pre>
 
-The default `SIGTERM` signal will terminate it cleanly.
+The default `SIGTERM` signal terminates it cleanly.
 
 Several other options are available and described in
 <a href="/man/8/lttng-sessiond" class="ext"><code>lttng-sessiond</code>'s manpage</a>

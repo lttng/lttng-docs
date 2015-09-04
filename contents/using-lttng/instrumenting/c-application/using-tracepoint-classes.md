@@ -18,7 +18,7 @@ your situation requires multiple tracepoints with different names, but
 with the same fields layout, the best practice is to manually create
 a tracepoint class and instantiate as many tracepoint instances as
 needed. One positive effect of such a design, amongst other advantages,
-is that all tracepoint instances of the same tracepoint class will
+is that all tracepoint instances of the same tracepoint class
 reuse the same serialization function, thus reducing cache pollution.
 
 As an example, here are three tracepoint definitions as we know them:

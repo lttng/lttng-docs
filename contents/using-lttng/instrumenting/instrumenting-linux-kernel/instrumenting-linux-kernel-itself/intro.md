@@ -10,7 +10,7 @@ You should have a Linux kernel source code tree to work with.
 Throughout this section, all file paths are relative to the root of
 this tree unless otherwise stated.
 
-You will need a copy of the LTTng-modules Git repository:
+You need a copy of the LTTng-modules Git repository:
 
 <pre class="term">
 git clone git://git.lttng.org/lttng-modules.git

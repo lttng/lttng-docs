@@ -9,7 +9,7 @@ As events occur, they are serialized as trace data into a specific
 sub-buffer (yellow arc in the following animation) until it is full:
 when this happens, the sub-buffer is marked as consumable (red) and
 another, _empty_ (white) sub-buffer starts receiving the following
-events. The marked sub-buffer will be consumed eventually by a consumer
+events. The marked sub-buffer is eventually consumed by a consumer
 daemon (returns to white).
 
 <script type="text/javascript">
@@ -70,7 +70,7 @@ Beware that, in overwrite mode, a whole sub-buffer is abandoned as soon
 as a new event doesn't find an empty sub-buffer, whereas in discard
 mode, only the event that doesn't fit is discarded.
 
-Also note that a count of lost events will be incremented and saved in
+Also note that a count of lost events is incremented and saved in
 the trace itself when an event is lost in discard mode, whereas no
 information is kept when a sub-buffer gets overwritten before being
 committed.

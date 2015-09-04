@@ -9,7 +9,7 @@ file, so that you may use the `pkg-config` tool:
 pkg-config --libs lttng-ust
 </pre>
 
-This will return `-llttng-ust -ldl` on Linux systems.
+This prints `-llttng-ust -ldl` on Linux systems.
 
 You may also check the LTTng-UST version using `pkg-config`:
 

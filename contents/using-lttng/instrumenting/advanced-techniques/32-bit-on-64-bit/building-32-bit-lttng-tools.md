@@ -3,7 +3,7 @@ id: building-32-bit-lttng-tools
 ---
 
 Since the host is a 64-bit system, most 32-bit binaries and libraries of
-LTTng-tools are not needed; the host will use their 64-bit counterparts.
+LTTng-tools are not needed; the host uses their 64-bit counterparts.
 The required step here is building and installing a 32-bit consumer
 daemon.
 

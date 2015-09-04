@@ -16,5 +16,5 @@ sudo make install
 sudo ldconfig
 </pre>
 
-Henceforth, the 64-bit session daemon will automatically find the
+Henceforth, the 64-bit session daemon automatically finds the
 32-bit consumer daemon if required.

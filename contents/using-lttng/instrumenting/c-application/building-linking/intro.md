@@ -12,7 +12,7 @@ header file are useless until actually used to create probes code
 This is accomplished by defining `TRACEPOINT_CREATE_PROBES` in a translation
 unit and then including the tracepoint provider header file.
 When `TRACEPOINT_CREATE_PROBES` is defined, macros used and included by
-the tracepoint provider header will output actual source code needed by any
+the tracepoint provider header produce actual source code needed by any
 application using the defined tracepoints. Defining
 `TRACEPOINT_CREATE_PROBES` produces code used when registering
 tracepoint providers when the tracepoint provider package loads.

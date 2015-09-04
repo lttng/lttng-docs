@@ -9,7 +9,7 @@ available when creating a channel:
   * **Per-UID buffering**: keep one ring buffer for all processes of
     a single user.
 
-The per-PID buffering scheme will consume more memory than the per-UID
+The per-PID buffering scheme consumes more memory than the per-UID
 option if more than one process is instrumented for LTTng-UST. However,
 per-PID buffering ensures that one process having a high event
 throughput won't fill all the shared sub-buffers, only its own.

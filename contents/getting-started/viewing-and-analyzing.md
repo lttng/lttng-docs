@@ -33,8 +33,8 @@ path to `babeltrace` with no options:
 babeltrace ~/lttng-traces/my-session
 </pre>
 
-`babeltrace` will find all traces within the given path recursively and
-output all their events, merging them intelligently.
+`babeltrace` finds all traces within the given path recursively and
+prints all their events, merging them in order of time.
 
 Listing all the system calls of a Linux kernel trace with their arguments is
 easy with `babeltrace` and `grep`:

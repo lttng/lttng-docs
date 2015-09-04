@@ -12,13 +12,13 @@ relay daemon.
 The relay daemon listens on two different TCP ports: one for control
 information and the other for actual trace data.
 
-Starting the relay daemon on the remote machine is as easy as:
+Starting the relay daemon on the remote machine is easy:
 
 <pre class="term">
 lttng-relayd
 </pre>
 
-This will make it listen to its default ports: 5342 for control and
+This makes it listen to its default ports: 5342 for control and
 5343 for trace data. The `--control-port` and `--data-port` options may
 be used to specify different ports.
 
@@ -38,12 +38,13 @@ lttng create my-session --set-url net://distant-host
 </pre>
 
 The URL format is described in the output of `lttng create --help`.
-The above example will use the default ports; the `--ctrl-url` and
+The above example uses the default ports; the `--ctrl-url` and
 `--data-url` options may be used to set the control and data URLs
 individually.
 
 Once this basic setup is completed and the connection is established,
 you may use the `lttng` tool on the target machine as usual; everything
-you do will be transparently forwarded to the remote machine if needed.
-For example, a parameter changing the maximum size of trace files will
-have an effect on the distant relay daemon actually writing the trace.
+you do is transparently forwarded to the remote machine if needed.
+For example, a parameter changing the maximum size of trace files
+only has an effect on the distant relay daemon actually writing
+the trace.

@@ -26,7 +26,7 @@ If you're only interested in tracing the Linux kernel, it may very well
 be that your tracing needs are already appropriately covered by LTTng's
 built-in Linux kernel tracepoints and other probes. Or you may be in
 possession of a user space application which has already been
-instrumented. In such cases, the work will reside entirely in the design
+instrumented. In such cases, the work resides entirely in the design
 and execution of tracing sessions, allowing you to jump to
 [Controlling tracing](#doc-controlling-tracing) right now.
 

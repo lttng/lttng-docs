@@ -4,7 +4,7 @@ id: mi
 
 The `lttng` tool aims at providing a command output as human-readable as
 possible. While this output is easy to parse by a human being, machines
-will have a hard time.
+have a hard time.
 
 This is why the `lttng` tool provides the general `--mi` option, which
 must specify a machine interface output format. As of the latest

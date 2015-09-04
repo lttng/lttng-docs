@@ -11,9 +11,9 @@ a 32-bit application in that context.
 
 Make sure you install all 32-bit versions of LTTng dependencies.
 Their names can be found in the `README.md` files of each LTTng package
-source. How to find and install them will vary depending on your target
+source. How to find and install them depends on your target's
 Linux distribution. `gcc-multilib` is a common package name for the
-multilib version of GCC, which you will also need.
+multilib version of GCC, which you also need.
 
 The following packages will be built for 32-bit support on a 64-bit
 system: <a href="http://urcu.so/" class="ext">Userspace RCU</a>,

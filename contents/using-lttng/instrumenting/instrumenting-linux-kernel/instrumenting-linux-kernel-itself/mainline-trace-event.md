@@ -72,7 +72,7 @@ This tracepoint should fire every time a USB device is plugged in.
 
 At the top of `driver.c`, we need to include our actual tracepoint
 definition and, in this case (one place per subsystem), define
-`CREATE_TRACE_POINTS`, which will create our tracepoint:
+`CREATE_TRACE_POINTS`, which creates our tracepoint:
 
 ~~~ c
 /* ... */

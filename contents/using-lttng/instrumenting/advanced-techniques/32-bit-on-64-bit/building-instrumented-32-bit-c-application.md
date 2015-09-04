@@ -21,6 +21,6 @@ gcc -o hello32 -I. <strong>-m32</strong> hello.c hello-tp.c <strong>-L/usr/lib32
     -ldl -llttng-ust <strong>-Wl,-rpath,/usr/lib32</strong>
 </pre>
 
-The `-rpath` option, passed to the linker, will make the dynamic loader
+The `-rpath` option, passed to the linker, makes the dynamic loader
 check for libraries in `/usr/lib32` before looking in its default paths,
 where it should find the 32-bit version of `liblttng-ust`.

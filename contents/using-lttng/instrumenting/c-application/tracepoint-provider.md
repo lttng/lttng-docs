@@ -94,7 +94,7 @@ Let's start with the header file, `tp.h`. It begins with
 ~~~
 
 `TRACEPOINT_PROVIDER` defines the name of the provider to which the
-following tracepoint definitions will belong. It is used internally by
+following tracepoint definitions belong. It is used internally by
 LTTng-UST headers and _must_ be defined. Since `TRACEPOINT_PROVIDER`
 could have been defined by another header file also included by the same
 C source file, the best practice is to undefine it first.
@@ -139,10 +139,10 @@ must be included:
 #include <lttng/tracepoint.h>
 ~~~
 
-This will also allow the application to use the `tracepoint()` macro.
+This also allows the application to use the `tracepoint()` macro.
 
 Next is a list of `TRACEPOINT_EVENT()` macro calls which create the
-actual tracepoint definitions. We will skip this for the moment and
+actual tracepoint definitions. We skip this for the moment and
 come back to how to use `TRACEPOINT_EVENT()`
 [in a later section](#doc-defining-tracepoints). Just pay attention to
 the first argument: it's always the name of the tracepoint provider
@@ -171,7 +171,7 @@ included in some C source file to actually use it. This is the job of
 ~~~
 
 When `TRACEPOINT_CREATE_PROBES` is defined, the macros used in `tp.h`,
-which is included just after, will actually create the source code for
+which is included just after, actually create the source code for
 LTTng-UST probes (global data structures and functions) out of your
 tracepoint definitions. How exactly this is done is out of this text's scope.
 `TRACEPOINT_CREATE_PROBES` is discussed further

@@ -17,7 +17,7 @@ events with the newest. At any time, either when the tracers are started
 or stopped, you may take a snapshot of those sub-buffers.
 
 There is no difference between the format of a normal trace file and the
-format of a snapshot: viewers of LTTng traces will also support LTTng
+format of a snapshot: viewers of LTTng traces also support LTTng
 snapshots. By default, snapshots are written to disk, but they may also
 be sent over the network.
 
@@ -28,7 +28,7 @@ lttng create --snapshot my-snapshot-session
 </pre>
 
 Next, enable channels, events and add context to channels as usual.
-Once a tracing session is created in snapshot mode, channels will be
+Once a tracing session is created in snapshot mode, channels are
 forced to use the
 [overwrite](#doc-channel-overwrite-mode-vs-discard-mode) mode
 (`--overwrite` option of the `enable-channel` command; also called
@@ -41,7 +41,7 @@ Start tracing. When you're ready to take a snapshot, do:
 lttng snapshot record --name my-snapshot
 </pre>
 
-This will record a snapshot named `my-snapshot` of all channels of
+This records a snapshot named `my-snapshot` of all channels of
 all domains of the current tracing session. By default, snapshots files
 are recorded in the path returned by `lttng snapshot list-output`. You
 may change this path or decide to send snapshots over the network
@@ -66,5 +66,5 @@ taking it with the `--max-size` option:
 lttng snapshot record --name my-snapshot --max-size 2M
 </pre>
 
-Older recorded events will be discarded in order to respect this
+Older recorded events are discarded in order to respect this
 maximum size.

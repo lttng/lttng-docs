@@ -10,7 +10,7 @@ source file or a precompiled object file) with its header file.
 
 `lttng-gen-tp` should suffice in [static linking](#doc-static-linking)
 situations. When using it, write a template file containing a list of
-`TRACEPOINT_EVENT()` macro calls. The tool will find the provider names
+`TRACEPOINT_EVENT()` macro calls. The tool finds the provider names
 used and generate the appropriate files which are going to look a lot
 like `tp.h` and `tp.c` above.
 
@@ -20,7 +20,7 @@ Just call `lttng-gen-tp` like this:
 lttng-gen-tp my-template.tp
 </pre>
 
-`my-template.c`, `my-template.o` and `my-template.h` will be created
+`my-template.c`, `my-template.o` and `my-template.h` are created
 in the same directory.
 
 You may specify custom C flags passed to the compiler invoked by

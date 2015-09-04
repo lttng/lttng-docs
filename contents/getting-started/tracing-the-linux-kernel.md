@@ -29,7 +29,7 @@ sudo lttng create my-session
 </div>
 
 `my-session` is the tracing session name and could be anything you
-like. `auto` will be used if omitted.
+like. `auto` is used if omitted.
 
 Let's now enable some events for this session:
 
@@ -38,7 +38,7 @@ sudo lttng enable-event --kernel sched_switch,sched_process_fork
 </pre>
 
 or you might want to simply enable all available kernel events (beware
-that trace files will grow rapidly when doing this):
+that trace files grow rapidly when doing this):
 
 <pre class="term">
 sudo lttng enable-event --kernel --all

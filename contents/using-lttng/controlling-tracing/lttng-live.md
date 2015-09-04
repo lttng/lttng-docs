@@ -14,9 +14,8 @@ _LTTng live_.
 
 LTTng live is implemented, in LTTng, solely on the relay daemon side.
 As trace data is sent over the network to a relay daemon by a (possibly
-remote) consumer daemon, a _tee_ may be created: trace data will be
-recorded to trace files _as well as_ being transmitted to a
-connected live viewer:
+remote) consumer daemon, a _tee_ is created: trace data is recorded to
+trace files _as well as_ being transmitted to a connected live viewer:
 
 <div class="img img-90">
     <object data="/images/docs26/lttng-live-relayd.svg" type="image/svg+xml">
@@ -31,18 +30,18 @@ mode on the target system:
 lttng create --live
 </pre>
 
-An optional parameter may be passed to `--live` to set the interval
-of time (in microseconds) between flushes to the network
-(1&nbsp;second is the default):
+An optional parameter may be passed to `--live` to set the period
+(in microseconds) between flushes to the network
+(1&nbsp;second is the default). With:
 
 <pre class="term">
 lttng create --live 100000
 </pre>
 
-will flush every 100&nbsp;ms.
+the daemons flush their data every 100&nbsp;ms.
 
 If no network output is specified to the `create` command, a local
-relay daemon will be spawned. In this very common case, viewing a live
+relay daemon is spawned. In this very common case, viewing a live
 trace is easy: enable events and start tracing as usual, then use
 `lttng view` to start the default live viewer:
 
@@ -50,7 +49,7 @@ trace is easy: enable events and start tracing as usual, then use
 lttng view
 </pre>
 
-The correct arguments will be passed to the live viewer so that it
+The correct arguments are passed to the live viewer so that it
 may connect to the local relay daemon and start reading live events.
 
 You may also wish to use a live viewer not running on the target

@@ -3,7 +3,7 @@ id: ubuntu
 ---
 
 The following steps apply to Ubuntu&nbsp;&ge;&nbsp;12.04. For
-previous releases, you will need to build and install LTTng
+previous releases, you need to build and install LTTng
 [from source](#doc-building-from-source), as no Ubuntu packages were
 available before version 12.04.
 

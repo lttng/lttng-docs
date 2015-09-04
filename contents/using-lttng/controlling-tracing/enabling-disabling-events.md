@@ -139,7 +139,7 @@ Disabling an event does not add it to some blacklist: it simply removes
 it from its channel's whitelist. This is why you cannot disable an event
 which wasn't previously enabled.
 
-A disabled event will not generate any trace data, even if all its
+A disabled event doesn't generate any trace data, even if all its
 specified conditions are met.
 
 Events may be enabled and disabled at will, either when LTTng tracers

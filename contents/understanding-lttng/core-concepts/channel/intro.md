@@ -5,11 +5,11 @@ id: channel
 A _channel_ is a set of events with specific parameters and potential
 added context information. Channels have unique names per domain within
 a tracing session. A given event is always registered to at least one
-channel; having an enabled event in two channels will produce a trace
-with this event recorded twice everytime it occurs.
+channel; having the same enabled event in two channels makes
+this event being recorded twice everytime it occurs.
 
 Channels may be individually enabled or disabled. Occurring events of
-a disabled channel will never make it to recorded events.
+a disabled channel never make it to recorded events.
 
 The fundamental role of a channel is to keep a shared ring buffer, where
 events are eventually recorded by the tracer and consumed by a consumer

@@ -19,8 +19,8 @@ lttng stop
 </pre>
 
 LTTng is very flexible: user space applications may be launched before
-or after the tracers are started. Events will only be recorded if they
-are properly enabled and if they occur while tracers are started.
+or after the tracers are started. Events are only recorded if they
+are properly enabled and if they occur while tracers are active.
 
 A tracing session name may be passed to both the `start` and `stop`
 commands to start/stop tracing a session other than the current one.

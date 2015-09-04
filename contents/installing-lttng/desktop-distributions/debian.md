@@ -2,7 +2,7 @@
 id: debian
 ---
 
-Debian wheezy (stable) and previous versions are not supported; you will
+Debian wheezy (stable) and previous versions are not supported; you
 need to build and install LTTng packages
 [from source](#doc-building-from-source) for those.
 

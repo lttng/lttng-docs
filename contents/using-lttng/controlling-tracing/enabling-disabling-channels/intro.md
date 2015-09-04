@@ -31,7 +31,7 @@ To create and enable a channel, use the `enable-channel` command:
 lttng enable-channel --kernel my-channel
 </pre>
 
-This will create a kernel domain channel named `my-channel` with
+This creates a kernel domain channel named `my-channel` with
 default parameters in the current tracing session.
 
 <div class="tip">
@@ -61,7 +61,7 @@ lttng enable-channel --userspace --session other-session --overwrite \
                      --tracefile-size 1048576 1mib-channel
 </pre>
 
-This will create a user space domain channel named `1mib-channel` in
+This creates a user space domain channel named `1mib-channel` in
 the tracing session named `other-session` that loses new events by
 overwriting previously recorded events (instead of the default mode of
 discarding newer ones) and saves trace files with a maximum size of
@@ -85,8 +85,8 @@ lttng enable-event --userspace --channel my-channel app:tp
 lttng enable-event --userspace --channel other-channel app:tp
 </pre>
 
-If both channels are enabled, the occurring `app:tp` event will
-generate two recorded events, one for each channel.
+If both channels are enabled, the occurring `app:tp` event
+generates two recorded events, one for each channel.
 
 Disabling a channel is done with the `disable-event` command:
 

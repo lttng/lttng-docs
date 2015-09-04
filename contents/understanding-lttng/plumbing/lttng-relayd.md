@@ -27,6 +27,6 @@ host operating system's bitness.
 
 The other important feature of LTTng's relay daemon is the support of
 _LTTng live_. LTTng live is an application protocol to view events as
-they arrive. The relay daemon will still record events in trace files,
-but a _tee_ may be created to inspect incoming events. Using LTTng live
+they arrive. The relay daemon still records events in trace files,
+but a _tee_ allows to inspect incoming events. Using LTTng live
 locally thus requires to run a local relay daemon.

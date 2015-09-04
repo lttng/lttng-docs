@@ -7,7 +7,7 @@ dynamic linking: the library and its member functions are explicitly
 sought, loaded and unloaded at runtime using `libdl`.
 
 It has to be noted that, for a variety of reasons, the created shared
-library will be dynamically _loaded_, as opposed to dynamically
+library is be dynamically _loaded_, as opposed to dynamically
 _linked_. The tracepoint provider shared object is, however, linked
 with `liblttng-ust`, so that `liblttng-ust` is guaranteed to be loaded
 as soon as the tracepoint provider is. If the tracepoint provider is
@@ -60,7 +60,7 @@ gcc <strong>-shared -Wl,--no-as-needed -o tp.so -llttng-ust</strong> tp.o
 </pre>
 
 As previously stated, this tracepoint provider shared object isn't
-linked with the user application: it will be loaded manually. This is
+linked with the user application: it's loaded manually. This is
 why the application is built with no mention of this tracepoint
 provider, but still needs `libdl`:
 

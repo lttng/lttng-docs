@@ -19,7 +19,7 @@ know the types of its arguments: the formats of all tracepoints must be
 defined before using them. So before even writing our _Hello world_ program,
 we need to define the format of our tracepoint. This is done by writing a
 **template file**, with a name usually ending with the `.tp` extension (for **t**race**p**oint),
-which the `lttng-gen-tp` tool (shipped with LTTng-UST) will use to generate
+which the `lttng-gen-tp` tool (shipped with LTTng-UST) uses to generate
 an object file (along with a `.c` file) and a header to be included in our application source code.
 
 Here's the whole flow:
@@ -31,7 +31,7 @@ Here's the whole flow:
 </div>
 
 The template file format is a list of tracepoint definitions
-and other optional definition entries which we will skip for
+and other optional definition entries which we skip for
 this quickstart. Each tracepoint is defined using the
 `TRACEPOINT_EVENT()` macro. For each tracepoint, you must provide:
 
@@ -41,8 +41,8 @@ this quickstart. Each tracepoint is defined using the
   * a **list of arguments** for the eventual `tracepoint()` call, each item being:
     * the argument C type
     * the argument name
-  * a **list of fields**, which will be the actual fields of the recorded events
-    for this tracepoint
+  * a **list of fields**, which correspond to the actual fields of the
+    recorded events for this tracepoint
 
 Here's a simple tracepoint definition example with two arguments: an integer
 and a string:
@@ -73,7 +73,7 @@ Save the above snippet as `hello-tp.tp` and run:
 lttng-gen-tp hello-tp.tp
 </pre>
 
-The following files will be created next to `hello-tp.tp`:
+The following files are created next to `hello-tp.tp`:
 
   * `hello-tp.c`
   * `hello-tp.o`
@@ -139,7 +139,7 @@ gcc -o hello hello.c <strong>hello-tp.o -llttng-ust -ldl</strong>
 
 If you followed the
 [Tracing the Linux kernel](#doc-tracing-the-linux-kernel) section, the
-following steps will look familiar.
+following steps should look familiar.
 
 First, run the application with a few arguments:
 
@@ -182,7 +182,7 @@ lttng start
 </pre>
 
 Go back to the running `hello` application and press Enter. All `tracepoint()`
-calls will be executed and the program will finally exit.
+calls are executed and the program finally exits.
 
 Stop tracing:
 

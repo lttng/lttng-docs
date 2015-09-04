@@ -31,9 +31,10 @@ To create a tracing session, do:
 lttng create my-session
 </pre>
 
-This will create a new tracing session named `my-session` and make it
-the current one. If you don't specify any name (calling only
-`lttng create`), your tracing session will be named `auto`. Traces
+This creates a new tracing session named `my-session` and make it
+the current one. If you don't specify a name (running only
+`lttng create`), your tracing session is named `auto` followed by the
+current date and time. Traces
 are written in <code>~/lttng-traces/<em>session</em>-</code> followed
 by the tracing session's creation date/time by default, where
 <code><em>session</em></code> is the tracing session name. To save them
@@ -76,8 +77,8 @@ command:
 lttng destroy my-session
 </pre>
 
-Providing no argument to `lttng destroy` will destroy the current
-tracing session. Destroying a tracing session will stop any tracing
+Providing no argument to `lttng destroy` destroys the current
+tracing session. Destroying a tracing session stops any tracing
 running within the latter. Destroying a tracing session frees resources
 acquired by the session daemon and tracer side, making sure to flush
 all trace data.

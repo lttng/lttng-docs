@@ -21,8 +21,7 @@ having multiple definitions depending on the context:
 The whole [Core concepts](#doc-core-concepts) section focuses on the
 third definition. An event is always registered to _one or more_
 channels and may be enabled or disabled at will per channel. A disabled
-event will never lead to a recorded event, even if its channel
-is enabled.
+event never leads to a recorded event, even if its channel is enabled.
 
 An event (3) is enabled with a few conditions that must _all_ be met
 when an event (1) happens in order to generate a recorded event (2):

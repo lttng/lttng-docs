@@ -12,11 +12,11 @@ the following list presents a few practical situations along with how
 to configure sub-buffers for them:
 
   * **High event throughput**: in general, prefer bigger sub-buffers to
-    lower the risk of losing events. Having bigger sub-buffers will
-    also ensure a lower sub-buffer switching frequency. The number of
-    sub-buffers is only meaningful if the channel is in overwrite mode:
-    in this case, if a sub-buffer overwrite happens, you will still have
-    the other sub-buffers left unaltered.
+    lower the risk of losing events. Having bigger sub-buffers
+    also ensures a lower sub-buffer switching frequency. The number of
+    sub-buffers is only meaningful if the channel is enabled in
+    overwrite mode: in this case, if a sub-buffer overwrite happens, the
+    other sub-buffers are left unaltered.
   * **Low event throughput**: in general, prefer smaller sub-buffers
     since the risk of losing events is already low. Since events
     happen less frequently, the sub-buffer switching frequency should

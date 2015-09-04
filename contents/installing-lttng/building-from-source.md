@@ -24,9 +24,9 @@ are rendered as rich text when
 </div>
 
 If you're using Ubuntu, executing the following Bash script
-will install the appropriate dependencies, clone the LTTng
-Git repositories, build the projects, and install them. The sources will
-be cloned into `~/src`. Your user needs to be a sudoer for the install
+installs the appropriate dependencies, clone the LTTng
+Git repositories, build the projects, and install them. The sources
+are cloned into `~/src`. Your user needs to be a sudoer for the install
 steps to be completed.
 
 ~~~ text

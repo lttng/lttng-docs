@@ -43,5 +43,5 @@ or, if you used a custom path:
 lttng load --input-path /path/to/my-session.lttng
 </pre>
 
-Your saved tracing session will be restored as if you just configured
+Your saved tracing session is restored as if you just configured
 it manually.

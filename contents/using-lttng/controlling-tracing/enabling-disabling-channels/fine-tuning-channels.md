@@ -46,7 +46,7 @@ Two other interesting available parameters of `enable-channel` are
 `--tracefile-size` and `--tracefile-count`, which respectively limit
 the size of each trace file and the their count for a given channel.
 When the number of written trace files reaches its limit for a given
-channel-CPU pair, the next trace file will overwrite the very first
+channel-CPU pair, the next trace file overwrites the very first
 one. The following example creates a kernel domain channel with a
 maximum of three trace files of 1&nbsp;MiB each:
 
