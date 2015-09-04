@@ -16,20 +16,17 @@ lttng list --kernel
 Before tracing, you need to create a session:
 
 <pre class="term">
-sudo lttng create my-session
+sudo lttng create
 </pre>
 
 <div class="tip">
 <p>
     <span class="t">Tip:</span>You can avoid using <code>sudo</code> in
     the previous and following commands if your user is a member of the
-    <a href="/docs/#doc-lttng-sessiond" class="int"><code>tracing</code>
+    <a href="#doc-lttng-sessiond" class="int"><code>tracing</code>
     group</a>.
 </p>
 </div>
-
-`my-session` is the tracing session name and could be anything you
-like. `auto` is used if omitted.
 
 Let's now enable some events for this session:
 
@@ -37,7 +34,7 @@ Let's now enable some events for this session:
 sudo lttng enable-event --kernel sched_switch,sched_process_fork
 </pre>
 
-or you might want to simply enable all available kernel events (beware
+Or you might want to simply enable all available kernel events (beware
 that trace files grow rapidly when doing this):
 
 <pre class="term">
@@ -62,7 +59,7 @@ sudo lttng destroy
 </pre>
 
 Although `destroy` looks scary here, it doesn't actually destroy the
-outputted trace files: it only destroys the tracing session.
+written trace files: it only destroys the tracing session.
 
 What's next? Have a look at
 [Viewing and analyzing your traces](#doc-viewing-and-analyzing-your-traces)
