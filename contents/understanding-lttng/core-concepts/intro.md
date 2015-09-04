@@ -9,3 +9,4 @@ with when using LTTng. They are:
   * [domain](#doc-domain)
   * [channel](#doc-channel)
   * [event](#doc-event)
+
