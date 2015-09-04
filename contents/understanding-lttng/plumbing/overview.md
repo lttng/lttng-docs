@@ -3,8 +3,8 @@ id: plumbing-overview
 ---
 
 As [mentioned previously](#doc-installing-lttng), the whole LTTng suite
-is made of the following packages: LTTng-tools, LTTng-UST, and
-LTTng-modules. Together, they provide different daemons, libraries,
+is made of the LTTng-tools, LTTng-UST, and
+LTTng-modules packages. Together, they provide different daemons, libraries,
 kernel modules and command line interfaces. The following tree shows
 which usable component belongs to which package:
 
@@ -31,15 +31,13 @@ which usable component belongs to which package:
     * many LTTng probe kernel modules
 
 The following diagram shows how the most important LTTng components
-interact. Plain black arrows represent trace data paths while dashed
+interact. Plain purple arrows represent trace data paths while dashed
 red arrows indicate control communications. The LTTng relay daemon is
 shown running on a remote system, although it could as well run on the
 target (monitored) system.
 
-<div class="img img-90">
-    <object data="/images/docs26/plumbing.svg" type="image/svg+xml">
-        <img src="/images/docs26/plumbing.svg">
-    </object>
+<div class="img img-100">
+<img src="/images/docs26/plumbing-26.png" alt="LTTng plumbing">
 </div>
 
 Each component is described in the following subsections.
