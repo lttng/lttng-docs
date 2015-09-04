@@ -27,7 +27,7 @@ within `TP_FIELDS()` in `TRACEPOINT_EVENT()`, are:
                     <li>
                         <code class="arg"><strong>t</strong></code> integer C type
                         (<code>int</code>, <code>long</code>,
-                        <code>size_t</code>, etc.)
+                        <code>size_t</code>, ...)
                     </li>
                     <li><code class="arg"><strong>n</strong></code> field name</li>
                     <li><code class="arg"><strong>e</strong></code> argument expression</li>

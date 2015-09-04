@@ -16,7 +16,7 @@ composed of:
      (required).
   2. One or many **instrumentation points** in source code or binary
      program (tracepoint name, address, symbol name, function name,
-     logger name, etc.) to be executed (required).
+     logger name, amongst other types of probes) to be executed (required).
   3. A **log level** (each instrumentation point declares its own log
      level) or log level range to match (optional; only valid for user
      space domain).

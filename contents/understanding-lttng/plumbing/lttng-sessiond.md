@@ -7,8 +7,8 @@ by its command name, `lttng-sessiond`.
 
 The session daemon is responsible for managing tracing sessions and
 what they logically contain (channel properties, enabled/disabled
-events, etc.). By communicating locally with instrumented applications
-(using LTTng-UST) and with the LTTng Linux kernel modules
+events, and the rest). By communicating locally with instrumented
+applications (using LTTng-UST) and with the LTTng Linux kernel modules
 (LTTng-modules), it oversees all tracing activities.
 
 One of the many things that `lttng-sessiond` does is to keep
@@ -24,7 +24,7 @@ and user space tracers, the session daemon can send channel information
 so that they are initialized, enable/disable specific probes based on
 enabled/disabled events by the user, send event filters information to
 LTTng tracers so that filtering actually happens at the tracer site,
-start/stop tracing a specific application or the Linux kernel, etc.
+start/stop tracing a specific application or the Linux kernel, and more.
 
 The session daemon is not useful without some user controlling it,
 because it's only a sophisticated control interchange and thus

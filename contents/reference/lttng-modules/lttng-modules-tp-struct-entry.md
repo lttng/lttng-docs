@@ -26,7 +26,7 @@ of `LTTNG_TRACEPOINT_EVENT()`:
                     <li>
                         <code class="arg">t</code> integer C type
                         (<code>int</code>, <code>unsigned char</code>,
-                        <code>size_t</code>, etc.)
+                        <code>size_t</code>, ...)
                     </li>
                     <li><code class="arg">n</code> field name</li>
                 </ul>

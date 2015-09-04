@@ -46,7 +46,7 @@ frequently than log messages, often in the thousands per second range,
 with very little execution overhead. Logging is more appropriate for
 very high-level analysis of less frequent events: user accesses,
 exceptional conditions (errors and warnings, for example), database
-transactions, instant messaging communications, etc. More formally,
+transactions, instant messaging communications, and such. More formally,
 logging is one of several use cases that can be accomplished with
 tracing.
 

@@ -4,8 +4,9 @@ id: saving-loading-tracing-session
 
 Configuring a tracing session may be long: creating and enabling
 channels with specific parameters, enabling kernel and user space
-domain events with specific log levels and filters, adding context
-to some channels, etc. If you're going to use LTTng to solve real
+domain events with specific log levels and filters, and adding context
+to some channels are just a few of the many possible operations using
+the `lttng` command line tool. If you're going to use LTTng to solve real
 world problems, chances are you're going to have to record events using
 the same tracing session setup over and over, modifying a few variables
 each time in your instrumented program or environment. To avoid

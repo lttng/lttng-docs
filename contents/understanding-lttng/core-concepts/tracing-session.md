@@ -23,13 +23,13 @@ which are described in the following sections):
     * a name
     * the channel state (enabled or disabled)
     * its parameters (event loss mode, sub-buffers size and count,
-      timer periods, output type, trace files size and count, etc.)
+      timer periods, output type, trace files size and count, and the rest)
     * a list of added context information
     * a list of [events](#doc-event)
   * for each event:
     * its state (enabled or disabled)
     * a list of instrumentation points (tracepoints, system calls,
-      dynamic probes, etc.)
+      dynamic probes, other types of probes)
     * associated log levels
     * a filter expression
 

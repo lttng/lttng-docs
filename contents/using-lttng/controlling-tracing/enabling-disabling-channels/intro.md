@@ -7,9 +7,9 @@ id: enabling-disabling-channels
 events are contained in a specific channel, itself contained in a
 specific tracing session. A channel is a group of events with
 tunable parameters (event loss mode, sub-buffer size, number of
-sub-buffers, trace file sizes and count, etc.). A given channel may
-only be responsible for enabled events belonging to one domain: either
-kernel or user space.
+sub-buffers, trace file sizes and count, to name a few). A given channel
+may only be responsible for enabled events belonging to one domain:
+either kernel or user space.
 
 If you only used the `create`, `enable-event` and `start`/`stop`
 commands of the `lttng` tool so far, one or two channels were

@@ -143,8 +143,8 @@ python3 top5proc.py ~/lttng-sessions/my-session-.../kernel
 </pre>
 
 Make sure the path you provide is the directory containing actual trace
-files (`channel0_0`, `metadata`, etc.): the `babeltrace` utility recurses
-directories, but the Python binding does not.
+files (`channel0_0`, `metadata`, and the rest): the `babeltrace` utility
+recurses directories, but the Python binding does not.
 
 Here's an example of output:
 

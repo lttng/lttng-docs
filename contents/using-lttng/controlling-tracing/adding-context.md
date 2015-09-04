@@ -21,12 +21,11 @@ recorded by LTTng, for example:
     * scheduling priority (niceness)
     * thread identifier (TID)
   * the **hostname** of the system on which the event occurred
-  * plenty of **performance counters** using perf:
-    * CPU cycles, stalled cycles, idle cycles, etc.
+  * plenty of **performance counters** using perf, for example:
+    * CPU cycles, stalled cycles, idle cycles, and the other cycle types
     * cache misses
-    * branch instructions, misses, loads, etc.
+    * branch instructions, misses, loads
     * CPU faults
-    * etc.
 
 The full list is available in the output of `lttng add-context --help`.
 Some of them are reserved for a specific domain (kernel or

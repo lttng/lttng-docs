@@ -9,7 +9,7 @@ _[Instrumenting](#doc-instrumenting)_ is the process of inserting probes
 into some source code. It can be done manually, by writing tracepoint
 calls at specific locations in the source code of the program to trace,
 or more automatically using dynamic probes (address in assembled code,
-symbol name, function entry/return, etc.).
+symbol name, function entry/return, and others).
 
 It has to be noted that, as an LTTng user, you may not have to worry
 about the instrumentation process. Indeed, you may want to trace a
@@ -21,7 +21,8 @@ _[Controlling tracing](#doc-controlling-tracing)_ is everything
 that can be done by the LTTng session daemon, which is controlled using
 `liblttng-ctl` or its command line utility, `lttng`: creating tracing
 sessions, listing tracing sessions and events, enabling/disabling
-events, starting/stopping the tracers, taking snapshots, etc.
+events, starting/stopping the tracers, taking snapshots, amongst many
+other commands.
 
 This chapter is a complete user guide of both activities,
 with common use cases of LTTng exposed throughout the text. It is

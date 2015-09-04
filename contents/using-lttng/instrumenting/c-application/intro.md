@@ -10,9 +10,9 @@ LTTng-UST package includes a dynamically loaded library
 
 Since C and C++ are the base languages of virtually all other
 programming languages
-(Java virtual machine, Python, Perl, PHP and Node.js interpreters, etc.),
-implementing user space tracing for an unsupported language is just a
-matter of using the LTTng-UST C API at the right places.
+(Java virtual machine, Python, Perl, PHP and Node.js interpreters, to
+name a few), implementing user space tracing for an unsupported language
+is just a matter of using the LTTng-UST C API at the right places.
 
 The usual work flow to instrument a user space C application with
 LTTng-UST is:
