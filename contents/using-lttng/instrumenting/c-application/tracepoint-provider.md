@@ -110,7 +110,8 @@ variables).</p>
 
 The tracepoint provider is a group of tracepoint definitions; its chosen
 name should reflect this. A hierarchy like Java packages is recommended,
-using underscores instead of dots, e.g., `org_company_project_component`.
+using underscores instead of dots, for example,
+`org_company_project_component`.
 
 Next is `TRACEPOINT_INCLUDE`:
 
@@ -178,7 +179,7 @@ tracepoint definitions. How exactly this is done is out of this text's scope.
 in [Building/linking tracepoint providers and the user application](#doc-building-tracepoint-providers-and-user-application).
 
 You could include other header files like `tp.h` here to create the probes
-of different tracepoint providers, e.g.:
+of different tracepoint providers, for example:
 
 ~~~ c
 #define TRACEPOINT_CREATE_PROBES

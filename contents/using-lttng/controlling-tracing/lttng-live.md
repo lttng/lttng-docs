@@ -72,7 +72,7 @@ babeltrace --input-format lttng-live net://localhost
 </pre>
 
 Then, choose a tracing session and start viewing events as they arrive
-using LTTng live, e.g.:
+using LTTng live:
 
 <pre class="term">
 babeltrace --input-format lttng-live net://localhost/host/hostname/my-session

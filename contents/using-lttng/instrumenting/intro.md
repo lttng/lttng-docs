@@ -15,8 +15,8 @@ All the previous examples have something in common: they rely on
 skin, cardiac monitoring would be futile.
 
 LTTng, as a tracer, is no different from the real life examples above.
-If you're about to trace a software system, i.e. record its history of
-execution, you better have probes in the subject you're
+If you're about to trace a software system or, put in other words, record its
+history of execution, you better have probes in the subject you're
 tracing: the actual software. Various ways were developed to do this.
 The most straightforward one is to manually place probes, called
 _tracepoints_, in the software's source code. The Linux kernel tracing

@@ -29,7 +29,7 @@ of Userspace RCU and other dependencies.
 </p>
 <p>
     In this case, make sure to set <code>LDFLAGS</code> to all the
-    relevant 32-bit library paths, e.g.,
+    relevant 32-bit library paths, for example,
     <code>LDFLAGS="-L/usr/lib32 -L/usr/lib/i386-linux-gnu"</code>.
 </p>
 </div>
@@ -37,8 +37,8 @@ of Userspace RCU and other dependencies.
 <div class="tip">
 <p>
     <span class="t">Note:</span>You may add options to
-    <code>./configure</code> if you need them, e.g., for
-    Java and SystemTap support. Look at
+    <code>./configure</code> if you need them (for
+    Java and SystemTap support, for example). Look at
     <code>./configure --help</code> for more information.
 </p>
 </div>

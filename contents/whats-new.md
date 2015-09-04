@@ -16,7 +16,7 @@ commands of the `lttng` tool.
 LTTng-modules has supported system call tracing for a long time,
 but until now, it was only possible to record either all of them,
 or none of them. LTTng 2.6 allows the user to record specific
-system call events, e.g.:
+system call events, for example:
 
 <pre class="term">
 lttng enable-event --kernel --syscall open,fork,chdir,pipe

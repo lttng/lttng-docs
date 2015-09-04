@@ -101,8 +101,7 @@ as linear as possible.
      applications and the Linux kernel, how to control tracing sessions
      using the `lttng` command line tool, and miscellaneous practical use
      cases.
-  6. [Reference](#doc-reference) contains references of LTTng components,
-     e.g., links to online manpages and to various APIs.
+  6. [Reference](#doc-reference) contains references of LTTng components.
 
 We recommend that you read the above chapters in this order, although
 some of them may be skipped depending on your situation. You may skip

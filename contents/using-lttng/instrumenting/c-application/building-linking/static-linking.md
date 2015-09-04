@@ -119,7 +119,7 @@ system, replace `-ldl` with `-lc`:
 gcc -o app tp.a other.o files.o of.o your.o app.o -llttng-ust <strong>-lc</strong>
 </pre>
 
-The application can be started as usual, e.g.:
+The application can be started as usual, for example:
 
 <pre class="term">
 ./app

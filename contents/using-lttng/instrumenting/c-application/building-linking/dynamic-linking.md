@@ -27,8 +27,8 @@ much the same as the static library method, except that:
 
 Regarding `TRACEPOINT_DEFINE` and `TRACEPOINT_PROBE_DYNAMIC_LINKAGE`,
 the recommended practice is to use a separate C source file in your
-application to define them, and then include the tracepoint provider
-header files afterwards, e.g.:
+application to define them, then include the tracepoint provider
+header files afterwards. For example:
 
 ~~~ c
 #define TRACEPOINT_DEFINE
@@ -87,8 +87,8 @@ provider shared library _before_ the application actually starts:
 <p>
     For example, statically linking a tracepoint provider to a
     shared object which is to be dynamically loaded by an application
-    (e.g., a plugin) is not safe: the shared object, which contains the
-    tracepoint provider, could be dynamically closed
+    (a plugin, for example) is not safe: the shared object, which
+    contains the tracepoint provider, could be dynamically closed
     (<code>dlclose()</code>) at any time by the application.
 </p>
 

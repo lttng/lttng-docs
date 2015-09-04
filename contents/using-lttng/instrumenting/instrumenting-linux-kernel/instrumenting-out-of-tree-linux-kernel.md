@@ -26,7 +26,7 @@ build time verification:
 
 The preferred, flexible way to include your module's mainline
 tracepoint definition header is to put it in a specific directory
-relative to your module's root, e.g., `tracepoints`, and include it
+relative to your module's root (`tracepoints`, for example) and include it
 relative to your module's root directory in the LTTng custom probe's
 source:
 

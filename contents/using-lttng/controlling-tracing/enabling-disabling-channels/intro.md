@@ -38,7 +38,7 @@ default parameters in the current tracing session.
 <p>
     <span class="t">Note:</span>Because of a current limitation, all
     channels must be <em>created</em> prior to beginning tracing in a
-    given tracing session, i.e. before the first time you do
+    given tracing session, that is before the first time you do
     <code>lttng start</code>.
 </p>
 <p>

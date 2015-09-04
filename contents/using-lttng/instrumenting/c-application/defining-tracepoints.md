@@ -41,8 +41,8 @@ The tracepoint name becomes the event name once events are recorded
 by the LTTng-UST tracer. It must follow the tracepoint provider name
 syntax: start with a letter and contain either letters, numbers or
 underscores. Two tracepoints under the same provider cannot have the
-same name, i.e. you cannot overload a tracepoint like you would
-overload functions and methods in C++/Java.
+same name. In other words, you cannot overload a tracepoint like you
+would overload functions and methods in C++/Java.
 
 <div class="tip">
 <p><span class="t">Note:</span>The concatenation of the tracepoint

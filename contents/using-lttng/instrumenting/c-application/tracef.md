@@ -34,7 +34,8 @@ where you need to insert probes:
 #include <lttng/tracef.h>
 ~~~
 
-Use `tracef()` like you would use `printf()` in your source code, e.g.:
+Use `tracef()` like you would use `printf()` in your source code, for
+example:
 
 ~~~ c
     /* ... */

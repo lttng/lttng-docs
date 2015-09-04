@@ -44,7 +44,7 @@ Session daemons run on a per-user basis. Knowing this, multiple
 instances of `lttng-sessiond` may run simultaneously, each belonging
 to a different user and each operating independently of the others.
 Only `root`'s session daemon, however, may control LTTng kernel modules
-(i.e. the kernel tracer). With that in mind, if a user has no root
+(that is, the kernel tracer). With that in mind, if a user has no root
 access on the target system, he cannot trace the system's kernel, but
 should still be able to trace its own instrumented applications.
 
