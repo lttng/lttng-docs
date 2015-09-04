@@ -154,6 +154,9 @@ Here's the whole build process:
 
 <figure class="img img-100">
 <img src="/images/docs26/ust-flow.png" alt="User space tracing's build process">
+<figcaption>
+    User space tracing build process
+</figcaption>
 </figure>
 
 If you followed the

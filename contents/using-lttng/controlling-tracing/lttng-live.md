@@ -19,6 +19,10 @@ trace files _as well as_ being transmitted to a connected live viewer:
 
 <figure class="img img-100">
 <img src="/images/docs26/lttng-live.png" alt="LTTng live">
+<figcaption>
+    The relay daemon creates a <em>tee</em>, forwarding the trace data
+    to both trace files and a live viewer.
+</figcaption>
 </figure>
 
 In order to use this feature, a tracing session must created in live

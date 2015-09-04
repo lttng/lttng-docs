@@ -41,6 +41,10 @@ configuration while another one stays inactive.
 
 <figure class="img img-100">
 <img src="/images/docs26/concepts.png" alt="LTTng concepts">
+<figcaption>
+    A <em>tracing session</em> is a container of domains,
+    channels, and events.
+</figcaption>
 </figure>
 
 Conceptually, a tracing session is a per-user object; the
@@ -50,6 +54,9 @@ as desired.
 
 <figure class="img img-100">
 <img src="/images/docs26/many-sessions.png" alt="Tracing sessions per user">
+<figcaption>
+    Each user may create as many tracing sessions as desired.
+</figcaption>
 </figure>
 
 The trace data generated in a tracing session may be either saved

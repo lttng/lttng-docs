@@ -38,6 +38,9 @@ target (monitored) system.
 
 <figure class="img img-100">
 <img src="/images/docs26/plumbing-26.png" alt="LTTng plumbing">
+<figcaption>
+    Control and data paths between LTTng components
+</figcaption>
 </figure>
 
 Each component is described in the following subsections.
