@@ -206,6 +206,8 @@ cats:
             title: Taking a snapshot
           - id: mi
             title: Machine interface
+          - id: persistent-memory-file-systems
+            title: Recording trace data on persistent memory file systems
   - id: reference
     title: Reference
     cats:
