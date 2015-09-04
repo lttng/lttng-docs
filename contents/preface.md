@@ -90,7 +90,7 @@ as linear as possible.
      source.
   3. [Getting started](#doc-getting-started) is a very concise guide to
      get started quickly with LTTng kernel and user space tracing. This
-     chapter is recommended if you're new to LTTng or software tracing
+     chapter is recommended if you're new to LTTng or to software tracing
      in general.
   4. [Understanding LTTng](#doc-understanding-lttng) deals with some
      core concepts and components of the LTTng suite. Understanding
@@ -99,15 +99,15 @@ as linear as possible.
   5. [Using LTTng](#doc-using-lttng) is a complete user guide of the
      LTTng project. It shows in great details how to instrument user
      applications and the Linux kernel, how to control tracing sessions
-     using the `lttng` command line tool and miscellaneous practical use
+     using the `lttng` command line tool, and miscellaneous practical use
      cases.
   6. [Reference](#doc-reference) contains references of LTTng components,
-     like links to online manpages and various APIs.
+     e.g., links to online manpages and to various APIs.
 
 We recommend that you read the above chapters in this order, although
 some of them may be skipped depending on your situation. You may skip
 [Nuts and bolts](#doc-nuts-and-bolts) if you're familiar with tracing
-and LTTng. Also, you may jump over
+and the LTTng project. Also, you may jump over
 [Installing LTTng](#doc-installing-lttng) if LTTng is already properly
 installed on your target system.
 
