@@ -139,6 +139,11 @@ cats:
                 title: Dynamic linker tracing
           - id: java-application
             title: Java application
+            cats:
+              - id: jul
+                title: <code>java.util.logging</code>
+              - id: log4j
+                title: Apache log4j 1.2
           - id: instrumenting-linux-kernel
             title: Linux kernel
             cats:
