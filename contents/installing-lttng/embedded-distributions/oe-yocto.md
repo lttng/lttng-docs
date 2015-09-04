@@ -2,8 +2,8 @@
 id: oe-yocto
 ---
 
-LTTng recipes are available in the `openembedded-core` layer of
-OpenEmbedded:
+LTTng recipes are available in the
+<code><a href="http://layers.openembedded.org/layerindex/branch/master/layer/openembedded-core/" class="ext">openembedded-core</a></code> layer of OpenEmbedded:
 
   * `lttng-tools`
   * `lttng-modules`
@@ -18,6 +18,5 @@ IMAGE_INSTALL_append = " lttng-tools lttng-modules lttng-ust"
 ~~~
 
 If you're using Hob, click _Edit image recipe_ once you have selected
-a machine and an image recipe. Then, in the _All recipes_ tab, search
-for `lttng` and you should find and be able to include the three LTTng
-recipes.
+a machine and an image recipe. Then, under the _All recipes_ tab, search
+for `lttng` and include the three LTTng recipes.
