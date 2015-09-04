@@ -239,7 +239,8 @@ consistent as possible:
     (good: `include/trace/events`, bad: `include/trace/events/`).
   * Keep the text as impersonal as possible (minimize the use of
     _I_, _we_, _us_, etc.), except for user guides/tutorials where
-    _we_ have an ongoing example.
+    _we_ have an ongoing example with _you_.
+  * Minimize the use of the future tense (_will_).
 
 
 Committing
