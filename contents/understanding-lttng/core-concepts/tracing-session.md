@@ -34,14 +34,23 @@ which are described in the following sections):
     * a filter expression
 
 All this information is completely isolated between tracing sessions.
+As you can see in the list above, even the tracing state
+is a per-tracing session attribute, so that you may trace your target
+system/application in a given tracing session with a specific
+configuration while another one stays inactive.
+
+<div class="img img-100">
+<img src="/images/docs26/concepts.png" alt="LTTng concepts">
+</div>
 
 Conceptually, a tracing session is a per-user object; the
 [Plumbing](#doc-plumbing) section shows how this is actually
 implemented. Any user may create as many concurrent tracing sessions
-as desired. As you can see in the list above, even the tracing state
-is a per-tracing session attribute, so that you may trace your target
-system/application in a given tracing session with a specific
-configuration while another one stays inactive.
+as desired.
+
+<div class="img img-100">
+<img src="/images/docs26/many-sessions.png" alt="Tracing sessions per user">
+</div>
 
 The trace data generated in a tracing session may be either saved
 to disk, sent over the network or not saved at all (in which case
