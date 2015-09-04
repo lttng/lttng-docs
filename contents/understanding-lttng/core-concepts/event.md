@@ -32,16 +32,3 @@ when an event (1) happens in order to generate a recorded event (2):
      log level range specified when enabling the event.
   3. **Optionally**, the occurring event must satisfy a custom
      expression, or _filter_, specified when enabling the event.
-
-The following illustration summarizes how tracing sessions, domains,
-channels and events are related:
-
-<div class="img img-90">
-<object data="/images/docs26/core-concepts.svg" type="image/svg+xml">
-  <img src="/images/docs26/core-concepts.svg">
-</object>
-</div>
-
-This diagram also shows how events may be individually enabled/disabled
-(green/grey) and how a given event may be registered to more than one
-channel.
