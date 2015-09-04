@@ -124,6 +124,8 @@ cats:
                     title: <span class="reset-text-transform">pkg-config</span>
               - id: tracef
                 title: Using <code>tracef()</code>
+              - id: tracelog
+                title: Using <code>tracelog()</code>
               - id: lttng-ust-environment-variables-compiler-flags
                 title: <span class="reset-text-transform">LTTng</span>-UST environment variables and special compilation flags
           - id: cxx-application
