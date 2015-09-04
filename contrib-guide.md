@@ -6,7 +6,7 @@ Documentation's source. Make sure you read it thoroughly before
 contributing a change.
 
 
-branches
+Branches
 --------
 
 The online documentation published at <http://lttng.org/docs/> is always
@@ -15,7 +15,7 @@ The `master` branch contains the current documentation of the upcoming
 LTTng release.
 
 
-structure of sources
+Structure of sources
 --------------------
 
 `toc/docs.yml` is a YAML tree of all chapters, sections and subsections.
@@ -54,7 +54,7 @@ Run it from the repository's root:
 and it will potentially output a list of errors and warnings.
 
 
-format of sources
+Format of sources
 -----------------
 
 The sources are made of a fusion of Markdown and HTML processed by
@@ -72,7 +72,7 @@ document. If you need to contribute, please use them when needed to
 preserve the document's visual consistency.
 
 
-#### tip/note block
+#### Tip/note/warning/error blocks
 
 Tip/note block:
 
@@ -91,7 +91,8 @@ Tip/note block:
 Title should be `Tip:` for a tip and `Note:` for a note.
 
 
-#### external links
+
+#### External links
 
 Internal links should always use Markdown
 (`[caption](#doc-section)`). External links, however, need a special
@@ -108,7 +109,7 @@ In these cases, add the `int` CSS class as a hint to prevent the static
 analyzer from complaining (`tools/checkdocs.py`).
 
 
-#### abbreviations
+#### Abbreviations
 
 Use `<abbr>` for describing abbreviations. This should only be used
 for the first use of the abbreviation:
@@ -119,7 +120,7 @@ project is an open source system software package [...]
 ```
 
 
-#### non-breaking spaces
+#### Non-breaking spaces
 
 Sometimes, a non-breaking space HTML entity (`&nbsp;`) needs to be
 explicitly written.
@@ -135,7 +136,7 @@ A check is performed every 3000&nbsp;ms.
 ```
 
 
-#### placeholders in inline code
+#### Placeholders in inline code
 
 You must use `<em>` to emphasize a placeholder within a `<code>` tag
 because Markdown backticks (<code>`</code>) always render their
@@ -147,7 +148,7 @@ Name your file <code>something_<em>sys</em>.c</code>, where
 ```
 
 
-#### terminal boxes
+#### Terminal boxes
 
 A terminal box, where command lines are shown, is a simple `<pre>`
 with the `term` class:
@@ -181,7 +182,7 @@ Results of commands, if needed, should be presented in a simple
 </pre>
 
 
-#### images
+#### Images
 
 Use
 
@@ -210,7 +211,7 @@ An interactive SVG object allows its text to be selected, amongst other
 features.
 
 
-convention
+Convention
 ----------
 
 A few rules to comply with in order to keep the text as
@@ -238,7 +239,7 @@ consistent as possible:
     _we_ have an ongoing example.
 
 
-committing
+Committing
 ----------
 
 If you make a change to a single contents file, prefix your Git commit
