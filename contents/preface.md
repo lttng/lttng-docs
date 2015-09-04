@@ -63,7 +63,7 @@ try for students interested in the inner mechanics of their systems.
 
 Readers who do not have a programming background may wish to skip
 everything related to instrumentation, which requires, most of the
-time, some C language skills.
+time, some programming language skills.
 
 <div class="tip">
 <p><span class="t">Note to readers:</span>This is an <strong>open
