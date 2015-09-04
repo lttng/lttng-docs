@@ -10,7 +10,7 @@ may be used to ensure that event data is consumed and committed to
 trace files periodically in case of a low event throughput:
 
 <script type="text/javascript">
-    document.write('<div class="img img-50" id="docsvg-channel-switch-timer"></div>');
+    document.write('<div class="anim img img-50" id="docsvg-channel-switch-timer"></div>');
 
     $(document).ready(function() {
         var doc = SVG('docsvg-channel-switch-timer');
@@ -62,10 +62,11 @@ trace files periodically in case of a low event throughput:
             rb.addEvent(curSubBuf % div, evDur, onEventAdded);
         };
 
-        rb.addEvent(0, evDur, onEventAdded);
         rb.markSubBuf(0, 'cur');
-
         rb.getGroup().move(1, 1);
+        rbSetParentPlayIcon(doc, function() {
+            rb.addEvent(0, evDur, onEventAdded);
+        });
     });
 </script>
 

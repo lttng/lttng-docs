@@ -38,21 +38,21 @@ constant event throughput and using the overwrite mode, the two
 following configurations have the same ring buffer total size:
 
 <script type="text/javascript">
-    document.write('<div class="img img-100" id="docsvg-channel-subbuf-size-vs-count-anim"></div>');
+    document.write('<div class="anim img img-100" id="docsvg-channel-subbuf-size-vs-count-anim"></div>');
 
     $(document).ready(function() {
         var doc = SVG('docsvg-channel-subbuf-size-vs-count-anim');
 
         doc.viewbox(0, 0, 4.25, 2);
 
-        var rb2 = rbBuildStdAnimated(doc, {
+        var stdRb2 = rbBuildStdAnimated(doc, {
             div: 2,
             oR: 0.97,
             evDur: 300,
             evPerSubBuf: 17,
             consumerAfter: 25
         });
-        var rb16 = rbBuildStdAnimated(doc, {
+        var stdRb16 = rbBuildStdAnimated(doc, {
             div: 8,
             oR: 0.97,
             evDur: 300,
@@ -60,8 +60,12 @@ following configurations have the same ring buffer total size:
             consumerAfter: 6
         });
 
-        rb2.getGroup().move(1, 1);
-        rb16.getGroup().move(3.25, 1);
+        stdRb2.rb.getGroup().move(1, 1);
+        stdRb16.rb.getGroup().move(3.25, 1);
+        rbSetParentPlayIcon(doc, function() {
+            rbStdStart(stdRb2);
+            rbStdStart(stdRb16);
+        });
     });
 </script>
 

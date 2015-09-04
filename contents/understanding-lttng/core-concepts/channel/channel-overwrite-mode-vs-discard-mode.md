@@ -13,14 +13,14 @@ events. The marked sub-buffer will be consumed eventually by a consumer
 daemon (returns to white).
 
 <script type="text/javascript">
-    document.write('<div class="img img-50" id="docsvg-channel-subbuf-anim"></div>');
+    document.write('<div class="anim img img-50" id="docsvg-channel-subbuf-anim"></div>');
 
     $(document).ready(function() {
         var doc = SVG('docsvg-channel-subbuf-anim');
 
         doc.viewbox(0, 0, 2, 2);
 
-        var rb = rbBuildStdAnimated(doc, {
+        var stdRb = rbBuildStdAnimated(doc, {
             div: 5,
             oR: 0.97,
             evDur: 300,
@@ -28,7 +28,10 @@ daemon (returns to white).
             consumerAfter: 10
         });
 
-        rb.getGroup().move(1, 1);
+        stdRb.rb.getGroup().move(1, 1);
+        rbSetParentPlayIcon(doc, function() {
+            rbStdStart(stdRb);
+        });
     });
 </script>
 
