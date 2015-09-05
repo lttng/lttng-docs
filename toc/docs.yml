@@ -146,6 +146,8 @@ cats:
                 title: <code>java.util.logging</code>
               - id: log4j
                 title: Apache log4j 1.2
+          - id: python-application
+            title: Python application
           - id: instrumenting-linux-kernel
             title: Linux kernel
             cats:
