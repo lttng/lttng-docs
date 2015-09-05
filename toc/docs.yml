@@ -198,6 +198,8 @@ cats:
                 title: Fine-tuning channels
           - id: adding-context
             title: Adding some context to channels
+          - id : pid-tracking
+            title: Tracking process IDs
           - id: saving-loading-tracing-session
             title: Saving and loading tracing session configurations
           - id: sending-trace-data-over-the-network
