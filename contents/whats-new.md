@@ -14,7 +14,7 @@ LTTng 2.7 adds filtering support to kernel events as well. For example:
 lttng enable-event --kernel irq_handler_entry --filter 'irq == 28'
 </pre>
 
-LTTng 2.7 also adds wildcard support for kernel event names:
+LTTng 2.7 adds wildcard support for kernel event names:
 
 <pre class="term">
 lttng enable-event --kernel 'sched_*'
@@ -33,10 +33,9 @@ crash requiring a reboot. The new `lttng-crash` command line
 utility can extract trace data from such a file (see
 [Recording trace data on persistent memory file systems](#doc-persistent-memory-file-systems)).
 
-LTTng-modules 2.7 and LTTng-UST 2.7 can rely on user plugins
-to provide custom clock sources to their tracer.
-LTTng-UST can also load a user plugin to retrieve the current CPU number.
-This feature exists for very advanced use cases. See
+LTTng-UST 2.7 can rely on a user plugin to provide a custom clock source
+to its tracer. LTTng-UST can also load a user plugin to retrieve the
+current CPU number. This feature exists for very advanced use cases. See
 the <a href="https://github.com/lttng/lttng-ust/tree/master/doc/examples/clock-override" class="ext">clock-override</a>
 and <a href="https://github.com/lttng/lttng-ust/tree/master/doc/examples/getcpu-override" class="ext">getcpu-override</a>
 examples for more details.
@@ -55,5 +54,7 @@ to emit enabled events.
 Moreover, LTTng 2.7 boasts great stability, benifiting from piles of
 bug fixes and more-than-welcome internal refactorings.
 
+<!--
 To learn more about the new features of LTTng 2.7, see
 <a href="" class="ext">the release announcement</a>.
+-->
