@@ -21,7 +21,7 @@ The following functions are traceable by `liblttng-ust-libc-wrapper.so`:
     <tbody>
         <tr>
             <td rowspan="6">
-                <code class="no-bg">ust_libc</code>
+                <code class="no-bg">lttng_ust_libc</code>
             </td>
             <td>
                 <code class="no-bg">malloc</code>
@@ -89,7 +89,7 @@ The following functions are traceable by
     <tbody>
         <tr>
             <td rowspan="4">
-                <code class="no-bg">ust_pthread</code>
+                <code class="no-bg">lttng_ust_pthread</code>
             </td>
             <td>
                 <code class="no-bg">pthread_mutex_lock_req</code>

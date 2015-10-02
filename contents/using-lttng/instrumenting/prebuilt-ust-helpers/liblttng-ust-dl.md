@@ -21,10 +21,10 @@ following tracepoints when preloaded:
     <tbody>
         <tr>
             <td rowspan="2">
-                <code class="no-bg">ust_baddr</code>
+                <code class="no-bg">lttng_ust_dl</code>
             </td>
             <td>
-                <code class="no-bg">push</code>
+                <code class="no-bg">dlopen</code>
             </td>
             <td>
                 <p><code>dlopen()</code> call</p>
@@ -54,7 +54,7 @@ following tracepoints when preloaded:
         </tr>
         <tr>
             <td>
-                <code class="no-bg">pop</code>
+                <code class="no-bg">dlclose</code>
             </td>
             <td>
                 <p><code>dlclose()</code> call</p>
