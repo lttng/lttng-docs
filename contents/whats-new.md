@@ -54,7 +54,5 @@ to emit enabled events.
 Moreover, LTTng 2.7 boasts great stability, benifiting from piles of
 bug fixes and more-than-welcome internal refactorings.
 
-<!--
 To learn more about the new features of LTTng 2.7, see
-<a href="" class="ext">the release announcement</a>.
--->
+<a href="https://lttng.org/blog/2015/10/14/lttng-2.7-released/" class="ext">the release announcement</a>.
