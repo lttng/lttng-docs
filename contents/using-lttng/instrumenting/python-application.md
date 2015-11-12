@@ -12,6 +12,7 @@ Import the `lttngust` package in your Python application. For example:
 ~~~ python
 import lttngust
 import logging
+import time
 
 
 def example():
