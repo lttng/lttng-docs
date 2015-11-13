@@ -95,7 +95,7 @@ accomplished by using the `--all` option of the `untrack` command
 to clear the whitelist after a tracing session is created:
 
 <pre class="term">
-lttng track --pid --all
+lttng untrack --pid --all
 </pre>
 
 gives:
