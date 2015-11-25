@@ -16,6 +16,7 @@ import time
 
 
 def example():
+    logging.basicConfig()
     logger = logging.getLogger('my-logger')
 
     while True:
@@ -33,6 +34,12 @@ if __name__ == '__main__':
 
 Importing `lttngust` adds a logging handler which emits LTTng-UST
 events. You do not need to get a special logger for tracing to work.
+
+Note that `logging.basicConfig()`, which adds to the root logger a basic
+logging handler which prints to the standard error stream, is not
+strictly required for LTTng-UST tracing to work, but in versions of
+Python preceding 3.2, a warning message could be seen indicating that no
+handler exists for the logger `my-logger`.
 
 Use the `--python` option of the `lttng enable-event`,
 `lttng disable-event`, and `lttng list` commands to target
