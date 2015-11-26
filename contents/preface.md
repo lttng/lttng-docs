@@ -4,7 +4,7 @@ id: preface
 
 <div class="copyright">
     <p>
-        Copyright © 2014 The LTTng Project
+        Copyright © 2014-2015 The LTTng Project
     </p>
 
     <p>
