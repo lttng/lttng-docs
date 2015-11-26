@@ -24,6 +24,8 @@ cats:
                 title: PPA
           - id: debian
             title: Debian
+          - id: opensuse
+            title: openSUSE/RPM
           - id: archlinux
             title: Arch Linux
       - id: enterprise-distributions
