@@ -18,18 +18,19 @@ yaourt -S lttng-modules
 yaourt -S lttng-ust
 </pre>
 
-If you need to trace Python applications, you need to install the
-LTTng-UST Python agent also:
+If you need to trace [Python applications](#doc-python-application), you
+need to install the LTTng-UST Python agent also:
 
   * Python 3: <a href="https://aur.archlinux.org/packages/python-lttngust/" class="ext"><code>python-lttngust</code></a>
   * Python 2: <a href="https://aur.archlinux.org/packages/python2-lttngust/" class="ext"><code>python2-lttngust</code></a>
 
 <div class="tip">
 <p>
-  <span class="t">Note:</span> If you need to trace Java
+  <span class="t">Note:</span> If you need to trace
+  <a href="#doc-java-application" class="int">Java</a>
   applications on Arch Linux, you need to build and install LTTng-UST 2.7
-  <a href="#doc-building-from-source">from source</a> and use the
-  <code>--enable-java-agent-jul</code>,
+  <a href="#doc-building-from-source" class="int">from source</a> and
+  use the <code>--enable-java-agent-jul</code>,
   <code>--enable-java-agent-log4j</code>, or
   <code>--enable-java-agent-all</code> options.
 </p>
