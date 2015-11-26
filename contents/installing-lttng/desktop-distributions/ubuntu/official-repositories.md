@@ -2,7 +2,8 @@
 id: ubuntu-official-repositories
 ---
 
-To install LTTng from the official Ubuntu repositories, simply use `apt-get`:
+To install LTTng 2.7 from the official Ubuntu repositories, simply
+use `apt-get`:
 
 <pre class="term">
 sudo apt-get install lttng-tools

@@ -22,21 +22,10 @@ cats:
                 title: Official repositories
               - id: ubuntu-ppa
                 title: PPA
-          - id: fedora
-            title: Fedora
           - id: debian
             title: Debian
-          - id: opensuse
-            title: openSUSE/RPM
           - id: archlinux
             title: Arch Linux
-      - id: embedded-distributions
-        title: Embedded distributions
-        cats:
-          - id: buildroot
-            title: Buildroot
-          - id: oe-yocto
-            title: OpenEmbedded/Yocto
       - id: enterprise-distributions
         title: "Enterprise distributions (<abbr title=\"Red Hat Enterprise Linux\">RHEL</abbr>, <abbr title=\"SUSE Linux Enterprise Server\">SLES</abbr>)"
       - id: building-from-source

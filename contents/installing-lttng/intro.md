@@ -21,8 +21,10 @@ you intend to trace user space applications.
 
 This chapter shows how to install the above packages on a Linux
 system. The easiest way is to use the package manager of the system's
-distribution ([desktop](#doc-desktop-distributions) or
-[embedded](#doc-embedded-distributions)). Support is also available for
+[distribution](#doc-desktop-distributions. Embedded distributions
+(Buildroot and OpenEmbedded/Yocto) currently have no packages of
+LTTng 2.7 (LTTng 2.6 is available for both of them). Support is also
+available for
 [enterprise distributions](#doc-enterprise-distributions), such as
 Red Hat Enterprise Linux (RHEL) and SUSE Linux Enterprise Server (SLES).
 Otherwise, you can

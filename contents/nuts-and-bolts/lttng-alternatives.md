@@ -38,8 +38,8 @@ overhead amongst other solutions. It produces trace files in the
 <a href="http://diamon.org/ctf" class="ext"><abbr title="Common Trace Format">CTF</abbr></a>
 format, an optimized file format for production and analyses of
 multi-gigabyte data. LTTng is the result of close to 10 years of
-active development by a community of passionate developers. It is
-currently available on all major desktop, server, and embedded Linux
+active development by a community of passionate developers. LTTng 2.7
+is currently available on some major desktop and server Linux
 distributions.
 
 The main interface for tracing control is a single command line tool
