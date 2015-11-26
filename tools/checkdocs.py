@@ -101,6 +101,7 @@ def _check_file_links(toc_ids, path, c):
 
         if classes is None:
             _pwarn(path, 'External link has no "ext" class: "{}"'.format(link))
+            classes = []
         else:
             classes = classes.group(1).split(' ')
 
