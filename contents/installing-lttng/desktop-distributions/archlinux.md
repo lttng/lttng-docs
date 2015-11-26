@@ -17,3 +17,9 @@ yaourt -S lttng-tools
 yaourt -S lttng-modules
 yaourt -S lttng-ust
 </pre>
+
+If you need to trace Python applications, you need to install the
+LTTng-UST Python agent also:
+
+  * Python 3: <a href="https://aur.archlinux.org/packages/python-lttngust/" class="ext"><code>python-lttngust</code></a>
+  * Python 2: <a href="https://aur.archlinux.org/packages/python2-lttngust/" class="ext"><code>python2-lttngust</code></a>
