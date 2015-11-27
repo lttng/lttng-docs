@@ -124,11 +124,11 @@ cats:
           - id: prebuilt-ust-helpers
             title: Prebuilt user space tracing helpers
             cats:
-              - id: liblttng‑ust‑libc‑pthread-wrapper
+              - id: liblttng-ust-libc-pthread-wrapper
                 title: C standard library and POSIX threads tracing
-              - id: liblttng‑ust‑cyg‑profile
+              - id: liblttng-ust-cyg-profile
                 title: Function tracing
-              - id: liblttng‑ust‑dl
+              - id: liblttng-ust-dl
                 title: Dynamic linker tracing
           - id: java-application
             title: Java application

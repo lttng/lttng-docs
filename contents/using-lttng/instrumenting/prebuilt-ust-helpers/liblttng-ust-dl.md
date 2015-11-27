@@ -1,5 +1,5 @@
 ---
-id: liblttng‑ust‑dl
+id: liblttng-ust-dl
 since: 2.4
 ---
 

@@ -1,5 +1,5 @@
 ---
-id: liblttng‑ust‑cyg‑profile
+id: liblttng-ust-cyg-profile
 ---
 
 Function tracing is the recording of which functions are entered and

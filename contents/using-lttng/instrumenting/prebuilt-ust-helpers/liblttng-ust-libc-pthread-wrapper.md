@@ -1,5 +1,5 @@
 ---
-id: liblttng‑ust‑libc‑pthread-wrapper
+id: liblttng-ust-libc-pthread-wrapper
 since: 2.3
 ---
 
