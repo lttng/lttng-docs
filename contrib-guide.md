@@ -43,15 +43,15 @@ First paragraph goes here.
 Editable image sources are placed in `images/src` and their rendered
 equivalents are located in `images/export`.
 
-`tools/checkdocs.py` is a Python 3 script which may be used to find
-typical errors in the whole documentation (dead internal links,
-common grammar mistakes, etc.). It needs the
-[`termcolor`](https://pypi.python.org/pypi/termcolor) Python package.
-Run it from the repository's root:
+`tools/docs2json.py` is a Python 3 script which may be used to get
+the graph of internal and external links and to find
+typical errors in the whole documentation, like dead internal links.
+It needs the
+[`termcolor`](https://pypi.python.org/pypi/termcolor) Python 3 package.
+Run it from the repository's root and ignore its standard output
+to view the warnings and errors:
 
-    tools/checkdocs.py
-
-and it will potentially output a list of errors and warnings.
+    tools/docs2json.py > /dev/null
 
 
 Format of sources
