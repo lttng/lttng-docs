@@ -2,10 +2,10 @@
 id: ubuntu
 ---
 
-The following steps apply to Ubuntu&nbsp;&ge;&nbsp;12.04. For
-previous releases, you need to build and install LTTng
-[from source](#doc-building-from-source), as no Ubuntu packages were
-available before version 12.04.
+LTTng 2.7 packages are available in Ubuntu 16.04 _Xenial Xerus_'s
+[official repositories](#doc-ubuntu-official-repositories).
 
-Two repository types can provide LTTng packages for Ubuntu: official
-repositories and <abbr title="Personal Package Archive">PPA</abbr>.
+It is also possible to install the latest stable LTTng 2.7 release
+on any current Ubuntu release (including Ubuntu 12.04 _Precise Pangolin_
+and Ubuntu 14.04 _Trusty Tahr_) by using the
+[LTTng latest stable PPA](#doc-ubuntu-ppa).
