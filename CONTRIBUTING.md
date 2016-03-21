@@ -225,9 +225,6 @@ consistent as possible:
     the 80th column otherwise.
   * Do not end directory paths with a forward slash
     (good: `include/trace/events`, bad: `include/trace/events/`).
-  * Keep the text as impersonal as possible (minimize the use of
-    _I_, _we_, _us_, etc.), except for user guides/tutorials where
-    _we_ have an ongoing example with _you_.
   * Minimize the use of the future tense (_will_).
   * Do not use Latin abbreviations (_e.g._, _i.e._, _etc._).
 
