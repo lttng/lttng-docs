@@ -221,7 +221,5 @@ cats:
       - id: lttng-modules-ref
         title: <span class="reset-text-transform">LTTng</span>-modules
         cats:
-          - id: lttng-modules-tp-struct-entry
-            title: Tracepoint fields macros (for <code>TP_STRUCT__entry()</code>)
-          - id: lttng-modules-tp-fast-assign
-            title: Tracepoint assignment macros (for <code>TP_fast_assign()</code>)
+          - id: lttng-modules-tp-fields
+            title: Tracepoint fields macros (for <code>TP_FIELDS()</code>)
