@@ -206,6 +206,7 @@ def _get_sid_from_file(path, c):
 
 _ilink_re = re.compile(r'\[[^\]]+\]\(([^)]+)\)', flags=re.M)
 _elink_re = re.compile(r'<a(?:\s+[^>]+|\s*)>')
+_name_re = re.compile(r'name="([^"]+)"')
 _href_re = re.compile(r'href="([^"]+)"')
 _classes_re = re.compile(r'class="([^"]+)"')
 
@@ -223,7 +224,12 @@ def _register_section_info(registry, toc_ids, path, c):
 
     for link in elinks:
         href = _href_re.search(link)
+        name = _name_re.search(link)
         classes = _classes_re.search(link)
+
+        if name and not href:
+            # simple anchor
+            continue
 
         if classes is None:
             _pwarn(path, 'External link has no "ext" class: "{}"'.format(link))
@@ -240,15 +246,15 @@ def _register_section_info(registry, toc_ids, path, c):
             href = href.group(1)
 
             if href.startswith('#') and 'int' not in classes:
-                _pwarn(path, 'External link starts with #: "{}"'.format(href.group(1)))
+                _pwarn(path, 'External link starts with #: "{}"'.format(href))
 
             if 'int' in classes:
                 ilinks.append(href)
                 continue
 
             section_info.add_out_link(_ExtLink(href))
-        else:
-            _perror(path, 'External link with no "href" attribute: "{}"'.format(link))
+        elif not name:
+            _perror(path, 'External link with no "href" or "name" attribute: "{}"'.format(link))
             ret = False
 
     for link in ilinks:
