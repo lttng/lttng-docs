@@ -1,6 +1,10 @@
 ---
 id: lttng-modules-tp-fields
 since: 2.7
+since-note: |
+  Previous versions used the TP_STRUCT__entry() and TP_fast_assign()
+  macros which also used different inner macros. The new ctf_*()
+  macros are similar to their LTTng-UST counterpart.
 ---
 
 <a name="doc-lttng-modules-tp-fast-assign"></a>
