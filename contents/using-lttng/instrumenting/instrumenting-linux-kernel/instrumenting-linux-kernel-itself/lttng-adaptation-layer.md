@@ -71,6 +71,11 @@ Some possible entries for `TP_STRUCT__entry()` and `TP_fast_assign()`,
 in the case of LTTng-modules, are shown in the
 [LTTng-modules reference](#doc-lttng-modules-ref) section.
 
+You may also be interested in using the
+[`LTTNG_TRACEPOINT_EVENT_CODE()` macro](#doc-lttng-tracepoint-event-code),
+instead of using `LTTNG_TRACEPOINT_EVENT()`, which allows custom local
+variables and C code to be executed before the event fields are recorded.
+
 The best way to learn how to use the above macros is to inspect
 existing LTTng tracepoint definitions in `instrumentation/events/lttng-module`
 header files. Compare them with the Linux kernel mainline versions

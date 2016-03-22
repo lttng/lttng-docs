@@ -149,6 +149,8 @@ cats:
                     title: Defining/using tracepoints with mainline <code>TRACE_EVENT()</code> infrastructure
                   - id: lttng-adaptation-layer
                     title: Adding the <span class="reset-text-transform">LTTng</span> adaptation layer
+                  - id: lttng-tracepoint-event-code
+                    title: Using custom C code to access the data for tracepoint fields
                   - id: instrumenting-linux-kernel-tracing
                     title: Tracing
               - id: instrumenting-out-of-tree-linux-kernel
