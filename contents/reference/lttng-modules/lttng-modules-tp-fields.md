@@ -1,5 +1,6 @@
 ---
 id: lttng-modules-tp-fields
+since: 2.7
 ---
 
 <a name="doc-lttng-modules-tp-fast-assign"></a>
