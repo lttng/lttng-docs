@@ -45,5 +45,5 @@ viewing the events, use the `--extract` option:
 lttng-crash <strong>--extract /path/to/trace</strong> /path/to/shm
 </pre>
 
-See the <a href="http://localhost:9000/man/1/lttng-crash" class="ext"><code>lttng-crash</code> man page</a>
+See the <a href="/man/1/lttng-crash/v2.7" class="ext"><code>lttng-crash</code> man page</a>
 for the complete list of options.

@@ -18,7 +18,7 @@ the consumer daemon is always the child process of a session daemon.
 Consumer daemons should never be started manually. For this reason,
 they are not installed in one of the usual locations listed in the
 `PATH` environment variable. `lttng-sessiond` has, however, a
-<a href="/man/8/lttng-sessiond" class="ext">bunch of options</a> to
+<a href="/man/8/lttng-sessiond/v2.7" class="ext">bunch of options</a> to
 specify custom consumer daemon paths if, for some reason, a consumer
 daemon other than the default installed one is needed.
 

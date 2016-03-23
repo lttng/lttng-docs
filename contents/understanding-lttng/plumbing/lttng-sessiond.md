@@ -78,5 +78,5 @@ pkill lttng-sessiond
 The default `SIGTERM` signal terminates it cleanly.
 
 Several other options are available and described in
-<a href="/man/8/lttng-sessiond" class="ext"><code>lttng-sessiond</code>'s
+<a href="/man/8/lttng-sessiond/v2.7" class="ext"><code>lttng-sessiond</code>'s
 man page</a> or by running `lttng-sessiond --help`.
