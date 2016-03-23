@@ -7,6 +7,7 @@ online using the links below:
 
   * **LTTng-tools**
     * <a href="/man/1/lttng/v2.7" class="ext">`lttng`</a>
+    * <a href="/man/1/lttng-crash/v2.7" class="ext">`lttng-crash`</a>
     * <a href="/man/8/lttng-sessiond/v2.7" class="ext">`lttng-sessiond`</a>
     * <a href="/man/8/lttng-relayd/v2.7" class="ext">`lttng-relayd`</a>
   * **LTTng-UST**
