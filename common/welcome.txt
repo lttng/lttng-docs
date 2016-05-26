@@ -1,0 +1,25 @@
+[[welcome]]
+== Welcome!
+
+Welcome to the **LTTng Documentation**!
+
+The _Linux Trace Toolkit: next generation_ is an open source software
+toolkit used to simultaneously trace the Linux kernel, user applications,
+and user libraries. LTTng consists of <<lttng-modules,kernel modules>>
+(for Linux kernel tracing) and dynamically loaded
+<<lttng-ust,libraries>> (for user application and library tracing).
+A <<lttng-sessiond,session daemon>> controls the LTTng tracers after it
+receives commands from the <<lttng-cli,cmd:lttng command-line
+tool>>.
+
+[NOTE]
+.Open source documentation
+====
+This is an **open documentation**: its source is available in a
+https://github.com/lttng/lttng-docs[public Git repository].
+
+Should you find any error in the content of this text, any grammatical
+mistake, or any dead link, we would be very grateful if you would file a
+GitHub issue for it or, even better, contribute a patch to this
+documentation by creating a pull request.
+====

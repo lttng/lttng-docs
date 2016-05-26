@@ -1,0 +1,19 @@
+To build the tracepoint provider package shared object:
+
+. Compile the <<tpp-source,tracepoint provider package source file>>:
++
+--
+[role="term"]
+----
+gcc -I. -fpic -c tpp.c
+----
+--
+
+. Build the tracepoint provider package shared object:
++
+--
+[role="term"]
+----
+gcc -shared -o libtpp.so tpp.o -llttng-ust -ldl
+----
+--

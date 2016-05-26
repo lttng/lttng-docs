@@ -1,0 +1,692 @@
+The LTTng Documentation: Contributor's guide
+============================================
+Philippe Proulx
+v1.0, 21 October 2016
+
+This guide presents the structure and conventions of the LTTng
+Documentation's source. Make sure you read it thoroughly before
+you contribute a change.
+
+
+[[principles]]
+== Principles
+
+The LTTng Documentation exists to make the
+https://lttng.org/[LTTng project] useable.
+Without such a complete documentation consolidating the various
+concepts, features, and procedures of LTTng-tools, LTTng-UST, and
+LTTng-modules, most of the project would only be useable by
+its authors.
+
+Why not simply read the man pages? While the LTTng man pages are
+complementary to the LTTng Documentation, they remain formal
+references: they lack the introductory quality and procedural user
+guides found in this documentation.
+
+The core principle of the LTTng Documentation is to make the text as
+cleverly organized, easy to follow, precise, and consistent as possible.
+This involves keeping a high level of rigor as to such things as the
+document's style, voice, grammar, and layout.
+
+Of course, those guidelines are not new to the technical writing realm,
+and it would be bold to devise a brand new manual of style for the sole
+existence of the LTTng Documentation when so many have already proven
+their value. This is why the LTTng Documentation (especially starting
+from version 2.7) does its best to follow the rules of the
+https://en.wikipedia.org/wiki/Microsoft_Manual_of_Style[Microsoft Manual
+of Style (4th edition)], a landmark work in its field. Of particular
+interest in this book are:
+
+* Chapter 1, _Microsoft style and voice_.
+* Chapter 6, _Procedures and technical content_.
+* Chapter 7, _Practical issues of style_.
+* Chapter 8, _Grammar_.
+* Chapter 9, _Punctuation_.
+* Chapter 11, _Acronyms and other abbreviations_.
+
+The <<terminology,Terminology>> section of this contributor's guide
+adds terms to or overrides terms of Part 2, _Usage Dictionary_.
+
+
+== Organization of the repository and format
+
+The Git repository of the LTTng Documentation contains all the official
+versions of the documentation as separate source files. Each source file
+is in its own +2.__x__+ directory, along with documentation resources
+specific to this version of LTTng. You can find common source files in
+the `common` directory.
+
+The source files are written in
+http://www.methods.co.nz/asciidoc/[AsciiDoc], a rich, lightweight markup
+language with all the blocks and inline elements needed to write
+backend-agnostic content.
+
+Although the official LTTng website uses a custom script to generate
+its own HTML version of the LTTng Documentation, it is possible to
+generate an autonomous HTML preview (see
+link:README.adoc[`README.adoc`]). The `asciidoc.html5.conf` AsciiDoc
+configuration file sets a few attributes and implements the required
+macros for this preview target.
+
+
+== Validation script
+
+Before you submit any change, make sure that the check script passes.
+This is a Python script which validates some elements of a specific
+document.
+
+You need the following dependencies to run the check script:
+
+* http://www.methods.co.nz/asciidoc/[AsciiDoc]
+* Python 3
+* http://lxml.de/[lxml] Python 3 package
+* https://pypi.python.org/pypi/termcolor[termcolor] Python 3 package
+
+Run the check script:
+
+----
+python3 tools/check.py 2.7/lttng-docs-2.7.txt
+----
+
+Replace `2.7` by the version of the document to validate in the previous
+command line.
+
+
+== Style considerations
+
+As stated in <<principles,Principles>>, the LTTng Documentation follows
+the Microsoft Manual of Style (4th edition). We encourage you to read
+this work before contributing a major change to the document.
+
+You also need to consider the following rules, often specific to the
+AsciiDoc format used to write the LTTng Documentation, when you edit
+existing content or when you create new sections.
+
+
+=== Macros
+
+* **Man page references**: Always use the +man:__command__(__section__)+
+  macro you refer to a man page. The official online version of the
+  LTTng Documentation has hyperlinks to the correct online versions
+  of the LTTng man pages thanks to this macro.
++
+.Using the `man` macro.
+====
+----
+See man:lttng-ust(3) for more details about ...
+----
+====
+
+* **File names**: Always use the +path:{__path__}+
+  macro when you need to write a file name.
++
+.Using the `path` macro.
+====
+----
+Load the configuration file path:{hello.lttng} directory by default.
+----
+====
+
+* **Directory names**: Always use the +dir:{__path__}+
+  macro when you need to write a directory name.
++
+.Using the `dir` macro.
+====
+----
+Traces are recorded to the dir:{~/lttng-traces} directory by default.
+----
+====
+
+* **Environment variable**: Always use the +env:__VAR__+ macro when
+  you need to write an environment variable name. +__VAR__+ must not
+  contain the shell's `$` prefix.
++
+.Using the `env` macro.
+====
+----
+You can set the env:LTTNG_UST_DEBUG environment variable to `1` to
+activate LTTng-UST's debug output.
+----
+====
+
+* **Command names**: Always use the +cmd:__cmd__+
+  macro when you need to write a command name.
++
+.Using the `cmd` macro.
+====
+----
+Run cmd:lttng-sessiond as the root user.
+----
+====
+
+
+=== Dashes
+
+Em dashes can usually be written using `--` in AsciiDoc, but sometimes
+the two hyphens are outputted as is, for example if the character at the
+left or at the right of them is a punctuation. You can avoid this
+by using the equivalent `&#8212;` HTML entity.
+
+.Using `--` for an em dash.
+====
+----
+And yet, when the car was finally delivered--nearly three months after it
+was ordered--she decided she no longer wanted it, leaving the dealer with
+an oddly equipped car that would be difficult to sell.
+----
+====
+
+.Using `&#8212;` for an em dash.
+====
+----
+As the frequency of recorded events increases--either because the event
+throughput is actually higher or because you enabled more events than
+usual&#8212;__event loss__ might be experienced.
+----
+====
+
+
+=== Non-breaking spaces
+
+Always use a non-breaking space (`{nbsp}`, or HTML entity `&#160;`)
+between a quantity and its unit, or when it would be unnatural to have
+two related words split on two lines.
+
+.Using a non-breaking space between a quantity and its unit.
+====
+----
+The size of this file is 1039{nbsp}bytes.
+----
+====
+
+.Using a non-breaking space to avoid an odd line break.
+====
+----
+This integer is displayed in base{nbsp}16.
+----
+====
+
+
+=== Placeholders in inline code
+
+When a section of an inline code element is a placeholder, or variable,
+use the `+` form of the element (instead of +&#96;+), and place `__`
+around the placeholder.
+
+.Using a placeholder in an inline code element.
+====
+----
+Name your file +something.__sys__.c+, where +__sys__+ is your system name.
+----
+====
+
+
+=== Listing blocks
+
+There are two types of listing blocks:
+
+* [[term-box]]**Terminal boxes** are used to show commands to be entered in a
+  terminal exclusively, that is, the output of commands must not be
+  written in terminal boxes. A terminal box is an AsciiDoc literal
+  block with the `term` role.
++
+.Using a terminal box.
+====
+[listing]
+....
+[role="term"]
+----
+lttng create my-session
+lttng enable-event --kernel --all
+----
+....
+====
++
+The output of a command line can be written using a simple, role-less
+listing block.
+
+* **Source code boxes** are used to show syntax-highlighted snippets of
+  source code. A source code box is an AsciiDoc source code block.
++
+.Using a source code box.
+====
+[listing]
+....
+[source,c]
+----
+#include <stdio.h>
+
+int main(void)
+{
+    puts("Hello, World!");
+
+    return 0;
+}
+----
+....
+====
++
+The second attribute is the name of the programming language for
+proper syntax highlighting (for example, `c`, `python`, `make`, `java`).
+This name must be known to http://pygments.org/[Pygments].
++
+Always indent source code examples with 4{nbsp}spaces.
+
+In any listing block, the lines must not exceed 80 characters (prefer a
+maximum of 72 characters).
+
+
+=== Command-line options
+
+When specifying command-line options:
+
+* Always use the long form of the option (with two hyphens).
+* Use a code element for the option name (backticks).
+* Always follow the option name by the _option_ word.
+
+.Using a command-line option.
+====
+----
+You can use the `lttng` tool's `--group` option to specify a custom
+tracing group.
+----
+====
+
+In <<term-box,terminal boxes>>, always put `=` between the option name
+and its argument, if any.
+
+.Terminal box.
+====
+In this example, `provider:'sys_*'` is not the argument of the
+`--userspace` option: it's the first positional argument, and
+the `--userspace` option has no arguments.
+
+[listing]
+....
+[role="term"]
+----
+lttng enable-event --userspace provider:'sys_*' --filter='field < 23'
+                   --exclude=sys_send,sys_block --loglevel=TRACE_INFO
+----
+....
+====
+
+
+=== Procedures
+
+Use an ordered list to write a procedure.
+
+If a step is optional, prepend `**Optional**:` followed by a space to
+the step's first sentence. Start the first sentence with a capital
+letter. Do not use an optional step followed by a condition; use a
+conditional step for this.
+
+If a step is conditional, put the condition (_If something_) in bold,
+followed by a comma, followed by the step itself.
+
+
+=== External links
+
+When using a hyperlink to an LTTng repository's file or directory,
+link to the GitHub code browser. Make sure to link to the appropriate
+Git branch (usually +stable-2.__x__+). You can use the `revision`
+attribute in the URL.
+
+.Link to source file.
+====
+----
+See the file
+https://github.com/lttng/lttng-tools/blob/stable-{revision}/src/common/daemonize.c[path:{src/common/daemonize.c}]
+for more details about [...]
+----
+====
+
+
+=== "Since" sections
+
+If a whole section describes a feature which was introduced in LTTng 2.1
+or later, add the +since-2.__x__+ role to the section's heading, where
++__x__+ is the minor version of the LTTng release which introduced
+the feature.
+
+.Section heading describing a feature introduced in LTTng 2.5.
+====
+----
+[role="since-2.5"]
+[[tracef]]
+==== Use `tracef()`
+----
+====
+
+
+[[terminology]]
+== Terminology
+
+What follows is an official, partial list of technical terms used by the
+LTTng Documentation. Other forms of those terms are _not_ permitted. For
+example, do not write `use-case` or `filesystem`.
+
+Autotools::
+  The GNU Autotools.
++
+Do not use _autotools_.
+
+Babeltrace::
+  The Babeltrace project, which includes the `babeltrace` command, some
+  libraries, and Python bindings.
++
+Use +&#96;babeltrace&#96;+ to refer to the actual `babeltrace` command.
+
+Babeltrace Python bindings::
+  The Python bindings of Babeltrace.
++
+The plural _bindings_ is important.
+
+Bash::
+  The Bash shell.
++
+Do not use _bash_.
+
+buffering scheme::
+  A layout of tracing buffers applied to a given channel.
+
+channel::
+  An LTTng channel.
+
+CLI::
+  Prefer expanding this acronym to _command-line interface_ in the text.
+
+clock::
+  A reference of time for a tracer.
++
+Use _system time_ to refer to the date and time as seen by a user.
+
+command-line::
+  Adjective version of _command line_: _command-line option_,
+  _command-line interface_.
+
+command-line interface::
+  An interface in which the user enters command lines to instruct the
+  system what to do.
++
+Prefer using _command_ or _command-line tool_ to refer to a
+specific command.
+
+command line::
+  An actual line of command entered by the user in a terminal, at a
+  command prompt.
++
+Write _command-line_ when used as an adjective.
+
+consumer daemon::
+  The LTTng consumer daemon.
++
+Do not use _consumerd_.
++
+Use +&#96;lttng-consumerd&#96;+ to refer to the consumer daemon
+executable.
+
+domain::
+  Do not use when referring to a _tracing domain_.
+
+event::
+  Occurrence recognised by software, emitted by a tracer when specific
+  conditions are met, at a given time. An event _occurs_ at a specific
+  time, after which a tracer can record its payload.
+
+event loss mode::
+  The mechanism by which event records of a given channel are lost
+  (not recorded) when there is no sub-buffer space left to store them.
+
+event name::
+  The name of an event, which is also the name of the event record.
+  This is different from a _tracepoint name_, which is only the name
+  of the instrumentation point, not necessarily equal to the event
+  name.
+
+event record::
+  Record, in a trace, of the payload of an event which occured.
+
+event rule::
+  Set of conditions which must be satisfied for one or more events
+  to occur. The `lttng enable-event` command creates and enables
+  _event rules_, not _events_.
+
+file system::
+  Contains directories, files, and links in an organized structure.
++
+Do not use _filesystem_ or _file-system_.
+
++&#96;java.util.logging&#96;+::
+  Even though the `--jul` command-line option is an acronym for this
+  term, there is no such thing as _Java Util Logging_. The only
+  correct form is the name of the Java package,
+  +&#96;java.util.logging&#96;+.
+
+instrumentation::
+  The use of LTTng probes to make a software traceable.
+
+libc::
+  Do not use.
++
+Use _the C standard library_ to refer to the standard library for
+the C programming language, or _glibc_ to refer to the GNU C Library
+specifically.
+
+log4j::
+  LTTng-UST supports Java logging using Apache _log4j_, not Apache
+  Log4j 2.
+
+log level::
+  Level of severity of a log statement.
++
+Do not hyphenate.
+
+kernel::
+  In general, do not use _kernel_ to refer to the _Linux kernel_: use
+  the whole _Linux kernel_ term, because other operating system kernels
+  exist. Since the _L_ in _LTTng_ means _Linux_, it's okay to use _LTTng
+  kernel modules_.
+
+Linux Trace Toolkit: next generation::
+  The expansion of the _LTTng_ acronym.
++
+The colon and the lowercase _n_ and _g_ are important.
+
+LTTng-analyses::
+  The LTTng-analyses project.
+
+LTTng-modules::
+  The LTTng-modules project.
+
+LTTng-tools::
+  The LTTng-tools project.
+
+LTTng-UST::
+  The LTTng-UST project.
+
+LTTng-UST Java agent::
+LTTng-UST Python agent::
+  An LTTng user space agent.
++
+Do not use _Java LTTng-UST agent_ or _Python LTTng-UST agent_.
+
+LTTng Documentation::
+  The name of this project.
++
+Do not use _LTTng documentation_.
++
+When referring to the project, the _the_ determiner can be lowercase:
+_Welcome to the LTTng Documentation!_.
+
+LTTng live::
+  The name of a communication protocol between Babeltrace and the
+  relay daemon which makes it possible to see events "live",
+  as they are received by the relay daemon.
++
+Do not hyphenate.
+
+the +&#96;lttng&#96;+ tool::
+the +&#96;lttng&#96;+ command line tool::
+  The `lttng` command line tool.
++
+When _tool_ has been mentioned in the previous sentences, you can use
++&#96;lttng&#96;+ alone.
+
+Makefile::
+  An input for the make tool.
++
+Do not use _makefile_ or _make file_.
+
+man page::
+  Unix-style reference manual page.
++
+Do not hyphenate.
+
+per-process buffering::
+  A buffering scheme in which each process has its own buffer for a
+  given user space channel.
++
+Do not use _per-PID buffering_.
+
+per-user buffering::
+  A buffering scheme in which all the processes of a user share the same
+  buffer for a given user space channel.
++
+Do not use _per-UID buffering_.
+
+probe::
+  An instrumentation point.
++
+Prefer _tracepoint_ when referring to a user space or Linux kernel
+LTTng tracepoint.
+
+real-time clock::
+  A clock which keeps track of the current time, including eventual
+  time corrections.
++
+Do not use _realtime clock_ or _real time clock_.
+
+relay daemon::
+  The LTTng relay daemon.
++
+Do not use _relayd_.
++
+Use +&#96;lttng-relayd&#96;+ to refer to the relay daemon executable.
+
+root user::
+  A superuser of a Linux system.
++
+Do not use +&#96;root&#96;+.
+
+session::
+  Do not use when referring to a _tracing session_.
+
+session daemon::
+  The LTTng session daemon.
++
+Do not use _sessiond_.
++
+Use +&#96;lttng-sessiond&#96;+ to refer to the session daemon
+executable.
+
+snapshot::
+  Copy of the current data of all the buffers of a given tracing
+  session, saved as a trace.
+
+sub-buffer::
+  One part of an LTTng ring buffer.
++
+Do not use _subbuffer_ since it's harder to read with the two
+contiguous b's.
+
+timestamp::
+  Time information attached to an event when it is emitted. This is not
+  necessarily a _Unix timestamp_.
++
+Do not use _time stamp_.
+
+trace::
+  As a verb: a user or a tracer can _trace_ an application.
+
+Trace Compass::
+  The Trace Compass project and application.
++
+Do not hyphenate. Do not use _Trace compass_, _TraceCompass_, or
+_Tracecompass_.
+
+tracepoint::
+  An instrumentation point using the tracepoint mechanism of
+  the Linux kernel or of LTTng-UST.
++
+Do not use _trace point_ or _trace-point_.
+
+tracepoint definition::
+  The definition of a single tracepoint.
+
+tracepoint name::
+  The name of a _tracepoint_.
++
+Not to be confused with an _event name_.
+
+tracepoint provider::
+  A set of functions providing tracepoints to an instrumented user
+  application.
++
+Not to be confused with a _tracepoint provider package_: many tracepoint
+providers can exist within a tracepoint provider package.
+
+tracepoint provider package::
+  One or more tracepoint providers compiled as an object file or as
+  a shared library.
+
+tracing domain::
+  An LTTng tracing domain.
++
+Always use the complete _tracing domain_ term, not _domain_ alone,
+unless _tracing domain_ has been used in the few preceding sentences.
+
+tracing group::
+  The Unix group in which a user can be to be allowed to trace the
+  Linux kernel.
++
+Do not use _&#96;tracing&#96; group_, as the name of the tracing
+group is configurable.
+
+tracing session::
+  An LTTng tracing session.
++
+Always use the complete _tracing session_ term, not _session_ alone.
+
+Unix::
+  Unix operating system or philosophy.
++
+Do not use _UNIX_.
+
+Unix epoch::
+  Absolute reference of a real-time clock.
++
+Use the term as a proper noun: do not precede it with _the_.
++
+Do not use _Epoch_ alone.
+
+Unix timestamp::
+  Timestamp represented as the number of seconds since Unix epoch.
+
+use case::
+  According to Wikipedia: List of actions or event steps, typically
+  defining the interactions between a role and a system, to
+  achieve a goal.
++
+Do not hyphenate.
+
+user application::
+  An application running in user space, as opposed to a Linux kernel
+  module, for example.
++
+Do not use _user space application_, as this is redundant.
+
+user space::
+  User processes.
++
+Do not hyphenate.

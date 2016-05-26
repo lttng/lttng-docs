@@ -1,0 +1,10 @@
+To build the tracepoint provider package object file:
+
+* Compile the <<tpp-source,tracepoint provider package source file>>:
++
+--
+[role="term"]
+----
+gcc -I. -fpic -c tpp.c
+----
+--

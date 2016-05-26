@@ -1,0 +1,43 @@
+The LTTng Documentation: Source
+===============================
+
+This is the official repository of the
+http://lttng.org/docs[online LTTng Documentation's] source.
+
+
+== Generate
+
+You can generate your own version of the LTTng Documentation by running:
+
+----
+make
+----
+
+The generated HTML file is named
++__VERSION__/lttng-docs-__VERSION__.html+, where +__VERSION__+ is the
+version of the LTTng project documented by this file.
+
+You can also make a specific version:
+
+----
+make 2.7
+----
+
+NOTE: The SVG animations rendered on the LTTng website are not
+available in the generated version.
+
+You need the following tools to generate the LTTng Documentation:
+
+* http://www.methods.co.nz/asciidoc/[AsciiDoc] >= 8.6.5
+* http://pygments.org/[Pygments] and the `pygmentize` command
+
+
+== Contribute
+
+To contribute:
+
+. Fork this repo.
+. Make your change, following the link:CONTRIBUTING.adoc[contributor's guide].
+. Create a pull request.
+
+Thanks for your contributions and fixes!

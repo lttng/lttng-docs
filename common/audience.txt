@@ -1,0 +1,11 @@
+[[audience]]
+=== Target audience
+
+The material of this documentation is appropriate for intermediate to
+advanced software developers working in a Linux environment and
+interested in efficient software tracing. LTTng is also worth a
+try for students interested in the inner mechanics of their systems.
+
+If you do not have a programming background, you may wish to skip
+everything related to instrumentation, which often requires at least
+some programming language skills.

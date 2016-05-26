@@ -1,0 +1,9 @@
+[WARNING]
+[role="not-maintained"]
+=====
+This version of the LTTng Documentation is **not maintained anymore**,
+since the corresponding version of LTTng is not the current release,
+nor the previous release.
+
+Visit the link:/docs[latest LTTng Documentation version].
+=====
