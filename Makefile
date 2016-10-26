@@ -1,28 +1,28 @@
+# Copyright 2016 Philippe Proulx <pproulx@efficios.com>
+
 CONF = asciidoc.html5.conf
 PREFIX = lttng-docs
-ALLVERSIONS = 2.5 2.6 2.7
+ALLVERSIONS = $(sort $(wildcard 2.*))
 
 ASCIIDOC = asciidoc -v -f $(CONF) -a source-highlighter=pygments
 RM = rm -rf
 
-htmldst = $(1)/$(PREFIX)-$(1).html
+define vrule
+$(1)/$(PREFIX)-$(1).html: $(1)/$(PREFIX)-$(1).txt $(CONF)
+	$(ASCIIDOC) -a "lttng_version=$(1)" $(1)/$(PREFIX)-$(1).txt
+
+.PHONY: $(1)
+
+$(1): $(1)/$(PREFIX)-$(1).html
+endef
 
 .PHONY: all
 
 all: $(ALLVERSIONS)
 
-.PHONY: $(ALLVERSIONS)
-
-2.5: $(call htmldst,2.5)
-
-2.6: $(call htmldst,2.6)
-
-2.7: $(call htmldst,2.7)
-
-%.html: %.txt $(CONF)
-	$(ASCIIDOC) $<
+$(foreach v,$(ALLVERSIONS),$(eval $(call vrule,$(v))))
 
 .PHONY: clean
 
 clean:
-	$(RM) $(foreach version,$(ALLVERSIONS),$(call htmldst,$(version)))
+	$(RM) $(foreach v,$(ALLVERSIONS),$(v)/$(PREFIX)-$(v).html)

@@ -1,7 +1,7 @@
 The LTTng Documentation: Contributor's guide
 ============================================
 Philippe Proulx
-v1.0, 21 October 2016
+v1.0, 26 October 2016
 
 This guide presents the structure and conventions of the LTTng
 Documentation's source. Make sure you read it thoroughly before
@@ -106,9 +106,7 @@ existing content or when you create new sections.
 === Macros
 
 * **Man page references**: Always use the +man:__command__(__section__)+
-  macro you refer to a man page. The official online version of the
-  LTTng Documentation has hyperlinks to the correct online versions
-  of the LTTng man pages thanks to this macro.
+  macro when you refer to a man page.
 +
 .Using the `man` macro.
 ====
@@ -117,8 +115,20 @@ See man:lttng-ust(3) for more details about ...
 ----
 ====
 
-* **File names**: Always use the +path:{__path__}+
-  macro when you need to write a file name.
+* [[opt-macro]] **LTTng command-line options**: Starting from v2.8,
+  always use the +opt:__command__(__section__):__option__+ macro when
+  you refer to a command-line option described in an LTTng man page.
++
+.Using the `opt` macro.
+====
+----
+You can use the opt:lttng-enable-event(1):--filter option to set the
+filter expression of an event rule.
+----
+====
+
+* **File names**: Always use the +path:{__path__}+ macro when you need
+  to write a file name.
 +
 .Using the `path` macro.
 ====
@@ -127,8 +137,8 @@ Load the configuration file path:{hello.lttng} directory by default.
 ----
 ====
 
-* **Directory names**: Always use the +dir:{__path__}+
-  macro when you need to write a directory name.
+* **Directory names**: Always use the +dir:{__path__}+ macro when you
+  need to write a directory name.
 +
 .Using the `dir` macro.
 ====
@@ -137,9 +147,9 @@ Traces are recorded to the dir:{~/lttng-traces} directory by default.
 ----
 ====
 
-* **Environment variable**: Always use the +env:__VAR__+ macro when
-  you need to write an environment variable name. +__VAR__+ must not
-  contain the shell's `$` prefix.
+* **Environment variable**: Always use the +env:__VAR__+ macro when you
+  need to write an environment variable name. +__VAR__+ must not contain
+  the shell's `$` prefix.
 +
 .Using the `env` macro.
 ====
@@ -149,8 +159,8 @@ activate LTTng-UST's debug output.
 ----
 ====
 
-* **Command names**: Always use the +cmd:__cmd__+
-  macro when you need to write a command name.
+* **Command names**: Always use the +cmd:__cmd__+ macro when you need to
+  write a command name.
 +
 .Using the `cmd` macro.
 ====
@@ -281,14 +291,15 @@ maximum of 72 characters).
 When specifying command-line options:
 
 * Always use the long form of the option (with two hyphens).
-* Use a code element for the option name (backticks).
+* **If the command which accepts this option is an LTTng program**,
+  use the <<opt-macro,`opt` macro>>. Otherwise use simple backticks.
 * Always follow the option name by the _option_ word.
 
 .Using a command-line option.
 ====
 ----
-You can use the `lttng` tool's `--group` option to specify a custom
-tracing group.
+You can use the `lttng` tool's opt:lttng(1):--group option to specify a
+custom tracing group.
 ----
 ====
 
