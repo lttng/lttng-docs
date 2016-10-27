@@ -112,9 +112,10 @@ lttng enable-event --log4j my_logger \
 +
 See man:lttng-status(1).
 
-** New `lttng metadata regenerate` command to regenerate the metadata
-   file of an LTTng trace at any moment. This command is meant to be
-   used to resample the wall time following a major
+** New `lttng metadata regenerate` command to
+   <<metadata-regenerate,regenerate the metadata file of an LTTng
+   trace>> at any moment. This command is meant to be used to resample
+   the wall time following a major
    https://en.wikipedia.org/wiki/Network_Time_Protocol[NTP] correction
    so that a system which boots with an incorrect wall time can be
    traced before its wall time is NTP-corrected.
