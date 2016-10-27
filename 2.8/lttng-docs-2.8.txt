@@ -2628,7 +2628,7 @@ holding more than one tracepoint providers.
 Once you <<tpp-header,create a tracepoint provider header file>>, you
 can use the `tracepoint()` macro in your application's
 source code to insert the tracepoints that this header
-<<defining-tracepoints,defined>> defines.
+<<defining-tracepoints,defines>>.
 
 The `tracepoint()` macro takes at least two parameters: the tracepoint
 provider name and the tracepoint name. The corresponding tracepoint
@@ -2837,10 +2837,11 @@ In the following diagrams, we use the following file names:
 `libemon.so`::
   User library shared object file.
 
-The red star indicates that this object file is instrumented
-(contains code which uses the `tracepoint()` macro). The spring
-symbol between the application and a library means the application is
-linked with the library at build time.
+We use the following symbols in the diagrams of table below:
+
+[role="img-100"]
+.Symbols used in the build scenario diagrams.
+image::ust-sit-symbols.png[]
 
 We assume that path:{.} is part of the env:LD_LIBRARY_PATH environment
 variable in the following instructions.
