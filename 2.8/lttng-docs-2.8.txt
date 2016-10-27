@@ -431,11 +431,8 @@ and Buildroot{nbsp}2016.08.
 other Buildroot releases.
 
 |OpenEmbedded and Yocto
-|<<oe-yocto,`openembedded-core` layer since 3{nbsp}September 2016>>
-|LTTng{nbsp}2.7 for OpenEmbedded from 1{nbsp}December 2016 until
-3{nbsp}September 2016.
-
-<<building-from-source,Build LTTng{nbsp}{revision} from source>> for
+|<<oe-yocto,Yocto Project{nbsp}2.2 _Morty_>> (`openembedded-core` layer)
+|<<building-from-source,Build LTTng{nbsp}{revision} from source>> for
 other OpenEmbedded releases.
 |====
 
@@ -631,8 +628,7 @@ sudo depmod -a
 
 LTTng{nbsp}{revision} recipes are available in the
 http://layers.openembedded.org/layerindex/branch/master/layer/openembedded-core/[`openembedded-core`]
-layer of OpenEmbedded since 3{nbsp}September 2016
-under the following names:
+layer for Yocto Project{nbsp}2.2 _Morty_ under the following names:
 
 * `lttng-tools`
 * `lttng-modules`
