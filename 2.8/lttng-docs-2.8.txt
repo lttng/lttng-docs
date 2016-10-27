@@ -4302,10 +4302,8 @@ Assuming no event record is lost, having only the function addresses on
 entry is enough to create a call graph, since an event record always
 contains the ID of the CPU that generated it.
 +
-You can use a tool like
-https://sourceware.org/binutils/docs/binutils/addr2line.html[cmd:addr2line]
-to convert function addresses back to source file names and
-line numbers.
+You can use a tool like man:addr2line(1) to convert function addresses
+back to source file names and line numbers.
 
 * **path:{liblttng-ust-cyg-profile.so}** is a more robust variant
 which also works in use cases where event records might get discarded or
