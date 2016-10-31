@@ -385,8 +385,8 @@ other Yocto releases.
 [[ubuntu]]
 === [[ubuntu-official-repositories]]Ubuntu
 
-LTTng{nbsp}{revision} is available on Ubuntu 16.04 _Xenial Xerus_. For
-previous releases of Ubuntu, <<ubuntu-ppa,use the LTTng
+LTTng{nbsp}{revision} is available on Ubuntu{nbsp}16.04 _Xenial Xerus_.
+For previous releases of Ubuntu, <<ubuntu-ppa,use the LTTng
 Stable{nbsp}{revision} PPA>>.
 
 To install LTTng{nbsp}{revision} on Ubuntu{nbsp}16.04 _Xenial Xerus_:

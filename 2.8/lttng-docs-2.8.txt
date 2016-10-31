@@ -448,7 +448,7 @@ LTTng{nbsp}{revision} is available on Ubuntu{nbsp}16.10 _Yakkety Yak_.
 For previous releases of Ubuntu, <<ubuntu-ppa,use the LTTng
 Stable{nbsp}{revision} PPA>>.
 
-To install LTTng{nbsp}{revision} on Ubuntu 16.10{nbsp}_Yakkety Yak_:
+To install LTTng{nbsp}{revision} on Ubuntu{nbsp}16.10 _Yakkety Yak_:
 
 . Install the main LTTng{nbsp}{revision} packages:
 +
