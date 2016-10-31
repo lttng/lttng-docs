@@ -473,7 +473,7 @@ sudo apt-get install liblttng-ust-agent-java
 --
 
 . **If you need to instrument and trace
-  <<python-application,Python applications>>**, install the
+  <<python-application,Python{nbsp}3 applications>>**, install the
   LTTng-UST Python agent:
 +
 --
@@ -530,7 +530,7 @@ sudo apt-get install liblttng-ust-agent-java
 --
 
 . **If you need to instrument and trace
-  <<python-application,Python applications>>**, install the
+  <<python-application,Python{nbsp}3 applications>>**, install the
   LTTng-UST Python agent:
 +
 --
