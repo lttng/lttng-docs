@@ -107,13 +107,18 @@ class _Checker:
         sections_anchors = self._root.findall('.//section')
         sections_anchors += self._root.findall('.//anchor')
         sections_anchors += self._root.findall('.//glossary')
+        sections_anchors += self._root.findall('.//important')
+        sections_anchors += self._root.findall('.//tip')
+        sections_anchors += self._root.findall('.//caution')
+        sections_anchors += self._root.findall('.//warning')
+        sections_anchors += self._root.findall('.//note')
         links = self._root.findall('.//link')
         end_ids = set()
 
         for sa in sections_anchors:
             end_id = sa.get('id')
 
-            if end_id is None:
+            if sa.tag in ('section', 'anchor') and end_id is None:
                 self._perror('Found a section/anchor with no ID', True)
 
             end_ids.add(end_id)
