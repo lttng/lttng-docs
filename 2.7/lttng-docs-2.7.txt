@@ -350,7 +350,10 @@ other openSUSE releases.
 
 |Arch Linux
 |_Not available_
-|<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
+|
+LTTng{nbsp}2.8 on the AUR.
+
+<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
 
 |Alpine Linux
 |_Not available_
