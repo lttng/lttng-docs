@@ -327,8 +327,11 @@ other Ubuntu releases.
 
 |Fedora
 |_Not available_
-|LTTng{nbsp}{revision} for Fedora{nbsp}25 and Fedora{nbsp}26 (not
-released yet).
+|LTTng-tools{nbsp}{revision} and LTTng-UST{nbsp}{revision} for
+Fedora{nbsp}25 and Fedora{nbsp}26 (both are not released yet).
+
+<<building-from-source,Build LTTng-modules{nbsp}{revision} from
+source>>.
 
 <<building-from-source,Build LTTng{nbsp}{revision} from source>> for
 other Fedora releases.
