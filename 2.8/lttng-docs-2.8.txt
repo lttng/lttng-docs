@@ -610,8 +610,8 @@ yaourt -S python2-lttngust
 [[alpine-linux]]
 === Alpine Linux
 
-To install LTTng{nbsp}{revision} (tracing control and user space
-tracing) on Alpine Linux "edge":
+To install LTTng-tools{nbsp}{revision} and LTTng-UST{nbsp}{revision} on
+Alpine Linux "edge":
 
 . Make sure your system is
   https://wiki.alpinelinux.org/wiki/Edge[configured for "edge"].
