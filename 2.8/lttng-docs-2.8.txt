@@ -1,7 +1,7 @@
 The LTTng Documentation
 =======================
 Philippe Proulx <pproulx@efficios.com>
-v2.8, 25 October 2016
+v2.8, 28 November 2016
 
 
 include::../common/copyright.txt[]
@@ -372,49 +372,43 @@ but note that:
   applications.
 
 [role="growable"]
-.Availability of LTTng{nbsp}{revision} for major Linux distributions.
+.Availability of LTTng{nbsp}{revision} for major Linux distributions as of 28 November 2016.
 |====
 |Distribution |Available in releases |Alternatives
 
 |Ubuntu
-|<<ubuntu,Ubuntu{nbsp}16.10 _Yakkety Yak_>>
+|<<ubuntu,Ubuntu{nbsp}16.10 _Yakkety Yak_>>.
 |LTTng{nbsp}{revision} for Ubuntu{nbsp}14.04 _Trusty Tahr_
 and Ubuntu{nbsp}16.04 _Xenial Xerus_:
 <<ubuntu-ppa,use the LTTng Stable{nbsp}{revision} PPA>>.
+
+LTTng{nbsp}2.9 for Ubuntu{nbsp}14.04 _Trusty Tahr_
+and Ubuntu{nbsp}16.04 _Xenial Xerus_:
+link:/docs/v2.9#doc-ubuntu-ppa[use the LTTng Stable{nbsp}2.9 PPA].
 
 <<building-from-source,Build LTTng{nbsp}{revision} from source>> for
 other Ubuntu releases.
 
 |Fedora
-|_Not available_
-|LTTng-tools{nbsp}{revision} and LTTng-UST{nbsp}{revision} for
-Fedora{nbsp}25 and Fedora{nbsp}26 (both are not released yet).
-
-<<building-from-source,Build LTTng-modules{nbsp}{revision} from
-source>>.
-
-<<building-from-source,Build LTTng{nbsp}{revision} from source>> for
+|<<fedora,Fedora{nbsp}25>>.
+|<<building-from-source,Build LTTng{nbsp}{revision} from source>> for
 other Fedora releases.
 
 |Debian
-|<<debian,Debian "stretch" (testing)>>
-|
-<<building-from-source,Build LTTng{nbsp}{revision} from source>> for
+|<<debian,Debian "stretch" (testing)>>.
+|<<building-from-source,Build LTTng{nbsp}{revision} from source>> for
 previous Debian releases.
 
 |openSUSE
 |_Not available_
-|LTTng{nbsp}2.7 for openSUSE Leap{nbsp}42.1.
-
-<<building-from-source,Build LTTng{nbsp}{revision} from source>> for
-other openSUSE releases.
+|<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
 
 |Arch Linux
-|<<arch-linux,Latest AUR packages>>
-|
+|_Not available_
+|link:/docs/v2.9#doc-arch-linux[LTTng{nbsp}2.9 from the AUR].
 
 |Alpine Linux
-|<<alpine-linux,Alpine Linux "edge">>
+|<<alpine-linux,Alpine Linux "edge">>.
 |LTTng{nbsp}{revision} for Alpine Linux{nbsp}3.5 (not released yet).
 
 <<building-from-source,Build LTTng{nbsp}{revision} from source>> for
@@ -428,14 +422,11 @@ other Alpine Linux releases.
 |_Not available_
 |LTTng{nbsp}{revision} for Buildroot{nbsp}2016.11 (not released yet).
 
-LTTng{nbsp}2.7 for Buildroot{nbsp}2016.02, Buildroot{nbsp}2016.05,
-and Buildroot{nbsp}2016.08.
-
 <<building-from-source,Build LTTng{nbsp}{revision} from source>> for
 other Buildroot releases.
 
 |OpenEmbedded and Yocto
-|<<oe-yocto,Yocto Project{nbsp}2.2 _Morty_>> (`openembedded-core` layer)
+|<<oe-yocto,Yocto Project{nbsp}2.2 _Morty_>> (`openembedded-core` layer).
 |<<building-from-source,Build LTTng{nbsp}{revision} from source>> for
 other OpenEmbedded releases.
 |====
@@ -541,6 +532,54 @@ sudo apt-get install python3-lttngust
 --
 
 
+[[fedora]]
+=== Fedora
+
+To install LTTng{nbsp}{revision} on Fedora{nbsp}25:
+
+. Install the LTTng-tools{nbsp}{revision} and LTTng-UST{nbsp}{revision}
+  packages:
++
+--
+[role="term"]
+----
+sudo yum install lttng-tools
+sudo yum install lttng-ust
+----
+--
+
+. Download, build, and install the latest LTTng-modules{nbsp}{revision}:
++
+--
+[role="term"]
+----
+cd $(mktemp -d) &&
+wget http://lttng.org/files/lttng-modules/lttng-modules-latest-2.8.tar.bz2 &&
+tar -xf lttng-modules-latest-2.8.tar.bz2 &&
+cd lttng-modules-2.8.* &&
+make &&
+sudo make modules_install &&
+sudo depmod -a
+----
+--
+
+[IMPORTANT]
+.Java and Python application instrumentation and tracing
+====
+If you need to instrument and trace <<java-application,Java
+applications>> on openSUSE, you need to build and install
+LTTng-UST{nbsp}{revision} <<building-from-source,from source>> and pass
+the `--enable-java-agent-jul`, `--enable-java-agent-log4j`, or
+`--enable-java-agent-all` options to the `configure` script, depending
+on which Java logging framework you use.
+
+If you need to instrument and trace <<python-application,Python
+applications>> on openSUSE, you need to build and install
+LTTng-UST{nbsp}{revision} from source and pass the
+`--enable-python-agent` option to the `configure` script.
+====
+
+
 [[debian]]
 === Debian
 
@@ -574,35 +613,6 @@ sudo apt-get install liblttng-ust-agent-java
 [role="term"]
 ----
 sudo apt-get install python3-lttngust
-----
---
-
-
-[[arch-linux]]
-=== Arch Linux
-
-To install LTTng{nbsp}{revision} on Arch Linux using
-https://archlinux.fr/yaourt-en[Yaourt]:
-
-. Install the main LTTng{nbsp}{revision} packages:
-+
---
-[role="term"]
-----
-yaourt -S lttng-tools
-yaourt -S lttng-ust
-yaourt -S lttng-modules
-----
---
-
-. **If you need to instrument and trace <<python-application,Python
-  applications>>**, install the LTTng-UST Python agent:
-+
---
-[role="term"]
-----
-yaourt -S python-lttngust
-yaourt -S python2-lttngust
 ----
 --
 
