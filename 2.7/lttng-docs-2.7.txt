@@ -3211,7 +3211,7 @@ include::../common/ust-sit-step-tp-so.txt[]
 To build the instrumented user library:
 
 . In path:{emon.c}, before including path:{tpp.h}, add the
-  following line:
+  following lines:
 +
 --
 [source,c]
@@ -3298,7 +3298,7 @@ include::../common/ust-sit-step-tp-so.txt[]
 To build the instrumented user library:
 
 . In path:{emon.c}, before including path:{tpp.h}, add the
-  following line:
+  following lines:
 +
 --
 [source,c]
@@ -3447,7 +3447,7 @@ include::../common/ust-sit-step-tp-so.txt[]
 To build the instrumented user library:
 
 . In path:{emon.c}, before including path:{tpp.h}, add the
-  following line:
+  following lines:
 +
 --
 [source,c]
@@ -3520,7 +3520,7 @@ include::../common/ust-sit-step-tp-so.txt[]
 To build the instrumented user library:
 
 . In path:{emon.c}, before including path:{tpp.h}, add the
-  following line:
+  following lines:
 +
 --
 [source,c]
