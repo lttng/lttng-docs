@@ -193,6 +193,8 @@ and viewed once tracing is inactive or in real-time.
 [[installing-lttng]]
 == Installing LTTng
 
+include::../common/warning-installation-outdated.txt[]
+
 **LTTng** is a set of software components which interact to allow
 instrumenting the Linux kernel and user applications and controlling
 tracing sessions (starting/stopping tracing, enabling/disabling events,
