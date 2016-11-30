@@ -1,0 +1,9 @@
+[WARNING]
+.Obsolete information
+=====
+The installation information shown in this section may be **outdated**
+because this version of the LTTng Documentation is **not maintained
+anymore**.
+
+Visit the link:/docs[latest LTTng Documentation version].
+=====

@@ -7,6 +7,9 @@ v2.7, 25 October 2016
 include::../common/copyright.txt[]
 
 
+include::../common/warning-not-maintained.txt[]
+
+
 include::../common/welcome.txt[]
 
 
@@ -285,6 +288,8 @@ becomes inactive or in real-time.
 
 [[installing-lttng]]
 == Installation
+
+include::../common/warning-installation-outdated.txt[]
 
 **LTTng** is a set of software <<plumbing,components>> which interact to
 <<instrumenting,instrument>> the Linux kernel and user applications, and
