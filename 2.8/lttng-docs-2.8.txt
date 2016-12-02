@@ -664,6 +664,14 @@ sudo depmod -a
 --
 
 
+[[enterprise-distributions]]
+=== RHEL, SUSE, and other enterprise distributions
+
+To install LTTng on enterprise Linux distributions, such as Red Hat
+Enterprise Linux (RHEL) and SUSE Linux Enterprise Server (SUSE), please
+see http://packages.efficios.com/[EfficiOS Enterprise Packages].
+
+
 [[buildroot]]
 === Buildroot
 
@@ -726,14 +734,6 @@ applications>> on openSUSE, you need to build and install
 LTTng-UST{nbsp}{revision} from source and pass the
 `--enable-python-agent` option to the `configure` script.
 ====
-
-
-[[enterprise-distributions]]
-=== RHEL, SUSE, and other enterprise distributions
-
-To install LTTng on enterprise Linux distributions, such as Red Hat
-Enterprise Linux (RHEL) and SUSE Linux Enterprise Server (SUSE), please
-see http://packages.efficios.com/[EfficiOS Enterprise Packages].
 
 
 [[building-from-source]]
