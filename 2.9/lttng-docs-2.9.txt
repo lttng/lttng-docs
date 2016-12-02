@@ -1,7 +1,7 @@
 The LTTng Documentation
 =======================
 Philippe Proulx <pproulx@efficios.com>
-v2.9, 29 November 2016
+v2.9, 2 December 2016
 
 
 include::../common/copyright.txt[]
@@ -331,7 +331,7 @@ but note that:
   applications.
 
 [role="growable"]
-.Availability of LTTng{nbsp}{revision} for major Linux distributions as of 29 November 2016.
+.Availability of LTTng{nbsp}{revision} for major Linux distributions as of 2 December 2016.
 |====
 |Distribution |Available in releases |Alternatives
 
@@ -377,7 +377,7 @@ other Alpine Linux releases.
 
 |Buildroot
 |_Not available_
-|LTTng{nbsp}2.8 for Buildroot{nbsp}2016.11 (not released yet).
+|link:/docs/v2.8#doc-buildroot[LTTng{nbsp}2.8 for Buildroot{nbsp}2016.11].
 
 <<building-from-source,Build LTTng{nbsp}{revision} from source>> for
 other Buildroot releases.

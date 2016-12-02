@@ -1,7 +1,7 @@
 The LTTng Documentation
 =======================
 Philippe Proulx <pproulx@efficios.com>
-v2.8, 28 November 2016
+v2.8, 2 December 2016
 
 
 include::../common/copyright.txt[]
@@ -372,7 +372,7 @@ but note that:
   applications.
 
 [role="growable"]
-.Availability of LTTng{nbsp}{revision} for major Linux distributions as of 28 November 2016.
+.Availability of LTTng{nbsp}{revision} for major Linux distributions as of 2 December 2016.
 |====
 |Distribution |Available in releases |Alternatives
 
@@ -419,10 +419,8 @@ other Alpine Linux releases.
 |
 
 |Buildroot
-|_Not available_
-|LTTng{nbsp}{revision} for Buildroot{nbsp}2016.11 (not released yet).
-
-<<building-from-source,Build LTTng{nbsp}{revision} from source>> for
+|<<buildroot,Buildroot 2016.11>>.
+|<<building-from-source,Build LTTng{nbsp}{revision} from source>> for
 other Buildroot releases.
 
 |OpenEmbedded and Yocto
@@ -664,6 +662,28 @@ sudo make modules_install &&
 sudo depmod -a
 ----
 --
+
+
+[[buildroot]]
+=== Buildroot
+
+To install LTTng{nbsp}{revision} on Buildroot{nbsp}2016.11:
+
+. Launch the Buildroot configuration tool:
++
+--
+[role="term"]
+----
+make menuconfig
+----
+--
+
+. In **Kernel**, check **Linux kernel**.
+. In **Toolchain**, check **Enable WCHAR support**.
+. In **Target packages**{nbsp}&#8594; **Debugging, profiling and benchmark**,
+  check **lttng-modules** and **lttng-tools**.
+. In **Target packages**{nbsp}&#8594; **Libraries**{nbsp}&#8594;
+  **Other**, check **lttng-libust**.
 
 
 [[oe-yocto]]
