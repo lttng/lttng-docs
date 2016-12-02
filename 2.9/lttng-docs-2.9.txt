@@ -335,7 +335,7 @@ but note that:
 |====
 |Distribution |Available in releases |Alternatives
 
-|Ubuntu
+|https://www.ubuntu.com/[Ubuntu]
 |Ubuntu{nbsp}14.04 _Trusty Tahr_ and Ubuntu{nbsp}16.04 _Xenial Xerus_:
 <<ubuntu-ppa,use the LTTng Stable{nbsp}{revision} PPA>>.
 |link:/docs/v2.8#doc-ubuntu[LTTng{nbsp}2.8 for Ubuntu{nbsp}16.10 _Yakkety Yak_].
@@ -343,26 +343,26 @@ but note that:
 <<building-from-source,Build LTTng{nbsp}{revision} from source>> for
 other Ubuntu releases.
 
-|Fedora
+|https://getfedora.org/[Fedora]
 |_Not available_
 |<<building-from-source,Build LTTng-modules{nbsp}{revision} from
 source>>.
 
-|Debian
+|https://www.debian.org/[Debian]
 |_Not available_
 |<<building-from-source,Build LTTng-modules{nbsp}{revision} from
 source>>.
 
-|openSUSE
+|https://www.opensuse.org/[openSUSE]
 |_Not available_
 |<<building-from-source,Build LTTng-modules{nbsp}{revision} from
 source>>.
 
-|Arch Linux
+|https://www.archlinux.org/[Arch Linux]
 |<<arch-linux,Latest AUR packages>>.
 |
 
-|Alpine Linux
+|https://alpinelinux.org/[Alpine Linux]
 |_Not available_
 |link:/docs/v2.8#doc-alpine-linux[LTTng{nbsp}2.8 for Alpine Linux{nbsp}"edge"].
 
@@ -371,18 +371,19 @@ LTTng{nbsp}2.8 for Alpine Linux{nbsp}3.5 (not released yet).
 <<building-from-source,Build LTTng{nbsp}{revision} from source>> for
 other Alpine Linux releases.
 
-|RHEL and SLES
+|https://www.redhat.com/[RHEL] and https://www.suse.com/[SLES]
 |See http://packages.efficios.com/[EfficiOS Enterprise Packages].
 |
 
-|Buildroot
+|https://buildroot.org/[Buildroot]
 |_Not available_
 |link:/docs/v2.8#doc-buildroot[LTTng{nbsp}2.8 for Buildroot{nbsp}2016.11].
 
 <<building-from-source,Build LTTng{nbsp}{revision} from source>> for
 other Buildroot releases.
 
-|OpenEmbedded and Yocto
+|http://www.openembedded.org/wiki/Main_Page[OpenEmbedded] and
+https://www.yoctoproject.org/[Yocto]
 |_Not available_
 |link:/docs/v2.8#doc-oe-yocto[LTTng{nbsp}2.8 for Yocto Project{nbsp}2.2 _Morty_]
 (`openembedded-core` layer).
