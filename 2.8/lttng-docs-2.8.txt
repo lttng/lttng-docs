@@ -864,12 +864,13 @@ The following command lines start with cmd:sudo because you need root
 privileges to trace the Linux kernel. You can avoid using cmd:sudo if
 your Unix user is a member of the <<tracing-group,tracing group>>.
 
-. Create a <<tracing-session,tracing session>>:
+. Create a <<tracing-session,tracing session>> which writes its traces
+  to dir:{/tmp/my-kernel-trace}:
 +
 --
 [role="term"]
 ----
-sudo lttng create my-kernel-session
+sudo lttng create my-kernel-session --output=/tmp/my-kernel-trace
 ----
 --
 
@@ -879,20 +880,23 @@ sudo lttng create my-kernel-session
 [role="term"]
 ----
 lttng list --kernel
+lttng list --kernel --syscall
 ----
 --
 
-. Create an <<event,event rule>> which matches the desired event names,
-  for example `sched_switch` and `sched_process_fork`:
+. Create <<event,event rules>> which match the desired instrumentation
+  point names, for example the `sched_switch` and `sched_process_fork`
+  tracepoints, and the man:open(2) and man:close(2) system calls:
 +
 --
 [role="term"]
 ----
 sudo lttng enable-event --kernel sched_switch,sched_process_fork
+sudo lttng enable-event --kernel --syscall open,close
 ----
 --
 +
-You can also create an event rule which _matches_ all the Linux kernel
+You can also create an event rule which matches _all_ the Linux kernel
 tracepoints (this will generate a lot of data when tracing):
 +
 --
@@ -902,7 +906,7 @@ sudo lttng enable-event --kernel --all
 ----
 --
 
-. Start tracing:
+. <<basic-tracing-session-control,Start tracing>>:
 +
 --
 [role="term"]
@@ -913,7 +917,8 @@ sudo lttng start
 
 . Do some operation on your system for a few seconds. For example,
   load a website, or list the files of a directory.
-. Stop tracing and destroy the tracing session:
+. <<basic-tracing-session-control,Stop tracing>> and destroy the
+  tracing session:
 +
 --
 [role="term"]
@@ -926,10 +931,15 @@ sudo lttng destroy
 The man:lttng-destroy(1) command does not destroy the trace data; it
 only destroys the state of the tracing session.
 
-By default, LTTng saves the traces in
-+$LTTNG_HOME/lttng-traces/__name__-__date__-__time__+,
-where +__name__+ is the tracing session name. Note that the
-env:LTTNG_HOME environment variable defaults to `$HOME` if not set.
+. For the sake of this example, make the recorded trace accessible to
+  the non-root users:
++
+--
+[role="term"]
+----
+sudo chown -R $(whoami) /tmp/my-kernel-trace
+----
+--
 
 See <<viewing-and-analyzing-your-traces,View and analyze the
 recorded events>> to view the recorded events.
@@ -1141,7 +1151,7 @@ lttng enable-event --userspace hello_world:my_first_tracepoint
 ----
 --
 
-. Start tracing:
+. <<basic-tracing-session-control,Start tracing>>:
 +
 --
 [role="term"]
@@ -1152,7 +1162,8 @@ lttng start
 
 . Go back to the running `hello` application and press Enter. The
   program executes all `tracepoint()` instrumentation points and exits.
-. Stop tracing and destroy the tracing session:
+. <<basic-tracing-session-control,Stop tracing>> and destroy the
+  tracing session:
 +
 --
 [role="term"]
@@ -1167,7 +1178,7 @@ only destroys the state of the tracing session.
 
 By default, LTTng saves the traces in
 +$LTTNG_HOME/lttng-traces/__name__-__date__-__time__+,
-where +__name__+ is the tracing session name. Note that the
+where +__name__+ is the tracing session name. The
 env:LTTNG_HOME environment variable defaults to `$HOME` if not set.
 
 See <<viewing-and-analyzing-your-traces,View and analyze the
@@ -1201,7 +1212,7 @@ Many tools are available to read LTTng traces:
 
 NOTE: This section assumes that the traces recorded during the previous
 tutorials were saved to their default location, in the
-dir:{$LTTNG_HOME/lttng-traces} directory. Note that the env:LTTNG_HOME
+dir:{$LTTNG_HOME/lttng-traces} directory. The env:LTTNG_HOME
 environment variable defaults to `$HOME` if not set.
 
 
@@ -1224,7 +1235,7 @@ further filtering:
 
 [role="term"]
 ----
-babeltrace ~/lttng-traces/my-kernel-session* | grep sys_
+babeltrace /tmp/my-kernel-trace | grep _switch
 ----
 
 You can pipe the output of cmd:babeltrace into a tool like man:wc(1) to
@@ -1232,7 +1243,7 @@ count the recorded events:
 
 [role="term"]
 ----
-babeltrace ~/lttng-traces/my-kernel-session* | grep sys_read | wc --lines
+babeltrace /tmp/my-kernel-trace | grep _open | wc --lines
 ----
 
 
@@ -1334,7 +1345,7 @@ Run this script:
 
 [role="term"]
 ----
-python3 top5proc.py ~/lttng-traces/my-kernel-session*/kernel
+python3 top5proc.py /tmp/my-kernel-trace/kernel
 ----
 
 Output example:
