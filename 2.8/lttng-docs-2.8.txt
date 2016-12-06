@@ -862,7 +862,7 @@ This tutorial walks you through the steps to:
 
 The following command lines start with cmd:sudo because you need root
 privileges to trace the Linux kernel. You can avoid using cmd:sudo if
-your Unix user is a member of the <<lttng-sessiond,tracing group>>.
+your Unix user is a member of the <<tracing-group,tracing group>>.
 
 . Create a <<tracing-session,tracing session>>:
 +
@@ -5080,8 +5080,8 @@ Any event that the LTTng logger emits is named `lttng_logger` and
 belongs to the Linux kernel <<domain,tracing domain>>. However, unlike
 other instrumentation points in the kernel tracing domain, **any Unix
 user** can <<enabling-disabling-events,create an event rule>> which
-matches its event name, not only the root user or users in the tracing
-group.
+matches its event name, not only the root user or users in the
+<<tracing-group,tracing group>>.
 
 To use the LTTng logger:
 
@@ -7339,7 +7339,7 @@ tracer::
 <<domain,tracing domain>>::
   A namespace for event sources.
 
-tracing group::
+<<tracing-group,tracing group>>::
   The Unix group in which a Unix user can be to be allowed to trace the
   Linux kernel.
 
