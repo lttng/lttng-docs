@@ -14,6 +14,11 @@ $(1)/$(PREFIX)-$(1).html: $(1)/$(PREFIX)-$(1).txt $(CONF)
 .PHONY: $(1)
 
 $(1): $(1)/$(PREFIX)-$(1).html
+
+view-$(1):
+	xdg-open $(1)/$(PREFIX)-$(1).html
+
+.PHONY: view-$(1)
 endef
 
 .PHONY: all
