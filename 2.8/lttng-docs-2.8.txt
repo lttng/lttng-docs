@@ -1,7 +1,7 @@
 The LTTng Documentation
 =======================
 Philippe Proulx <pproulx@efficios.com>
-v2.8, 2 December 2016
+v2.8, 6 December 2016
 
 
 include::../common/copyright.txt[]
@@ -73,6 +73,15 @@ include::../common/acknowledgements.txt[]
 
 [[whats-new]]
 == What's new in LTTng {revision}?
+
+LTTng{nbsp}{revision} bears the name _Isseki Nicho_. The result of a
+collaboration between http://www.dieuduciel.com/[Dieu du Ciel!] and
+Nagano-based Shiga Kogen,
+https://www.beeradvocate.com/beer/profile/1141/53111/[_**Isseki
+Nicho**_] is a strong Imperial Dark Saison offering a rich roasted malt
+flavor combined with a complex fruity finish typical of Saison yeasts.
+
+New features and changes in LTTng{nbsp}{revision}:
 
 * **Tracing control**:
 ** You can attach <<java-application-context,Java application-specific
