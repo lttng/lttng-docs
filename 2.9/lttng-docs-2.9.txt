@@ -3822,7 +3822,9 @@ wget http://lttng.org/files/lttng-tools/lttng-tools-latest-2.9.tar.bz2 &&
 tar -xf lttng-tools-latest-2.9.tar.bz2 &&
 cd lttng-tools-2.9.* &&
 ./configure --libdir=/usr/local/lib32 CFLAGS=-m32 CXXFLAGS=-m32 \
-            LDFLAGS='-L/usr/local/lib32 -L/usr/lib32' &&
+            LDFLAGS='-L/usr/local/lib32 -L/usr/lib32' \
+            --disable-bin-lttng --disable-bin-lttng-crash \
+            --disable-bin-lttng-relayd --disable-bin-lttng-sessiond &&
 make &&
 cd src/bin/lttng-consumerd &&
 sudo make install &&
