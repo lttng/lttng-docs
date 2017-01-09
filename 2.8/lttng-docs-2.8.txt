@@ -4362,7 +4362,7 @@ The path:{liblttng-ust-cyg-profile*.so} helpers can add instrumentation
 to the entry and exit points of functions.
 
 man:gcc(1) and man:clang(1) have an option named
-https://gcc.gnu.org/onlinedocs/gcc/Code-Gen-Options.html[`-finstrument-functions`]
+https://gcc.gnu.org/onlinedocs/gcc/Instrumentation-Options.html[`-finstrument-functions`]
 which generates instrumentation calls for entry and exit to functions.
 The LTTng-UST function tracing helpers,
 path:{liblttng-ust-cyg-profile.so} and
