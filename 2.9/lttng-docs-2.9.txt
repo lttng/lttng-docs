@@ -6439,7 +6439,7 @@ To use LTTng live:
 --
 [role="term"]
 ----
-lttng create --live my-session
+lttng create my-session --live
 ----
 --
 +
