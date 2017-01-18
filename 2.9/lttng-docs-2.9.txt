@@ -6402,7 +6402,7 @@ remote system. See man:lttng-create(1) for the exact URL format.
 
 . On the target system, use the man:lttng(1) command-line tool as usual.
   When tracing is active, the target's consumer daemon sends sub-buffers
-  to the relay daemon running on the remote system intead of flushing
+  to the relay daemon running on the remote system instead of flushing
   them to the local file system. The relay daemon writes the received
   packets to the local file system.
 
