@@ -6864,7 +6864,7 @@ trace data after a system crash:
 --
 [role="term"]
 ----
-lttng create --shm-path=/path/to/shm
+lttng create my-session --shm-path=/path/to/shm
 ----
 --
 
