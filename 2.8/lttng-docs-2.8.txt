@@ -5723,7 +5723,7 @@ To output LTTng traces to a non-default location:
 --
 [role="term"]
 ----
-lttng create --output=/tmp/some-directory my-session
+lttng create my-session --output=/tmp/some-directory
 ----
 --
 
@@ -6654,7 +6654,7 @@ To use LTTng live:
 --
 [role="term"]
 ----
-lttng create --live my-session
+lttng create my-session --live
 ----
 --
 +
@@ -6721,7 +6721,7 @@ To take a snapshot:
 --
 [role="term"]
 ----
-lttng create --snapshot my-session
+lttng create my-session --snapshot
 ----
 --
 +
@@ -6864,7 +6864,7 @@ trace data after a system crash:
 --
 [role="term"]
 ----
-lttng create --shm-path=/path/to/shm
+lttng create my-session --shm-path=/path/to/shm
 ----
 --
 
