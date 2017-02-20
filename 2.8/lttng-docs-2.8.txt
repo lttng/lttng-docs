@@ -1,7 +1,7 @@
 The LTTng Documentation
 =======================
 Philippe Proulx <pproulx@efficios.com>
-v2.8, 8 December 2016
+v2.8, 20 February 2017
 
 
 include::../common/copyright.txt[]
@@ -888,8 +888,8 @@ sudo lttng create my-kernel-session --output=/tmp/my-kernel-trace
 --
 [role="term"]
 ----
-lttng list --kernel
-lttng list --kernel --syscall
+sudo lttng list --kernel
+sudo lttng list --kernel --syscall
 ----
 --
 
