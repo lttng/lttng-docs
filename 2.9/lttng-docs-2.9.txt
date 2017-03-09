@@ -930,8 +930,8 @@ lttng start
 --
 [role="term"]
 ----
-sudo lttng stop
-sudo lttng destroy
+lttng stop
+lttng destroy
 ----
 --
 +
