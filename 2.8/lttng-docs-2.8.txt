@@ -1,7 +1,7 @@
 The LTTng Documentation
 =======================
 Philippe Proulx <pproulx@efficios.com>
-v2.8, 20 February 2017
+v2.8, 14 March 2017
 
 
 include::../common/copyright.txt[]
@@ -381,7 +381,7 @@ but note that:
   applications.
 
 [role="growable"]
-.Availability of LTTng{nbsp}{revision} for major Linux distributions as of 2 December 2016.
+.Availability of LTTng{nbsp}{revision} for major Linux distributions as of 14 March 2017.
 |====
 |Distribution |Available in releases |Alternatives
 
@@ -395,6 +395,9 @@ LTTng{nbsp}2.9 for Ubuntu{nbsp}14.04 _Trusty Tahr_
 and Ubuntu{nbsp}16.04 _Xenial Xerus_:
 link:/docs/v2.9#doc-ubuntu-ppa[use the LTTng Stable{nbsp}2.9 PPA].
 
+LTTng{nbsp}2.9 for Ubuntu{nbsp}17.04 _Zesty Zapus_ (not released
+yet).
+
 <<building-from-source,Build LTTng{nbsp}{revision} from source>> for
 other Ubuntu releases.
 
@@ -404,9 +407,11 @@ other Ubuntu releases.
 other Fedora releases.
 
 |https://www.debian.org/[Debian]
-|<<debian,Debian "stretch" (testing)>>.
-|<<building-from-source,Build LTTng{nbsp}{revision} from source>> for
-previous Debian releases.
+|_Not available_
+|link:/docs/v2.9#doc-debian[LTTng{nbsp}2.9 for Debian "stretch" (testing)
+and Debian "sid" (unstable)].
+
+<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
 
 |https://www.opensuse.org/[openSUSE]
 |_Not available_
@@ -416,12 +421,13 @@ previous Debian releases.
 |_Not available_
 |link:/docs/v2.9#doc-arch-linux[LTTng{nbsp}2.9 from the AUR].
 
-|https://alpinelinux.org/[Alpine Linux]
-|<<alpine-linux,Alpine Linux "edge">>.
-|LTTng{nbsp}{revision} for Alpine Linux{nbsp}3.5 (not released yet).
+<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
 
-<<building-from-source,Build LTTng{nbsp}{revision} from source>> for
-other Alpine Linux releases.
+|https://alpinelinux.org/[Alpine Linux]
+|_Not available_
+|link:/docs/v2.9#doc-alpine-linux[LTTng{nbsp}2.9 for Alpine Linux "edge"].
+
+<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
 
 |https://www.redhat.com/[RHEL] and https://www.suse.com/[SLES]
 |See http://packages.efficios.com/[EfficiOS Enterprise Packages].
@@ -429,13 +435,18 @@ other Alpine Linux releases.
 
 |https://buildroot.org/[Buildroot]
 |<<buildroot,Buildroot 2016.11>>.
-|<<building-from-source,Build LTTng{nbsp}{revision} from source>> for
+|link:/docs/v2.9#doc-buildroot[LTTng{nbsp}2.9 for Buildroot 2017.02].
+
+<<building-from-source,Build LTTng{nbsp}{revision} from source>> for
 other Buildroot releases.
 
 |http://www.openembedded.org/wiki/Main_Page[OpenEmbedded] and
 https://www.yoctoproject.org/[Yocto]
 |<<oe-yocto,Yocto Project{nbsp}2.2 _Morty_>> (`openembedded-core` layer).
-|<<building-from-source,Build LTTng{nbsp}{revision} from source>> for
+|LTTng{nbsp}2.9 for Yocto Project{nbsp}2.3 _Pyro_
+(`openembedded-core` layer) (not released yet).
+
+<<building-from-source,Build LTTng{nbsp}{revision} from source>> for
 other OpenEmbedded releases.
 |====
 
@@ -586,92 +597,6 @@ applications>> on openSUSE, you need to build and install
 LTTng-UST{nbsp}{revision} from source and pass the
 `--enable-python-agent` option to the `configure` script.
 ====
-
-
-[[debian]]
-=== Debian
-
-To install LTTng{nbsp}{revision} on Debian "stretch" (testing):
-
-. Install the main LTTng{nbsp}{revision} packages:
-+
---
-[role="term"]
-----
-# apt-get install lttng-modules-dkms
-# apt-get install liblttng-ust-dev
-# apt-get install lttng-tools
-----
---
-
-. **If you need to instrument and trace <<java-application,Java
-  applications>>**, install the LTTng-UST Java agent:
-+
---
-[role="term"]
-----
-# apt-get install liblttng-ust-agent-java
-----
---
-
-. **If you need to instrument and trace <<python-application,Python
-  applications>>**, install the LTTng-UST Python agent:
-+
---
-[role="term"]
-----
-# apt-get install python3-lttngust
-----
---
-
-
-[[alpine-linux]]
-=== Alpine Linux
-
-To install LTTng-tools{nbsp}{revision} and LTTng-UST{nbsp}{revision} on
-Alpine Linux "edge":
-
-. Make sure your system is
-  https://wiki.alpinelinux.org/wiki/Edge[configured for "edge"].
-. Enable the _testing_ repository by uncommenting the corresponding
-  line in path:{/etc/apk/repositories}.
-. Add the LTTng packages:
-+
---
-[role="term"]
-----
-# apk add lttng-tools
-# apk add lttng-ust-dev
-----
---
-
-To install LTTng-modules{nbsp}{revision} (Linux kernel tracing support)
-on Alpine Linux "edge":
-
-. Add the vanilla Linux kernel:
-+
---
-[role="term"]
-----
-# apk add linux-vanilla linux-vanilla-dev
-----
---
-
-. Reboot with the vanilla Linux kernel.
-. Download, build, and install the latest LTTng-modules{nbsp}{revision}:
-+
---
-[role="term"]
-----
-$ cd $(mktemp -d) &&
-wget http://lttng.org/files/lttng-modules/lttng-modules-latest-2.8.tar.bz2 &&
-tar -xf lttng-modules-latest-2.8.tar.bz2 &&
-cd lttng-modules-2.8.* &&
-make &&
-sudo make modules_install &&
-sudo depmod -a
-----
---
 
 
 [[enterprise-distributions]]
