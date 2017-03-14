@@ -16,10 +16,10 @@ Terminal boxes are used to show command lines:
 
 [role="term"]
 ----
-echo This is a terminal box
+$ echo Command line as a regular user
+# echo Command line as a priviledged user
 ----
 
-Typical command prompts, like `$` and `#`, are not shown in terminal
-boxes to make copy operations easier, especially for multiline commands
-which you can copy and paste as is to your terminal. Command lines
-which you need to execute as a root user start with cmd:sudo.
+Command lines which you need to execute as a priviledged user start with
+the `#` prompt or with `sudo`. Other command lines start with the `$`
+prompt.

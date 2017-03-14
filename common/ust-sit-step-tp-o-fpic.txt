@@ -5,6 +5,6 @@ To build the tracepoint provider package object file:
 --
 [role="term"]
 ----
-gcc -I. -fpic -c tpp.c
+$ gcc -I. -fpic -c tpp.c
 ----
 --

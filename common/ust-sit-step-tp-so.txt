@@ -5,7 +5,7 @@ To build the tracepoint provider package shared object:
 --
 [role="term"]
 ----
-gcc -I. -fpic -c tpp.c
+$ gcc -I. -fpic -c tpp.c
 ----
 --
 
@@ -14,6 +14,6 @@ gcc -I. -fpic -c tpp.c
 --
 [role="term"]
 ----
-gcc -shared -o libtpp.so tpp.o -llttng-ust -ldl
+$ gcc -shared -o libtpp.so tpp.o -llttng-ust -ldl
 ----
 --

@@ -98,7 +98,7 @@ New features and changes in LTTng{nbsp}{revision}:
 --
 [role="term"]
 ----
-lttng add-context --kernel --type=perf:cpu:raw:r0013c:x86unhalted
+$ lttng add-context --kernel --type=perf:cpu:raw:r0013c:x86unhalted
 ----
 --
 +
@@ -423,8 +423,8 @@ To install LTTng{nbsp}{revision} from the LTTng Stable{nbsp}{revision} PPA:
 --
 [role="term"]
 ----
-sudo apt-add-repository ppa:lttng/stable-2.9
-sudo apt-get update
+# apt-add-repository ppa:lttng/stable-2.9
+# apt-get update
 ----
 --
 
@@ -433,9 +433,9 @@ sudo apt-get update
 --
 [role="term"]
 ----
-sudo apt-get install lttng-tools
-sudo apt-get install lttng-modules-dkms
-sudo apt-get install liblttng-ust-dev
+# apt-get install lttng-tools
+# apt-get install lttng-modules-dkms
+# apt-get install liblttng-ust-dev
 ----
 --
 
@@ -446,7 +446,7 @@ sudo apt-get install liblttng-ust-dev
 --
 [role="term"]
 ----
-sudo apt-get install liblttng-ust-agent-java
+# apt-get install liblttng-ust-agent-java
 ----
 --
 
@@ -457,7 +457,7 @@ sudo apt-get install liblttng-ust-agent-java
 --
 [role="term"]
 ----
-sudo apt-get install python3-lttngust
+# apt-get install python3-lttngust
 ----
 --
 
@@ -473,9 +473,9 @@ https://archlinux.fr/yaourt-en[Yaourt]:
 --
 [role="term"]
 ----
-yaourt -S lttng-tools
-yaourt -S lttng-ust
-yaourt -S lttng-modules
+$ yaourt -S lttng-tools
+$ yaourt -S lttng-ust
+$ yaourt -S lttng-modules
 ----
 --
 
@@ -485,8 +485,8 @@ yaourt -S lttng-modules
 --
 [role="term"]
 ----
-yaourt -S python-lttngust
-yaourt -S python2-lttngust
+$ yaourt -S python-lttngust
+$ yaourt -S python2-lttngust
 ----
 --
 
@@ -519,7 +519,7 @@ To build and install LTTng{nbsp}{revision} from source:
 --
 [role="term"]
 ----
-cd $(mktemp -d) &&
+$ cd $(mktemp -d) &&
 wget http://lttng.org/files/lttng-modules/lttng-modules-latest-2.9.tar.bz2 &&
 tar -xf lttng-modules-latest-2.9.tar.bz2 &&
 cd lttng-modules-2.9.* &&
@@ -534,7 +534,7 @@ sudo depmod -a
 --
 [role="term"]
 ----
-cd $(mktemp -d) &&
+$ cd $(mktemp -d) &&
 wget http://lttng.org/files/lttng-ust/lttng-ust-latest-2.9.tar.bz2 &&
 tar -xf lttng-ust-latest-2.9.tar.bz2 &&
 cd lttng-ust-2.9.* &&
@@ -584,7 +584,7 @@ instrumented user application with `liblttng-ust`>>:
 --
 [role="term"]
 ----
-cd $(mktemp -d) &&
+$ cd $(mktemp -d) &&
 wget http://lttng.org/files/lttng-tools/lttng-tools-latest-2.9.tar.bz2 &&
 tar -xf lttng-tools-latest-2.9.tar.bz2 &&
 cd lttng-tools-2.9.* &&
@@ -622,9 +622,10 @@ This tutorial walks you through the steps to:
 [[tracing-the-linux-kernel]]
 === Trace the Linux kernel
 
-The following command lines start with cmd:sudo because you need root
-privileges to trace the Linux kernel. You can avoid using cmd:sudo if
-your Unix user is a member of the <<tracing-group,tracing group>>.
+The following command lines start with the `#` prompt because you need
+root privileges to trace the Linux kernel. You can also trace the kernel
+as a regular user if your Unix user is a member of the
+<<tracing-group,tracing group>>.
 
 . Create a <<tracing-session,tracing session>> which writes its traces
   to dir:{/tmp/my-kernel-trace}:
@@ -632,7 +633,7 @@ your Unix user is a member of the <<tracing-group,tracing group>>.
 --
 [role="term"]
 ----
-sudo lttng create my-kernel-session --output=/tmp/my-kernel-trace
+# lttng create my-kernel-session --output=/tmp/my-kernel-trace
 ----
 --
 
@@ -641,8 +642,8 @@ sudo lttng create my-kernel-session --output=/tmp/my-kernel-trace
 --
 [role="term"]
 ----
-sudo lttng list --kernel
-sudo lttng list --kernel --syscall
+# lttng list --kernel
+# lttng list --kernel --syscall
 ----
 --
 
@@ -653,8 +654,8 @@ sudo lttng list --kernel --syscall
 --
 [role="term"]
 ----
-sudo lttng enable-event --kernel sched_switch,sched_process_fork
-sudo lttng enable-event --kernel --syscall open,close
+# lttng enable-event --kernel sched_switch,sched_process_fork
+# lttng enable-event --kernel --syscall open,close
 ----
 --
 +
@@ -664,7 +665,7 @@ tracepoints (this will generate a lot of data when tracing):
 --
 [role="term"]
 ----
-sudo lttng enable-event --kernel --all
+# lttng enable-event --kernel --all
 ----
 --
 
@@ -673,7 +674,7 @@ sudo lttng enable-event --kernel --all
 --
 [role="term"]
 ----
-sudo lttng start
+# lttng start
 ----
 --
 
@@ -685,8 +686,8 @@ sudo lttng start
 --
 [role="term"]
 ----
-sudo lttng stop
-sudo lttng destroy
+# lttng stop
+# lttng destroy
 ----
 --
 +
@@ -699,7 +700,7 @@ only destroys the state of the tracing session.
 --
 [role="term"]
 ----
-sudo chown -R $(whoami) /tmp/my-kernel-trace
+# chown -R $(whoami) /tmp/my-kernel-trace
 ----
 --
 
@@ -770,7 +771,7 @@ TRACEPOINT_EVENT(
 --
 [role="term"]
 ----
-gcc -c -I. hello-tp.c
+$ gcc -c -I. hello-tp.c
 ----
 --
 
@@ -830,7 +831,7 @@ int main(int argc, char *argv[])
 --
 [role="term"]
 ----
-gcc -c hello.c
+$ gcc -c hello.c
 ----
 --
 
@@ -840,7 +841,7 @@ gcc -c hello.c
 --
 [role="term"]
 ----
-gcc -o hello hello.o hello-tp.o -llttng-ust -ldl
+$ gcc -o hello hello.o hello-tp.o -llttng-ust -ldl
 ----
 --
 
@@ -857,7 +858,7 @@ To trace the user application:
 --
 [role="term"]
 ----
-./hello world and beyond
+$ ./hello world and beyond
 ----
 --
 +
@@ -875,7 +876,7 @@ Press Enter to continue...
 --
 [role="term"]
 ----
-lttng-sessiond --daemonize
+$ lttng-sessiond --daemonize
 ----
 --
 +
@@ -887,7 +888,7 @@ a service that the distribution's service manager started.
 --
 [role="term"]
 ----
-lttng list --userspace
+$ lttng list --userspace
 ----
 --
 +
@@ -899,7 +900,7 @@ under the `./hello` process.
 --
 [role="term"]
 ----
-lttng create my-user-space-session
+$ lttng create my-user-space-session
 ----
 --
 
@@ -909,7 +910,7 @@ lttng create my-user-space-session
 --
 [role="term"]
 ----
-lttng enable-event --userspace hello_world:my_first_tracepoint
+$ lttng enable-event --userspace hello_world:my_first_tracepoint
 ----
 --
 
@@ -918,7 +919,7 @@ lttng enable-event --userspace hello_world:my_first_tracepoint
 --
 [role="term"]
 ----
-lttng start
+$ lttng start
 ----
 --
 
@@ -930,8 +931,8 @@ lttng start
 --
 [role="term"]
 ----
-sudo lttng stop
-sudo lttng destroy
+$ lttng stop
+$ lttng destroy
 ----
 --
 +
@@ -986,7 +987,7 @@ its path to cmd:babeltrace with no options:
 
 [role="term"]
 ----
-babeltrace ~/lttng-traces/my-user-space-session*
+$ babeltrace ~/lttng-traces/my-user-space-session*
 ----
 
 cmd:babeltrace finds all traces recursively within the given path and
@@ -997,7 +998,7 @@ further filtering:
 
 [role="term"]
 ----
-babeltrace /tmp/my-kernel-trace | grep _switch
+$ babeltrace /tmp/my-kernel-trace | grep _switch
 ----
 
 You can pipe the output of cmd:babeltrace into a tool like man:wc(1) to
@@ -1005,7 +1006,7 @@ count the recorded events:
 
 [role="term"]
 ----
-babeltrace /tmp/my-kernel-trace | grep _open | wc --lines
+$ babeltrace /tmp/my-kernel-trace | grep _open | wc --lines
 ----
 
 
@@ -1107,7 +1108,7 @@ Run this script:
 
 [role="term"]
 ----
-python3 top5proc.py /tmp/my-kernel-trace/kernel
+$ python3 top5proc.py /tmp/my-kernel-trace/kernel
 ----
 
 Output example:
@@ -1623,7 +1624,7 @@ The cmd:lttng tool has a Git-like interface:
 
 [role="term"]
 ----
-lttng <general options> <command> <command options>
+$ lttng <GENERAL OPTIONS> <COMMAND> <COMMAND OPTIONS>
 ----
 
 The <<controlling-tracing,Tracing control>> section explores the
@@ -2712,7 +2713,7 @@ To build the instrumented application:
 --
 [role="term"]
 ----
-gcc -c app.c
+$ gcc -c app.c
 ----
 --
 
@@ -2721,7 +2722,7 @@ gcc -c app.c
 --
 [role="term"]
 ----
-gcc -o app app.o tpp.o -llttng-ust -ldl
+$ gcc -o app app.o tpp.o -llttng-ust -ldl
 ----
 --
 
@@ -2732,7 +2733,7 @@ To run the instrumented application:
 --
 [role="term"]
 ----
-./app
+$ ./app
 ----
 --
 
@@ -2750,7 +2751,7 @@ To create the tracepoint provider package archive file:
 --
 [role="term"]
 ----
-gcc -I. -c tpp.c
+$ gcc -I. -c tpp.c
 ----
 --
 
@@ -2759,7 +2760,7 @@ gcc -I. -c tpp.c
 --
 [role="term"]
 ----
-ar rcs tpp.a tpp.o
+$ ar rcs tpp.a tpp.o
 ----
 --
 
@@ -2779,7 +2780,7 @@ To build the instrumented application:
 --
 [role="term"]
 ----
-gcc -c app.c
+$ gcc -c app.c
 ----
 --
 
@@ -2788,7 +2789,7 @@ gcc -c app.c
 --
 [role="term"]
 ----
-gcc -o app app.o tpp.a -llttng-ust -ldl
+$ gcc -o app app.o tpp.a -llttng-ust -ldl
 ----
 --
 
@@ -2799,7 +2800,7 @@ To run the instrumented application:
 --
 [role="term"]
 ----
-./app
+$ ./app
 ----
 --
 
@@ -2828,7 +2829,7 @@ To build the instrumented application:
 --
 [role="term"]
 ----
-gcc -c app.c
+$ gcc -c app.c
 ----
 --
 
@@ -2837,7 +2838,7 @@ gcc -c app.c
 --
 [role="term"]
 ----
-gcc -o app app.o -ldl -L. -ltpp
+$ gcc -o app app.o -ldl -L. -ltpp
 ----
 --
 
@@ -2848,7 +2849,7 @@ To run the instrumented application:
 --
 [role="term"]
 ----
-./app
+$ ./app
 ----
 --
 
@@ -2879,7 +2880,7 @@ To build the instrumented application:
 --
 [role="term"]
 ----
-gcc -c app.c
+$ gcc -c app.c
 ----
 --
 
@@ -2888,7 +2889,7 @@ gcc -c app.c
 --
 [role="term"]
 ----
-gcc -o app app.o -ldl
+$ gcc -o app app.o -ldl
 ----
 --
 
@@ -2900,7 +2901,7 @@ To run the instrumented application with tracing support:
 --
 [role="term"]
 ----
-LD_PRELOAD=./libtpp.so ./app
+$ LD_PRELOAD=./libtpp.so ./app
 ----
 --
 
@@ -2911,7 +2912,7 @@ To run the instrumented application without tracing support:
 --
 [role="term"]
 ----
-./app
+$ ./app
 ----
 --
 
@@ -2944,7 +2945,7 @@ To build the instrumented application:
 --
 [role="term"]
 ----
-gcc -c app.c
+$ gcc -c app.c
 ----
 --
 
@@ -2953,7 +2954,7 @@ gcc -c app.c
 --
 [role="term"]
 ----
-gcc -o app app.o -ldl
+$ gcc -o app app.o -ldl
 ----
 --
 
@@ -2964,7 +2965,7 @@ To run the instrumented application:
 --
 [role="term"]
 ----
-./app
+$ ./app
 ----
 --
 
@@ -2996,7 +2997,7 @@ To build the instrumented user library:
 --
 [role="term"]
 ----
-gcc -I. -fpic -c emon.c
+$ gcc -I. -fpic -c emon.c
 ----
 --
 
@@ -3005,7 +3006,7 @@ gcc -I. -fpic -c emon.c
 --
 [role="term"]
 ----
-gcc -shared -o libemon.so emon.o tpp.o -llttng-ust -ldl
+$ gcc -shared -o libemon.so emon.o tpp.o -llttng-ust -ldl
 ----
 --
 
@@ -3016,7 +3017,7 @@ To build the application:
 --
 [role="term"]
 ----
-gcc -c app.c
+$ gcc -c app.c
 ----
 --
 
@@ -3025,7 +3026,7 @@ gcc -c app.c
 --
 [role="term"]
 ----
-gcc -o app app.o -L. -lemon
+$ gcc -o app app.o -L. -lemon
 ----
 --
 
@@ -3036,7 +3037,7 @@ To run the application:
 --
 [role="term"]
 ----
-./app
+$ ./app
 ----
 --
 
@@ -3068,7 +3069,7 @@ To build the instrumented user library:
 --
 [role="term"]
 ----
-gcc -I. -fpic -c emon.c
+$ gcc -I. -fpic -c emon.c
 ----
 --
 
@@ -3077,7 +3078,7 @@ gcc -I. -fpic -c emon.c
 --
 [role="term"]
 ----
-gcc -shared -o libemon.so emon.o -ldl -L. -ltpp
+$ gcc -shared -o libemon.so emon.o -ldl -L. -ltpp
 ----
 --
 
@@ -3088,7 +3089,7 @@ To build the application:
 --
 [role="term"]
 ----
-gcc -c app.c
+$ gcc -c app.c
 ----
 --
 
@@ -3097,7 +3098,7 @@ gcc -c app.c
 --
 [role="term"]
 ----
-gcc -o app app.o -L. -lemon
+$ gcc -o app app.o -L. -lemon
 ----
 --
 
@@ -3108,7 +3109,7 @@ To run the application:
 --
 [role="term"]
 ----
-./app
+$ ./app
 ----
 --
 
@@ -3141,7 +3142,7 @@ To build the instrumented user library:
 --
 [role="term"]
 ----
-gcc -I. -fpic -c emon.c
+$ gcc -I. -fpic -c emon.c
 ----
 --
 
@@ -3150,7 +3151,7 @@ gcc -I. -fpic -c emon.c
 --
 [role="term"]
 ----
-gcc -shared -o libemon.so emon.o -ldl
+$ gcc -shared -o libemon.so emon.o -ldl
 ----
 --
 
@@ -3161,7 +3162,7 @@ To build the application:
 --
 [role="term"]
 ----
-gcc -c app.c
+$ gcc -c app.c
 ----
 --
 
@@ -3170,7 +3171,7 @@ gcc -c app.c
 --
 [role="term"]
 ----
-gcc -o app app.o -L. -lemon
+$ gcc -o app app.o -L. -lemon
 ----
 --
 
@@ -3182,7 +3183,7 @@ To run the application with tracing support:
 --
 [role="term"]
 ----
-LD_PRELOAD=./libtpp.so ./app
+$ LD_PRELOAD=./libtpp.so ./app
 ----
 --
 
@@ -3193,7 +3194,7 @@ To run the application without tracing support:
 --
 [role="term"]
 ----
-./app
+$ ./app
 ----
 --
 
@@ -3228,7 +3229,7 @@ To build the instrumented user library:
 --
 [role="term"]
 ----
-gcc -I. -fpic -c emon.c
+$ gcc -I. -fpic -c emon.c
 ----
 --
 
@@ -3237,7 +3238,7 @@ gcc -I. -fpic -c emon.c
 --
 [role="term"]
 ----
-gcc -shared -o libemon.so emon.o -ldl
+$ gcc -shared -o libemon.so emon.o -ldl
 ----
 --
 
@@ -3248,7 +3249,7 @@ To build the application:
 --
 [role="term"]
 ----
-gcc -c app.c
+$ gcc -c app.c
 ----
 --
 
@@ -3257,7 +3258,7 @@ gcc -c app.c
 --
 [role="term"]
 ----
-gcc -o app app.o -L. -lemon
+$ gcc -o app app.o -L. -lemon
 ----
 --
 
@@ -3268,7 +3269,7 @@ To run the application:
 --
 [role="term"]
 ----
-./app
+$ ./app
 ----
 --
 
@@ -3302,7 +3303,7 @@ To build the instrumented user library:
 --
 [role="term"]
 ----
-gcc -I. -fpic -c emon.c
+$ gcc -I. -fpic -c emon.c
 ----
 --
 
@@ -3311,7 +3312,7 @@ gcc -I. -fpic -c emon.c
 --
 [role="term"]
 ----
-gcc -shared -o libemon.so emon.o -ldl -L. -ltpp
+$ gcc -shared -o libemon.so emon.o -ldl -L. -ltpp
 ----
 --
 
@@ -3322,7 +3323,7 @@ To build the application:
 --
 [role="term"]
 ----
-gcc -c app.c
+$ gcc -c app.c
 ----
 --
 
@@ -3331,7 +3332,7 @@ gcc -c app.c
 --
 [role="term"]
 ----
-gcc -o app app.o -ldl -L. -lemon
+$ gcc -o app app.o -ldl -L. -lemon
 ----
 --
 
@@ -3342,7 +3343,7 @@ To run the application:
 --
 [role="term"]
 ----
-./app
+$ ./app
 ----
 --
 
@@ -3377,7 +3378,7 @@ To build the instrumented user library:
 --
 [role="term"]
 ----
-gcc -I. -fpic -c emon.c
+$ gcc -I. -fpic -c emon.c
 ----
 --
 
@@ -3386,7 +3387,7 @@ gcc -I. -fpic -c emon.c
 --
 [role="term"]
 ----
-gcc -shared -o libemon.so emon.o -ldl
+$ gcc -shared -o libemon.so emon.o -ldl
 ----
 --
 
@@ -3397,7 +3398,7 @@ To build the application:
 --
 [role="term"]
 ----
-gcc -c app.c
+$ gcc -c app.c
 ----
 --
 
@@ -3406,7 +3407,7 @@ gcc -c app.c
 --
 [role="term"]
 ----
-gcc -o app app.o -ldl -L. -lemon
+$ gcc -o app app.o -ldl -L. -lemon
 ----
 --
 
@@ -3417,7 +3418,7 @@ To run the application:
 --
 [role="term"]
 ----
-./app
+$ ./app
 ----
 --
 
@@ -3450,7 +3451,7 @@ To build the instrumented user library:
 --
 [role="term"]
 ----
-gcc -I. -fpic -c emon.c
+$ gcc -I. -fpic -c emon.c
 ----
 --
 
@@ -3459,7 +3460,7 @@ gcc -I. -fpic -c emon.c
 --
 [role="term"]
 ----
-gcc -shared -o libemon.so emon.o -ldl
+$ gcc -shared -o libemon.so emon.o -ldl
 ----
 --
 
@@ -3470,7 +3471,7 @@ To build the application:
 --
 [role="term"]
 ----
-gcc -c app.c
+$ gcc -c app.c
 ----
 --
 
@@ -3479,7 +3480,7 @@ gcc -c app.c
 --
 [role="term"]
 ----
-gcc -o app app.o -L. -lemon
+$ gcc -o app app.o -L. -lemon
 ----
 --
 
@@ -3491,7 +3492,7 @@ To run the application with tracing support:
 --
 [role="term"]
 ----
-LD_PRELOAD=./libtpp.so ./app
+$ LD_PRELOAD=./libtpp.so ./app
 ----
 --
 
@@ -3502,7 +3503,7 @@ To run the application without tracing support:
 --
 [role="term"]
 ----
-./app
+$ ./app
 ----
 --
 
@@ -3534,7 +3535,7 @@ To build the instrumented user library:
 --
 [role="term"]
 ----
-gcc -I. -fpic -c emon.c
+$ gcc -I. -fpic -c emon.c
 ----
 --
 
@@ -3543,7 +3544,7 @@ gcc -I. -fpic -c emon.c
 --
 [role="term"]
 ----
-gcc -shared -o libemon.so emon.o
+$ gcc -shared -o libemon.so emon.o
 ----
 --
 
@@ -3554,7 +3555,7 @@ To build the application:
 --
 [role="term"]
 ----
-gcc -c app.c
+$ gcc -c app.c
 ----
 --
 
@@ -3563,7 +3564,7 @@ gcc -c app.c
 --
 [role="term"]
 ----
-gcc -o app app.o tpp.o -llttng-ust -ldl -L. -lemon
+$ gcc -o app app.o tpp.o -llttng-ust -ldl -L. -lemon
 ----
 --
 
@@ -3574,7 +3575,7 @@ To run the instrumented application:
 --
 [role="term"]
 ----
-./app
+$ ./app
 ----
 --
 
@@ -3605,7 +3606,7 @@ To build the application:
 --
 [role="term"]
 ----
-gcc -c app.c
+$ gcc -c app.c
 ----
 --
 
@@ -3614,7 +3615,7 @@ gcc -c app.c
 --
 [role="term"]
 ----
-gcc -Wl,--export-dynamic -o app app.o tpp.o \
+$ gcc -Wl,--export-dynamic -o app app.o tpp.o \
     -llttng-ust -ldl
 ----
 --
@@ -3630,7 +3631,7 @@ To build the instrumented user library:
 --
 [role="term"]
 ----
-gcc -I. -fpic -c emon.c
+$ gcc -I. -fpic -c emon.c
 ----
 --
 
@@ -3639,7 +3640,7 @@ gcc -I. -fpic -c emon.c
 --
 [role="term"]
 ----
-gcc -shared -o libemon.so emon.o
+$ gcc -shared -o libemon.so emon.o
 ----
 --
 
@@ -3650,7 +3651,7 @@ To run the application:
 --
 [role="term"]
 ----
-./app
+$ ./app
 ----
 --
 |====
@@ -3689,7 +3690,7 @@ object when you start the application.
 
 [role="term"]
 ----
-LD_PRELOAD=liblttng-ust-fork.so ./my-app
+$ LD_PRELOAD=liblttng-ust-fork.so ./my-app
 ----
 
 If your tracepoint provider package is
@@ -3698,7 +3699,7 @@ shared objects in env:LD_PRELOAD:
 
 [role="term"]
 ----
-LD_PRELOAD=liblttng-ust-fork.so:/path/to/tp.so ./my-app
+$ LD_PRELOAD=liblttng-ust-fork.so:/path/to/tp.so ./my-app
 ----
 
 
@@ -3712,7 +3713,7 @@ path:{liblttng-ust-fd.so} shared object when you start the application:
 
 [role="term"]
 ----
-LD_PRELOAD=liblttng-ust-fd.so ./my-app
+$ LD_PRELOAD=liblttng-ust-fd.so ./my-app
 ----
 
 Typical use cases include closing all the file descriptors after
@@ -3730,7 +3731,7 @@ build an application on the command line:
 
 [role="term"]
 ----
-gcc -o my-app my-app.o tp.o $(pkg-config --cflags --libs lttng-ust)
+$ gcc -o my-app my-app.o tp.o $(pkg-config --cflags --libs lttng-ust)
 ----
 
 
@@ -3755,7 +3756,7 @@ or LTTng packages:
 --
 [role="term"]
 ----
-cd $(mktemp -d) &&
+$ cd $(mktemp -d) &&
 wget http://lttng.org/files/urcu/userspace-rcu-latest-0.9.tar.bz2 &&
 tar -xf userspace-rcu-latest-0.9.tar.bz2 &&
 cd userspace-rcu-0.9.* &&
@@ -3782,7 +3783,7 @@ sudo ldconfig
 --
 [role="term"]
 ----
-cd $(mktemp -d) &&
+$ cd $(mktemp -d) &&
 wget http://lttng.org/files/lttng-ust/lttng-ust-latest-2.9.tar.bz2 &&
 tar -xf lttng-ust-latest-2.9.tar.bz2 &&
 cd lttng-ust-2.9.* &&
@@ -3807,7 +3808,7 @@ relevant 32-bit library paths, for example:
 
 [role="term"]
 ----
-LDFLAGS='-L/usr/lib/i386-linux-gnu -L/usr/lib32'
+$ LDFLAGS='-L/usr/lib/i386-linux-gnu -L/usr/lib32'
 ----
 ====
 
@@ -3817,7 +3818,7 @@ LDFLAGS='-L/usr/lib/i386-linux-gnu -L/usr/lib32'
 --
 [role="term"]
 ----
-cd $(mktemp -d) &&
+$ cd $(mktemp -d) &&
 wget http://lttng.org/files/lttng-tools/lttng-tools-latest-2.9.tar.bz2 &&
 tar -xf lttng-tools-latest-2.9.tar.bz2 &&
 cd lttng-tools-2.9.* &&
@@ -3841,7 +3842,7 @@ sudo ldconfig
 --
 [role="term"]
 ----
-cd $(mktemp -d) &&
+$ cd $(mktemp -d) &&
 wget http://lttng.org/files/lttng-tools/lttng-tools-latest-2.9.tar.bz2 &&
 tar -xf lttng-tools-latest-2.9.tar.bz2 &&
 cd lttng-tools-2.9.* &&
@@ -3868,9 +3869,9 @@ instrumented 32-bit application:
 --
 [role="term"]
 ----
-gcc -m32 -c -I. hello-tp.c
-gcc -m32 -c hello.c
-gcc -m32 -o hello hello.o hello-tp.o \
+$ gcc -m32 -c -I. hello-tp.c
+$ gcc -m32 -c hello.c
+$ gcc -m32 -o hello hello.o hello-tp.o \
     -L/usr/lib32 -L/usr/local/lib32 \
     -Wl,-rpath,/usr/lib32,-rpath,/usr/local/lib32 \
     -llttng-ust -ldl
@@ -3922,7 +3923,7 @@ To use `tracef()` in your application:
 --
 [role="term"]
 ----
-gcc -o app app.c -llttng-ust
+$ gcc -o app app.c -llttng-ust
 ----
 --
 
@@ -3934,7 +3935,7 @@ To trace the events that `tracef()` calls emit:
 --
 [role="term"]
 ----
-lttng enable-event --userspace 'lttng_ust_tracef:*'
+$ lttng enable-event --userspace 'lttng_ust_tracef:*'
 ----
 --
 
@@ -4009,7 +4010,7 @@ See man:lttng-ust(3) for a list of available log level names.
 --
 [role="term"]
 ----
-gcc -o app app.c -llttng-ust
+$ gcc -o app app.c -llttng-ust
 ----
 --
 
@@ -4023,7 +4024,7 @@ _as severe as_ a specific log level:
 --
 [role="term"]
 ----
-lttng enable-event --userspace 'lttng_ust_tracelog:*'
+$ lttng enable-event --userspace 'lttng_ust_tracelog:*'
                    --loglevel=TRACE_WARNING
 ----
 --
@@ -4037,7 +4038,7 @@ _specific log level_:
 --
 [role="term"]
 ----
-lttng enable-event --userspace 'lttng_ust_tracelog:*'
+$ lttng enable-event --userspace 'lttng_ust_tracelog:*'
                    --loglevel-only=TRACE_INFO
 ----
 --
@@ -4076,7 +4077,7 @@ To use a user space tracing helper with any user application:
 --
 [role="term"]
 ----
-LD_PRELOAD=liblttng-ust-libc-wrapper.so my-app
+$ LD_PRELOAD=liblttng-ust-libc-wrapper.so my-app
 ----
 --
 +
@@ -4085,7 +4086,7 @@ You can preload more than one helper:
 --
 [role="term"]
 ----
-LD_PRELOAD=liblttng-ust-libc-wrapper.so:liblttng-ust-dl.so my-app
+$ LD_PRELOAD=liblttng-ust-libc-wrapper.so:liblttng-ust-dl.so my-app
 ----
 --
 
@@ -4328,7 +4329,7 @@ Build this example:
 
 [role="term"]
 ----
-javac -cp /usr/share/java/jarpath/lttng-ust-agent-common.jar:/usr/share/java/jarpath/lttng-ust-agent-jul.jar Test.java
+$ javac -cp /usr/share/java/jarpath/lttng-ust-agent-common.jar:/usr/share/java/jarpath/lttng-ust-agent-jul.jar Test.java
 ----
 
 <<creating-destroying-tracing-sessions,Create a tracing session>>,
@@ -4337,16 +4338,16 @@ javac -cp /usr/share/java/jarpath/lttng-ust-agent-common.jar:/usr/share/java/jar
 
 [role="term"]
 ----
-lttng create
-lttng enable-event --jul jello
-lttng start
+$ lttng create
+$ lttng enable-event --jul jello
+$ lttng start
 ----
 
 Run the compiled class:
 
 [role="term"]
 ----
-java -cp /usr/share/java/jarpath/lttng-ust-agent-common.jar:/usr/share/java/jarpath/lttng-ust-agent-jul.jar:. Test
+$ java -cp /usr/share/java/jarpath/lttng-ust-agent-common.jar:/usr/share/java/jarpath/lttng-ust-agent-jul.jar:. Test
 ----
 
 <<basic-tracing-session-control,Stop tracing>> and inspect the
@@ -4354,8 +4355,8 @@ recorded events:
 
 [role="term"]
 ----
-lttng stop
-lttng view
+$ lttng stop
+$ lttng view
 ----
 ====
 
@@ -4501,7 +4502,7 @@ file):
 
 [role="term"]
 ----
-javac -cp /usr/share/java/jarpath/lttng-ust-agent-common.jar:/usr/share/java/jarpath/lttng-ust-agent-log4j.jar:$LOG4JPATH Test.java
+$ javac -cp /usr/share/java/jarpath/lttng-ust-agent-common.jar:/usr/share/java/jarpath/lttng-ust-agent-log4j.jar:$LOG4JPATH Test.java
 ----
 
 <<creating-destroying-tracing-sessions,Create a tracing session>>,
@@ -4510,16 +4511,16 @@ javac -cp /usr/share/java/jarpath/lttng-ust-agent-common.jar:/usr/share/java/jar
 
 [role="term"]
 ----
-lttng create
-lttng enable-event --log4j jello
-lttng start
+$ lttng create
+$ lttng enable-event --log4j jello
+$ lttng start
 ----
 
 Run the compiled class:
 
 [role="term"]
 ----
-java -cp /usr/share/java/jarpath/lttng-ust-agent-common.jar:/usr/share/java/jarpath/lttng-ust-agent-log4j.jar:$LOG4JPATH:. Test
+$ java -cp /usr/share/java/jarpath/lttng-ust-agent-common.jar:/usr/share/java/jarpath/lttng-ust-agent-log4j.jar:$LOG4JPATH:. Test
 ----
 
 <<basic-tracing-session-control,Stop tracing>> and inspect the
@@ -4527,8 +4528,8 @@ recorded events:
 
 [role="term"]
 ----
-lttng stop
-lttng view
+$ lttng stop
+$ lttng view
 ----
 ====
 
@@ -4732,7 +4733,7 @@ Build this example:
 
 [role="term"]
 ----
-javac -cp /usr/share/java/jarpath/lttng-ust-agent-common.jar:/usr/share/java/jarpath/lttng-ust-agent-jul.jar Test.java
+$ javac -cp /usr/share/java/jarpath/lttng-ust-agent-common.jar:/usr/share/java/jarpath/lttng-ust-agent-jul.jar Test.java
 ----
 
 <<creating-destroying-tracing-sessions,Create a tracing session>>
@@ -4741,8 +4742,8 @@ and <<enabling-disabling-events,create an event rule>> matching the
 
 [role="term"]
 ----
-lttng create
-lttng enable-event --jul jello
+$ lttng create
+$ lttng enable-event --jul jello
 ----
 
 <<adding-context,Add the application-specific context fields>> to the
@@ -4750,22 +4751,22 @@ JUL channel:
 
 [role="term"]
 ----
-lttng add-context --jul --type='$app.myRetriever:intCtx'
-lttng add-context --jul --type='$app.myRetriever:strContext'
+$ lttng add-context --jul --type='$app.myRetriever:intCtx'
+$ lttng add-context --jul --type='$app.myRetriever:strContext'
 ----
 
 <<basic-tracing-session-control,Start tracing>>:
 
 [role="term"]
 ----
-lttng start
+$ lttng start
 ----
 
 Run the compiled class:
 
 [role="term"]
 ----
-java -cp /usr/share/java/jarpath/lttng-ust-agent-common.jar:/usr/share/java/jarpath/lttng-ust-agent-jul.jar:. Test
+$ java -cp /usr/share/java/jarpath/lttng-ust-agent-common.jar:/usr/share/java/jarpath/lttng-ust-agent-jul.jar:. Test
 ----
 
 <<basic-tracing-session-control,Stop tracing>> and inspect the
@@ -4773,8 +4774,8 @@ recorded events:
 
 [role="term"]
 ----
-lttng stop
-lttng view
+$ lttng stop
+$ lttng view
 ----
 ====
 
@@ -4860,16 +4861,16 @@ tracing>>:
 
 [role="term"]
 ----
-lttng create
-lttng enable-event --python my-logger
-lttng start
+$ lttng create
+$ lttng enable-event --python my-logger
+$ lttng start
 ----
 
 Run the Python script:
 
 [role="term"]
 ----
-python test.py
+$ python test.py
 ----
 
 <<basic-tracing-session-control,Stop tracing>> and inspect the recorded
@@ -4877,8 +4878,8 @@ events:
 
 [role="term"]
 ----
-lttng stop
-lttng view
+$ lttng stop
+$ lttng view
 ----
 ====
 
@@ -4949,7 +4950,7 @@ mostly to instrument shell scripts:
 
 [role="term"]
 ----
-echo "Some message, some $variable" > /proc/lttng-logger
+$ echo "Some message, some $variable" > /proc/lttng-logger
 ----
 
 Any event that the LTTng logger emits is named `lttng_logger` and
@@ -4995,16 +4996,16 @@ df --human-readable --print-type / > /proc/lttng-logger
 
 [role="term"]
 ----
-lttng create
-lttng enable-event --kernel lttng_logger
-lttng start
+$ lttng create
+$ lttng enable-event --kernel lttng_logger
+$ lttng start
 ----
 
 Run the Bash script:
 
 [role="term"]
 ----
-bash test.bash
+$ bash test.bash
 ----
 
 <<basic-tracing-session-control,Stop tracing>> and inspect the recorded
@@ -5012,8 +5013,8 @@ events:
 
 [role="term"]
 ----
-lttng stop
-lttng view
+$ lttng stop
+$ lttng view
 ----
 ====
 
@@ -5084,7 +5085,7 @@ is your subsystem's name.
 --
 [role="term"]
 ----
-cd $(mktemp -d) &&
+$ cd $(mktemp -d) &&
 wget http://lttng.org/files/lttng-modules/lttng-modules-latest-2.9.tar.bz2 &&
 tar -xf lttng-modules-latest-2.9.tar.bz2 &&
 cd lttng-modules-2.9.*
@@ -5199,8 +5200,8 @@ obj-m += lttng-probe-my-subsys.o
 --
 [role="term"]
 ----
-make KERNELDIR=/path/to/linux
-sudo make modules_install
+$ make KERNELDIR=/path/to/linux
+# make modules_install && depmod -a
 ----
 --
 +
@@ -5317,7 +5318,7 @@ module:
 ====
 [role="term"]
 ----
-sudo lttng-sessiond --extra-kmod-probes=my_subsys,usb
+# lttng-sessiond --extra-kmod-probes=my_subsys,usb
 ----
 ====
 --
@@ -5335,7 +5336,7 @@ To load _only_ a given custom probe kernel module:
 ====
 [role="term"]
 ----
-sudo lttng-sessiond --kmod-probes=my_subsys,usb
+# lttng-sessiond --kmod-probes=my_subsys,usb
 ----
 ====
 --
@@ -5347,7 +5348,7 @@ To confirm that a probe module is loaded:
 --
 [role="term"]
 ----
-lsmod | grep lttng_probe_usb
+$ lsmod | grep lttng_probe_usb
 ----
 --
 
@@ -5358,7 +5359,7 @@ To unload the loaded probe modules:
 --
 [role="term"]
 ----
-sudo pkill lttng-sessiond
+# pkill lttng-sessiond
 ----
 --
 +
@@ -5420,7 +5421,7 @@ To start a user session daemon:
 --
 [role="term"]
 ----
-lttng-sessiond --daemonize
+$ lttng-sessiond --daemonize
 ----
 --
 
@@ -5431,7 +5432,7 @@ To start the root session daemon:
 --
 [role="term"]
 ----
-sudo lttng-sessiond --daemonize
+# lttng-sessiond --daemonize
 ----
 --
 
@@ -5460,7 +5461,7 @@ To create a tracing session with a generated name:
 --
 [role="term"]
 ----
-lttng create
+$ lttng create
 ----
 --
 
@@ -5474,7 +5475,7 @@ To create a tracing session with a specific name:
 --
 [role="term"]
 ----
-lttng create my-session
+$ lttng create my-session
 ----
 --
 +
@@ -5494,7 +5495,7 @@ To output LTTng traces to a non-default location:
 --
 [role="term"]
 ----
-lttng create my-session --output=/tmp/some-directory
+$ lttng create my-session --output=/tmp/some-directory
 ----
 --
 
@@ -5507,7 +5508,7 @@ To list all the existing tracing sessions for your Unix user:
 --
 [role="term"]
 ----
-lttng list
+$ lttng list
 ----
 --
 
@@ -5539,7 +5540,7 @@ To change the current tracing session:
 --
 [role="term"]
 ----
-lttng set-session new-session
+$ lttng set-session new-session
 ----
 --
 +
@@ -5557,7 +5558,7 @@ To destroy the current tracing session:
 --
 [role="term"]
 ----
-lttng destroy
+$ lttng destroy
 ----
 --
 
@@ -5594,7 +5595,7 @@ To list the available instrumentation points:
 ====
 [role="term"]
 ----
-lttng list --userspace
+$ lttng list --userspace
 ----
 ====
 
@@ -5602,7 +5603,7 @@ lttng list --userspace
 ====
 [role="term"]
 ----
-lttng list --kernel --syscall
+$ lttng list --kernel --syscall
 ----
 ====
 
@@ -5706,7 +5707,7 @@ command-line options to create simple to more complex event rules.
 ====
 [role="term"]
 ----
-lttng enable-event --kernel sched_switch
+$ lttng enable-event --kernel sched_switch
 ----
 ====
 
@@ -5714,7 +5715,7 @@ lttng enable-event --kernel sched_switch
 ====
 [role="term"]
 ----
-lttng enable-event --kernel --syscall open,write,read,close
+$ lttng enable-event --kernel --syscall open,write,read,close
 ----
 ====
 
@@ -5722,18 +5723,18 @@ lttng enable-event --kernel --syscall open,write,read,close
 ====
 [role="term"]
 ----
-lttng enable-event --kernel sched_switch --filter='prev_comm == "bash"'
+$ lttng enable-event --kernel sched_switch --filter='prev_comm == "bash"'
 ----
 
 [role="term"]
 ----
-lttng enable-event --kernel --all \
+$ lttng enable-event --kernel --all \
                    --filter='$ctx.tid == 1988 || $ctx.tid == 1534'
 ----
 
 [role="term"]
 ----
-lttng enable-event --jul my_logger \
+$ lttng enable-event --jul my_logger \
                    --filter='$app.retriever:cur_msg_id > 3'
 ----
 
@@ -5745,7 +5746,7 @@ use man:lttng(1) from a shell.
 ====
 [role="term"]
 ----
-lttng enable-event --userspace my_app:'*' --loglevel=TRACE_INFO
+$ lttng enable-event --userspace my_app:'*' --loglevel=TRACE_INFO
 ----
 
 IMPORTANT: Make sure to always quote the wildcard character when you
@@ -5756,7 +5757,7 @@ use man:lttng(1) from a shell.
 ====
 [role="term"]
 ----
-lttng enable-event --python my-app.'*' \
+$ lttng enable-event --python my-app.'*' \
                    --exclude='my-app.module,my-app.hello'
 ----
 ====
@@ -5765,7 +5766,7 @@ lttng enable-event --python my-app.'*' \
 ====
 [role="term"]
 ----
-lttng enable-event --log4j --all --loglevel-only=LOG4J_WARN
+$ lttng enable-event --log4j --all --loglevel-only=LOG4J_WARN
 ----
 ====
 
@@ -5773,7 +5774,7 @@ lttng enable-event --log4j --all --loglevel-only=LOG4J_WARN
 ====
 [role="term"]
 ----
-lttng enable-event --userspace my_app:my_tracepoint --channel=my-channel
+$ lttng enable-event --userspace my_app:my_tracepoint --channel=my-channel
 ----
 ====
 
@@ -5785,8 +5786,8 @@ rules:
 
 [role="term"]
 ----
-lttng enable-event --userspace my_app:my_tracepoint
-lttng enable-event --userspace my_app:my_tracepoint \
+$ lttng enable-event --userspace my_app:my_tracepoint
+$ lttng enable-event --userspace my_app:my_tracepoint \
                    --loglevel=TRACE_INFO
 ----
 
@@ -5810,7 +5811,7 @@ a _disabled_ event rule.
 ====
 [role="term"]
 ----
-lttng disable-event --python my-logger
+$ lttng disable-event --python my-logger
 ----
 ====
 
@@ -5818,7 +5819,7 @@ lttng disable-event --python my-logger
 ====
 [role="term"]
 ----
-lttng disable-event --jul '*'
+$ lttng disable-event --jul '*'
 ----
 ====
 
@@ -5831,7 +5832,7 @@ rules of a given channel.
 
 [role="term"]
 ----
-lttng disable-event --jul --all-events
+$ lttng disable-event --jul --all-events
 ----
 ====
 
@@ -5849,7 +5850,7 @@ parameters, its channels, event rules, and their attributes:
 --
 [role="term"]
 ----
-lttng status
+$ lttng status
 ----
 --
 +
@@ -5861,7 +5862,7 @@ To get the status of any tracing session:
 --
 [role="term"]
 ----
-lttng list my-session
+$ lttng list my-session
 ----
 --
 +
@@ -5883,7 +5884,7 @@ To start tracing in the current tracing session:
 --
 [role="term"]
 ----
-lttng start
+$ lttng start
 ----
 --
 
@@ -5899,7 +5900,7 @@ To stop tracing in the current tracing session:
 --
 [role="term"]
 ----
-lttng stop
+$ lttng stop
 ----
 --
 +
@@ -6024,7 +6025,7 @@ command-line options to create simple to more complex channels.
 ====
 [role="term"]
 ----
-lttng enable-channel --kernel my-channel
+$ lttng enable-channel --kernel my-channel
 ----
 ====
 
@@ -6032,7 +6033,7 @@ lttng enable-channel --kernel my-channel
 ====
 [role="term"]
 ----
-lttng enable-channel --userspace --num-subbuf=4 --subbuf-size=1M \
+$ lttng enable-channel --userspace --num-subbuf=4 --subbuf-size=1M \
                      --buffers-pid my-channel
 ----
 ====
@@ -6041,7 +6042,7 @@ lttng enable-channel --userspace --num-subbuf=4 --subbuf-size=1M \
 ====
 [role="term"]
 ----
-lttng enable-channel --kernel --tracefile-count=8 \
+$ lttng enable-channel --kernel --tracefile-count=8 \
                      --tracefile-size=4194304 my-channel
 ----
 ====
@@ -6050,7 +6051,7 @@ lttng enable-channel --kernel --tracefile-count=8 \
 ====
 [role="term"]
 ----
-lttng enable-channel --userspace --overwrite my-channel
+$ lttng enable-channel --userspace --overwrite my-channel
 ----
 ====
 
@@ -6059,8 +6060,8 @@ two different channels:
 
 [role="term"]
 ----
-lttng enable-event --userspace --channel=my-channel app:tp
-lttng enable-event --userspace --channel=other-channel app:tp
+$ lttng enable-event --userspace --channel=my-channel app:tp
+$ lttng enable-event --userspace --channel=other-channel app:tp
 ----
 
 If both channels are enabled, when a tracepoint named `app:tp` is
@@ -6077,7 +6078,7 @@ previously, use the man:lttng-disable-channel(1) command.
 ====
 [role="term"]
 ----
-lttng disable-channel --kernel my-channel
+$ lttng disable-channel --kernel my-channel
 ----
 ====
 
@@ -6125,7 +6126,7 @@ of the current tracing session.
 
 [role="term"]
 ----
-lttng add-context --userspace --type=vpid --type=perf:thread:cpu-cycles
+$ lttng add-context --userspace --type=vpid --type=perf:thread:cpu-cycles
 ----
 ====
 
@@ -6137,8 +6138,8 @@ man:perf-record(1).
 
 [role="term"]
 ----
-lttng add-context --userspace --type=perf:thread:raw:r0110:test
-lttng add-context --kernel --type=perf:cpu:raw:r0013c:x86unhalted
+$ lttng add-context --userspace --type=perf:thread:raw:r0110:test
+$ lttng add-context --kernel --type=perf:cpu:raw:r0013c:x86unhalted
 ----
 ====
 
@@ -6150,7 +6151,7 @@ tracing session.
 
 [role="term"]
 ----
-lttng add-context --kernel --channel=my-channel --type=tid
+$ lttng add-context --kernel --channel=my-channel --type=tid
 ----
 ====
 
@@ -6163,7 +6164,7 @@ in the channel named `my-channel`:
 
 [role="term"]
 ----
-lttng add-context --kernel --channel=my-channel \
+$ lttng add-context --kernel --channel=my-channel \
                   --type='$app:retriever:cur_msg_id'
 ----
 
@@ -6212,7 +6213,7 @@ tracks the specific PIDs. After:
 
 [role="term"]
 ----
-lttng track --pid=3,4,7,10,13
+$ lttng track --pid=3,4,7,10,13
 ----
 
 the whitelist is:
@@ -6225,7 +6226,7 @@ You can add more PIDs to the whitelist afterwards:
 
 [role="term"]
 ----
-lttng track --pid=1,15,16
+$ lttng track --pid=1,15,16
 ----
 
 The result is:
@@ -6239,7 +6240,7 @@ whitelist. Given the previous example, the following command:
 
 [role="term"]
 ----
-lttng untrack --pid=3,7,10,13
+$ lttng untrack --pid=3,7,10,13
 ----
 
 leads to this whitelist:
@@ -6253,7 +6254,7 @@ option:
 
 [role="term"]
 ----
-lttng track --pid --all
+$ lttng track --pid --all
 ----
 
 The result is, again:
@@ -6274,7 +6275,7 @@ man:lttng-untrack(1) command to clear the whitelist after you
 
 [role="term"]
 ----
-lttng untrack --pid --all
+$ lttng untrack --pid --all
 ----
 
 gives:
@@ -6290,7 +6291,7 @@ specific PIDs, for example:
 
 [role="term"]
 ----
-lttng track --pid=6,11
+$ lttng track --pid=6,11
 ----
 
 Result:
@@ -6328,7 +6329,7 @@ To save a given tracing session configuration:
 --
 [role="term"]
 ----
-lttng save my-session
+$ lttng save my-session
 ----
 --
 +
@@ -6355,7 +6356,7 @@ To load a tracing session:
 --
 [role="term"]
 ----
-lttng load my-session
+$ lttng load my-session
 ----
 --
 +
@@ -6383,7 +6384,7 @@ To send the trace data over the network:
 --
 [role="term"]
 ----
-lttng-relayd
+$ lttng-relayd
 ----
 --
 
@@ -6393,7 +6394,7 @@ lttng-relayd
 --
 [role="term"]
 ----
-lttng create my-session --set-url=net://remote-system
+$ lttng create my-session --set-url=net://remote-system
 ----
 --
 +
@@ -6439,7 +6440,7 @@ To use LTTng live:
 --
 [role="term"]
 ----
-lttng create my-session --live
+$ lttng create my-session --live
 ----
 --
 +
@@ -6451,7 +6452,8 @@ This spawns a local relay daemon.
 --
 [role="term"]
 ----
-babeltrace --input-format=lttng-live net://localhost/host/hostname/my-session
+$ babeltrace --input-format=lttng-live \
+           net://localhost/host/hostname/my-session
 ----
 --
 +
@@ -6469,7 +6471,7 @@ You can list the available live tracing sessions with Babeltrace:
 
 [role="term"]
 ----
-babeltrace --input-format=lttng-live net://localhost
+$ babeltrace --input-format=lttng-live net://localhost
 ----
 
 You can start the relay daemon on another system. In this case, you need
@@ -6506,7 +6508,7 @@ To take a snapshot:
 --
 [role="term"]
 ----
-lttng create my-session --snapshot
+$ lttng create my-session --snapshot
 ----
 --
 +
@@ -6529,7 +6531,7 @@ change before you actually take the snapshot.
 --
 [role="term"]
 ----
-lttng snapshot record --name=my-first-snapshot
+$ lttng snapshot record --name=my-first-snapshot
 ----
 --
 +
@@ -6567,7 +6569,7 @@ XML machine interface output, for example:
 
 [role="term"]
 ----
-lttng --mi=xml enable-event --kernel --syscall open
+$ lttng --mi=xml enable-event --kernel --syscall open
 ----
 
 A schema definition (XSD) is
@@ -6603,7 +6605,7 @@ To regenerate the metadata of an LTTng trace:
 --
 [role="term"]
 ----
-lttng regenerate metadata
+$ lttng regenerate metadata
 ----
 --
 
@@ -6646,7 +6648,7 @@ create it in snapshot mode, before you take a snapshot:
 --
 [role="term"]
 ----
-lttng regenerate statedump
+$ lttng regenerate statedump
 ----
 --
 
@@ -6655,7 +6657,7 @@ lttng regenerate statedump
 --
 [role="term"]
 ----
-lttng stop
+$ lttng stop
 ----
 --
 
@@ -6664,7 +6666,7 @@ lttng stop
 --
 [role="term"]
 ----
-lttng snapshot record --name=my-snapshot
+$ lttng snapshot record --name=my-snapshot
 ----
 --
 
@@ -6709,7 +6711,7 @@ trace data after a system crash:
 --
 [role="term"]
 ----
-lttng create my-session --shm-path=/path/to/shm
+$ lttng create my-session --shm-path=/path/to/shm
 ----
 --
 
@@ -6722,7 +6724,7 @@ lttng create my-session --shm-path=/path/to/shm
 --
 [role="term"]
 ----
-lttng-crash /path/to/shm
+$ lttng-crash /path/to/shm
 ----
 --
 
@@ -6737,7 +6739,7 @@ To convert the ring buffer files to LTTng trace files:
 --
 [role="term"]
 ----
-lttng-crash --extract=/path/to/trace /path/to/shm
+$ lttng-crash --extract=/path/to/trace /path/to/shm
 ----
 --
 

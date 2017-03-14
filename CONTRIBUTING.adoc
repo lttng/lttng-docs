@@ -240,14 +240,18 @@ There are two types of listing blocks:
   written in terminal boxes. A terminal box is an AsciiDoc literal
   block with the `term` role.
 +
+Start a command line with "+${nbsp}+" to indicate that a regular Unix user
+should run it. Start a command line with "+#{nbsp}+" to indicate that a
+priviledged Unix user should run it.
++
 .Using a terminal box.
 ====
 [listing]
 ....
 [role="term"]
 ----
-lttng create my-session
-lttng enable-event --kernel --all
+$ lttng create my-session
+$ lttng enable-event --kernel --all
 ----
 ....
 ====
