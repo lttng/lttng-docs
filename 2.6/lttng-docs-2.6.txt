@@ -10,7 +10,37 @@ include::../common/copyright.txt[]
 include::../common/warning-not-maintained.txt[]
 
 
-include::../common/welcome.txt[]
+[[welcome]]
+== Welcome!
+
+Welcome to the **LTTng Documentation**!
+
+The _Linux Trace Toolkit: next generation_ is an open source software
+toolkit which you can use to simultaneously trace the Linux kernel, user
+applications, and user libraries.
+
+LTTng consists of:
+
+* Kernel modules to trace the Linux kernel.
+* Shared libraries to trace user applications written in C or C++.
+* Java packages to trace Java applications which use `java.util.logging`
+  or Apache log4j 1.2.
+* A kernel module to trace shell scripts and other user applications
+  without a dedicated instrumentation mechanism.
+* Daemons and a command-line tool, cmd:lttng, to control the
+  LTTng tracers.
+
+[NOTE]
+.Open source documentation
+====
+This is an **open documentation**: its source is available in a
+https://github.com/lttng/lttng-docs[public Git repository].
+
+Should you find any error in the content of this text, any grammatical
+mistake, or any dead link, we would be very grateful if you would file a
+GitHub issue for it or, even better, contribute a patch to this
+documentation by creating a pull request.
+====
 
 
 include::../common/audience.txt[]
