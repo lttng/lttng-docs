@@ -1499,8 +1499,8 @@ to configure the sub-buffer count and size for them:
 * **High event throughput**: In general, prefer bigger sub-buffers to
   lower the risk of losing event records.
 +
-Having bigger sub-buffers also ensures a lower sub-buffer switching
-frequency.
+Having bigger sub-buffers also ensures a lower
+<<channel-switch-timer,sub-buffer switching frequency>>.
 +
 The number of sub-buffers is only meaningful if you create the channel
 in overwrite mode: in this case, if a sub-buffer overwrite happens, the
