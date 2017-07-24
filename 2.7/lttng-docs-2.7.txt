@@ -4835,12 +4835,12 @@ MODULE_VERSION(__stringify(LTTNG_MODULES_MAJOR_VERSION) "."
 ----
 --
 
-. Edit path:{probes/Makefile} and add your new kernel module object
+. Edit path:{probes/KBuild} and add your new kernel module object
   next to the existing ones:
 +
 --
 [source,make]
-.path:{probes/Makefile}
+.path:{probes/KBuild}
 ----
 # ...
 
