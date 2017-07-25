@@ -1628,7 +1628,7 @@ With so many similar terms, it's easy to get confused.
 An **event** is the consequence of the execution of an _instrumentation
 point_, like a tracepoint that you manually place in some source code,
 or a Linux kernel KProbe. An event is said to _occur_ at a specific
-time. Different actions can be taken upon the occurance of an event,
+time. Different actions can be taken upon the occurrence of an event,
 like record the event's payload to a buffer.
 
 An **event record** is the representation of an event in a sub-buffer. A
@@ -6855,7 +6855,7 @@ event::
   or a Linux kernel KProbe.
 +
 An event is said to _occur_ at a specific time. Different actions can
-be taken upon the occurance of an event, like record the event's payload
+be taken upon the occurrence of an event, like record the event's payload
 to a sub-buffer.
 
 <<channel-overwrite-mode-vs-discard-mode,event loss mode>>::
