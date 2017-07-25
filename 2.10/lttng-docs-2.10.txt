@@ -1,13 +1,10 @@
 The LTTng Documentation
 =======================
 Philippe Proulx <pproulx@efficios.com>
-v2.8, 24 July 2017
+v2.10, 25 July 2017
 
 
 include::../common/copyright.txt[]
-
-
-include::../common/warning-not-maintained.txt[]
 
 
 include::../common/welcome.txt[]
@@ -77,145 +74,83 @@ include::../common/acknowledgements.txt[]
 [[whats-new]]
 == What's new in LTTng {revision}?
 
-LTTng{nbsp}{revision} bears the name _Isseki Nicho_. The result of a
-collaboration between http://www.dieuduciel.com/[Dieu du Ciel!] and
-Nagano-based Shiga Kogen,
-https://www.beeradvocate.com/beer/profile/1141/53111/[_**Isseki
-Nicho**_] is a strong Imperial Dark Saison offering a rich roasted malt
-flavor combined with a complex fruity finish typical of Saison yeasts.
+LTTng{nbsp}{revision} bears the name _KeKriek_. From
+http://brasseriedunham.com/[Brasserie Dunham], the _**KeKriek**_ is a
+sour mashed golden wheat ale fermented with local sour cherries from
+Tougas orchards. Fresh sweet cherry notes with some tartness, lively
+carbonation with a dry finish.
 
 New features and changes in LTTng{nbsp}{revision}:
 
 * **Tracing control**:
-** You can attach <<java-application-context,Java application-specific
-   context fields>> to a <<channel,channel>> with the
-   man:lttng-add-context(1) command:
+** You can put more than one wildcard special character (`*`), and not
+   only at the end, when you <<enabling-disabling-events,create an event
+   rule>>, in both the instrumentation point name and the literal
+   strings of
+   link:http://lttng.org/man/1/lttng-enable-event/v{revision}/#doc-filter-syntax[filter expressions]:
 +
 --
 [role="term"]
 ----
-$ lttng add-context --jul --type='$app.retriever:cur_msg_id'
+# lttng enable-event --kernel 'x86_*_local_timer_*' \
+                   --filter='name == "*a*b*c*d*e" && count >= 23'
 ----
 --
-+
-Here, `$app` is the prefix of all application-specific context fields,
-`retriever` names a _context information retriever_ defined at the
-application level, and `cur_msg_id` names a context field read from this
-retriever.
-+
-Both the `java.util.logging` and Apache log4j <<domain,tracing domains>>
-are supported.
-
-** You can use Java application-specific <<adding-context,context>>
-   fields in the <<enabling-disabling-events,filter expression>> of an
-   <<event,event rule>>:
 +
 --
 [role="term"]
 ----
-$ lttng enable-event --log4j my_logger \
-                   --filter='$app.retriever:cur_msg_id == 23'
+$ lttng enable-event --userspace '*_my_org:*msg*'
 ----
 --
 
-** New `lttng status` command which is the equivalent of +lttng list
-   __CUR__+, where +__CUR__+ is the name of the current
-   <<tracing-session,tracing session>>.
-+
-See man:lttng-status(1).
+** New trigger and notification API for
+   <<liblttng-ctl-lttng,`liblttng-ctl`>>. This new subsystem allows you
+   to register triggers which emit a notification when a given
+   condition is satisfied. As of LTTng{nbsp}{revision}, only
+   <<channel,channel>> buffer usage conditions are available.
+   Documentation is available in the
+   https://github.com/lttng/lttng-tools/tree/stable-{revision}/include/lttng[`liblttng-ctl`
+   header files].
 
-** New `lttng metadata regenerate` command to
-   <<metadata-regenerate,regenerate the metadata file of an LTTng
-   trace>> at any moment. This command is meant to be used to resample
-   the wall time following a major
-   https://en.wikipedia.org/wiki/Network_Time_Protocol[NTP] correction
-   so that a system which boots with an incorrect wall time can be
-   traced before its wall time is NTP-corrected.
-+
-See man:lttng-metadata(1).
-
-** New command-line interface warnings when <<event,event records>> or
-   whole sub-buffers are
-   <<channel-overwrite-mode-vs-discard-mode,lost>>. The warning messages
-   are printed when a <<tracing-session,tracing session>> is
-   <<basic-tracing-session-control,stopped>> (man:lttng-stop(1)
-   command).
+** You can now embed the whole textual LTTng-tools man pages into the
+   executables at build time with the `--enable-embedded-help`
+   configuration option. Thanks to this option, you don't need the
+   http://www.methods.co.nz/asciidoc/[AsciiDoc] and
+   https://directory.fsf.org/wiki/Xmlto[xmlto] tools at build time, and
+   a manual pager at run time, to get access to this documentation.
 
 * **User space tracing**:
-** Shared object base address dump in order to map <<event,event
-   records>> to original source location (file and line number).
+** New blocking mode: an LTTng-UST tracepoint can now block until
+   <<channel,sub-buffer>> space is available instead of discarding event
+   records in <<channel-overwrite-mode-vs-discard-mode,discard mode>>.
+   With this feature, you can be sure that no event records are
+   discarded during your application's execution at the expense of
+   performance.
 +
-If you attach the `ip` and `vpid` <<adding-context,context fields>> to a
-user space <<channel,channel>> and if you use the
-<<liblttng-ust-dl,path:{liblttng-ust-dl.so} helper>>, you can retrieve
-the source location where a given event record was generated.
-+
-The http://diamon.org/babeltrace/[Babeltrace] trace viewer supports this
-state dump and those context fields since version 1.4 to print the
-source location of a given event record. http://tracecompass.org/[Trace
-Compass] also supports this since version 2.0.
-
-** A <<java-application,Java application>> which uses
-   `java.util.logging` now adds an LTTng-UST log handler to the desired
-   JUL loggers.
-+
-The previous workflow was to initialize the LTTng-UST Java agent
-by calling `LTTngAgent.getLTTngAgent()`. This had the effect of adding
-an LTTng-UST log handler to the root loggers.
-
-** A <<java-application,Java application>> which uses Apache log4j now
-   adds an LTTng-UST log appender to the desired log4j loggers.
-+
-The previous workflow was to initialize the LTTng-UST Java agent
-by calling `LTTngAgent.getLTTngAgent()`. This had the effect of adding
-an LTTng-UST appender to the root loggers.
-
-** Any <<java-application,Java application>> can provide
-   <<java-application-context,dynamic context fields>> while running
-   thanks to a new API provided by the <<lttng-ust-agents,LTTng-UST Java
-   agent>>. You can require LTTng to record specific context fields in
-   event records, and you can use them in the filter expression of
-   <<event,event rules>>.
-
-* **Linux kernel tracing**:
-** The LTTng kernel modules can now be built into a Linux kernel image,
-   that is, not as loadable modules.
-+
-Follow the project's
-https://github.com/lttng/lttng-modules/blob/stable-{revision}/README.md#kernel-built-in-support[`README.md`]
-file to learn how.
-
-** New instrumentation:
-*** ARM64 architecture support.
-*** x86 page faults.
-*** x86 `irq_vectors`.
-** New <<adding-context,context fields>>:
-*** `interruptible`
-*** `preemptible`
-*** `need_reschedule`
-*** `migratable` (specific to RT-Preempt)
-** Clock source plugin support for advanced cases where a custom source
-   of time is needed to timestamp LTTng event records.
-+
-See https://github.com/lttng/lttng-modules/blob/stable-{revision}/lttng-clock.h[`lttng-clock.h`]
-for an overview of the small API.
-
-* **Documentation**:
-** The link:/man[man pages] of the man:lttng(1) command-line tool are
-   split into one man page per command (à la Git), for example:
+For example, the following command lines create a user space tracing
+channel with an infinite blocking timeout and run an application
+instrumented with LTTng-UST which is explicitly allowed to block:
 +
 --
 [role="term"]
 ----
-$ man lttng-enable-event
+$ lttng create
+$ lttng enable-channel --userspace --blocking-timeout=-1 blocking-channel
+$ lttng enable-event --userspace --channel=blocking-channel --all
+$ lttng start
+$ LTTNG_UST_ALLOW_BLOCKING=1 my-app
 ----
 --
 +
-You can also use the `--help` option of any man:lttng(1) command to
-open its man page.
-+
-The content and formatting of all the LTTng man pages has improved
-dramatically.
+See the complete <<blocking-timeout-example,blocking timeout example>>.
+
+* **Linux kernel tracing**:
+** Linux 4.10, 4.11, and 4.12 support.
+** The thread state dump events recorded by LTTng-modules now contain
+   the task's CPU identifier. This improves the precision of the
+   scheduler model for analyses.
+** Extended man:socketpair(2) system call tracing data.
 
 
 [[nuts-and-bolts]]
@@ -360,8 +295,6 @@ becomes inactive or in real-time.
 [[installing-lttng]]
 == Installation
 
-include::../common/warning-installation-outdated.txt[]
-
 **LTTng** is a set of software <<plumbing,components>> which interact to
 <<instrumenting,instrument>> the Linux kernel and user applications, and
 to <<controlling-tracing,control tracing>> (start and stop
@@ -386,47 +319,34 @@ but note that:
   applications.
 
 [role="growable"]
-.Availability of LTTng{nbsp}{revision} for major Linux distributions as of 14 March 2017.
+.Availability of LTTng{nbsp}{revision} for major Linux distributions as of 25 July 2017.
 |====
 |Distribution |Available in releases |Alternatives
 
 |https://www.ubuntu.com/[Ubuntu]
-|<<ubuntu,Ubuntu{nbsp}16.10 _Yakkety Yak_>>.
-|LTTng{nbsp}{revision} for Ubuntu{nbsp}14.04 _Trusty Tahr_
-and Ubuntu{nbsp}16.04 _Xenial Xerus_:
+|Ubuntu{nbsp}14.04 _Trusty Tahr_ and Ubuntu{nbsp}16.04 _Xenial Xerus_:
 <<ubuntu-ppa,use the LTTng Stable{nbsp}{revision} PPA>>.
-
-LTTng{nbsp}2.9 for Ubuntu{nbsp}14.04 _Trusty Tahr_
-and Ubuntu{nbsp}16.04 _Xenial Xerus_:
-link:/docs/v2.9#doc-ubuntu-ppa[use the LTTng Stable{nbsp}2.9 PPA].
-
-LTTng{nbsp}2.9 for Ubuntu{nbsp}17.04 _Zesty Zapus_ (not released
-yet).
+|link:/docs/v2.9#doc-ubuntu[LTTng{nbsp}2.9 for Ubuntu{nbsp}17.04 _Zesty Zapus_].
 
 <<building-from-source,Build LTTng{nbsp}{revision} from source>> for
 other Ubuntu releases.
 
 |https://getfedora.org/[Fedora]
-|<<fedora,Fedora{nbsp}25>>.
-|<<building-from-source,Build LTTng{nbsp}{revision} from source>> for
-other Fedora releases.
+|_Not available_
+|link:/docs/v2.9#doc-fedora[LTTng{nbsp}2.9 for Fedora 26].
+
+<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
 
 |https://www.debian.org/[Debian]
 |_Not available_
-|link:/docs/v2.9#doc-debian[LTTng{nbsp}2.9 for Debian "stretch" (testing)
-and Debian "sid" (unstable)].
+|link:/docs/v2.9#doc-debian[LTTng{nbsp}2.9 for Debian "stretch"
+(stable), Debian "buster" (testing), and Debian "sid" (unstable)].
 
 <<building-from-source,Build LTTng{nbsp}{revision} from source>>.
-
-|https://www.opensuse.org/[openSUSE]
-|_Not available_
-|<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
 
 |https://www.archlinux.org/[Arch Linux]
 |_Not available_
-|link:/docs/v2.9#doc-arch-linux[LTTng{nbsp}2.9 from the AUR].
-
-<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
+|link:/docs/v2.9#doc-arch-linux[LTTng{nbsp}2.9 in the latest AUR packages].
 
 |https://alpinelinux.org/[Alpine Linux]
 |_Not available_
@@ -439,65 +359,24 @@ and Debian "sid" (unstable)].
 |
 
 |https://buildroot.org/[Buildroot]
-|<<buildroot,Buildroot 2016.11>>.
-|link:/docs/v2.9#doc-buildroot[LTTng{nbsp}2.9 for Buildroot 2017.02].
+|_Not available_
+|link:/docs/v2.9#doc-buildroot[LTTng{nbsp}2.9 for Buildroot{nbsp}2017.02 and
+Buildroot{nbsp}2017.05].
 
-<<building-from-source,Build LTTng{nbsp}{revision} from source>> for
-other Buildroot releases.
+<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
 
 |http://www.openembedded.org/wiki/Main_Page[OpenEmbedded] and
 https://www.yoctoproject.org/[Yocto]
-|<<oe-yocto,Yocto Project{nbsp}2.2 _Morty_>> (`openembedded-core` layer).
-|LTTng{nbsp}2.9 for Yocto Project{nbsp}2.3 _Pyro_
-(`openembedded-core` layer) (not released yet).
+|_Not available_
+|link:/docs/v2.9#doc-oe-yocto[LTTng{nbsp}2.9 for Yocto Project{nbsp}2.3 _Pyro_]
+(`openembedded-core` layer).
 
-<<building-from-source,Build LTTng{nbsp}{revision} from source>> for
-other OpenEmbedded releases.
+<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
 |====
 
 
 [[ubuntu]]
 === [[ubuntu-official-repositories]]Ubuntu
-
-LTTng{nbsp}{revision} is available on Ubuntu{nbsp}16.10 _Yakkety Yak_.
-For previous releases of Ubuntu, <<ubuntu-ppa,use the LTTng
-Stable{nbsp}{revision} PPA>>.
-
-To install LTTng{nbsp}{revision} on Ubuntu{nbsp}16.10 _Yakkety Yak_:
-
-. Install the main LTTng{nbsp}{revision} packages:
-+
---
-[role="term"]
-----
-# apt-get install lttng-tools
-# apt-get install lttng-modules-dkms
-# apt-get install liblttng-ust-dev
-----
---
-
-. **If you need to instrument and trace
-  <<java-application,Java applications>>**, install the LTTng-UST
-  Java agent:
-+
---
-[role="term"]
-----
-# apt-get install liblttng-ust-agent-java
-----
---
-
-. **If you need to instrument and trace
-  <<python-application,Python{nbsp}3 applications>>**, install the
-  LTTng-UST Python agent:
-+
---
-[role="term"]
-----
-# apt-get install python3-lttngust
-----
---
-
 
 [[ubuntu-ppa]]
 ==== noch:{LTTng} Stable {revision} PPA
@@ -517,7 +396,7 @@ To install LTTng{nbsp}{revision} from the LTTng Stable{nbsp}{revision} PPA:
 --
 [role="term"]
 ----
-# apt-add-repository ppa:lttng/stable-2.8
+# apt-add-repository ppa:lttng/stable-2.10
 # apt-get update
 ----
 --
@@ -556,124 +435,12 @@ To install LTTng{nbsp}{revision} from the LTTng Stable{nbsp}{revision} PPA:
 --
 
 
-[[fedora]]
-=== Fedora
-
-To install LTTng{nbsp}{revision} on Fedora{nbsp}25:
-
-. Install the LTTng-tools{nbsp}{revision} and LTTng-UST{nbsp}{revision}
-  packages:
-+
---
-[role="term"]
-----
-# yum install lttng-tools
-# yum install lttng-ust
-----
---
-
-. Download, build, and install the latest LTTng-modules{nbsp}{revision}:
-+
---
-[role="term"]
-----
-$ cd $(mktemp -d) &&
-wget http://lttng.org/files/lttng-modules/lttng-modules-latest-2.8.tar.bz2 &&
-tar -xf lttng-modules-latest-2.8.tar.bz2 &&
-cd lttng-modules-2.8.* &&
-make &&
-sudo make modules_install &&
-sudo depmod -a
-----
---
-
-[IMPORTANT]
-.Java and Python application instrumentation and tracing
-====
-If you need to instrument and trace <<java-application,Java
-applications>> on Fedora, you need to build and install
-LTTng-UST{nbsp}{revision} <<building-from-source,from source>> and pass
-the `--enable-java-agent-jul`, `--enable-java-agent-log4j`, or
-`--enable-java-agent-all` options to the `configure` script, depending
-on which Java logging framework you use.
-
-If you need to instrument and trace <<python-application,Python
-applications>> on Fedora, you need to build and install
-LTTng-UST{nbsp}{revision} from source and pass the
-`--enable-python-agent` option to the `configure` script.
-====
-
-
 [[enterprise-distributions]]
 === RHEL, SUSE, and other enterprise distributions
 
 To install LTTng on enterprise Linux distributions, such as Red Hat
 Enterprise Linux (RHEL) and SUSE Linux Enterprise Server (SUSE), please
 see http://packages.efficios.com/[EfficiOS Enterprise Packages].
-
-
-[[buildroot]]
-=== Buildroot
-
-To install LTTng{nbsp}{revision} on Buildroot{nbsp}2016.11:
-
-. Launch the Buildroot configuration tool:
-+
---
-[role="term"]
-----
-$ make menuconfig
-----
---
-
-. In **Kernel**, check **Linux kernel**.
-. In **Toolchain**, check **Enable WCHAR support**.
-. In **Target packages**{nbsp}&#8594; **Debugging, profiling and benchmark**,
-  check **lttng-modules** and **lttng-tools**.
-. In **Target packages**{nbsp}&#8594; **Libraries**{nbsp}&#8594;
-  **Other**, check **lttng-libust**.
-
-
-[[oe-yocto]]
-=== OpenEmbedded and Yocto
-
-LTTng{nbsp}{revision} recipes are available in the
-http://layers.openembedded.org/layerindex/branch/master/layer/openembedded-core/[`openembedded-core`]
-layer for Yocto Project{nbsp}2.2 _Morty_ under the following names:
-
-* `lttng-tools`
-* `lttng-modules`
-* `lttng-ust`
-
-With BitBake, the simplest way to include LTTng recipes in your target
-image is to add them to `IMAGE_INSTALL_append` in path:{conf/local.conf}:
-
-----
-IMAGE_INSTALL_append = " lttng-tools lttng-modules lttng-ust"
-----
-
-If you use Hob:
-
-. Select a machine and an image recipe.
-. Click **Edit image recipe**.
-. Under the **All recipes** tab, search for **lttng**.
-. Check the desired LTTng recipes.
-
-[IMPORTANT]
-.Java and Python application instrumentation and tracing
-====
-If you need to instrument and trace <<java-application,Java
-applications>> on Yocto/OpenEmbedded, you need to build and install
-LTTng-UST{nbsp}{revision} <<building-from-source,from source>> and pass
-the `--enable-java-agent-jul`, `--enable-java-agent-log4j`, or
-`--enable-java-agent-all` options to the `configure` script, depending
-on which Java logging framework you use.
-
-If you need to instrument and trace <<python-application,Python
-applications>> on Yocto/OpenEmbedded, you need to build and install
-LTTng-UST{nbsp}{revision} from source and pass the
-`--enable-python-agent` option to the `configure` script.
-====
 
 
 [[building-from-source]]
@@ -697,9 +464,9 @@ To build and install LTTng{nbsp}{revision} from source:
 [role="term"]
 ----
 $ cd $(mktemp -d) &&
-wget http://lttng.org/files/lttng-modules/lttng-modules-latest-2.8.tar.bz2 &&
-tar -xf lttng-modules-latest-2.8.tar.bz2 &&
-cd lttng-modules-2.8.* &&
+wget http://lttng.org/files/lttng-modules/lttng-modules-latest-2.10.tar.bz2 &&
+tar -xf lttng-modules-latest-2.10.tar.bz2 &&
+cd lttng-modules-2.10.* &&
 make &&
 sudo make modules_install &&
 sudo depmod -a
@@ -712,9 +479,9 @@ sudo depmod -a
 [role="term"]
 ----
 $ cd $(mktemp -d) &&
-wget http://lttng.org/files/lttng-ust/lttng-ust-latest-2.8.tar.bz2 &&
-tar -xf lttng-ust-latest-2.8.tar.bz2 &&
-cd lttng-ust-2.8.* &&
+wget http://lttng.org/files/lttng-ust/lttng-ust-latest-2.10.tar.bz2 &&
+tar -xf lttng-ust-latest-2.10.tar.bz2 &&
+cd lttng-ust-2.10.* &&
 ./configure &&
 make &&
 sudo make install &&
@@ -762,9 +529,9 @@ instrumented user application with `liblttng-ust`>>:
 [role="term"]
 ----
 $ cd $(mktemp -d) &&
-wget http://lttng.org/files/lttng-tools/lttng-tools-latest-2.8.tar.bz2 &&
-tar -xf lttng-tools-latest-2.8.tar.bz2 &&
-cd lttng-tools-2.8.* &&
+wget http://lttng.org/files/lttng-tools/lttng-tools-latest-2.10.tar.bz2 &&
+tar -xf lttng-tools-latest-2.10.tar.bz2 &&
+cd lttng-tools-2.10.* &&
 ./configure &&
 make &&
 sudo make install &&
@@ -863,8 +630,8 @@ tracepoints (this will generate a lot of data when tracing):
 --
 [role="term"]
 ----
-sudo lttng stop
-sudo lttng destroy
+# lttng stop
+# lttng destroy
 ----
 --
 +
@@ -877,7 +644,7 @@ only destroys the state of the tracing session.
 --
 [role="term"]
 ----
-sudo chown -R $(whoami) /tmp/my-kernel-trace
+# chown -R $(whoami) /tmp/my-kernel-trace
 ----
 --
 
@@ -1503,15 +1270,21 @@ as is the case in the previous animation. In the real world,
 however, all sub-buffers can be full at some point, leaving no space to
 record the following events.
 
-By design, LTTng is a _non-blocking_ tracer: when no empty sub-buffer is
-available, it is acceptable to lose event records when the alternative
-would be to cause substantial delays in the instrumented application's
-execution. LTTng privileges performance over integrity; it aims at
-perturbing the traced system as little as possible in order to make
-tracing of subtle race conditions and rare interrupt cascades possible.
+By default, LTTng-modules and LTTng-UST are _non-blocking_ tracers: when
+no empty sub-buffer is available, it is acceptable to lose event records
+when the alternative would be to cause substantial delays in the
+instrumented application's execution. LTTng privileges performance over
+integrity; it aims at perturbing the traced system as little as possible
+in order to make tracing of subtle race conditions and rare interrupt
+cascades possible.
+
+Starting from LTTng{nbsp}2.10, the LTTng user space tracer, LTTng-UST,
+supports a _blocking mode_. See the <<blocking-timeout-example,blocking
+timeout example>> to learn how to use the blocking mode.
 
 When it comes to losing event records because no empty sub-buffer is
-available, the channel's _event loss mode_ determines what to do. The
+available, or because the <<opt-blocking-timeout,blocking timeout>> is
+reached, the channel's _event loss mode_ determines what to do. The
 available event loss modes are:
 
 Discard mode::
@@ -3863,7 +3636,7 @@ the env:LD_PRELOAD environment variable to overcome this limitation.
 If your instrumented application calls man:fork(2), man:clone(2),
 or BSD's man:rfork(2), without a following man:exec(3)-family
 system call, you must preload the path:{liblttng-ust-fork.so} shared
-object when starting the application.
+object when you start the application.
 
 [role="term"]
 ----
@@ -3878,6 +3651,24 @@ shared objects in env:LD_PRELOAD:
 ----
 $ LD_PRELOAD=liblttng-ust-fork.so:/path/to/tp.so ./my-app
 ----
+
+
+[role="since-2.9"]
+[[liblttng-ust-fd]]
+===== Use noch:{LTTng-UST} with applications which close file descriptors that don't belong to them
+
+If your instrumented application closes one or more file descriptors
+which it did not open itself, you must preload the
+path:{liblttng-ust-fd.so} shared object when you start the application:
+
+[role="term"]
+----
+$ LD_PRELOAD=liblttng-ust-fd.so ./my-app
+----
+
+Typical use cases include closing all the file descriptors after
+man:fork(2) or man:rfork(2) and buggy applications doing
+``double closes''.
 
 
 [[lttng-ust-pkg-config]]
@@ -3943,9 +3734,9 @@ sudo ldconfig
 [role="term"]
 ----
 $ cd $(mktemp -d) &&
-wget http://lttng.org/files/lttng-ust/lttng-ust-latest-2.8.tar.bz2 &&
-tar -xf lttng-ust-latest-2.8.tar.bz2 &&
-cd lttng-ust-2.8.* &&
+wget http://lttng.org/files/lttng-ust/lttng-ust-latest-2.10.tar.bz2 &&
+tar -xf lttng-ust-latest-2.10.tar.bz2 &&
+cd lttng-ust-2.10.* &&
 ./configure --libdir=/usr/local/lib32 \
             CFLAGS=-m32 CXXFLAGS=-m32 \
             LDFLAGS='-L/usr/local/lib32 -L/usr/lib32' &&
@@ -3978,9 +3769,9 @@ $ LDFLAGS='-L/usr/lib/i386-linux-gnu -L/usr/lib32'
 [role="term"]
 ----
 $ cd $(mktemp -d) &&
-wget http://lttng.org/files/lttng-tools/lttng-tools-latest-2.8.tar.bz2 &&
-tar -xf lttng-tools-latest-2.8.tar.bz2 &&
-cd lttng-tools-2.8.* &&
+wget http://lttng.org/files/lttng-tools/lttng-tools-latest-2.10.tar.bz2 &&
+tar -xf lttng-tools-latest-2.10.tar.bz2 &&
+cd lttng-tools-2.10.* &&
 ./configure --libdir=/usr/local/lib32 CFLAGS=-m32 CXXFLAGS=-m32 \
             LDFLAGS='-L/usr/local/lib32 -L/usr/lib32' \
             --disable-bin-lttng --disable-bin-lttng-crash \
@@ -4002,9 +3793,9 @@ sudo ldconfig
 [role="term"]
 ----
 $ cd $(mktemp -d) &&
-wget http://lttng.org/files/lttng-tools/lttng-tools-latest-2.8.tar.bz2 &&
-tar -xf lttng-tools-latest-2.8.tar.bz2 &&
-cd lttng-tools-2.8.* &&
+wget http://lttng.org/files/lttng-tools/lttng-tools-latest-2.10.tar.bz2 &&
+tar -xf lttng-tools-latest-2.10.tar.bz2 &&
+cd lttng-tools-2.10.* &&
 ./configure --with-consumerd32-libdir=/usr/local/lib32 \
             --with-consumerd32-bin=/usr/local/lib32/lttng/libexec/lttng-consumerd &&
 make &&
@@ -5245,9 +5036,9 @@ is your subsystem's name.
 [role="term"]
 ----
 $ cd $(mktemp -d) &&
-wget http://lttng.org/files/lttng-modules/lttng-modules-latest-2.8.tar.bz2 &&
-tar -xf lttng-modules-latest-2.8.tar.bz2 &&
-cd lttng-modules-2.8.*
+wget http://lttng.org/files/lttng-modules/lttng-modules-latest-2.10.tar.bz2 &&
+tar -xf lttng-modules-latest-2.10.tar.bz2 &&
+cd lttng-modules-2.10.*
 ----
 --
 
@@ -5683,6 +5474,7 @@ tracing session when you don't specify one:
 * `enable-channel`
 * `enable-event`
 * `load`
+* `regenerate`
 * `save`
 * `snapshot`
 * `start`
@@ -6147,6 +5939,26 @@ to +__PERIODUS__+{nbsp}µs.
 Set the <<channel-read-timer,read timer period>>
 to +__PERIODUS__+{nbsp}µs.
 
+|[[opt-blocking-timeout]]+--blocking-timeout=__TIMEOUTUS__+
+
+|
+Set the timeout of user space applications which load LTTng-UST
+in blocking mode to +__TIMEOUTUS__+:
+
+0 (default)::
+    Never block (non-blocking mode).
+
+-1::
+    Block forever until space is available in a sub-buffer to record
+    the event.
+
+__n__, a positive value::
+    Wait for at most __n__ µs when trying to write into a sub-buffer.
+
+Note that, for this option to have any effect on an instrumented
+user space application, you need to run the application with a set
+env:LTTNG_UST_ALLOW_BLOCKING environment variable.
+
 |+--output=__TYPE__+ (Linux kernel tracing domain only)
 
 |
@@ -6193,6 +6005,28 @@ $ lttng enable-channel --kernel my-channel
 ----
 $ lttng enable-channel --userspace --num-subbuf=4 --subbuf-size=1M \
                      --buffers-pid my-channel
+----
+====
+
+.[[blocking-timeout-example]]Create a default user space channel with an infinite blocking timeout:
+====
+<<creating-destroying-tracing-sessions,Create a tracing-session>>,
+create the channel, <<enabling-disabling-events,create an event rule>>,
+and <<basic-tracing-session-control,start tracing>>:
+
+[role="term"]
+----
+$ lttng create
+$ lttng enable-channel --userspace --blocking-timeout=-1 blocking-channel
+$ lttng enable-event --userspace --channel=blocking-channel --all
+$ lttng start
+----
+
+Run an application instrumented with LTTng-UST and allow it to block:
+
+[role="term"]
+----
+$ LTTNG_UST_ALLOW_BLOCKING=1 my-app
 ----
 ====
 
@@ -6285,6 +6119,19 @@ of the current tracing session.
 [role="term"]
 ----
 $ lttng add-context --userspace --type=vpid --type=perf:thread:cpu-cycles
+----
+====
+
+.Add performance counter context fields by raw ID
+====
+See man:lttng-add-context(1) for the exact format of the context field
+type, which is partly compatible with the format used in
+man:perf-record(1).
+
+[role="term"]
+----
+$ lttng add-context --userspace --type=perf:thread:raw:r0110:test
+$ lttng add-context --kernel --type=perf:cpu:raw:r0013c:x86unhalted
 ----
 ====
 
@@ -6597,7 +6444,7 @@ This spawns a local relay daemon.
 --
 [role="term"]
 ----
-$ babeltrace --input-format=lttng-live
+$ babeltrace --input-format=lttng-live \
            net://localhost/host/hostname/my-session
 ----
 --
@@ -6718,7 +6565,7 @@ $ lttng --mi=xml enable-event --kernel --syscall open
 ----
 
 A schema definition (XSD) is
-https://github.com/lttng/lttng-tools/blob/stable-2.8/src/common/mi-lttng-3.0.xsd[available]
+https://github.com/lttng/lttng-tools/blob/stable-2.10/src/common/mi-lttng-3.0.xsd[available]
 to ease the integration with external tools as much as possible.
 
 
@@ -6735,33 +6582,93 @@ If, once a <<tracing-session,tracing session>> is
 <<basic-tracing-session-control,started>>, a major
 https://en.wikipedia.org/wiki/Network_Time_Protocol[NTP] correction
 happens, the trace's clock offset also needs to be updated. You
-can use the man:lttng-metadata(1) command to do so.
+can use the `metadata` item of the man:lttng-regenerate(1) command
+to do so.
 
 The main use case of this command is to allow a system to boot with
 an incorrect wall time and trace it with LTTng before its wall time
 is corrected. Once the system is known to be in a state where its
-wall time is correct, it can run `lttng metadata regenerate`.
+wall time is correct, it can run `lttng regenerate metadata`.
 
 To regenerate the metadata of an LTTng trace:
 
-* Use the `regenerate` action of the man:lttng-metadata(1) command:
+* Use the `metadata` item of the man:lttng-regenerate(1) command:
 +
 --
 [role="term"]
 ----
-$ lttng metadata regenerate
+$ lttng regenerate metadata
 ----
 --
 
 [IMPORTANT]
 ====
-`lttng metadata regenerate` has the following limitations:
+`lttng regenerate metadata` has the following limitations:
 
 * Tracing session <<creating-destroying-tracing-sessions,created>>
   in non-live mode.
-* User space <<channel,channels>>, if any, using
+* User space <<channel,channels>>, if any, are using
   <<channel-buffering-schemes,per-user buffering>>.
 ====
+
+
+[role="since-2.9"]
+[[regenerate-statedump]]
+=== Regenerate the state dump of a tracing session
+
+The LTTng kernel and user space tracers generate state dump
+<<event,event records>> when the application starts or when you
+<<basic-tracing-session-control,start a tracing session>>. An analysis
+can use the state dump event records to set an initial state before it
+builds the rest of the state from the following event records.
+http://tracecompass.org/[Trace Compass] is a notable example of an
+application which uses the state dump of an LTTng trace.
+
+When you <<taking-a-snapshot,take a snapshot>>, it's possible that the
+state dump event records are not included in the snapshot because they
+were recorded to a sub-buffer that has been consumed or overwritten
+already.
+
+You can use the `lttng regenerate statedump` command to emit the state
+dump event records again.
+
+To regenerate the state dump of the current tracing session, provided
+create it in snapshot mode, before you take a snapshot:
+
+. Use the `statedump` item of the man:lttng-regenerate(1) command:
++
+--
+[role="term"]
+----
+$ lttng regenerate statedump
+----
+--
+
+. <<basic-tracing-session-control,Stop the tracing session>>:
++
+--
+[role="term"]
+----
+$ lttng stop
+----
+--
+
+. <<taking-a-snapshot,Take a snapshot>>:
++
+--
+[role="term"]
+----
+$ lttng snapshot record --name=my-snapshot
+----
+--
+
+Depending on the event throughput, you should run steps 1 and 2
+as closely as possible.
+
+NOTE: To record the state dump events, you need to
+<<enabling-disabling-events,create event rules>> which enable them.
+LTTng-UST state dump tracepoints start with `lttng_ust_statedump:`.
+LTTng-modules state dump tracepoints start with `lttng_statedump_`.
 
 
 [role="since-2.7"]
@@ -6834,6 +6741,67 @@ $ lttng-crash --extract=/path/to/trace /path/to/shm
 
 [[lttng-modules-ref]]
 === noch:{LTTng-modules}
+
+
+[role="since-2.9"]
+[[lttng-tracepoint-enum]]
+==== `LTTNG_TRACEPOINT_ENUM()` usage
+
+Use the `LTTNG_TRACEPOINT_ENUM()` macro to define an enumeration:
+
+[source,c]
+----
+LTTNG_TRACEPOINT_ENUM(name, TP_ENUM_VALUES(entries))
+----
+
+Replace:
+
+* `name` with the name of the enumeration (C identifier, unique
+  amongst all the defined enumerations).
+* `entries` with a list of enumeration entries.
+
+The available enumeration entry macros are:
+
++ctf_enum_value(__name__, __value__)+::
+  Entry named +__name__+ mapped to the integral value +__value__+.
+
++ctf_enum_range(__name__, __begin__, __end__)+::
+  Entry named +__name__+ mapped to the range of integral values between
+  +__begin__+ (included) and +__end__+ (included).
+
++ctf_enum_auto(__name__)+::
+  Entry named +__name__+ mapped to the integral value following the
+  last mapping's value.
++
+The last value of a `ctf_enum_value()` entry is its +__value__+
+parameter.
++
+The last value of a `ctf_enum_range()` entry is its +__end__+ parameter.
++
+If `ctf_enum_auto()` is the first entry in the list, its integral
+value is 0.
+
+Use the `ctf_enum()` <<lttng-modules-tp-fields,field definition macro>>
+to use a defined enumeration as a tracepoint field.
+
+.Define an enumeration with `LTTNG_TRACEPOINT_ENUM()`.
+====
+[source,c]
+----
+LTTNG_TRACEPOINT_ENUM(
+    my_enum,
+    TP_ENUM_VALUES(
+        ctf_enum_auto("AUTO: EXPECT 0")
+        ctf_enum_value("VALUE: 23", 23)
+        ctf_enum_value("VALUE: 27", 27)
+        ctf_enum_auto("AUTO: EXPECT 28")
+        ctf_enum_range("RANGE: 101 TO 303", 101, 303)
+        ctf_enum_auto("AUTO: EXPECT 304")
+    )
+)
+----
+====
+
 
 [role="since-2.7"]
 [[lttng-modules-tp-fields]]
@@ -6922,6 +6890,29 @@ Integer in network byte order, displayed in base 16.
 
 +__t__+::
   Integer C type.
+
++__n__+::
+  Field name.
+
++__e__+::
+  Argument expression.
+
+|
++ctf_enum(__N__, __t__, __n__, __e__)+
+
++ctf_enum_nowrite(__N__, __t__, __n__, __e__)+
+
++ctf_user_enum(__N__, __t__, __n__, __e__)+
+
++ctf_user_enum_nowrite(__N__, __t__, __n__, __e__)+
+|
+Enumeration.
+
++__N__+::
+  Name of a <<lttng-tracepoint-enum,previously defined enumeration>>.
+
++__t__+::
+  Integer C type (`int`, `long`, `size_t`, ...).
 
 +__n__+::
   Field name.
