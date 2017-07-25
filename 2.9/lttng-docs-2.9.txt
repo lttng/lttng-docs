@@ -1,7 +1,7 @@
 The LTTng Documentation
 =======================
 Philippe Proulx <pproulx@efficios.com>
-v2.9, 24 July 2017
+v2.9, 25 July 2017
 
 
 include::../common/copyright.txt[]
@@ -340,37 +340,30 @@ but note that:
   applications.
 
 [role="growable"]
-.Availability of LTTng{nbsp}{revision} for major Linux distributions as of 14 March 2017.
+.Availability of LTTng{nbsp}{revision} for major Linux distributions as of 25 July 2017.
 |====
 |Distribution |Available in releases |Alternatives
 
 |https://www.ubuntu.com/[Ubuntu]
-|Ubuntu{nbsp}14.04 _Trusty Tahr_ and Ubuntu{nbsp}16.04 _Xenial Xerus_:
+|<<ubuntu,Ubuntu{nbsp}17.04 _Zesty Zapus_>>.
+
+Ubuntu{nbsp}14.04 _Trusty Tahr_ and Ubuntu{nbsp}16.04 _Xenial Xerus_:
 <<ubuntu-ppa,use the LTTng Stable{nbsp}{revision} PPA>>.
-|link:/docs/v2.8#doc-ubuntu[LTTng{nbsp}2.8 for Ubuntu{nbsp}16.10 _Yakkety Yak_].
-
-LTTng{nbsp}{revision} for Ubuntu{nbsp}17.04 _Zesty Zapus_ (not released
-yet).
-
-<<building-from-source,Build LTTng{nbsp}{revision} from source>> for
+|<<building-from-source,Build LTTng{nbsp}{revision} from source>> for
 other Ubuntu releases.
 
 |https://getfedora.org/[Fedora]
-|_Not available_
+|<<fedora,Fedora{nbsp}26>>.
 |link:/docs/v2.8#doc-fedora[LTTng{nbsp}2.8 for Fedora 25].
 
-<<building-from-source,Build LTTng-modules{nbsp}{revision} from
-source>>.
+<<building-from-source,Build LTTng{nbsp}{revision} from source>> for
+other Fedora releases.
 
 |https://www.debian.org/[Debian]
-|<<debian,Debian "stretch" (testing) and Debian "sid" (unstable)>>.
+|xref:debian[Debian "stretch" (stable), Debian "buster" (testing),
+and Debian "sid" (unstable)].
 |<<building-from-source,Build LTTng{nbsp}{revision} from source>> for
 other Debian releases.
-
-|https://www.opensuse.org/[openSUSE]
-|_Not available_
-|<<building-from-source,Build LTTng-modules{nbsp}{revision} from
-source>>.
 
 |https://www.archlinux.org/[Arch Linux]
 |<<arch-linux,Latest AUR packages>>.
@@ -386,20 +379,17 @@ other Alpine Linux releases.
 |
 
 |https://buildroot.org/[Buildroot]
-|<<buildroot,Buildroot 2017.02>>.
-|link:/docs/v2.8#doc-buildroot[LTTng{nbsp}2.8 for Buildroot 2016.11].
+|<<buildroot,Buildroot{nbsp}2017.02 and Buildroot{nbsp}2017.05>>.
+|link:/docs/v2.8#doc-buildroot[LTTng{nbsp}2.8 for Buildroot{nbsp}2016.11].
 
 <<building-from-source,Build LTTng{nbsp}{revision} from source>> for
 other Buildroot releases.
 
 |http://www.openembedded.org/wiki/Main_Page[OpenEmbedded] and
 https://www.yoctoproject.org/[Yocto]
-|_Not available_
+|<<oe-yocto,Yocto Project{nbsp}2.3 _Pyro_>> (`openembedded-core` layer).
 |link:/docs/v2.8#doc-oe-yocto[LTTng{nbsp}2.8 for Yocto Project{nbsp}2.2 _Morty_]
 (`openembedded-core` layer).
-
-LTTng{nbsp}{revision} for Yocto Project{nbsp}2.3 _Pyro_
-(`openembedded-core` layer) (not released yet).
 
 <<building-from-source,Build LTTng{nbsp}{revision} from source>> for
 other OpenEmbedded releases.
@@ -408,6 +398,46 @@ other OpenEmbedded releases.
 
 [[ubuntu]]
 === [[ubuntu-official-repositories]]Ubuntu
+
+LTTng{nbsp}{revision} is available on Ubuntu{nbsp}17.04 _Zesty Zapus_.
+For previous releases of Ubuntu, <<ubuntu-ppa,use the LTTng
+Stable{nbsp}{revision} PPA>>.
+
+To install LTTng{nbsp}{revision} on Ubuntu{nbsp}17.04 _Zesty Zapus_:
+
+. Install the main LTTng{nbsp}{revision} packages:
++
+--
+[role="term"]
+----
+# apt-get install lttng-tools
+# apt-get install lttng-modules-dkms
+# apt-get install liblttng-ust-dev
+----
+--
+
+. **If you need to instrument and trace
+  <<java-application,Java applications>>**, install the LTTng-UST
+  Java agent:
++
+--
+[role="term"]
+----
+# apt-get install liblttng-ust-agent-java
+----
+--
+
+. **If you need to instrument and trace
+  <<python-application,Python{nbsp}3 applications>>**, install the
+  LTTng-UST Python agent:
++
+--
+[role="term"]
+----
+# apt-get install python3-lttngust
+----
+--
+
 
 [[ubuntu-ppa]]
 ==== noch:{LTTng} Stable {revision} PPA
@@ -466,11 +496,59 @@ To install LTTng{nbsp}{revision} from the LTTng Stable{nbsp}{revision} PPA:
 --
 
 
+[[fedora]]
+=== Fedora
+
+To install LTTng{nbsp}{revision} on Fedora{nbsp}26:
+
+. Install the LTTng-tools{nbsp}{revision} and LTTng-UST{nbsp}{revision}
+  packages:
++
+--
+[role="term"]
+----
+# yum install lttng-tools
+# yum install lttng-ust
+----
+--
+
+. Download, build, and install the latest LTTng-modules{nbsp}{revision}:
++
+--
+[role="term"]
+----
+$ cd $(mktemp -d) &&
+wget http://lttng.org/files/lttng-modules/lttng-modules-latest-2.9.tar.bz2 &&
+tar -xf lttng-modules-latest-2.9.tar.bz2 &&
+cd lttng-modules-2.9.* &&
+make &&
+sudo make modules_install &&
+sudo depmod -a
+----
+--
+
+[IMPORTANT]
+.Java and Python application instrumentation and tracing
+====
+If you need to instrument and trace <<java-application,Java
+applications>> on Fedora, you need to build and install
+LTTng-UST{nbsp}{revision} <<building-from-source,from source>> and pass
+the `--enable-java-agent-jul`, `--enable-java-agent-log4j`, or
+`--enable-java-agent-all` options to the `configure` script, depending
+on which Java logging framework you use.
+
+If you need to instrument and trace <<python-application,Python
+applications>> on Fedora, you need to build and install
+LTTng-UST{nbsp}{revision} from source and pass the
+`--enable-python-agent` option to the `configure` script.
+====
+
+
 [[debian]]
 === Debian
 
-To install LTTng{nbsp}{revision} on Debian "stretch" (testing) or
-Debian "sid" (unstable):
+To install LTTng{nbsp}{revision} on Debian "stretch" (stable),
+Debian "buster" (testing), or Debian "sid" (unstable):
 
 . Install the main LTTng{nbsp}{revision} packages:
 +
@@ -508,16 +586,16 @@ Debian "sid" (unstable):
 === Arch Linux
 
 To install LTTng{nbsp}{revision} on Arch Linux using
-https://archlinux.fr/yaourt-en[Yaourt]:
+https://github.com/rmarquis/pacaur[pacaur]:
 
 . Install the main LTTng{nbsp}{revision} packages:
 +
 --
 [role="term"]
 ----
-$ yaourt -S lttng-tools
-$ yaourt -S lttng-ust
-$ yaourt -S lttng-modules
+$ pacaur -Sy lttng-tools
+$ pacaur -Sy lttng-ust
+$ pacaur -Sy lttng-modules
 ----
 --
 
@@ -527,8 +605,8 @@ $ yaourt -S lttng-modules
 --
 [role="term"]
 ----
-$ yaourt -S python-lttngust
-$ yaourt -S python2-lttngust
+$ pacaur -Sy python-lttngust
+$ pacaur -Sy python2-lttngust
 ----
 --
 
@@ -572,9 +650,9 @@ on Alpine Linux "edge":
 [role="term"]
 ----
 $ cd $(mktemp -d) &&
-wget http://lttng.org/files/lttng-modules/lttng-modules-latest-2.8.tar.bz2 &&
-tar -xf lttng-modules-latest-2.8.tar.bz2 &&
-cd lttng-modules-2.8.* &&
+wget http://lttng.org/files/lttng-modules/lttng-modules-latest-2.9.tar.bz2 &&
+tar -xf lttng-modules-latest-2.9.tar.bz2 &&
+cd lttng-modules-2.9.* &&
 make &&
 sudo make modules_install &&
 sudo depmod -a
@@ -593,7 +671,8 @@ see http://packages.efficios.com/[EfficiOS Enterprise Packages].
 [[buildroot]]
 === Buildroot
 
-To install LTTng{nbsp}{revision} on Buildroot{nbsp}2017.02:
+To install LTTng{nbsp}{revision} on Buildroot{nbsp}2017.02 or
+Buildroot{nbsp}2017.05:
 
 . Launch the Buildroot configuration tool:
 +
@@ -610,6 +689,48 @@ $ make menuconfig
   check **lttng-modules** and **lttng-tools**.
 . In **Target packages**{nbsp}&#8594; **Libraries**{nbsp}&#8594;
   **Other**, check **lttng-libust**.
+
+
+[[oe-yocto]]
+=== OpenEmbedded and Yocto
+
+LTTng{nbsp}{revision} recipes are available in the
+http://layers.openembedded.org/layerindex/branch/master/layer/openembedded-core/[`openembedded-core`]
+layer for Yocto Project{nbsp}2.3 _Pyro_ under the following names:
+
+* `lttng-tools`
+* `lttng-modules`
+* `lttng-ust`
+
+With BitBake, the simplest way to include LTTng recipes in your target
+image is to add them to `IMAGE_INSTALL_append` in path:{conf/local.conf}:
+
+----
+IMAGE_INSTALL_append = " lttng-tools lttng-modules lttng-ust"
+----
+
+If you use Hob:
+
+. Select a machine and an image recipe.
+. Click **Edit image recipe**.
+. Under the **All recipes** tab, search for **lttng**.
+. Check the desired LTTng recipes.
+
+[IMPORTANT]
+.Java and Python application instrumentation and tracing
+====
+If you need to instrument and trace <<java-application,Java
+applications>> on Yocto/OpenEmbedded, you need to build and install
+LTTng-UST{nbsp}{revision} <<building-from-source,from source>> and pass
+the `--enable-java-agent-jul`, `--enable-java-agent-log4j`, or
+`--enable-java-agent-all` options to the `configure` script, depending
+on which Java logging framework you use.
+
+If you need to instrument and trace <<python-application,Python
+applications>> on Yocto/OpenEmbedded, you need to build and install
+LTTng-UST{nbsp}{revision} from source and pass the
+`--enable-python-agent` option to the `configure` script.
+====
 
 
 [[building-from-source]]
