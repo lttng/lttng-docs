@@ -6008,7 +6008,7 @@ $ lttng enable-channel --userspace --num-subbuf=4 --subbuf-size=1M \
 ----
 ====
 
-.[[blocking-timeout-example]]Create a default user space channel with an infinite blocking timeout:
+.[[blocking-timeout-example]]Create a default user space channel with an infinite blocking timeout.
 ====
 <<creating-destroying-tracing-sessions,Create a tracing-session>>,
 create the channel, <<enabling-disabling-events,create an event rule>>,
