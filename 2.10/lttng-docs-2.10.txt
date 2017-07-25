@@ -87,7 +87,7 @@ New features and changes in LTTng{nbsp}{revision}:
    only at the end, when you <<enabling-disabling-events,create an event
    rule>>, in both the instrumentation point name and the literal
    strings of
-   link:http://lttng.org/man/1/lttng-enable-event/v{revision}/#doc-filter-syntax[filter expressions]:
+   link:/man/1/lttng-enable-event/v{revision}/#doc-filter-syntax[filter expressions]:
 +
 --
 [role="term"]
