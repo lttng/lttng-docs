@@ -1,7 +1,7 @@
 The LTTng Documentation
 =======================
 Philippe Proulx <pproulx@efficios.com>
-v2.9, 14 March 2017
+v2.9, 24 July 2017
 
 
 include::../common/copyright.txt[]
