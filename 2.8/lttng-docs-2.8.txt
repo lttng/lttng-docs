@@ -586,14 +586,14 @@ sudo depmod -a
 .Java and Python application instrumentation and tracing
 ====
 If you need to instrument and trace <<java-application,Java
-applications>> on openSUSE, you need to build and install
+applications>> on Fedora, you need to build and install
 LTTng-UST{nbsp}{revision} <<building-from-source,from source>> and pass
 the `--enable-java-agent-jul`, `--enable-java-agent-log4j`, or
 `--enable-java-agent-all` options to the `configure` script, depending
 on which Java logging framework you use.
 
 If you need to instrument and trace <<python-application,Python
-applications>> on openSUSE, you need to build and install
+applications>> on Fedora, you need to build and install
 LTTng-UST{nbsp}{revision} from source and pass the
 `--enable-python-agent` option to the `configure` script.
 ====
@@ -658,14 +658,14 @@ If you use Hob:
 .Java and Python application instrumentation and tracing
 ====
 If you need to instrument and trace <<java-application,Java
-applications>> on openSUSE, you need to build and install
+applications>> on Yocto/OpenEmbedded, you need to build and install
 LTTng-UST{nbsp}{revision} <<building-from-source,from source>> and pass
 the `--enable-java-agent-jul`, `--enable-java-agent-log4j`, or
 `--enable-java-agent-all` options to the `configure` script, depending
 on which Java logging framework you use.
 
 If you need to instrument and trace <<python-application,Python
-applications>> on openSUSE, you need to build and install
+applications>> on Yocto/OpenEmbedded, you need to build and install
 LTTng-UST{nbsp}{revision} from source and pass the
 `--enable-python-agent` option to the `configure` script.
 ====
