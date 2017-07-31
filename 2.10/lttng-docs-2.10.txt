@@ -1,7 +1,7 @@
 The LTTng Documentation
 =======================
 Philippe Proulx <pproulx@efficios.com>
-v2.10, 25 July 2017
+v2.10, 31 July 2017
 
 
 include::../common/copyright.txt[]
@@ -111,7 +111,9 @@ $ lttng enable-event --userspace '*_my_org:*msg*'
    <<channel,channel>> buffer usage conditions are available.
    Documentation is available in the
    https://github.com/lttng/lttng-tools/tree/stable-{revision}/include/lttng[`liblttng-ctl`
-   header files].
+   header files] and in
+   <<notif-trigger-api,Get notified when a channel's buffer usage is too
+   high or too low>>.
 
 ** You can now embed the whole textual LTTng-tools man pages into the
    executables at build time with the `--enable-embedded-help`
@@ -6734,6 +6736,252 @@ To convert the ring buffer files to LTTng trace files:
 $ lttng-crash --extract=/path/to/trace /path/to/shm
 ----
 --
+
+
+[role="since-2.10"]
+[[notif-trigger-api]]
+=== Get notified when a channel's buffer usage is too high or too low
+
+With LTTng's $$C/C++$$ notification and trigger API, your user
+application can get notified when the buffer usage of one or more
+<<channel,channels>> becomes too low or too high. You can use this API
+and enable or disable <<event,event rules>> during tracing to avoid
+<<channel-overwrite-mode-vs-discard-mode,discarded event records>>.
+
+.Have a user application get notified when an LTTng channel's buffer usage is too high.
+====
+In this example, we create and build an application which gets notified
+when the buffer usage of a specific LTTng channel is higher than
+75{nbsp}%. We only print that it is the case in the example, but we
+could as well use the API of <<liblttng-ctl-lttng,`liblttng-ctl`>> to
+disable event rules when this happens.
+
+. Create the application's C source file:
++
+--
+[source,c]
+.path:{notif-app.c}
+----
+#include <stdio.h>
+#include <assert.h>
+#include <lttng/domain.h>
+#include <lttng/action/action.h>
+#include <lttng/action/notify.h>
+#include <lttng/condition/condition.h>
+#include <lttng/condition/buffer-usage.h>
+#include <lttng/condition/evaluation.h>
+#include <lttng/notification/channel.h>
+#include <lttng/notification/notification.h>
+#include <lttng/trigger/trigger.h>
+#include <lttng/endpoint.h>
+
+int main(int argc, char *argv[])
+{
+  int exit_status = 0;
+  struct lttng_notification_channel *notification_channel;
+  struct lttng_condition *condition;
+  struct lttng_action *action;
+  struct lttng_trigger *trigger;
+  const char *tracing_session_name;
+  const char *channel_name;
+
+  assert(argc >= 3);
+  tracing_session_name = argv[1];
+  channel_name = argv[2];
+
+  /*
+   * Create a notification channel. A notification channel
+   * connects the user application to the LTTng session daemon.
+   * This notification channel can be used to listen for various
+   * types of notifications.
+   */
+  notification_channel = lttng_notification_channel_create(
+      lttng_session_daemon_notification_endpoint);
+
+  /*
+   * Create a "high buffer usage" condition. In this case, the
+   * condition is reached when the buffer usage is greater than or
+   * equal to 75 %. We create the condition for a specific session
+   * name, channel name, and for the user space tracing domain.
+   *
+   * The "low buffer usage" condition type also exists.
+   */
+  condition = lttng_condition_buffer_usage_high_create();
+  lttng_condition_buffer_usage_set_threshold_ratio(condition, .75);
+  lttng_condition_buffer_usage_set_session_name(
+    condition, tracing_session_name);
+  lttng_condition_buffer_usage_set_channel_name(condition,
+    channel_name);
+  lttng_condition_buffer_usage_set_domain_type(condition,
+    LTTNG_DOMAIN_UST);
+
+  /*
+   * Create an action (get a notification) to take when the
+   * condition created above is reached.
+   */
+  action = lttng_action_notify_create();
+
+  /*
+   * Create a trigger. A trigger associates a condition to an
+   * action: the action is executed when the condition is reached.
+   */
+  trigger = lttng_trigger_create(condition, action);
+
+  /* Register the trigger to LTTng. */
+  lttng_register_trigger(trigger);
+
+  /*
+   * Now that we have registered a trigger, a notification will be
+   * emitted everytime its condition is met. To receive this
+   * notification, we must subscribe to notifications that match
+   * the same condition.
+   */
+  lttng_notification_channel_subscribe(notification_channel, condition);
+
+  /*
+   * Notification loop. This can be in a dedicated thread to avoid
+   * blocking the main thread.
+   */
+  for (;;) {
+    struct lttng_notification *notification;
+    enum lttng_notification_channel_status status;
+    const struct lttng_evaluation *notification_evaluation;
+    const struct lttng_condition *notification_condition;
+    double buffer_usage;
+
+    /* Receive the next notification. */
+    status = lttng_notification_channel_get_next_notification(
+        notification_channel,
+        &notification);
+
+    switch (status) {
+    case LTTNG_NOTIFICATION_CHANNEL_STATUS_OK:
+      break;
+    case LTTNG_NOTIFICATION_CHANNEL_STATUS_NOTIFICATIONS_DROPPED:
+      /*
+       * The session daemon can drop notifications if
+       * a monitoring application is not consuming the
+       * notifications fast enough.
+       */
+      continue;
+    case LTTNG_NOTIFICATION_CHANNEL_STATUS_CLOSED:
+      /*
+       * The notification channel has been closed by the
+       * session daemon. This is typically caused by a session
+       * daemon shutting down (cleanly or because of a crash).
+       */
+      goto end;
+    default:
+      /* Unhandled conditions or errors. */
+      exit_status = 1;
+      goto end;
+    }
+
+    /*
+     * A notification provides, amongst other things:
+     *
+     * * The condition that caused this notification to be
+     *   emitted.
+     * * The condition evaluation, which provides more
+     *   specific information on the evaluation of the
+     *   condition.
+     *
+     * The condition evaluation provides the buffer usage
+     * value at the moment the condition was met.
+     */
+    notification_condition = lttng_notification_get_condition(
+      notification);
+    notification_evaluation = lttng_notification_get_evaluation(
+      notification);
+
+    /* We're subscribed to only one condition. */
+    assert(lttng_condition_get_type(notification_condition) ==
+      LTTNG_CONDITION_TYPE_BUFFER_USAGE_HIGH);
+
+    /*
+     * Get the exact sampled buffer usage from the
+     * condition evaluation.
+     */
+    lttng_evaluation_buffer_usage_get_usage_ratio(
+        notification_evaluation, &buffer_usage);
+
+    /*
+     * At this point, instead of printing a message, we
+     * could do something to reduce the channel's buffer
+     * usage, like disable specific events.
+     */
+    printf("Buffer usage is %f %% in tracing session \"%s\", "
+      "user space channel \"%s\".\n",
+      buffer_usage * 100, tracing_session_name,
+      channel_name);
+    lttng_notification_destroy(notification);
+  }
+
+end:
+  lttng_action_destroy(action);
+  lttng_condition_destroy(condition);
+  lttng_trigger_destroy(trigger);
+  lttng_notification_channel_destroy(notification_channel);
+  return exit_status;
+}
+----
+--
+
+. Build the `notif-app` application, linking it to `liblttng-ctl`:
++
+--
+[role="term"]
+----
+$ gcc -o notif-app notif-app.c -llttng-ctl
+----
+--
+
+. <<creating-destroying-tracing-sessions,Create a tracing session>>,
+  <<enabling-disabling-events,create an event rule>> matching all the
+  user space tracepoints, and
+  <<basic-tracing-session-control,start tracing>>:
++
+--
+[role="term"]
+----
+$ lttng create my-session
+$ lttng enable-event --userspace --all
+$ lttng start
+----
+--
++
+If you create the channel manually with the man:lttng-enable-channel(1)
+command, you can control how frequently are the current values of the
+channel's properties sampled to evaluate user conditions with the
+opt:lttng-enable-channel(1):--monitor-timer option.
+
+. Run the `notif-app` application. This program accepts the
+  <<tracing-session,tracing session>> name and the user space channel
+  name as its two first arguments. The channel which LTTng automatically
+  creates with the man:lttng-enable-event(1) command above is named
+  `channel0`:
++
+--
+[role="term"]
+----
+$ ./notif-app my-session channel0
+----
+--
+
+. In another terminal, run an application with a very high event
+  throughput so that the 75{nbsp}% buffer usage condition is reached.
++
+In the first terminal, the application should print lines like this:
++
+----
+Buffer usage is 81.45197 % in tracing session "my-session", user space
+channel "channel0".
+----
++
+If you don't see anything, try modifying the condition in
+path:{notif-app.c} to a lower value (0.1, for example), rebuilding it
+(step 2) and running it again (step 4).
+====
 
 
 [[reference]]
