@@ -320,7 +320,7 @@ the `--userspace` option has no arguments.
 ....
 [role="term"]
 ----
-lttng enable-event --userspace provider:'sys_*' --filter='field < 23'
+$ lttng enable-event --userspace provider:'sys_*' --filter='field < 23' \
                    --exclude=sys_send,sys_block --loglevel=TRACE_INFO
 ----
 ....
