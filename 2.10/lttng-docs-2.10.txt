@@ -6777,152 +6777,152 @@ disable event rules when this happens.
 
 int main(int argc, char *argv[])
 {
-  int exit_status = 0;
-  struct lttng_notification_channel *notification_channel;
-  struct lttng_condition *condition;
-  struct lttng_action *action;
-  struct lttng_trigger *trigger;
-  const char *tracing_session_name;
-  const char *channel_name;
+    int exit_status = 0;
+    struct lttng_notification_channel *notification_channel;
+    struct lttng_condition *condition;
+    struct lttng_action *action;
+    struct lttng_trigger *trigger;
+    const char *tracing_session_name;
+    const char *channel_name;
 
-  assert(argc >= 3);
-  tracing_session_name = argv[1];
-  channel_name = argv[2];
+    assert(argc >= 3);
+    tracing_session_name = argv[1];
+    channel_name = argv[2];
 
-  /*
-   * Create a notification channel. A notification channel
-   * connects the user application to the LTTng session daemon.
-   * This notification channel can be used to listen for various
-   * types of notifications.
-   */
-  notification_channel = lttng_notification_channel_create(
-      lttng_session_daemon_notification_endpoint);
+    /*
+     * Create a notification channel. A notification channel
+     * connects the user application to the LTTng session daemon.
+     * This notification channel can be used to listen for various
+     * types of notifications.
+     */
+    notification_channel = lttng_notification_channel_create(
+        lttng_session_daemon_notification_endpoint);
 
-  /*
-   * Create a "high buffer usage" condition. In this case, the
-   * condition is reached when the buffer usage is greater than or
-   * equal to 75 %. We create the condition for a specific session
-   * name, channel name, and for the user space tracing domain.
-   *
-   * The "low buffer usage" condition type also exists.
-   */
-  condition = lttng_condition_buffer_usage_high_create();
-  lttng_condition_buffer_usage_set_threshold_ratio(condition, .75);
-  lttng_condition_buffer_usage_set_session_name(
-    condition, tracing_session_name);
-  lttng_condition_buffer_usage_set_channel_name(condition,
-    channel_name);
-  lttng_condition_buffer_usage_set_domain_type(condition,
-    LTTNG_DOMAIN_UST);
+    /*
+     * Create a "high buffer usage" condition. In this case, the
+     * condition is reached when the buffer usage is greater than or
+     * equal to 75 %. We create the condition for a specific session
+     * name, channel name, and for the user space tracing domain.
+     *
+     * The "low buffer usage" condition type also exists.
+     */
+    condition = lttng_condition_buffer_usage_high_create();
+    lttng_condition_buffer_usage_set_threshold_ratio(condition, .75);
+    lttng_condition_buffer_usage_set_session_name(
+        condition, tracing_session_name);
+    lttng_condition_buffer_usage_set_channel_name(condition,
+        channel_name);
+    lttng_condition_buffer_usage_set_domain_type(condition,
+        LTTNG_DOMAIN_UST);
 
-  /*
-   * Create an action (get a notification) to take when the
-   * condition created above is reached.
-   */
-  action = lttng_action_notify_create();
+    /*
+     * Create an action (get a notification) to take when the
+     * condition created above is reached.
+     */
+    action = lttng_action_notify_create();
 
-  /*
-   * Create a trigger. A trigger associates a condition to an
-   * action: the action is executed when the condition is reached.
-   */
-  trigger = lttng_trigger_create(condition, action);
+    /*
+     * Create a trigger. A trigger associates a condition to an
+     * action: the action is executed when the condition is reached.
+     */
+    trigger = lttng_trigger_create(condition, action);
 
-  /* Register the trigger to LTTng. */
-  lttng_register_trigger(trigger);
+    /* Register the trigger to LTTng. */
+    lttng_register_trigger(trigger);
 
-  /*
-   * Now that we have registered a trigger, a notification will be
-   * emitted everytime its condition is met. To receive this
-   * notification, we must subscribe to notifications that match
-   * the same condition.
-   */
-  lttng_notification_channel_subscribe(notification_channel, condition);
+    /*
+     * Now that we have registered a trigger, a notification will be
+     * emitted everytime its condition is met. To receive this
+     * notification, we must subscribe to notifications that match
+     * the same condition.
+     */
+    lttng_notification_channel_subscribe(notification_channel, condition);
 
-  /*
-   * Notification loop. This can be in a dedicated thread to avoid
-   * blocking the main thread.
-   */
-  for (;;) {
-    struct lttng_notification *notification;
-    enum lttng_notification_channel_status status;
-    const struct lttng_evaluation *notification_evaluation;
-    const struct lttng_condition *notification_condition;
-    double buffer_usage;
+    /*
+     * Notification loop. This can be in a dedicated thread to avoid
+     * blocking the main thread.
+     */
+    for (;;) {
+        struct lttng_notification *notification;
+        enum lttng_notification_channel_status status;
+        const struct lttng_evaluation *notification_evaluation;
+        const struct lttng_condition *notification_condition;
+        double buffer_usage;
 
-    /* Receive the next notification. */
-    status = lttng_notification_channel_get_next_notification(
-        notification_channel,
-        &notification);
+        /* Receive the next notification. */
+        status = lttng_notification_channel_get_next_notification(
+            notification_channel,
+            &notification);
 
-    switch (status) {
-    case LTTNG_NOTIFICATION_CHANNEL_STATUS_OK:
-      break;
-    case LTTNG_NOTIFICATION_CHANNEL_STATUS_NOTIFICATIONS_DROPPED:
-      /*
-       * The session daemon can drop notifications if
-       * a monitoring application is not consuming the
-       * notifications fast enough.
-       */
-      continue;
-    case LTTNG_NOTIFICATION_CHANNEL_STATUS_CLOSED:
-      /*
-       * The notification channel has been closed by the
-       * session daemon. This is typically caused by a session
-       * daemon shutting down (cleanly or because of a crash).
-       */
-      goto end;
-    default:
-      /* Unhandled conditions or errors. */
-      exit_status = 1;
-      goto end;
+        switch (status) {
+        case LTTNG_NOTIFICATION_CHANNEL_STATUS_OK:
+            break;
+        case LTTNG_NOTIFICATION_CHANNEL_STATUS_NOTIFICATIONS_DROPPED:
+            /*
+             * The session daemon can drop notifications if
+             * a monitoring application is not consuming the
+             * notifications fast enough.
+             */
+            continue;
+        case LTTNG_NOTIFICATION_CHANNEL_STATUS_CLOSED:
+            /*
+             * The notification channel has been closed by the
+             * session daemon. This is typically caused by a session
+             * daemon shutting down.
+             */
+            goto end;
+        default:
+            /* Unhandled conditions or errors. */
+            exit_status = 1;
+            goto end;
+        }
+
+        /*
+         * A notification provides, amongst other things:
+         *
+         * * The condition that caused this notification to be
+         *   emitted.
+         * * The condition evaluation, which provides more
+         *   specific information on the evaluation of the
+         *   condition.
+         *
+         * The condition evaluation provides the buffer usage
+         * value at the moment the condition was met.
+         */
+        notification_condition = lttng_notification_get_condition(
+            notification);
+        notification_evaluation = lttng_notification_get_evaluation(
+            notification);
+
+        /* We're subscribed to only one condition. */
+        assert(lttng_condition_get_type(notification_condition) ==
+            LTTNG_CONDITION_TYPE_BUFFER_USAGE_HIGH);
+
+        /*
+         * Get the exact sampled buffer usage from the
+         * condition evaluation.
+         */
+        lttng_evaluation_buffer_usage_get_usage_ratio(
+            notification_evaluation, &buffer_usage);
+
+        /*
+         * At this point, instead of printing a message, we
+         * could do something to reduce the channel's buffer
+         * usage, like disable specific events.
+         */
+        printf("Buffer usage is %f %% in tracing session \"%s\", "
+            "user space channel \"%s\".\n",
+            buffer_usage * 100, tracing_session_name,
+            channel_name);
+        lttng_notification_destroy(notification);
     }
 
-    /*
-     * A notification provides, amongst other things:
-     *
-     * * The condition that caused this notification to be
-     *   emitted.
-     * * The condition evaluation, which provides more
-     *   specific information on the evaluation of the
-     *   condition.
-     *
-     * The condition evaluation provides the buffer usage
-     * value at the moment the condition was met.
-     */
-    notification_condition = lttng_notification_get_condition(
-      notification);
-    notification_evaluation = lttng_notification_get_evaluation(
-      notification);
-
-    /* We're subscribed to only one condition. */
-    assert(lttng_condition_get_type(notification_condition) ==
-      LTTNG_CONDITION_TYPE_BUFFER_USAGE_HIGH);
-
-    /*
-     * Get the exact sampled buffer usage from the
-     * condition evaluation.
-     */
-    lttng_evaluation_buffer_usage_get_usage_ratio(
-        notification_evaluation, &buffer_usage);
-
-    /*
-     * At this point, instead of printing a message, we
-     * could do something to reduce the channel's buffer
-     * usage, like disable specific events.
-     */
-    printf("Buffer usage is %f %% in tracing session \"%s\", "
-      "user space channel \"%s\".\n",
-      buffer_usage * 100, tracing_session_name,
-      channel_name);
-    lttng_notification_destroy(notification);
-  }
-
 end:
-  lttng_action_destroy(action);
-  lttng_condition_destroy(condition);
-  lttng_trigger_destroy(trigger);
-  lttng_notification_channel_destroy(notification_channel);
-  return exit_status;
+    lttng_action_destroy(action);
+    lttng_condition_destroy(condition);
+    lttng_trigger_destroy(trigger);
+    lttng_notification_channel_destroy(notification_channel);
+    return exit_status;
 }
 ----
 --
