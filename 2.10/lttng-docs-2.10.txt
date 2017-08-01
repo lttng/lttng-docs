@@ -1290,8 +1290,11 @@ reached, the channel's _event loss mode_ determines what to do. The
 available event loss modes are:
 
 Discard mode::
-  Drop the newest event records until a the tracer
-  releases a sub-buffer.
+  Drop the newest event records until a the tracer releases a
+  sub-buffer.
++
+This is the only available mode when you specify a
+<<opt-blocking-timeout,blocking timeout>>.
 
 Overwrite mode::
   Clear the sub-buffer containing the oldest event records and start
