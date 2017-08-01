@@ -138,7 +138,7 @@ instrumented with LTTng-UST which is explicitly allowed to block:
 [role="term"]
 ----
 $ lttng create
-$ lttng enable-channel --userspace --blocking-timeout=-1 blocking-channel
+$ lttng enable-channel --userspace --blocking-timeout=inf blocking-channel
 $ lttng enable-event --userspace --channel=blocking-channel --all
 $ lttng start
 $ LTTNG_UST_ALLOW_BLOCKING=1 my-app
@@ -5957,7 +5957,7 @@ in blocking mode to +__TIMEOUTUS__+:
 0 (default)::
     Never block (non-blocking mode).
 
--1::
+`inf`::
     Block forever until space is available in a sub-buffer to record
     the event.
 
@@ -6026,7 +6026,7 @@ and <<basic-tracing-session-control,start tracing>>:
 [role="term"]
 ----
 $ lttng create
-$ lttng enable-channel --userspace --blocking-timeout=-1 blocking-channel
+$ lttng enable-channel --userspace --blocking-timeout=inf blocking-channel
 $ lttng enable-event --userspace --channel=blocking-channel --all
 $ lttng start
 ----
