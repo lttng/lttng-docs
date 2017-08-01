@@ -1,7 +1,7 @@
 The LTTng Documentation
 =======================
 Philippe Proulx <pproulx@efficios.com>
-v2.10, 31 July 2017
+v2.10, 1 August 2017
 
 
 include::../common/copyright.txt[]
@@ -6792,7 +6792,7 @@ int main(int argc, char *argv[])
     /*
      * Create a notification channel. A notification channel
      * connects the user application to the LTTng session daemon.
-     * This notification channel can be used to listen for various
+     * This notification channel can be used to listen to various
      * types of notifications.
      */
     notification_channel = lttng_notification_channel_create(
@@ -6801,8 +6801,9 @@ int main(int argc, char *argv[])
     /*
      * Create a "high buffer usage" condition. In this case, the
      * condition is reached when the buffer usage is greater than or
-     * equal to 75 %. We create the condition for a specific session
-     * name, channel name, and for the user space tracing domain.
+     * equal to 75 %. We create the condition for a specific tracing
+     * session name, channel name, and for the user space tracing
+     * domain.
      *
      * The "low buffer usage" condition type also exists.
      */
@@ -6836,11 +6837,12 @@ int main(int argc, char *argv[])
      * notification, we must subscribe to notifications that match
      * the same condition.
      */
-    lttng_notification_channel_subscribe(notification_channel, condition);
+    lttng_notification_channel_subscribe(notification_channel,
+        condition);
 
     /*
-     * Notification loop. This can be in a dedicated thread to avoid
-     * blocking the main thread.
+     * Notification loop. You can put this in a dedicated thread to
+     * avoid blocking the main thread.
      */
     for (;;) {
         struct lttng_notification *notification;
@@ -6851,8 +6853,7 @@ int main(int argc, char *argv[])
 
         /* Receive the next notification. */
         status = lttng_notification_channel_get_next_notification(
-            notification_channel,
-            &notification);
+            notification_channel, &notification);
 
         switch (status) {
         case LTTNG_NOTIFICATION_CHANNEL_STATUS_OK:
@@ -6887,7 +6888,7 @@ int main(int argc, char *argv[])
          *   condition.
          *
          * The condition evaluation provides the buffer usage
-         * value at the moment the condition was met.
+         * value at the moment the condition was reached.
          */
         notification_condition = lttng_notification_get_condition(
             notification);
@@ -6911,9 +6912,8 @@ int main(int argc, char *argv[])
          * usage, like disable specific events.
          */
         printf("Buffer usage is %f %% in tracing session \"%s\", "
-            "user space channel \"%s\".\n",
-            buffer_usage * 100, tracing_session_name,
-            channel_name);
+            "user space channel \"%s\".\n", buffer_usage * 100,
+            tracing_session_name, channel_name);
         lttng_notification_destroy(notification);
     }
 
