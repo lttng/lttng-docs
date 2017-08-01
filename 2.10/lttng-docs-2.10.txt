@@ -1308,15 +1308,19 @@ always keep a fixed amount of the latest data.
 Which mechanism you should choose depends on your context: prioritize
 the newest or the oldest event records in the ring buffer?
 
-Beware that, in overwrite mode, the tracer abandons a whole sub-buffer
+Beware that, in overwrite mode, the tracer abandons a _whole sub-buffer_
 as soon as a there's no space left for a new event record, whereas in
 discard mode, the tracer only discards the event record that doesn't
 fit.
 
-In discard mode, LTTng increments a count of lost event records when
-an event record is lost and saves this count to the trace. In
-overwrite mode, LTTng keeps no information when it overwrites a
-sub-buffer before consuming it.
+In discard mode, LTTng increments a count of lost event records when an
+event record is lost and saves this count to the trace. In overwrite
+mode, since LTTng 2.8, LTTng increments a count of lost sub-buffers when
+a sub-buffer is lost and saves this count to the trace. In this mode,
+the exact number of lost event records in those lost sub-buffers is not
+saved to the trace. Trace analyses can use the trace's saved discarded
+event record and sub-buffer counts to decide whether or not to perform
+the analyses even if trace data is known to be missing.
 
 There are a few ways to decrease your probability of losing event
 records.
