@@ -1,7 +1,7 @@
 The LTTng Documentation
 =======================
 Philippe Proulx <pproulx@efficios.com>
-v2.9, 25 July 2017
+v2.9, 3 October 2017
 
 
 include::../common/copyright.txt[]
@@ -340,12 +340,12 @@ but note that:
   applications.
 
 [role="growable"]
-.Availability of LTTng{nbsp}{revision} for major Linux distributions as of 25 July 2017.
+.Availability of LTTng{nbsp}{revision} for major Linux distributions as of 3 October 2017.
 |====
 |Distribution |Available in releases |Alternatives
 
 |https://www.ubuntu.com/[Ubuntu]
-|<<ubuntu,Ubuntu{nbsp}17.04 _Zesty Zapus_>>.
+|<<ubuntu,Ubuntu{nbsp}17.04 _Zesty Zapus_ and Ubuntu{nbsp}17.10 _Artful Aardvark_>>.
 
 Ubuntu{nbsp}14.04 _Trusty Tahr_ and Ubuntu{nbsp}16.04 _Xenial Xerus_:
 <<ubuntu-ppa,use the LTTng Stable{nbsp}{revision} PPA>>.
@@ -354,20 +354,21 @@ other Ubuntu releases.
 
 |https://getfedora.org/[Fedora]
 |<<fedora,Fedora{nbsp}26>>.
-|link:/docs/v2.8#doc-fedora[LTTng{nbsp}2.8 for Fedora 25].
+|link:/docs/v2.10#doc-fedora[LTTng{nbsp}2.10 for Fedora 27].
 
 <<building-from-source,Build LTTng{nbsp}{revision} from source>> for
 other Fedora releases.
 
 |https://www.debian.org/[Debian]
-|xref:debian[Debian "stretch" (stable), Debian "buster" (testing),
-and Debian "sid" (unstable)].
+|xref:debian[Debian "stretch" (stable)].
 |<<building-from-source,Build LTTng{nbsp}{revision} from source>> for
 other Debian releases.
 
 |https://www.archlinux.org/[Arch Linux]
-|<<arch-linux,Latest AUR packages>>.
-|
+|_Not available_
+|link:/docs/v2.10#doc-arch-linux[LTTng{nbsp}2.10 for the current Arch Linux build].
+
+<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
 
 |https://alpinelinux.org/[Alpine Linux]
 |<<alpine-linux,Alpine Linux "edge">>.
@@ -379,7 +380,8 @@ other Alpine Linux releases.
 |
 
 |https://buildroot.org/[Buildroot]
-|<<buildroot,Buildroot{nbsp}2017.02 and Buildroot{nbsp}2017.05>>.
+|xref:buildroot[Buildroot{nbsp}2017.02, Buildroot{nbsp}2017.05, and
+Buildroot{nbsp}2017.08].
 |link:/docs/v2.8#doc-buildroot[LTTng{nbsp}2.8 for Buildroot{nbsp}2016.11].
 
 <<building-from-source,Build LTTng{nbsp}{revision} from source>> for
@@ -399,9 +401,9 @@ other OpenEmbedded releases.
 [[ubuntu]]
 === [[ubuntu-official-repositories]]Ubuntu
 
-LTTng{nbsp}{revision} is available on Ubuntu{nbsp}17.04 _Zesty Zapus_.
-For previous releases of Ubuntu, <<ubuntu-ppa,use the LTTng
-Stable{nbsp}{revision} PPA>>.
+LTTng{nbsp}{revision} is available on Ubuntu{nbsp}17.04 _Zesty Zapus_
+and Ubuntu{nbsp}17.10 _Artful Aardvark_. For previous releases of
+Ubuntu, <<ubuntu-ppa,use the LTTng Stable{nbsp}{revision} PPA>>.
 
 To install LTTng{nbsp}{revision} on Ubuntu{nbsp}17.04 _Zesty Zapus_:
 
@@ -547,8 +549,7 @@ LTTng-UST{nbsp}{revision} from source and pass the
 [[debian]]
 === Debian
 
-To install LTTng{nbsp}{revision} on Debian "stretch" (stable),
-Debian "buster" (testing), or Debian "sid" (unstable):
+To install LTTng{nbsp}{revision} on Debian "stretch" (stable):
 
 . Install the main LTTng{nbsp}{revision} packages:
 +
@@ -578,35 +579,6 @@ Debian "buster" (testing), or Debian "sid" (unstable):
 [role="term"]
 ----
 # apt-get install python3-lttngust
-----
---
-
-
-[[arch-linux]]
-=== Arch Linux
-
-To install LTTng{nbsp}{revision} on Arch Linux using
-https://github.com/rmarquis/pacaur[pacaur]:
-
-. Install the main LTTng{nbsp}{revision} packages:
-+
---
-[role="term"]
-----
-$ pacaur -Sy lttng-tools
-$ pacaur -Sy lttng-ust
-$ pacaur -Sy lttng-modules
-----
---
-
-. **If you need to instrument and trace <<python-application,Python
-  applications>>**, install the LTTng-UST Python agent:
-+
---
-[role="term"]
-----
-$ pacaur -Sy python-lttngust
-$ pacaur -Sy python2-lttngust
 ----
 --
 
@@ -671,8 +643,8 @@ see http://packages.efficios.com/[EfficiOS Enterprise Packages].
 [[buildroot]]
 === Buildroot
 
-To install LTTng{nbsp}{revision} on Buildroot{nbsp}2017.02 or
-Buildroot{nbsp}2017.05:
+To install LTTng{nbsp}{revision} on Buildroot{nbsp}2017.02,
+Buildroot{nbsp}2017.05, or Buildroot{nbsp}2017.08:
 
 . Launch the Buildroot configuration tool:
 +

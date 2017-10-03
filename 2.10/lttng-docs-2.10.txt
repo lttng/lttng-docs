@@ -1,7 +1,7 @@
 The LTTng Documentation
 =======================
 Philippe Proulx <pproulx@efficios.com>
-v2.10, 1 August 2017
+v2.10, 3 October 2017
 
 
 include::../common/copyright.txt[]
@@ -321,7 +321,7 @@ but note that:
   applications.
 
 [role="growable"]
-.Availability of LTTng{nbsp}{revision} for major Linux distributions as of 25 July 2017.
+.Availability of LTTng{nbsp}{revision} for major Linux distributions as of 3 October 2017.
 |====
 |Distribution |Available in releases |Alternatives
 
@@ -334,21 +334,21 @@ but note that:
 other Ubuntu releases.
 
 |https://getfedora.org/[Fedora]
-|_Not available_
+|<<fedora,Fedora{nbsp}27>>.
 |link:/docs/v2.9#doc-fedora[LTTng{nbsp}2.9 for Fedora 26].
 
-<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
+<<building-from-source,Build LTTng{nbsp}{revision} from source>> for
+other Fedora releases.
 
 |https://www.debian.org/[Debian]
-|_Not available_
-|link:/docs/v2.9#doc-debian[LTTng{nbsp}2.9 for Debian "stretch"
-(stable), Debian "buster" (testing), and Debian "sid" (unstable)].
+|<<debian,Debian "buster" (testing) and Debian "sid" (unstable)>>.
+|link:/docs/v2.9#doc-debian[LTTng{nbsp}2.9 for Debian "stretch" (stable)].
 
 <<building-from-source,Build LTTng{nbsp}{revision} from source>>.
 
 |https://www.archlinux.org/[Arch Linux]
-|_Not available_
-|link:/docs/v2.9#doc-arch-linux[LTTng{nbsp}2.9 in the latest AUR packages].
+|<<arch-linux,Current Arch Linux build>>.
+|<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
 
 |https://alpinelinux.org/[Alpine Linux]
 |_Not available_
@@ -433,6 +433,126 @@ To install LTTng{nbsp}{revision} from the LTTng Stable{nbsp}{revision} PPA:
 [role="term"]
 ----
 # apt-get install python3-lttngust
+----
+--
+
+
+[[fedora]]
+=== Fedora
+
+To install LTTng{nbsp}{revision} on Fedora{nbsp}27:
+
+. Install the LTTng-tools{nbsp}{revision} and LTTng-UST{nbsp}{revision}
+  packages:
++
+--
+[role="term"]
+----
+# yum install lttng-tools
+# yum install lttng-ust
+----
+--
+
+. Download, build, and install the latest LTTng-modules{nbsp}{revision}:
++
+--
+[role="term"]
+----
+$ cd $(mktemp -d) &&
+wget http://lttng.org/files/lttng-modules/lttng-modules-latest-2.10.tar.bz2 &&
+tar -xf lttng-modules-latest-2.10.tar.bz2 &&
+cd lttng-modules-2.10.* &&
+make &&
+sudo make modules_install &&
+sudo depmod -a
+----
+--
+
+[IMPORTANT]
+.Java and Python application instrumentation and tracing
+====
+If you need to instrument and trace <<java-application,Java
+applications>> on Fedora, you need to build and install
+LTTng-UST{nbsp}{revision} <<building-from-source,from source>> and pass
+the `--enable-java-agent-jul`, `--enable-java-agent-log4j`, or
+`--enable-java-agent-all` options to the `configure` script, depending
+on which Java logging framework you use.
+
+If you need to instrument and trace <<python-application,Python
+applications>> on Fedora, you need to build and install
+LTTng-UST{nbsp}{revision} from source and pass the
+`--enable-python-agent` option to the `configure` script.
+====
+
+
+[[debian]]
+=== Debian
+
+To install LTTng{nbsp}{revision} on Debian "buster" (testing)
+or Debian "sid" (unstable):
+
+. Install the main LTTng{nbsp}{revision} packages:
++
+--
+[role="term"]
+----
+# apt-get install lttng-modules-dkms
+# apt-get install liblttng-ust-dev
+# apt-get install lttng-tools
+----
+--
+
+. **If you need to instrument and trace <<java-application,Java
+  applications>>**, install the LTTng-UST Java agent:
++
+--
+[role="term"]
+----
+# apt-get install liblttng-ust-agent-java
+----
+--
+
+. **If you need to instrument and trace <<python-application,Python
+  applications>>**, install the LTTng-UST Python agent:
++
+--
+[role="term"]
+----
+# apt-get install python3-lttngust
+----
+--
+
+
+[[arch-linux]]
+=== Arch Linux
+
+LTTng-UST{nbsp}{revision} is available in Arch Linux's _Community_
+repository, while LTTng-tools{nbsp}{revision} and
+LTTng-modules{nbsp}{revision} are available in the
+https://aur.archlinux.org/[AUR].
+
+To install LTTng{nbsp}{revision} on Arch Linux, using
+https://github.com/rmarquis/pacaur[pacaur] for the AUR packages:
+
+. Install the main LTTng{nbsp}{revision} packages:
++
+--
+[role="term"]
+----
+# pacman -Sy lttng-ust
+$ pacaur -Sy lttng-tools
+$ pacaur -Sy lttng-modules
+----
+--
+
+. **If you need to instrument and trace <<python-application,Python
+  applications>>**, install the LTTng-UST Python agent:
++
+--
+[role="term"]
+----
+# pacman -Sy python-lttngust
+# pacman -Sy python2-lttngust
 ----
 --
 
