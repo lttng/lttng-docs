@@ -360,7 +360,7 @@ other Ubuntu releases.
 other Fedora releases.
 
 |https://www.debian.org/[Debian]
-|xref:debian[Debian "stretch" (stable)].
+|<<debian,Debian "stretch" (stable)>>.
 |<<building-from-source,Build LTTng{nbsp}{revision} from source>> for
 other Debian releases.
 
@@ -380,8 +380,7 @@ other Alpine Linux releases.
 |
 
 |https://buildroot.org/[Buildroot]
-|xref:buildroot[Buildroot{nbsp}2017.02, Buildroot{nbsp}2017.05, and
-Buildroot{nbsp}2017.08].
+|<<"buildroot", "Buildroot{nbsp}2017.02, Buildroot{nbsp}2017.05, and Buildroot{nbsp}2017.08">>.
 |link:/docs/v2.8#doc-buildroot[LTTng{nbsp}2.8 for Buildroot{nbsp}2016.11].
 
 <<building-from-source,Build LTTng{nbsp}{revision} from source>> for
