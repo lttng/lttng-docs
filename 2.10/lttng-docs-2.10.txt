@@ -328,7 +328,7 @@ but note that:
 |https://www.ubuntu.com/[Ubuntu]
 |Ubuntu{nbsp}14.04 _Trusty Tahr_ and Ubuntu{nbsp}16.04 _Xenial Xerus_:
 <<ubuntu-ppa,use the LTTng Stable{nbsp}{revision} PPA>>.
-|link:/docs/v2.9#doc-ubuntu[LTTng{nbsp}2.9 for Ubuntu{nbsp}17.04 _Zesty Zapus_].
+|link:/docs/v2.9#doc-ubuntu[LTTng{nbsp}2.9 for Ubuntu{nbsp}17.04 _Zesty Zapus_ and Ubuntu{nbsp}17.10 _Artful Aardvark_].
 
 <<building-from-source,Build LTTng{nbsp}{revision} from source>> for
 other Ubuntu releases.
