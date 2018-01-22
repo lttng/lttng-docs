@@ -1,7 +1,7 @@
 The LTTng Documentation
 =======================
 Philippe Proulx <pproulx@efficios.com>
-v2.9, 3 October 2017
+v2.9, 22 January 2018
 
 
 include::../common/copyright.txt[]
@@ -340,7 +340,7 @@ but note that:
   applications.
 
 [role="growable"]
-.Availability of LTTng{nbsp}{revision} for major Linux distributions as of 3 October 2017.
+.Availability of LTTng{nbsp}{revision} for major Linux distributions as of 22 January 2018.
 |====
 |Distribution |Available in releases |Alternatives
 
@@ -354,14 +354,18 @@ other Ubuntu releases.
 
 |https://getfedora.org/[Fedora]
 |<<fedora,Fedora{nbsp}26>>.
-|link:/docs/v2.10#doc-fedora[LTTng{nbsp}2.10 for Fedora 27].
+|link:/docs/v2.10#doc-fedora[LTTng{nbsp}2.10 for Fedora{nbsp}27].
 
 <<building-from-source,Build LTTng{nbsp}{revision} from source>> for
 other Fedora releases.
 
 |https://www.debian.org/[Debian]
 |<<debian,Debian "stretch" (stable)>>.
-|<<building-from-source,Build LTTng{nbsp}{revision} from source>> for
+|link:/docs/v2.10#doc-debian[LTTng{nbsp}2.10 for Debian "buster" (testing)
+and Debian "sid" (unstable)].
+
+
+<<building-from-source,Build LTTng{nbsp}{revision} from source>> for
 other Debian releases.
 
 |https://www.archlinux.org/[Arch Linux]
@@ -371,29 +375,27 @@ other Debian releases.
 <<building-from-source,Build LTTng{nbsp}{revision} from source>>.
 
 |https://alpinelinux.org/[Alpine Linux]
-|<<alpine-linux,Alpine Linux "edge">>.
-|<<building-from-source,Build LTTng{nbsp}{revision} from source>> for
-other Alpine Linux releases.
+|_Not available_
+|link:/docs/v2.10#doc-alpine-linux[LTTng{nbsp}2.10 for Alpine Linux{nbsp}3.7
+and Alpine Linux{nbsp}"edge"].
+
+<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
 
 |https://www.redhat.com/[RHEL] and https://www.suse.com/[SLES]
 |See http://packages.efficios.com/[EfficiOS Enterprise Packages].
 |
 
 |https://buildroot.org/[Buildroot]
-|<<"buildroot", "Buildroot{nbsp}2017.02, Buildroot{nbsp}2017.05, and Buildroot{nbsp}2017.08">>.
-|link:/docs/v2.8#doc-buildroot[LTTng{nbsp}2.8 for Buildroot{nbsp}2016.11].
-
-<<building-from-source,Build LTTng{nbsp}{revision} from source>> for
+|<<"buildroot", "Buildroot{nbsp}2017.02, Buildroot{nbsp}2017.05, Buildroot{nbsp}2017.08, and Buildroot{nbsp}2017.11">>.
+|<<building-from-source,Build LTTng{nbsp}{revision} from source>> for
 other Buildroot releases.
 
 |http://www.openembedded.org/wiki/Main_Page[OpenEmbedded] and
 https://www.yoctoproject.org/[Yocto]
-|<<oe-yocto,Yocto Project{nbsp}2.3 _Pyro_>> (`openembedded-core` layer).
-|link:/docs/v2.8#doc-oe-yocto[LTTng{nbsp}2.8 for Yocto Project{nbsp}2.2 _Morty_]
+|<<oe-yocto,Yocto Project{nbsp}2.3 _Pyro_ and Yocto Project{nbsp}2.4 _Rocko_>>
 (`openembedded-core` layer).
-
-<<building-from-source,Build LTTng{nbsp}{revision} from source>> for
-other OpenEmbedded releases.
+|<<building-from-source,Build LTTng{nbsp}{revision} from source>> for
+other Yocto/OpenEmbedded releases.
 |====
 
 
@@ -582,55 +584,6 @@ To install LTTng{nbsp}{revision} on Debian "stretch" (stable):
 --
 
 
-[[alpine-linux]]
-=== Alpine Linux
-
-To install LTTng-tools{nbsp}{revision} and LTTng-UST{nbsp}{revision} on
-Alpine Linux "edge":
-
-. Make sure your system is
-  https://wiki.alpinelinux.org/wiki/Edge[configured for "edge"].
-. Enable the _testing_ repository by uncommenting the corresponding
-  line in path:{/etc/apk/repositories}.
-. Add the LTTng packages:
-+
---
-[role="term"]
-----
-# apk add lttng-tools
-# apk add lttng-ust-dev
-----
---
-
-To install LTTng-modules{nbsp}{revision} (Linux kernel tracing support)
-on Alpine Linux "edge":
-
-. Add the vanilla Linux kernel:
-+
---
-[role="term"]
-----
-# apk add linux-vanilla linux-vanilla-dev
-----
---
-
-. Reboot with the vanilla Linux kernel.
-. Download, build, and install the latest LTTng-modules{nbsp}{revision}:
-+
---
-[role="term"]
-----
-$ cd $(mktemp -d) &&
-wget http://lttng.org/files/lttng-modules/lttng-modules-latest-2.9.tar.bz2 &&
-tar -xf lttng-modules-latest-2.9.tar.bz2 &&
-cd lttng-modules-2.9.* &&
-make &&
-sudo make modules_install &&
-sudo depmod -a
-----
---
-
-
 [[enterprise-distributions]]
 === RHEL, SUSE, and other enterprise distributions
 
@@ -643,7 +596,8 @@ see http://packages.efficios.com/[EfficiOS Enterprise Packages].
 === Buildroot
 
 To install LTTng{nbsp}{revision} on Buildroot{nbsp}2017.02,
-Buildroot{nbsp}2017.05, or Buildroot{nbsp}2017.08:
+Buildroot{nbsp}2017.05, Buildroot{nbsp}2017.08, or
+Buildroot{nbsp}2017.11:
 
 . Launch the Buildroot configuration tool:
 +
@@ -667,7 +621,8 @@ $ make menuconfig
 
 LTTng{nbsp}{revision} recipes are available in the
 http://layers.openembedded.org/layerindex/branch/master/layer/openembedded-core/[`openembedded-core`]
-layer for Yocto Project{nbsp}2.3 _Pyro_ under the following names:
+layer for Yocto Project{nbsp}2.3 _Pyro_ and Yocto Project{nbsp}2.4 _Rocko_
+under the following names:
 
 * `lttng-tools`
 * `lttng-modules`
