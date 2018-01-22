@@ -1,7 +1,7 @@
 [[copyright]]
 == Copyright
 
-Copyright © 2014-2017 http://lttng.org/[The LTTng Project]
+Copyright © 2014-2018 http://lttng.org/[The LTTng Project]
 
 This work is licensed under a
 http://creativecommons.org/licenses/by/4.0/[Creative Commons
