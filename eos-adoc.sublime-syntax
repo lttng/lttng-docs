@@ -1,5 +1,6 @@
 %YAML 1.2
 ---
+
 # Copyright (c) 2018 Philippe Proulx <pproulx@efficios.com>
 #
 # This is a Sublime Text 3 syntax definition for the specific subset of
@@ -46,6 +47,7 @@ contexts:
     - include: verse-sig
     - include: gen-pre-sig
     - include: admonition-sig
+    - include: admonition-para
     - include: internal-link-start
     - include: external-link-start
     - include: list-bullets
@@ -61,10 +63,10 @@ contexts:
       pop: true
   include:
     - match: '^include::.*$'
-      scope: constant.numeric.include.eos-adoc
+      scope: entity.name.tag.include.eos-adoc
   image:
     - match: '^image::.*$'
-      scope: constant.numeric.image.eos-adoc
+      scope: entity.name.tag.image.eos-adoc
   man-heading:
     - match: '^[A-Z][A-Z -]*$'
       scope: keyword.control.conditional.heading.eos-adoc
@@ -101,6 +103,9 @@ contexts:
       set: term
   term:
     - meta_scope: comment.block.term.eos-adoc
+    - match: '^(\$|#)'
+      captures:
+        1: constant.character.escape.prompt.eos-adoc
     - match: '^-----*$'
       pop: true
   source-sig:
@@ -138,7 +143,10 @@ contexts:
     - match: '^-----*$'
       pop: true
   admonition-sig:
-    - match: '^\[(WARNING|IMPORTANT|NOTE)]$'
+    - match: '^\[(TIP|WARNING|IMPORTANT|NOTE)]$'
+      scope: constant.character.admonition.eos-adoc
+  admonition-para:
+    - match: '^(TIP|WARNING|IMPORTANT|NOTE):'
       scope: constant.character.admonition.eos-adoc
   block-sep:
     - match: '^\+$'
@@ -163,6 +171,7 @@ contexts:
     - include: man-bt-manparam
     - include: man-bt-manopt
     - include: adoc-attr
+    - include: quotes
     - include: code-backtick-start
     - include: code-plus-start
     - include: double-emphasis-start
@@ -199,23 +208,28 @@ contexts:
     - match: '"'
       pop: true
   external-link-start:
-    - match: '(https?://.*?)\['
+    - match: '(https?://.*?)(\[)'
       captures:
         1: storage.modifier.c
+        2: entity.name.function.ext-link.eos-adoc
       push: external-link
   external-link:
     - meta_scope: ext-link.eos-adoc
     - match: ']'
+      scope: entity.name.function.ext-link.eos-adoc
       pop: true
     - include: inline
   external-link-expl-start:
-    - match: 'link:([^]]+)\['
+    - match: '(link:)([^]]+)(\[)'
       captures:
-        1: storage.modifier.c
+        1: entity.name.function.ext-link.eos-adoc
+        2: storage.modifier.c
+        3: entity.name.function.ext-link.eos-adoc
       push: external-link-expl
   external-link-expl:
     - meta_scope: ext-link.eos-adoc
     - match: ']'
+      scope: entity.name.function.ext-link.eos-adoc
       pop: true
     - include: inline
   lttng-docs-opt:
@@ -245,7 +259,7 @@ contexts:
       captures:
         1: storage.modifier.c
   man:
-    - match: 'man:([a-zA-Z0-9_.-]+\([a-zA-Z0-9]+\))'
+    - match: 'man:([a-zA-Z0-9_.+-]+\([a-zA-Z0-9]+\))'
       scope: entity.name.function.man.eos-adoc
       captures:
         1: storage.modifier.c
@@ -280,11 +294,14 @@ contexts:
         3: storage.modifier.c
         4: storage.modifier.c
   man-bt-manopt:
-    - match: 'manopt:([a-zA-Z0-9_.-]+\([a-zA-Z0-9]+\)):(--?[a-zA-Z0-9_-]+)'
+    - match: 'manopt:([a-zA-Z0-9_.+-]+\([a-zA-Z0-9]+\)):(--?[a-zA-Z0-9_-]+)'
       scope: entity.name.function.opt.eos-adoc
       captures:
         1: storage.modifier.c
         2: storage.modifier.c
+  quotes:
+    - match: "``|''"
+      scope: constant.character.escape.quotes.eos-adoc
   code-backtick-start:
     - match: '`(?!\s)'
       push: code-backtick
@@ -320,7 +337,7 @@ contexts:
       pop: true
     - include: inline
   emphasis-quote:
-    - match: "'[^']+'"
+    - match: "(?<![A-Za-z0-9_])'[^']+'"
       scope: entity.name.function.em-quote.eos-adoc
   strong-start:
     - match: '\*\*(?!\s)'
