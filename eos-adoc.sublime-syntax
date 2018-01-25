@@ -1,0 +1,349 @@
+%YAML 1.2
+---
+# Copyright (c) 2018 Philippe Proulx <pproulx@efficios.com>
+#
+# This is a Sublime Text 3 syntax definition for the specific subset of
+# AsciiDoc markup used for EfficiOS projects, namely:
+#
+# * The LTTng Documentation
+# * The LTTng man pages
+# * The Babeltrace man pages
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
+name: EfficiOS AsciiDoc
+file_extensions:
+  - asciidoc
+  - adoc
+scope: source.eos-adoc
+contexts:
+  main:
+    - include: comment-start
+    - include: include
+    - include: image
+    - include: set-adoc-attr
+    - include: man-heading
+    - include: section-id
+    - include: term-sig
+    - include: source-sig
+    - include: gen-role
+    - include: verse-sig
+    - include: gen-pre-sig
+    - include: admonition-sig
+    - include: internal-link-start
+    - include: external-link-start
+    - include: list-bullets
+    - include: block-sep
+    - include: dl
+    - include: inline
+  comment-start:
+    - match: '^/////*$'
+      push: comment
+  comment:
+    - meta_scope: comment.block.eos-adoc
+    - match: '^/////*$'
+      pop: true
+  include:
+    - match: '^include::.*$'
+      scope: constant.numeric.include.eos-adoc
+  image:
+    - match: '^image::.*$'
+      scope: constant.numeric.image.eos-adoc
+  man-heading:
+    - match: '^[A-Z][A-Z -]*$'
+      scope: keyword.control.conditional.heading.eos-adoc
+      push: man-heading-underline
+  man-heading-underline:
+    - match: '^-+$'
+      scope: keyword.control.conditional.heading.eos-adoc
+      pop: true
+    - match: '^~+$'
+      scope: keyword.control.conditional.heading.eos-adoc
+      pop: true
+    - match: '^$'
+      pop: true
+  section-id:
+    - match: '^\[\[[a-zA-Z0-9_-]+]]$'
+      scope: string.quoted.double.anchor.eos-adoc
+      push: heading-start
+  heading-start:
+    - match: '=+'
+      set: heading
+    - match: '^[^\[].*$'
+      scope: keyword.control.conditional.heading.eos-adoc
+      set: man-heading-underline
+  heading:
+    - meta_scope: keyword.control.conditional.heading.eos-adoc
+    - match: '$'
+      pop: true
+  term-sig:
+    - match: '^\[role="term"]$'
+      scope: constant.character.eos-adoc
+      push: term-start
+  term-start:
+    - match: '^-----*$'
+      set: term
+  term:
+    - meta_scope: comment.block.term.eos-adoc
+    - match: '^-----*$'
+      pop: true
+  source-sig:
+    - match: '^\[source,\s*\w+]$'
+      scope: constant.character.source.eos-adoc
+      push: source-title
+  source-title:
+    - match: '^\..+$'
+      set: source-start
+    - include: source-start
+  source-start:
+    - match: '^-----*$'
+      set: source
+  source:
+    - meta_scope: comment.block.eos-adoc
+    - match: '^-----*$'
+      pop: true
+  list-bullets:
+    - match: '^(\*|\.)+ '
+      scope: constant.character.escape.list-bullet.eos-adoc
+  dl:
+    - match: '::$'
+      scope: constant.character.escape.dl.eos-adoc
+  verse-sig:
+    - match: '^\[verse]$'
+      scope: constant.character.verse.eos-adoc
+  gen-role:
+    - match: '^\[role="[^"]+"]$'
+      scope: constant.character.gen-role.eos-adoc
+  gen-pre-sig:
+    - match: '^-----*$'
+      push: gen-pre
+  gen-pre:
+    - meta_scope: comment.block.gen-pre.eos-adoc
+    - match: '^-----*$'
+      pop: true
+  admonition-sig:
+    - match: '^\[(WARNING|IMPORTANT|NOTE)]$'
+      scope: constant.character.admonition.eos-adoc
+  block-sep:
+    - match: '^\+$'
+      scope: constant.character.escape.block-sep.eos-adoc
+  inline:
+    - include: external-link-start
+    - include: external-link-expl-start
+    - include: internal-link-start
+    - include: nbsp
+    - include: em-dash
+    - include: word-macro
+    - include: lttng-docs-opt
+    - include: lttng-docs-path
+    - include: lttng-docs-dir
+    - include: lttng-docs-env
+    - include: lttng-docs-cmd
+    - include: man
+    - include: man-opt
+    - include: man-nlopt
+    - include: man-genopt
+    - include: man-bt-compcls
+    - include: man-bt-manparam
+    - include: man-bt-manopt
+    - include: adoc-attr
+    - include: code-backtick-start
+    - include: code-plus-start
+    - include: double-emphasis-start
+    - include: emphasis-start
+    - include: emphasis-quote
+    - include: strong-start
+    - include: escape-adoc-start
+    - include: anchor
+  nbsp:
+    - match: '\{nbsp}'
+      scope: comment.block.nbsp.eos-adoc
+  em-dash:
+    - match: '(?<!^)--(?!$)'
+      scope: comment.block.em-dash.eos-adoc
+  word-macro:
+    - match: ':(not|escwc|esccomma|escstar|escdot|bs):'
+      scope: entity.name.tag.not.eos-adoc
+  internal-link-start:
+    - match: '(<<)([a-zA-Z0-9_-]+),'
+      captures:
+        1: entity.name.function.link.eos-adoc
+        2: storage.modifier.c
+      push: internal-link
+  internal-link:
+    - meta_scope: int-link.eos-adoc
+    - match: '"'
+      set: internal-link-text
+    - match: '>>'
+      scope: entity.name.function.link.eos-adoc
+      pop: true
+    - include: inline
+  internal-link-text:
+    - meta_scope: string.quoted.double.int-link-text.eos-adoc
+    - match: '"'
+      pop: true
+  external-link-start:
+    - match: '(https?://.*?)\['
+      captures:
+        1: storage.modifier.c
+      push: external-link
+  external-link:
+    - meta_scope: ext-link.eos-adoc
+    - match: ']'
+      pop: true
+    - include: inline
+  external-link-expl-start:
+    - match: 'link:([^]]+)\['
+      captures:
+        1: storage.modifier.c
+      push: external-link-expl
+  external-link-expl:
+    - meta_scope: ext-link.eos-adoc
+    - match: ']'
+      pop: true
+    - include: inline
+  lttng-docs-opt:
+    - match: 'opt:(lttng[a-zA-Z-]*\([a-zA-Z0-9]+\)):(--?[a-zA-Z0-9_-]+)'
+      scope: entity.name.function.opt.eos-adoc
+      captures:
+        1: storage.modifier.c
+        2: storage.modifier.c
+  lttng-docs-path:
+    - match: 'path:\{(.+)}'
+      scope: entity.name.function.path.eos-adoc
+      captures:
+        1: storage.modifier.c
+  lttng-docs-dir:
+    - match: 'dir:\{(.+)}'
+      scope: entity.name.function.dir.eos-adoc
+      captures:
+        1: storage.modifier.c
+  lttng-docs-env:
+    - match: 'env:([a-zA-Z0-9_]+)'
+      scope: entity.name.function.env.eos-adoc
+      captures:
+        1: storage.modifier.c
+  lttng-docs-cmd:
+    - match: 'cmd:([a-zA-Z0-9_-]+)'
+      scope: entity.name.function.cmd.eos-adoc
+      captures:
+        1: storage.modifier.c
+  man:
+    - match: 'man:([a-zA-Z0-9_.-]+\([a-zA-Z0-9]+\))'
+      scope: entity.name.function.man.eos-adoc
+      captures:
+        1: storage.modifier.c
+  man-opt:
+    - match: 'opt(?:ion)?:(--?[a-zA-Z0-9_-]+)'
+      scope: entity.name.function.opt.eos-adoc
+      captures:
+        1: storage.modifier.c
+  man-nlopt:
+    - match: 'nlopt(?:ion)?:(--?[a-zA-Z0-9_-]+)'
+      scope: entity.name.function.nlopt.eos-adoc
+      captures:
+        1: storage.modifier.c
+  man-genopt:
+    - match: 'genopt(?:ion)?:(--?[a-zA-Z0-9_-]+)'
+      scope: entity.name.function.genopt.eos-adoc
+      captures:
+        1: storage.modifier.c
+  man-bt-compcls:
+    - match: 'compcls:(src|source|flt|filter|sink)\.([a-zA-Z0-9_-]+)\.([a-zA-Z0-9_-]+)'
+      scope: entity.name.function.opt.eos-adoc
+      captures:
+        1: storage.modifier.c
+        2: storage.modifier.c
+        3: storage.modifier.c
+  man-bt-manparam:
+    - match: 'manparam:(src|source|flt|filter|sink)\.([a-zA-Z0-9_-]+)\.([a-zA-Z0-9_-]+):([a-zA-Z0-9_-]+)'
+      scope: entity.name.function.opt.eos-adoc
+      captures:
+        1: storage.modifier.c
+        2: storage.modifier.c
+        3: storage.modifier.c
+        4: storage.modifier.c
+  man-bt-manopt:
+    - match: 'manopt:([a-zA-Z0-9_.-]+\([a-zA-Z0-9]+\)):(--?[a-zA-Z0-9_-]+)'
+      scope: entity.name.function.opt.eos-adoc
+      captures:
+        1: storage.modifier.c
+        2: storage.modifier.c
+  code-backtick-start:
+    - match: '`(?!\s)'
+      push: code-backtick
+  code-backtick:
+    - meta_scope: entity.name.function.code.eos-adoc
+    - match: '(?<!\s)`'
+      pop: true
+  code-plus-start:
+    - match: '\+(?!\{)'
+      push: code-plus
+  code-plus:
+    - meta_scope: entity.name.function.code.eos-adoc
+    - match: '(?<!\s)\+'
+      pop: true
+    - match: '$'
+      pop: true
+    - match: '__.+?__'
+      scope: storage.modifier.c
+  double-emphasis-start:
+    - match: '__(?!\s)'
+      push: double-emphasis
+  double-emphasis:
+    - meta_scope: entity.name.function.double-em.eos-adoc
+    - match: '(?<!\s)__'
+      pop: true
+    - include: inline
+  emphasis-start:
+    - match: '(?<![A-Za-z0-9_])_(?!\s)'
+      push: emphasis
+  emphasis:
+    - meta_scope: entity.name.function.em.eos-adoc
+    - match: '(?<!\s)_'
+      pop: true
+    - include: inline
+  emphasis-quote:
+    - match: "'[^']+'"
+      scope: entity.name.function.em-quote.eos-adoc
+  strong-start:
+    - match: '\*\*(?!\s)'
+      push: strong
+  strong:
+    - meta_scope: entity.name.function.strong.eos-adoc
+    - match: '(?<!\s)\*\*'
+      pop: true
+    - include: inline
+  escape-adoc-start:
+    - match: '\$\$(?!\s)'
+      push: escape-adoc
+  escape-adoc:
+    - meta_scope: entity.name.function.escape-adoc.eos-adoc
+    - match: '(?<!\s)\$\$'
+      pop: true
+  anchor:
+    - match: \[\[[a-zA-Z0-9_-]+]]
+      scope: string.quoted.double.anchor.eos-adoc
+  adoc-attr:
+    - match: '\{[a-zA-Z0-9_-]+\}'
+      scope: entity.name.tag.eos-adoc
+  set-adoc-attr:
+    - match: '^:([a-zA-Z0-9_-]+):\s+'
+      captures:
+        1: constant.numeric.set-adoc-attr.eos-adoc
