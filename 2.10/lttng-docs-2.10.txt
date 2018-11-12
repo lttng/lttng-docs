@@ -334,7 +334,7 @@ and Ubuntu{nbsp}18.04 _Bionic Beaver_:
 |<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
 
 |https://getfedora.org/[Fedora]
-|xref:fedora["Fedora{nbsp}27, Fedora{nbsp}28, and Fedora{nbsp}29"].
+|xref:fedora[Fedora{nbsp}27, Fedora{nbsp}28, and Fedora{nbsp}29].
 |<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
 
 |https://www.debian.org/[Debian]
@@ -359,7 +359,7 @@ and Ubuntu{nbsp}18.04 _Bionic Beaver_:
 
 |https://buildroot.org/[Buildroot]
 |xref:buildroot[Buildroot{nbsp}2018.02, Buildroot{nbsp}2018.05,
-Buildroot{nbsp}2018.08, and Buildroot{nbsp}2018.11"].
+Buildroot{nbsp}2018.08, and Buildroot{nbsp}2018.11].
 |<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
 
 |http://www.openembedded.org/wiki/Main_Page[OpenEmbedded] and
