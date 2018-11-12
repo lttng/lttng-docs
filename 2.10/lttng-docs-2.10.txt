@@ -1,7 +1,7 @@
 The LTTng Documentation
 =======================
 Philippe Proulx <pproulx@efficios.com>
-v2.10, 22 January 2018
+v2.10, 12 November 2018
 
 
 include::../common/copyright.txt[]
@@ -321,37 +321,36 @@ but note that:
   applications.
 
 [role="growable"]
-.Availability of LTTng{nbsp}{revision} for major Linux distributions as of 22 January 2018.
+.Availability of LTTng{nbsp}{revision} for major Linux distributions as of 12 November 2018.
 |====
 |Distribution |Available in releases |Alternatives
 
 |https://www.ubuntu.com/[Ubuntu]
-|Ubuntu{nbsp}14.04 _Trusty Tahr_ and Ubuntu{nbsp}16.04 _Xenial Xerus_:
-<<ubuntu-ppa,use the LTTng Stable{nbsp}{revision} PPA>>.
-|link:/docs/v2.9#doc-ubuntu[LTTng{nbsp}2.9 for Ubuntu{nbsp}17.04 _Zesty Zapus_ and Ubuntu{nbsp}17.10 _Artful Aardvark_].
+|<<ubuntu,Ubuntu{nbsp}18.04 _Bionic Beaver_>>.
 
-<<building-from-source,Build LTTng{nbsp}{revision} from source>> for
-other Ubuntu releases.
+Ubuntu{nbsp}14.04 _Trusty Tahr_, Ubuntu{nbsp}16.04 _Xenial Xerus_,
+and Ubuntu{nbsp}18.04 _Bionic Beaver_:
+<<ubuntu-ppa,use the LTTng Stable{nbsp}{revision} PPA>>.
+|<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
 
 |https://getfedora.org/[Fedora]
-|<<fedora,Fedora{nbsp}27>>.
-|link:/docs/v2.9#doc-fedora[LTTng{nbsp}2.9 for Fedora{nbsp}26].
-
-<<building-from-source,Build LTTng{nbsp}{revision} from source>> for
-other Fedora releases.
+|<<fedora,"Fedora{nbsp}27, Fedora{nbsp}28, and Fedora{nbsp}29">>.
+|<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
 
 |https://www.debian.org/[Debian]
-|<<debian,Debian "buster" (testing) and Debian "sid" (unstable)>>.
-|link:/docs/v2.9#doc-debian[LTTng{nbsp}2.9 for Debian "stretch" (stable)].
-
-<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
+|<<debian,Debian "buster" (testing)>>.
+|<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
 
 |https://www.archlinux.org/[Arch Linux]
 |<<arch-linux,Current Arch Linux build>>.
 |<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
 
 |https://alpinelinux.org/[Alpine Linux]
-|<<alpine-linux,Alpine Linux{nbsp}3.7 and Alpine Linux{nbsp}"edge">>.
+|<<alpine-linux,Alpine Linux{nbsp}3.7 and Alpine Linux{nbsp}3.8>>.
+|<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
+
+|https://www.opensuse.org/[openSUSE]
+|<<opensuse,openSUSE Leap{nbsp}15.0>>.
 |<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
 
 |https://www.redhat.com/[RHEL] and https://www.suse.com/[SLES]
@@ -359,25 +358,59 @@ other Fedora releases.
 |
 
 |https://buildroot.org/[Buildroot]
-|_Not available_
-|link:/docs/v2.9#doc-buildroot[LTTng{nbsp}2.9 for Buildroot{nbsp}2017.02,
-Buildroot{nbsp}2017.05, Buildroot{nbsp}2017.08, and Buildroot{nbsp}2017.11].
-
-<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
+|<<buildroot,"Buildroot{nbsp}2018.02, Buildroot{nbsp}2018.05,
+Buildroot{nbsp}2018.08, and Buildroot{nbsp}2018.11">>.
+|<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
 
 |http://www.openembedded.org/wiki/Main_Page[OpenEmbedded] and
 https://www.yoctoproject.org/[Yocto]
 |_Not available_
-|link:/docs/v2.9#doc-oe-yocto[LTTng{nbsp}2.9 for Yocto Project{nbsp}2.3 _Pyro_
-and Yocto Project{nbsp}2.4 _Rocko_]
-(`openembedded-core` layer).
-
-<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
+|<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
 |====
 
 
 [[ubuntu]]
 === [[ubuntu-official-repositories]]Ubuntu
+
+LTTng{nbsp}{revision} is available on Ubuntu{nbsp}18.04 _Bionic Beaver_.
+For previous supported releases of Ubuntu,
+<<ubuntu-ppa,use the LTTng Stable{nbsp}{revision} PPA>>.
+
+To install LTTng{nbsp}{revision} on Ubuntu{nbsp}18.04 _Bionic Beaver_:
+
+. Install the main LTTng{nbsp}{revision} packages:
++
+--
+[role="term"]
+----
+# apt-get install lttng-tools
+# apt-get install lttng-modules-dkms
+# apt-get install liblttng-ust-dev
+----
+--
+
+. **If you need to instrument and trace
+  <<java-application,Java applications>>**, install the LTTng-UST
+  Java agent:
++
+--
+[role="term"]
+----
+# apt-get install liblttng-ust-agent-java
+----
+--
+
+. **If you need to instrument and trace
+  <<python-application,Python{nbsp}3 applications>>**, install the
+  LTTng-UST Python agent:
++
+--
+[role="term"]
+----
+# apt-get install python3-lttngust
+----
+--
+
 
 [[ubuntu-ppa]]
 ==== noch:{LTTng} Stable {revision} PPA
@@ -388,6 +421,7 @@ LTTng{nbsp}{revision} packages for:
 
 * Ubuntu{nbsp}14.04 _Trusty Tahr_
 * Ubuntu{nbsp}16.04 _Xenial Xerus_
+* Ubuntu{nbsp}18.04 _Bionic Beaver_
 
 To install LTTng{nbsp}{revision} from the LTTng Stable{nbsp}{revision} PPA:
 
@@ -439,7 +473,8 @@ To install LTTng{nbsp}{revision} from the LTTng Stable{nbsp}{revision} PPA:
 [[fedora]]
 === Fedora
 
-To install LTTng{nbsp}{revision} on Fedora{nbsp}27:
+To install LTTng{nbsp}{revision} on Fedora{nbsp}27, Fedora{nbsp}28,
+or Fedora{nbsp}29:
 
 . Install the LTTng-tools{nbsp}{revision} and LTTng-UST{nbsp}{revision}
   packages:
@@ -487,8 +522,7 @@ LTTng-UST{nbsp}{revision} from source and pass the
 [[debian]]
 === Debian
 
-To install LTTng{nbsp}{revision} on Debian "buster" (testing)
-or Debian "sid" (unstable):
+To install LTTng{nbsp}{revision} on Debian "buster" (testing):
 
 . Install the main LTTng{nbsp}{revision} packages:
 +
@@ -539,8 +573,8 @@ https://github.com/rmarquis/pacaur[pacaur] for the AUR packages:
 [role="term"]
 ----
 # pacman -Sy lttng-ust
-$ pacaur -Sy lttng-tools
-$ pacaur -Sy lttng-modules
+$ pikaur -Sy lttng-tools
+$ pikaur -Sy lttng-modules
 ----
 --
 
@@ -560,14 +594,8 @@ $ pacaur -Sy lttng-modules
 === Alpine Linux
 
 To install LTTng-tools{nbsp}{revision} and LTTng-UST{nbsp}{revision} on
-Alpine Linux{nbsp}3.7 or Alpine Linux{nbsp}"edge":
+Alpine Linux{nbsp}3.7 or Alpine Linux{nbsp}3.8:
 
-. **If you're installing for Alpine Linux{nbsp}"edge"**, make sure your
-  system is https://wiki.alpinelinux.org/wiki/Edge[configured for
-  "edge"].
-. **If you're installing for Alpine Linux{nbsp}"edge"**, enable the _testing_
-  repository by uncommenting the corresponding line in
-  path:{/etc/apk/repositories}.
 . Add the LTTng packages:
 +
 --
@@ -578,19 +606,6 @@ Alpine Linux{nbsp}3.7 or Alpine Linux{nbsp}"edge":
 ----
 --
 
-To install LTTng-modules{nbsp}{revision} (Linux kernel tracing support)
-on Alpine Linux{nbsp}3.7 or Alpine Linux{nbsp}"edge":
-
-. Add the vanilla Linux kernel:
-+
---
-[role="term"]
-----
-# apk add linux-vanilla linux-vanilla-dev
-----
---
-
-. Reboot with the vanilla Linux kernel.
 . Download, build, and install the latest LTTng-modules{nbsp}{revision}:
 +
 --
@@ -605,6 +620,39 @@ sudo make modules_install &&
 sudo depmod -a
 ----
 --
+
+
+[[opensuse]]
+=== noch:{openSUSE}
+
+To install LTTng{nbsp}{revision} on openSUSE Leap{nbsp}15.0:
+
+* Install the main LTTng{nbsp}{revision} packages:
++
+--
+[role="term"]
+----
+sudo zypper install lttng-tools
+sudo zypper install lttng-modules
+sudo zypper install lttng-ust-devel
+----
+--
+
+[IMPORTANT]
+.Java and Python application instrumentation and tracing
+====
+If you need to instrument and trace <<java-application,Java
+applications>> on openSUSE, you need to build and install
+LTTng-UST{nbsp}{revision} <<building-from-source,from source>> and pass
+the `--enable-java-agent-jul`, `--enable-java-agent-log4j`, or
+`--enable-java-agent-all` options to the `configure` script, depending
+on which Java logging framework you use.
+
+If you need to instrument and trace <<python-application,Python
+applications>> on openSUSE, you need to build and install
+LTTng-UST{nbsp}{revision} from source and pass the
+`--enable-python-agent` option to the `configure` script.
+====
 
 
 [[enterprise-distributions]]
