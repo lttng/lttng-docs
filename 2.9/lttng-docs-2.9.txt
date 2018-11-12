@@ -7,6 +7,9 @@ v2.9, 22 January 2018
 include::../common/copyright.txt[]
 
 
+include::../common/warning-not-maintained.txt[]
+
+
 include::../common/welcome.txt[]
 
 
