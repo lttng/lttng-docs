@@ -5775,8 +5775,9 @@ Tracepoint or system call name. In the case of a Linux KProbe or
 function, this is a custom name given to the event rule. With the
 JUL, log4j, and Python domains, this is a logger name.
 
-With a tracepoint, logger, or system call name, the last character
-can be `*` to match anything that remains.
+With a tracepoint, logger, or system call name, you can use the special
+`*` globbing character to match anything (for example, `sched_*`,
+`my_comp*:*msg_*`).
 
 |All.
 
