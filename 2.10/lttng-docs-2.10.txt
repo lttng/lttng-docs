@@ -334,7 +334,7 @@ and Ubuntu{nbsp}18.04 _Bionic Beaver_:
 |<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
 
 |https://getfedora.org/[Fedora]
-|<<fedora,"Fedora{nbsp}27, Fedora{nbsp}28, and Fedora{nbsp}29">>.
+|xref:fedora["Fedora{nbsp}27, Fedora{nbsp}28, and Fedora{nbsp}29"].
 |<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
 
 |https://www.debian.org/[Debian]
@@ -358,8 +358,8 @@ and Ubuntu{nbsp}18.04 _Bionic Beaver_:
 |
 
 |https://buildroot.org/[Buildroot]
-|<<buildroot,"Buildroot{nbsp}2018.02, Buildroot{nbsp}2018.05,
-Buildroot{nbsp}2018.08, and Buildroot{nbsp}2018.11">>.
+|xref:buildroot[Buildroot{nbsp}2018.02, Buildroot{nbsp}2018.05,
+Buildroot{nbsp}2018.08, and Buildroot{nbsp}2018.11"].
 |<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
 
 |http://www.openembedded.org/wiki/Main_Page[OpenEmbedded] and
@@ -661,6 +661,30 @@ LTTng-UST{nbsp}{revision} from source and pass the
 To install LTTng on enterprise Linux distributions, such as Red Hat
 Enterprise Linux (RHEL) and SUSE Linux Enterprise Server (SUSE), please
 see http://packages.efficios.com/[EfficiOS Enterprise Packages].
+
+
+[[buildroot]]
+=== Buildroot
+
+To install LTTng{nbsp}{revision} on Buildroot{nbsp}2018.02,
+Buildroot{nbsp}2018.05, Buildroot{nbsp}2018.08, or
+Buildroot{nbsp}2018.11:
+
+. Launch the Buildroot configuration tool:
++
+--
+[role="term"]
+----
+$ make menuconfig
+----
+--
+
+. In **Kernel**, check **Linux kernel**.
+. In **Toolchain**, check **Enable WCHAR support**.
+. In **Target packages**{nbsp}&#8594; **Debugging, profiling and benchmark**,
+  check **lttng-modules** and **lttng-tools**.
+. In **Target packages**{nbsp}&#8594; **Libraries**{nbsp}&#8594;
+  **Other**, check **lttng-libust**.
 
 
 [[building-from-source]]
