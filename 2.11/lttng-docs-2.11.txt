@@ -1,7 +1,7 @@
 The LTTng Documentation
 =======================
 Philippe Proulx <pproulx@efficios.com>
-v2.11, 12 November 2018
+v2.11, 19 November 2018
 
 
 include::../common/copyright.txt[]
@@ -685,6 +685,9 @@ tracepoints (this will generate a lot of data when tracing):
 ----
 --
 +
+You need to stop tracing to make LTTng flush the remaining trace data
+and make the trace readable.
++
 The man:lttng-destroy(1) command does not destroy the trace data; it
 only destroys the state of the tracing session.
 
@@ -929,6 +932,9 @@ $ lttng stop
 $ lttng destroy
 ----
 --
++
+You need to stop tracing to make LTTng flush the remaining trace data
+and make the trace readable.
 +
 The man:lttng-destroy(1) command does not destroy the trace data; it
 only destroys the state of the tracing session.
@@ -5927,6 +5933,9 @@ If there were <<channel-overwrite-mode-vs-discard-mode,lost event
 records>> or lost sub-buffers since the last time you ran
 man:lttng-start(1), warnings are printed when you run the
 man:lttng-stop(1) command.
+
+IMPORTANT: You need to stop tracing to make LTTng flush the remaining
+trace data and make the trace readable.
 
 
 [[enabling-disabling-channels]]
