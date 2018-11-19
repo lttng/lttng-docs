@@ -674,22 +674,23 @@ tracepoints (this will generate a lot of data when tracing):
 
 . Do some operation on your system for a few seconds. For example,
   load a website, or list the files of a directory.
-. <<basic-tracing-session-control,Stop tracing>> and destroy the
+. <<creating-destroying-tracing-sessions,Destroy>> the current
   tracing session:
 +
 --
 [role="term"]
 ----
-# lttng stop
 # lttng destroy
 ----
 --
 +
-You need to stop tracing to make LTTng flush the remaining trace data
-and make the trace readable.
-+
 The man:lttng-destroy(1) command does not destroy the trace data; it
 only destroys the state of the tracing session.
++
+The man:lttng-destroy(1) command also runs the man:lttng-stop(1) command
+implicitly (see <<basic-tracing-session-control,Start and stop a tracing
+session>>). You need to stop tracing to make LTTng flush the remaining
+trace data and make the trace readable.
 
 . For the sake of this example, make the recorded trace accessible to
   the non-root users:
@@ -922,22 +923,23 @@ $ lttng start
 
 . Go back to the running `hello` application and press Enter. The
   program executes all `tracepoint()` instrumentation points and exits.
-. <<basic-tracing-session-control,Stop tracing>> and destroy the
+. <<creating-destroying-tracing-sessions,Destroy>> the current
   tracing session:
 +
 --
 [role="term"]
 ----
-$ lttng stop
 $ lttng destroy
 ----
 --
 +
-You need to stop tracing to make LTTng flush the remaining trace data
-and make the trace readable.
-+
 The man:lttng-destroy(1) command does not destroy the trace data; it
 only destroys the state of the tracing session.
++
+The man:lttng-destroy(1) command also runs the man:lttng-stop(1) command
+implicitly (see <<basic-tracing-session-control,Start and stop a tracing
+session>>). You need to stop tracing to make LTTng flush the remaining
+trace data and make the trace readable.
 
 By default, LTTng saves the traces in
 +$LTTNG_HOME/lttng-traces/__name__-__date__-__time__+,
@@ -5557,6 +5559,11 @@ $ lttng destroy
 ----
 --
 
+The man:lttng-destroy(1) command also runs the man:lttng-stop(1)
+command implicitly (see <<basic-tracing-session-control,Start and stop a
+tracing session>>). You need to stop tracing to make LTTng flush the
+remaining trace data and make the trace readable.
+
 
 [[list-instrumentation-points]]
 === List the available instrumentation points
@@ -5935,7 +5942,10 @@ man:lttng-start(1), warnings are printed when you run the
 man:lttng-stop(1) command.
 
 IMPORTANT: You need to stop tracing to make LTTng flush the remaining
-trace data and make the trace readable.
+trace data and make the trace readable. Note that the
+man:lttng-destroy(1) command (see
+<<creating-destroying-tracing-sessions,Create and destroy a tracing
+session>>) also runs the man:lttng-stop(1) command implicitly.
 
 
 [[enabling-disabling-channels]]
