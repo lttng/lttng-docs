@@ -1453,7 +1453,7 @@ sub-buffer before consuming it.
 There are a few ways to decrease your probability of losing event
 records.
 <<channel-subbuf-size-vs-subbuf-count,Sub-buffer count and size>> shows
-how you can fine-une the sub-buffer count and size of a channel to
+how you can fine-tune the sub-buffer count and size of a channel to
 virtually stop losing event records, though at the cost of greater
 memory usage.
 
