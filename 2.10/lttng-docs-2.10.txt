@@ -1,7 +1,7 @@
 The LTTng Documentation
 =======================
 Philippe Proulx <pproulx@efficios.com>
-v2.10, 19 November 2018
+v2.10, 18 October 2019
 
 
 include::../common/copyright.txt[]
@@ -321,62 +321,63 @@ but note that:
   applications.
 
 [role="growable"]
-.Availability of LTTng{nbsp}{revision} for major Linux distributions as of 12 November 2018.
+.Availability of LTTng{nbsp}{revision} for major Linux distributions as of 18 October 2019.
 |====
-|Distribution |Available in releases |Alternatives
+|Distribution |Available in releases
 
 |https://www.ubuntu.com/[Ubuntu]
-|<<ubuntu,Ubuntu{nbsp}18.04 _Bionic Beaver_>>.
+|xref:ubuntu[Ubuntu{nbsp}18.04 _Bionic Beaver_,
+Ubuntu{nbsp}19.04 _Disco Dingo_, and
+Ubuntu{nbsp}19.10 _Eoan Ermine_].
 
-Ubuntu{nbsp}14.04 _Trusty Tahr_, Ubuntu{nbsp}16.04 _Xenial Xerus_,
-and Ubuntu{nbsp}18.04 _Bionic Beaver_:
+Ubuntu{nbsp}16.04 _Xenial Xerus_:
 <<ubuntu-ppa,use the LTTng Stable{nbsp}{revision} PPA>>.
-|<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
 
 |https://getfedora.org/[Fedora]
-|xref:fedora[Fedora{nbsp}27, Fedora{nbsp}28, and Fedora{nbsp}29].
-|<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
+|xref:fedora[Fedora{nbsp}29, Fedora{nbsp}30, Fedora{nbsp}31,
+and Fedora{nbsp}32].
 
 |https://www.debian.org/[Debian]
-|<<debian,Debian "buster" (testing)>>.
-|<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
-
-|https://www.archlinux.org/[Arch Linux]
-|<<arch-linux,Current Arch Linux build>>.
-|<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
+|<<debian,Debian "buster" (stable) and Debian "bullseye" (testing)>>.
 
 |https://alpinelinux.org/[Alpine Linux]
-|<<alpine-linux,Alpine Linux{nbsp}3.7 and Alpine Linux{nbsp}3.8>>.
-|<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
+|xref:alpine-linux[Alpine Linux{nbsp}3.7, Alpine Linux{nbsp}3.8,
+Alpine Linux{nbsp}3.9, and Alpine Linux{nbsp}3.10].
 
 |https://www.opensuse.org/[openSUSE]
-|<<opensuse,openSUSE Leap{nbsp}15.0>>.
-|<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
+|<<opensuse,openSUSE Leap{nbsp}15.1>>.
 
 |https://www.redhat.com/[RHEL] and https://www.suse.com/[SLES]
 |See http://packages.efficios.com/[EfficiOS Enterprise Packages].
-|
 
 |https://buildroot.org/[Buildroot]
 |xref:buildroot[Buildroot{nbsp}2018.02, Buildroot{nbsp}2018.05,
-Buildroot{nbsp}2018.08, and Buildroot{nbsp}2018.11].
-|<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
+Buildroot{nbsp}2018.08, Buildroot{nbsp}2018.11, Buildroot{nbsp}2019.02,
+Buildroot{nbsp}2018.05, Buildroot{nbsp}2018.08, and
+Buildroot{nbsp}2018.11].
 
 |http://www.openembedded.org/wiki/Main_Page[OpenEmbedded] and
 https://www.yoctoproject.org/[Yocto]
-|_Not available_
-|<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
+|<<oe-yocto,Yocto Project{nbsp}2.7 _Warrior_ and
+Yocto Project{nbsp}3.0 _Zeus_>>.
 |====
 
 
 [[ubuntu]]
 === [[ubuntu-official-repositories]]Ubuntu
 
-LTTng{nbsp}{revision} is available on Ubuntu{nbsp}18.04 _Bionic Beaver_.
-For previous supported releases of Ubuntu,
-<<ubuntu-ppa,use the LTTng Stable{nbsp}{revision} PPA>>.
+LTTng{nbsp}{revision} is available on:
 
-To install LTTng{nbsp}{revision} on Ubuntu{nbsp}18.04 _Bionic Beaver_:
+* Ubuntu{nbsp}18.04 _Bionic Beaver_
+* Ubuntu{nbsp}19.04 _Disco Dingo_
+* Ubuntu{nbsp}19.10 _Eoan Ermine_
+
+For other releases of Ubuntu, <<ubuntu-ppa,use the LTTng
+Stable{nbsp}{revision} PPA>>.
+
+To install LTTng{nbsp}{revision} on Ubuntu{nbsp}18.04 _Bionic Beaver_,
+Ubuntu{nbsp}19.04 _Disco Dingo_, or
+Ubuntu{nbsp}19.10 _Eoan Ermine_:
 
 . Install the main LTTng{nbsp}{revision} packages:
 +
@@ -417,11 +418,7 @@ To install LTTng{nbsp}{revision} on Ubuntu{nbsp}18.04 _Bionic Beaver_:
 
 The https://launchpad.net/~lttng/+archive/ubuntu/stable-{revision}[LTTng
 Stable{nbsp}{revision} PPA] offers the latest stable
-LTTng{nbsp}{revision} packages for:
-
-* Ubuntu{nbsp}14.04 _Trusty Tahr_
-* Ubuntu{nbsp}16.04 _Xenial Xerus_
-* Ubuntu{nbsp}18.04 _Bionic Beaver_
+LTTng{nbsp}{revision} packages for Ubuntu{nbsp}18.04 _Bionic Beaver_.
 
 To install LTTng{nbsp}{revision} from the LTTng Stable{nbsp}{revision} PPA:
 
@@ -473,8 +470,8 @@ To install LTTng{nbsp}{revision} from the LTTng Stable{nbsp}{revision} PPA:
 [[fedora]]
 === Fedora
 
-To install LTTng{nbsp}{revision} on Fedora{nbsp}27, Fedora{nbsp}28,
-or Fedora{nbsp}29:
+To install LTTng{nbsp}{revision} on Fedora{nbsp}29, Fedora{nbsp}30,
+Fedora{nbsp}31, or Fedora{nbsp}32:
 
 . Install the LTTng-tools{nbsp}{revision} and LTTng-UST{nbsp}{revision}
   packages:
@@ -522,7 +519,8 @@ LTTng-UST{nbsp}{revision} from source and pass the
 [[debian]]
 === Debian
 
-To install LTTng{nbsp}{revision} on Debian "buster" (testing):
+To install LTTng{nbsp}{revision} on Debian "buster" (stable) or
+Debian "bullseye" (testing):
 
 . Install the main LTTng{nbsp}{revision} packages:
 +
@@ -556,45 +554,12 @@ To install LTTng{nbsp}{revision} on Debian "buster" (testing):
 --
 
 
-[[arch-linux]]
-=== Arch Linux
-
-LTTng-UST{nbsp}{revision} is available in Arch Linux's _Community_
-repository, while LTTng-tools{nbsp}{revision} and
-LTTng-modules{nbsp}{revision} are available in the
-https://aur.archlinux.org/[AUR].
-
-To install LTTng{nbsp}{revision} on Arch Linux, using
-https://github.com/rmarquis/pacaur[pacaur] for the AUR packages:
-
-. Install the main LTTng{nbsp}{revision} packages:
-+
---
-[role="term"]
-----
-# pacman -Sy lttng-ust
-$ pikaur -Sy lttng-tools
-$ pikaur -Sy lttng-modules
-----
---
-
-. **If you need to instrument and trace <<python-application,Python
-  applications>>**, install the LTTng-UST Python agent:
-+
---
-[role="term"]
-----
-# pacman -Sy python-lttngust
-# pacman -Sy python2-lttngust
-----
---
-
-
 [[alpine-linux]]
 === Alpine Linux
 
 To install LTTng-tools{nbsp}{revision} and LTTng-UST{nbsp}{revision} on
-Alpine Linux{nbsp}3.7 or Alpine Linux{nbsp}3.8:
+Alpine Linux{nbsp}3.7, Alpine Linux{nbsp}3.8, Alpine Linux{nbsp}3.9, or
+Alpine Linux{nbsp}3.10:
 
 . Add the LTTng packages:
 +
@@ -625,7 +590,7 @@ sudo depmod -a
 [[opensuse]]
 === noch:{openSUSE}
 
-To install LTTng{nbsp}{revision} on openSUSE Leap{nbsp}15.0:
+To install LTTng{nbsp}{revision} on openSUSE Leap{nbsp}15.1:
 
 * Install the main LTTng{nbsp}{revision} packages:
 +
@@ -667,8 +632,10 @@ see http://packages.efficios.com/[EfficiOS Enterprise Packages].
 === Buildroot
 
 To install LTTng{nbsp}{revision} on Buildroot{nbsp}2018.02,
-Buildroot{nbsp}2018.05, Buildroot{nbsp}2018.08, or
-Buildroot{nbsp}2018.11:
+Buildroot{nbsp}2018.05, Buildroot{nbsp}2018.08,
+Buildroot{nbsp}2018.11, Buildroot{nbsp}2019.02,
+Buildroot{nbsp}2019.05, Buildroot{nbsp}2019.08, or
+Buildroot{nbsp}2019.11:
 
 . Launch the Buildroot configuration tool:
 +
@@ -685,6 +652,49 @@ $ make menuconfig
   check **lttng-modules** and **lttng-tools**.
 . In **Target packages**{nbsp}&#8594; **Libraries**{nbsp}&#8594;
   **Other**, check **lttng-libust**.
+
+
+[[oe-yocto]]
+=== OpenEmbedded and Yocto
+
+LTTng{nbsp}{revision} recipes are available in the
+http://layers.openembedded.org/layerindex/branch/master/layer/openembedded-core/[`openembedded-core`]
+layer for Yocto Project{nbsp}2.7 _Warrior_ and
+Yocto Project{nbsp}3.0 _Zeus_ under the following names:
+
+* `lttng-tools`
+* `lttng-modules`
+* `lttng-ust`
+
+With BitBake, the simplest way to include LTTng recipes in your target
+image is to add them to `IMAGE_INSTALL_append` in path:{conf/local.conf}:
+
+----
+IMAGE_INSTALL_append = " lttng-tools lttng-modules lttng-ust"
+----
+
+If you use Hob:
+
+. Select a machine and an image recipe.
+. Click **Edit image recipe**.
+. Under the **All recipes** tab, search for **lttng**.
+. Check the desired LTTng recipes.
+
+[IMPORTANT]
+.Java and Python application instrumentation and tracing
+====
+If you need to instrument and trace <<java-application,Java
+applications>> on Yocto/OpenEmbedded, you need to build and install
+LTTng-UST{nbsp}{revision} <<building-from-source,from source>> and pass
+the `--enable-java-agent-jul`, `--enable-java-agent-log4j`, or
+`--enable-java-agent-all` options to the `configure` script, depending
+on which Java logging framework you use.
+
+If you need to instrument and trace <<python-application,Python
+applications>> on Yocto/OpenEmbedded, you need to build and install
+LTTng-UST{nbsp}{revision} from source and pass the
+`--enable-python-agent` option to the `configure` script.
+====
 
 
 [[building-from-source]]
