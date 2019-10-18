@@ -1,7 +1,7 @@
 The LTTng Documentation
 =======================
 Philippe Proulx <pproulx@efficios.com>
-v2.11, 19 November 2018
+v2.11, 18 October 2019
 
 
 include::../common/copyright.txt[]
@@ -75,7 +75,7 @@ include::../common/acknowledgements.txt[]
 == What's new in LTTng{nbsp}{revision}?
 
 LTTng{nbsp}{revision} bears the name _Lafontaine_. This modern
-https://en.wikipedia.org/wiki/Saison[saison] from the
+https://en.wikipedia.org/wiki/saison[saison] from the
 https://oshlag.com/[Oshlag] microbrewery is a refreshing--zesty--rice
 beer with hints of fruit and spices. Some even say it makes for a great
 https://en.wikipedia.org/wiki/Somaek[Somaek] when mixed with
@@ -132,8 +132,8 @@ $ lttng enable-event --kernel \
 +
 The option also supports tracing existing
 https://www.sourceware.org/systemtap/wiki/AddingUserSpaceProbingToApps[SystemTap
-Statically Defined Tracing] (SDT) probe (DTrace-style marker). For example,
-given the following probe:
+Statically Defined Tracing] (USDT) probe (DTrace-style marker). For
+example, given the following probe:
 +
 [source,c]
 ----
@@ -180,20 +180,27 @@ user call stacks to the recorded event.
 NOTE: LTTng cannot always sample the user space call stack reliably.
 For instance, LTTng cannot sample the call stack of user applications
 and libraries compiled with the
-https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html[`-fomit-frame pointer`]
+https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html[`-fomit-frame-pointer`]
 option. In such a case, the tracing is not affected, but the sampled
 user space call stack may only contain the user call stack's topmost
 address.
-
-* The <<lttng-relayd,relay daemon>> is more efficient and presents fewer
-  connectivity issues, especially when a large number of targets send
-  trace data to a given relay daemon.
 
 * User applications and libraries instrumented with
   <<lttng-ust,LTTng-UST>> can now safely unload (man:dlclose(3)) a
   dynamically loaded
   <<building-tracepoint-providers-and-user-application,tracepoint
   provider package>>.
+
+* The <<lttng-relayd,relay daemon>> is more efficient and presents fewer
+  connectivity issues, especially when a large number of targets send
+  trace data to a given relay daemon.
+
+* LTTng-UST uses https://github.com/numactl/numactl[libnuma]
+  when available to allocate <<def-sub-buffer,sub-buffers>>, making them
+  local to each
+  https://en.wikipedia.org/wiki/Non-uniform_memory_access[NUMA] node.
++
+This change makes the tracer more efficient on NUMA systems.
 
 
 [[nuts-and-bolts]]
@@ -344,12 +351,15 @@ to <<controlling-tracing,control tracing>> (start and stop
 tracing, enable and disable event rules, and the rest). Those
 components are bundled into the following packages:
 
-* **LTTng-tools**: Libraries and command-line interface to
-  control tracing.
-* **LTTng-modules**: Linux kernel modules to instrument and
-  trace the kernel.
-* **LTTng-UST**: Libraries and Java/Python packages to instrument and
-  trace user applications.
+LTTng-tools::
+    Libraries and command-line interface to control tracing.
+
+LTTng-modules::
+    Linux kernel modules to instrument and trace the kernel.
+
+LTTng-UST::
+    Libraries and Java/Python packages to instrument and trace user
+    applications.
 
 Most distributions mark the LTTng-modules and LTTng-UST packages as
 optional when installing LTTng-tools (which is always required). In the
@@ -361,132 +371,14 @@ but note that:
 * You only need to install LTTng-UST if you intend to trace user
   applications.
 
-[role="growable"]
-.Availability of LTTng{nbsp}{revision} for major Linux distributions as of 12 November 2018.
-|====
-|Distribution |Available in releases |Alternatives
+[IMPORTANT]
+====
+As of 18 October 2019, LTTng{nbsp}{revision} is not available
+as distribution packages.
 
-|https://www.ubuntu.com/[Ubuntu]
-|Ubuntu{nbsp}14.04 _Trusty Tahr_, Ubuntu{nbsp}16.04 _Xenial Xerus_,
-and Ubuntu{nbsp}18.04 _Bionic Beaver_:
-<<ubuntu-ppa,use the LTTng Stable{nbsp}{revision} PPA>>.
-|<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
-
-|https://getfedora.org/[Fedora]
-|_Not available_
-|
-link:/docs/v2.10#doc-fedora[LTTng{nbsp}2.10 for Fedora{nbsp}27,
-Fedora{nbsp}28, and Fedora{nbsp}29].
-
-<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
-
-|https://www.debian.org/[Debian]
-|_Not available_
-|link:/docs/v2.10#doc-debian[LTTng{nbsp}2.10 for Debian "buster" (testing)].
-
-<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
-
-|https://www.archlinux.org/[Arch Linux]
-|_Not available_
-|<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
-
-|https://alpinelinux.org/[Alpine Linux]
-|_Not available_
-|
-link:/docs/v2.10#doc-alpine-linux[LTTng{nbsp}2.10 for
-Alpine Linux{nbsp}3.7 and Alpine Linux{nbsp}3.8].
-
-<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
-
-|https://www.opensuse.org/[openSUSE]
-|_Not available_
-|link:/docs/v2.10#doc-opensuse[LTTng{nbsp}2.10 for openSUSE Leap{nbsp}15.0].
-
-<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
-
-|https://www.redhat.com/[RHEL] and https://www.suse.com/[SLES]
-|See http://packages.efficios.com/[EfficiOS Enterprise Packages].
-|
-
-|https://buildroot.org/[Buildroot]
-|_Not available_
-|
-link:/docs/v2.10#doc-buildroot[LTTng{nbsp}2.10 for Buildroot{nbsp}2018.02,
-Buildroot{nbsp}2018.05, Buildroot{nbsp}2018.08, and Buildroot{nbsp}2018.11].
-
-<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
-
-|http://www.openembedded.org/wiki/Main_Page[OpenEmbedded] and
-https://www.yoctoproject.org/[Yocto]
-|_Not available_
-|<<building-from-source,Build LTTng{nbsp}{revision} from source>>.
-|====
-
-
-[[ubuntu-ppa]]
-=== Ubuntu: noch:{LTTng} Stable {revision} PPA
-
-The https://launchpad.net/~lttng/+archive/ubuntu/stable-{revision}[LTTng
-Stable{nbsp}{revision} PPA] offers the latest stable
-LTTng{nbsp}{revision} packages for:
-
-* Ubuntu{nbsp}14.04 _Trusty Tahr_
-* Ubuntu{nbsp}16.04 _Xenial Xerus_
-* Ubuntu{nbsp}18.04 _Bionic Beaver_
-
-To install LTTng{nbsp}{revision} from the LTTng Stable{nbsp}{revision} PPA:
-
-. Add the LTTng Stable{nbsp}{revision} PPA repository and update the
-  list of packages:
-+
---
-[role="term"]
-----
-# apt-add-repository ppa:lttng/stable-2.11
-# apt-get update
-----
---
-
-. Install the main LTTng{nbsp}{revision} packages:
-+
---
-[role="term"]
-----
-# apt-get install lttng-tools
-# apt-get install lttng-modules-dkms
-# apt-get install liblttng-ust-dev
-----
---
-
-. **If you need to instrument and trace
-  <<java-application,Java applications>>**, install the LTTng-UST
-  Java agent:
-+
---
-[role="term"]
-----
-# apt-get install liblttng-ust-agent-java
-----
---
-
-. **If you need to instrument and trace
-  <<python-application,Python{nbsp}3 applications>>**, install the
-  LTTng-UST Python agent:
-+
---
-[role="term"]
-----
-# apt-get install python3-lttngust
-----
---
-
-
-[[enterprise-distributions]]
-=== RHEL, SUSE, and other enterprise distributions
-
-To install LTTng on enterprise Linux distributions, such as Red Hat
-Enterprise Linux (RHEL) and SUSE Linux Enterprise Server (SUSE), please
-see http://packages.efficios.com/[EfficiOS Enterprise Packages].
+You can <<building-from-source,build LTTng{nbsp}{revision} from source>>
+to install and use it.
+====
 
 
 [[building-from-source]]
@@ -957,14 +849,14 @@ Once you have completed the <<tracing-the-linux-kernel,Trace the Linux
 kernel>> and <<tracing-your-own-user-application,Trace a user
 application>> tutorials, you can inspect the recorded events.
 
-Many tools are available to read LTTng traces:
+There are many tools you can use to read LTTng traces:
 
 * **cmd:babeltrace** is a command-line utility which converts trace
   formats; it supports the format that LTTng produces, CTF, as well as a
   basic text output which can be ++grep++ed. The cmd:babeltrace command
   is part of the http://diamon.org/babeltrace[Babeltrace] project.
 * Babeltrace also includes
-  **https://www.python.org/[Python] bindings** so
+  **https://www.python.org/[Python{nbsp}3] bindings** so
   that you can easily open and read an LTTng trace with your own script,
   benefiting from the power of Python.
 * http://tracecompass.org/[**Trace Compass**]
@@ -1013,7 +905,7 @@ $ babeltrace /tmp/my-kernel-trace | grep _open | wc --lines
 
 
 [[viewing-and-analyzing-your-traces-bt-python]]
-==== Use the Babeltrace Python bindings
+==== Use the Babeltrace{nbsp}1 Python bindings
 
 The <<viewing-and-analyzing-your-traces-bt,text output of cmd:babeltrace>>
 is useful to isolate events by simple matching using man:grep(1) and
@@ -1023,9 +915,9 @@ not trivial to write using a shell. Moreover, reductions and even the
 most basic computations involving multiple event records are virtually
 impossible to implement.
 
-Fortunately, Babeltrace ships with Python{nbsp}3 bindings which makes it
-easy to read the event records of an LTTng trace sequentially and
-compute the desired information.
+Fortunately, Babeltrace{nbsp}1 ships with Python{nbsp}3 bindings which
+makes it easy to read the event records of an LTTng trace sequentially
+and compute the desired information.
 
 The following script accepts an LTTng Linux kernel trace path as its
 first argument and prints the short names of the top five running
@@ -1502,14 +1394,19 @@ files. When the number of trace files reaches the channel's fixed
 maximum count, the oldest trace file is overwritten. This mechanism is
 called _trace file rotation_.
 
+[IMPORTANT]
+====
 Even if you don't limit the trace file count, you cannot assume that
-LTTng doesn't manage any trace file. In other words, there is no safe
-way to know if LTTng still holds a given trace file open with the trace
-file rotation feature. The only way to obtain an unmanaged,
-self-contained LTTng trace before you
-<<creating-destroying-tracing-sessions,destroy>> the tracing session is
-with the <<session-rotation,tracing session rotation>> feature
+LTTng doesn't manage any trace file.
+
+In other words, there is no safe way to know if LTTng still holds a
+given trace file open with the trace file rotation feature.
+
+The only way to obtain an unmanaged, self-contained LTTng trace before
+you <<creating-destroying-tracing-sessions,destroy>> the tracing session
+is with the <<session-rotation,tracing session rotation>> feature
 (available since LTTng{nbsp}2.11).
+====
 
 
 [[event]]
@@ -5643,7 +5540,7 @@ Instead of using the default _tracepoint_ instrumentation type, use:
 . The entry point of a user application or library function (path to
   application/library and symbol).
 . A https://www.sourceware.org/systemtap/wiki/AddingUserSpaceProbingToApps[SystemTap
-  Statically Defined Tracing] (SDT) probe (path to application/library,
+  Statically Defined Tracing] (USDT) probe (path to application/library,
   provider and probe names).
 
 |Linux kernel.
@@ -5801,7 +5698,7 @@ $ lttng enable-event --kernel --userspace-probe=/usr/lib/libc.so.6:malloc \
 ----
 ====
 
-.Create an event rule matching the `server`/`accept_request` https://www.sourceware.org/systemtap/wiki/AddingUserSpaceProbingToApps[SDT probe] in path:{/usr/bin/serv}:
+.Create an event rule matching the `server`/`accept_request` https://www.sourceware.org/systemtap/wiki/AddingUserSpaceProbingToApps[USDT probe] in path:{/usr/bin/serv}:
 ====
 [role="term"]
 ----
@@ -6671,19 +6568,20 @@ overlaps.
 
 What LTTng is about to write when performing a tracing session rotation
 is called the _current trace chunk_. When this current trace chunk is
-written to the file system or sent over the network, it is called a
-_trace chunk archive_. Therefore, a tracing session rotation _archives_
-the current trace chunk.
+written to the file system or sent over the network, it becomes a _trace
+chunk archive_. Therefore, a tracing session rotation _archives_ the
+current trace chunk.
 
 [role="img-100"]
 .A tracing session rotation operation _archives_ the current trace chunk.
 image::rotation.png[]
 
-A trace chunk archive is a self-contained LTTng trace and is not managed
-anymore by LTTng: you can read it, modify it, move it, or remove it.
+A trace chunk archive is a self-contained LTTng trace which LTTng
+doesn't manage anymore: you can read it, modify it, move it, or remove
+it.
 
-There are two methods to perform a tracing session rotation:
-immediately or automatically.
+There are two methods to perform a tracing session rotation: immediately
+or with a rotation schedule.
 
 To perform an immediate tracing session rotation:
 
@@ -6699,7 +6597,7 @@ $ lttng create my-session
 --
 
 . <<enabling-disabling-events,Create one or more event rules>>
-and <<basic-tracing-session-control,start tracing>>:
+  and <<basic-tracing-session-control,start tracing>>:
 +
 --
 [role="term"]
@@ -6725,8 +6623,8 @@ of trace chunk archive directory names.
 You can perform other immediate rotations while the tracing session is
 active. It is guaranteed that all the trace chunk archives do not
 contain overlapping trace data. You can also perform an immediate
-rotation once the tracing session is
-<<basic-tracing-session-control,stopped>>.
+rotation once you have <<basic-tracing-session-control,stopped>> the
+tracing session.
 
 . When you are done tracing,
   <<creating-destroying-tracing-sessions,destroy the current tracing
@@ -6742,17 +6640,15 @@ $ lttng destroy
 The tracing session destruction operation creates one last trace
 chunk archive from the current trace chunk.
 
-An automatic tracing session rotation is a rotation which LTTng
+A tracing session rotation schedule is a planned rotation which LTTng
 performs automatically based on one of the following conditions:
 
 * A timer with a configured period times out.
+
 * The total size of the flushed part of the current trace chunk
   becomes greater than or equal to a configured value.
 
-To configure a future, automatic tracing session rotation, you need
-to set a _rotation schedule_.
-
-To set a rotation schedule:
+To schedule a tracing session rotation, set a _rotation schedule_:
 
 . <<creating-destroying-tracing-sessions,Create a tracing session>>
   in _normal mode_ or _network streaming mode_
@@ -6779,12 +6675,12 @@ $ lttng enable-event --kernel sched_'*'
 --
 [role="term"]
 ----
-$ lttng enable-rotation --timer=12s
+$ lttng enable-rotation --timer=10s
 ----
 --
 +
 In this example, we set a rotation schedule so that LTTng performs a
-tracing session rotation every 12{nbsp}seconds.
+tracing session rotation every ten seconds.
 +
 See man:lttng-enable-rotation(1) to learn more about other ways to set a
 rotation schedule.
@@ -6815,7 +6711,7 @@ $ lttng destroy
 The tracing session destruction operation creates one last trace chunk
 archive from the current trace chunk.
 
-You can use man:lttng-disable-rotation(1) to unset an a tracing session
+You can use man:lttng-disable-rotation(1) to unset a tracing session
 rotation schedule.
 
 NOTE: man:lttng-rotate(1) and man:lttng-enable-rotation(1) list
@@ -7685,38 +7581,44 @@ commit the data to sub-buffers.
 Terms related to LTTng and to tracing in general:
 
 Babeltrace::
-  The http://diamon.org/babeltrace[Babeltrace] project, which includes
-  the cmd:babeltrace command, libraries, and Python bindings.
+  The http://diamon.org/babeltrace[Babeltrace] project, which includes:
++
+* The cmd:babeltrace (Babeltrace{nbsp}1) or cmd:babeltrace2
+  (Babeltrace{nbsp}2) command.
+* Libraries with a C{nbsp}API.
+* Python{nbsp}3 bindings.
+* Plugins (Babeltrace{nbsp}2).
 
 [[def-buffering-scheme]]<<channel-buffering-schemes,buffering scheme>>::
   A layout of <<def-sub-buffer,sub-buffers>> applied to a given channel.
 
-<<channel,channel>>::
+[[def-channel]]<<channel,channel>>::
   An entity which is responsible for a set of
   <<def-ring-buffer,ring buffers>>.
 +
-<<event,Event rules>> are always attached to a specific channel.
+<<def-event-rule,Event rules>> are always attached to a specific
+channel.
 
 clock::
   A source of time for a <<def-tracer,tracer>>.
 
-<<lttng-consumerd,consumer daemon>>::
+[[def-consumer-daemon]]<<lttng-consumerd,consumer daemon>>::
   A process which is responsible for consuming the full
   <<def-sub-buffer,sub-buffers>> and write them to a file system or
   send them over the network.
 
 [[def-current-trace-chunk]]current trace chunk::
   A <<def-trace-chunk,trace chunk>> which includes the current content
-  of all the <<tracing-session,tracing session>>'s
+  of all the <<def-tracing-session-rotation,tracing session>>'s
   <<def-sub-buffer,sub-buffers>> and the stream files produced since the
   latest event amongst:
 +
-* The creation of the tracing session.
-* The last <<session-rotation,tracing session rotation>>, if any.
+* The creation of the <<def-tracing-session,tracing session>>.
+* The last tracing session rotation, if any.
 
-<<channel-overwrite-mode-vs-discard-mode,discard mode>>:: The event
-  record loss mode in which the <<def-tracer,tracer>> _discards_ new
-  event records when there's no
+<<channel-overwrite-mode-vs-discard-mode,discard mode>>::
+  The <<def-event-record-loss-mode,event record loss mode>> in which
+  the <<def-tracer,tracer>> _discards_ new event records when there's no
   <<def-sub-buffer,sub-buffer>> space left to store them.
 
 [[def-event]]event::
@@ -7725,33 +7627,36 @@ clock::
   <<def-tracepoint,tracepoint>> that you manually place in some source
   code, or a Linux kernel kprobe.
 +
-An event is said to _occur_ at a specific time. Different actions can
-be taken upon the occurrence of an event, like record the event's payload
-to a <<def-sub-buffer,sub-buffer>>.
+An event is said to _occur_ at a specific time. <<def-lttng,LTTng>> can
+take various actions upon the occurrence of an event, like record the
+event's payload to a <<def-sub-buffer,sub-buffer>>.
 
 [[def-event-name]]event name::
-  The name of an event, which is also the name of the event record.
-  This is also called the _instrumentation point name_.
+  The name of an <<def-event,event>>, which is also the name of the
+  <<def-event-record,event record>>.
++
+This is also called the _instrumentation point name_.
 
 [[def-event-record]]event record::
-  A record, in a <<def-trace,trace>>, of the payload of an event
-  which occured.
+  A record, in a <<def-trace,trace>>, of the payload of an
+  <<def-event,event>> which occured.
 
 [[def-event-record-loss-mode]]<<channel-overwrite-mode-vs-discard-mode,event record loss mode>>::
-  The mechanism by which event records of a given <<channel,channel>>
-  are lost (not recorded) when there is no <<def-sub-buffer,sub-buffer>>
-  space left to store them.
+  The mechanism by which event records of a given
+  <<def-channel,channel>> are lost (not recorded) when there is no
+  <<def-sub-buffer,sub-buffer>> space left to store them.
 
-<<event,event rule>>::
+[[def-event-rule]]<<event,event rule>>::
   Set of conditions which must be satisfied for one or more occuring
-  events to be recorded.
+  <<def-event,events>> to be recorded.
 
 `java.util.logging`::
   Java platform's
   https://docs.oracle.com/javase/7/docs/api/java/util/logging/package-summary.html[core logging facilities].
 
 <<instrumenting,instrumentation>>::
-  The use of LTTng probes to make a piece of software traceable.
+  The use of <<def-lttng,LTTng>> probes to make a piece of software
+  traceable.
 
 [[def-instrumentation-point]]instrumentation point::
   A point in the execution path of a piece of software that, when
@@ -7766,29 +7671,31 @@ log4j::
 
 log level::
   Level of severity of a log statement or user space
-  instrumentation point.
+  <<def-instrumentation-point,instrumentation point>>.
 
-LTTng::
+[[def-lttng]]LTTng::
   The _Linux Trace Toolkit: next generation_ project.
 
 <<lttng-cli,cmd:lttng>>::
-  A command-line tool provided by the LTTng-tools project which you
-  can use to send and receive control messages to and from a
-  session daemon.
+  A command-line tool provided by the <<def-lttng-tools,LTTng-tools>>
+  project which you can use to send and receive control messages to and
+  from a <<def-session-daemon,session daemon>>.
 
 LTTng analyses::
   The https://github.com/lttng/lttng-analyses[LTTng analyses] project,
-  which is a set of analyzing programs that are used to obtain a
-  higher level view of an LTTng <<def-trace,trace>>.
+  which is a set of analyzing programs that you can use to obtain a
+  higher level view of an <<def-lttng,LTTng>> <<def-trace,trace>>.
 
 cmd:lttng-consumerd::
-  The name of the consumer daemon program.
+  The name of the <<def-consumer-daemon,consumer daemon>> program.
 
 cmd:lttng-crash::
-  A utility provided by the LTTng-tools project which can convert
-  <<def-ring-buffer,ring buffer>> files (usually
-  <<persistent-memory-file-systems,saved on a persistent memory file system>>)
-  to <<def-trace,trace>> files.
+  A utility provided by the <<def-lttng-tools,LTTng-tools>> project
+  which can convert <<def-ring-buffer,ring buffer>> files (usually
+  <<persistent-memory-file-systems,saved on a persistent memory file
+  system>>) to <<def-trace,trace>> files.
++
+See man:lttng-crash(1).
 
 LTTng Documentation::
   This document.
@@ -7796,38 +7703,40 @@ LTTng Documentation::
 <<lttng-live,LTTng live>>::
   A communication protocol between the <<lttng-relayd,relay daemon>> and
   live viewers which makes it possible to see <<def-event-record,event
-  records>> "live", as they are received by the relay daemon.
+  records>> "live", as they are received by the
+  <<def-relay-daemon,relay daemon>>.
 
 <<lttng-modules,LTTng-modules>>::
   The https://github.com/lttng/lttng-modules[LTTng-modules] project,
   which contains the Linux kernel modules to make the Linux kernel
   <<def-instrumentation-point,instrumentation points>> available for
-  LTTng tracing.
+  <<def-lttng,LTTng>> tracing.
 
 cmd:lttng-relayd::
-  The name of the <<lttng-relayd,relay daemon>> program.
+  The name of the <<def-relay-daemon,relay daemon>> program.
 
 cmd:lttng-sessiond::
-  The name of the <<lttng-sessiond,session daemon>> program.
+  The name of the <<def-session-daemon,session daemon>> program.
 
-LTTng-tools::
+[[def-lttng-tools]]LTTng-tools::
   The https://github.com/lttng/lttng-tools[LTTng-tools] project, which
   contains the various programs and libraries used to
   <<controlling-tracing,control tracing>>.
 
-<<lttng-ust,LTTng-UST>>::
+[[def-lttng-ust]]<<lttng-ust,LTTng-UST>>::
   The https://github.com/lttng/lttng-ust[LTTng-UST] project, which
   contains libraries to instrument
   <<def-user-application,user applications>>.
 
 <<lttng-ust-agents,LTTng-UST Java agent>>::
-  A Java package provided by the LTTng-UST project to allow the
-  LTTng instrumentation of `java.util.logging` and Apache log4j{nbsp}1.2
-  logging statements.
+  A Java package provided by the <<def-lttng-ust,LTTng-UST>> project to
+  allow the LTTng instrumentation of `java.util.logging` and Apache
+  log4j{nbsp}1.2 logging statements.
 
 <<lttng-ust-agents,LTTng-UST Python agent>>::
-  A Python package provided by the LTTng-UST project to allow the
-  LTTng instrumentation of Python logging statements.
+  A Python package provided by the <<def-lttng-ust,LTTng-UST>> project
+  to allow the <<def-lttng,LTTng>> instrumentation of Python logging
+  statements.
 
 <<channel-overwrite-mode-vs-discard-mode,overwrite mode>>::
   The <<def-event-record-loss-mode,event record loss mode>> in which new
@@ -7838,16 +7747,16 @@ LTTng-tools::
 <<channel-buffering-schemes,per-process buffering>>::
   A <<def-buffering-scheme,buffering scheme>> in which each instrumented
   process has its own <<def-sub-buffer,sub-buffers>> for a given user
-  space <<channel,channel>>.
+  space <<def-channel,channel>>.
 
 <<channel-buffering-schemes,per-user buffering>>::
   A <<def-buffering-scheme,buffering scheme>> in which all the processes
   of a Unix user share the same <<def-sub-buffer,sub-buffers>> for a
-  given user space <<channel,channel>>.
+  given user space <<def-channel,channel>>.
 
-<<lttng-relayd,relay daemon>>::
+[[def-relay-daemon]]<<lttng-relayd,relay daemon>>::
   A process which is responsible for receiving the <<def-trace,trace>>
-  data sent by a distant <<lttng-consumerd,consumer daemon>>.
+  data which a distant <<def-consumer-daemon,consumer daemon>> sends.
 
 [[def-ring-buffer]]ring buffer::
   A set of <<def-sub-buffer,sub-buffers>>.
@@ -7855,22 +7764,22 @@ LTTng-tools::
 rotation::
   See _<<def-tracing-session-rotation,tracing session rotation>>_.
 
-<<lttng-sessiond,session daemon>>::
+[[def-session-daemon]]<<lttng-sessiond,session daemon>>::
   A process which receives control commands from you and orchestrates
-  the <<def-tracer,tracers>> and various LTTng daemons.
+  the <<def-tracer,tracers>> and various <<def-lttng,LTTng>> daemons.
 
 <<taking-a-snapshot,snapshot>>::
   A copy of the current data of all the <<def-sub-buffer,sub-buffers>>
-  of a given <<tracing-session,tracing session>>, saved as
+  of a given <<def-tracing-session,tracing session>>, saved as
   <<def-trace,trace>> files.
 
 [[def-sub-buffer]]sub-buffer::
-  One part of an LTTng <<def-ring-buffer,ring buffer>> which contains
-  <<def-event-record,event records>>.
+  One part of an <<def-lttng,LTTng>> <<def-ring-buffer,ring buffer>>
+  which contains <<def-event-record,event records>>.
 
 timestamp::
-  The time information attached to an
-  <<def-event,event>> when it is emitted.
+  The time information attached to an <<def-event,event>> when it is
+  emitted.
 
 [[def-trace]]trace (_noun_)::
   A set of:
@@ -7879,46 +7788,50 @@ timestamp::
 * One or more CTF data stream files which are the concatenations of one
   or more flushed <<def-sub-buffer,sub-buffers>>.
 
-trace (_verb_)::
+[[def-trace-verb]]trace (_verb_)::
   The action of recording the <<def-event,events>> emitted by an
   application or by a system, or to initiate such recording by
-  controlling a tracer.
+  controlling a <<def-tracer,tracer>>.
 
 [[def-trace-chunk]]trace chunk::
-  A self-contained trace which is part of a <<tracing-session,tracing
-  session>>. Each <<session-rotation, tracing session rotation>>
-  produces a trace chunk archive.
+  A self-contained <<def-trace,trace>> which is part of a
+  <<def-tracing-session,tracing session>>. Each
+  <<def-tracing-session-rotation, tracing session rotation>> produces a
+  <<def-trace-chunk-archive,trace chunk archive>>.
 
-trace chunk archive::
-  The result of a <<session-rotation, tracing session rotation>>. A
-  trace chunk archive is not managed by LTTng, even if its containing
-  <<tracing-session,tracing session>> is still active: you are free to
-  read it, modify it, move it, or remove it.
+[[def-trace-chunk-archive]]trace chunk archive::
+  The result of a <<def-tracing-session-rotation, tracing session rotation>>.
++
+<<def-lttng,LTTng>> does not manage any trace chunk archive, even if its
+containing <<def-tracing-session,tracing session>> is still active: you
+are free to read it, modify it, move it, or remove it.
 
 Trace Compass::
   The http://tracecompass.org[Trace Compass] project and application.
 
 [[def-tracepoint]]tracepoint::
   An instrumentation point using the tracepoint mechanism of the Linux
-  kernel or of LTTng-UST.
+  kernel or of <<def-lttng-ust,LTTng-UST>>.
 
 tracepoint definition::
-  The definition of a single tracepoint.
+  The definition of a single <<def-tracepoint,tracepoint>>.
 
 tracepoint name::
-  The name of a tracepoint.
+  The name of a <<def-tracepoint,tracepoint>>.
 
-tracepoint provider::
-  A set of functions providing tracepoints to an instrumented user
-  application.
+[[def-tracepoint-provider]]tracepoint provider::
+  A set of functions providing <<def-tracepoint,tracepoints>> to an
+  instrumented <<def-user-application,user application>>.
 +
-Not to be confused with a _tracepoint provider package_: many tracepoint
-providers can exist within a tracepoint provider package.
+Not to be confused with a <<def-tracepoint-provider-package,tracepoint
+provider package>>: many tracepoint providers can exist within a
+tracepoint provider package.
 
-tracepoint provider package::
-  One or more tracepoint providers compiled as an
-  https://en.wikipedia.org/wiki/Object_file[object file] or as
-  a link:https://en.wikipedia.org/wiki/Library_(computing)#Shared_libraries[shared library].
+[[def-tracepoint-provider-package]]tracepoint provider package::
+  One or more <<def-tracepoint-provider,tracepoint providers>> compiled
+  as an https://en.wikipedia.org/wiki/Object_file[object file] or as a
+  link:https://en.wikipedia.org/wiki/Library_(computing)#Shared_libraries[shared
+  library].
 
 [[def-tracer]]tracer::
   A software which records emitted <<def-event,events>>.
@@ -7927,17 +7840,16 @@ tracepoint provider package::
   A namespace for <<def-event,event>> sources.
 
 <<tracing-group,tracing group>>::
-  The Unix group in which a Unix user can be to be allowed to trace the
-  Linux kernel.
+  The Unix group in which a Unix user can be to be allowed to
+  <<def-trace-verb,trace>> the Linux kernel.
 
-[[def-tracing-session-rotation]]<<tracing-session,tracing session>>::
-  A stateful dialogue between you and a <<lttng-sessiond,session
-  daemon>>.
+[[def-tracing-session]]<<tracing-session,tracing session>>::
+  A stateful dialogue between you and a <<lttng-sessiond,session daemon>>.
 
-<<session-rotation,tracing session rotation>>::
+[[def-tracing-session-rotation]]<<session-rotation,tracing session rotation>>::
   The action of archiving the
   <<def-current-trace-chunk,current trace chunk>> of a
-  <<tracing-session,tracing session>>.
+  <<def-tracing-session,tracing session>>.
 
 [[def-user-application]]user application::
   An application running in user space, as opposed to a Linux kernel
