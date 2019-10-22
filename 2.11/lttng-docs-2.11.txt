@@ -1,7 +1,7 @@
 The LTTng Documentation
 =======================
 Philippe Proulx <pproulx@efficios.com>
-v2.11, 18 October 2019
+v2.11, 22 October 2019
 
 
 include::../common/copyright.txt[]
@@ -373,12 +373,46 @@ but note that:
 
 [IMPORTANT]
 ====
-As of 18 October 2019, LTTng{nbsp}{revision} is not available
-as distribution packages.
+As of 22 October 2019, LTTng{nbsp}{revision} is not available
+as distribution packages, except for <<arch-linux,Arch Linux>>.
 
 You can <<building-from-source,build LTTng{nbsp}{revision} from source>>
 to install and use it.
 ====
+
+
+[[arch-linux]]
+=== Arch Linux
+
+LTTng-UST{nbsp}{revision} is available in Arch Linux's _community_
+repository, while LTTng-tools{nbsp}{revision} and
+LTTng-modules{nbsp}{revision} are available in the
+https://aur.archlinux.org/[AUR].
+
+To install LTTng{nbsp}{revision} on Arch Linux, using
+https://github.com/actionless/pikaur[pikaur] for the AUR packages:
+
+. Install the main LTTng{nbsp}{revision} packages:
++
+--
+[role="term"]
+----
+# pacman -Sy lttng-ust
+$ pikaur -Sy lttng-tools
+$ pikaur -Sy lttng-modules
+----
+--
+
+. **If you need to instrument and trace <<python-application,Python
+  applications>>**, install the LTTng-UST Python agent:
++
+--
+[role="term"]
+----
+# pacman -Sy python-lttngust
+# pacman -Sy python2-lttngust
+----
+--
 
 
 [[building-from-source]]
