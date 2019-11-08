@@ -170,7 +170,7 @@ when a kernel event occurs. For example:
 +
 [role="term"]
 ----
-$ lttng enable-event --kernel --syscall read
+$ lttng enable-event --kernel --syscall open
 $ lttng add-context --kernel --type=callstack-kernel --type=callstack-user
 ----
 +
@@ -298,7 +298,7 @@ exist for Linux:
   is the de facto function tracer of the Linux kernel. Its user
   interface is a set of special files in sysfs.
 * https://perf.wiki.kernel.org/[perf] is
-  a performance analyzing tool for Linux which supports hardware
+  a performance analysis tool for Linux which supports hardware
   performance counters, tracepoints, as well as other counters and
   types of probes. perf's controlling utility is the cmd:perf command
   line/curses tool.
@@ -1266,8 +1266,7 @@ reached, the channel's _event record loss mode_ determines what to do.
 The available event record loss modes are:
 
 Discard mode::
-  Drop the newest event records until a the tracer releases a
-  sub-buffer.
+  Drop the newest event records until the tracer releases a sub-buffer.
 +
 This is the only available mode when you specify a
 <<opt-blocking-timeout,blocking timeout>>.
@@ -1447,7 +1446,7 @@ for LTTng to record an occuring event.
 You set the conditions when you <<enabling-disabling-events,create
 an event rule>>.
 
-You always attach an event rule to <<channel,channel>> when you create
+You always attach an event rule to a <<channel,channel>> when you create
 it.
 
 When an event passes the conditions of an event rule, LTTng records it
@@ -1607,9 +1606,9 @@ Some objects are referenced by name (C string), such as tracing
 sessions, but most of them require to create a handle first using
 `lttng_create_handle()`.
 
-The best available developer documentation for `liblttng-ctl` is, as of
-LTTng{nbsp}{revision}, its installed header files. Every function and
-structure is thoroughly documented.
+As of LTTng{nbsp}{revision}, the best available developer documentation for
+`liblttng-ctl` is its installed header files. Every function and structure is
+thoroughly documented.
 
 
 [[lttng-ust]]
@@ -6374,8 +6373,8 @@ Replace `my-session` with the name of the tracing session to load.
 When LTTng loads a configuration, it restores your saved tracing session
 as if you just configured it manually.
 
-See man:lttng(1) for the complete list of command-line options. You
-can also save and load all many sessions at a time, and decide in which
+See man:lttng-load(1) for the complete list of command-line options. You
+can also save and load many sessions at a time, and decide in which
 directory to output the XML files.
 
 
