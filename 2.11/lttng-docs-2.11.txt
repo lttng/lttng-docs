@@ -1158,11 +1158,6 @@ source code), you need to specify a tracing domain when
 <<enabling-disabling-events,creating an event rule>> because all the
 tracing domains could have tracepoints with the same names.
 
-Some features are reserved to specific tracing domains. Dynamic function
-entry and return instrumentation points, for example, are currently only
-supported in the Linux kernel tracing domain, but support for other
-tracing domains could be added in the future.
-
 You can create <<channel,channels>> in the Linux kernel and user space
 tracing domains. The other tracing domains have a single default
 channel.
