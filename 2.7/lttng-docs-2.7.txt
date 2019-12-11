@@ -4117,7 +4117,7 @@ lttng enable-event --userspace 'lttng_ust_tracelog:*'
 [[prebuilt-ust-helpers]]
 === Prebuilt user space tracing helpers
 
-The LTTng-UST package provides a few helpers in the form or preloadable
+The LTTng-UST package provides a few helpers in the form of preloadable
 shared objects which automatically instrument system functions and
 calls.
 
