@@ -1,7 +1,7 @@
 The LTTng Documentation
 =======================
 Philippe Proulx <pproulx@efficios.com>
-v2.11, 22 October 2019
+v2.11, 30 March 2020
 
 
 include::../common/copyright.txt[]
@@ -371,14 +371,123 @@ but note that:
 * You only need to install LTTng-UST if you intend to trace user
   applications.
 
-[IMPORTANT]
-====
-As of 22 October 2019, LTTng{nbsp}{revision} is not available
-as distribution packages, except for <<arch-linux,Arch Linux>>.
+[role="growable"]
+.Availability of LTTng{nbsp}{revision} for major Linux distributions as of 30 March 2020.
+|====
+|Distribution |Available in releases
 
-You can <<building-from-source,build LTTng{nbsp}{revision} from source>>
-to install and use it.
-====
+|https://www.ubuntu.com/[Ubuntu]
+|Ubuntu{nbsp}16.04 _Xenial Xerus_ and Ubuntu{nbsp}18.04 _Bionic Beaver_:
+<<ubuntu-ppa,use the LTTng Stable{nbsp}{revision} PPA>>.
+
+|https://www.debian.org/[Debian]
+|<<debian,Debian "bullseye" (testing)>>.
+
+|https://www.archlinux.org/[Arch Linux]
+|<<arch-linux,_Community_ repository and AUR>>.
+
+|https://getfedora.org/[Fedora]
+|xref:fedora[Fedora{nbsp}32 and Fedora{nbsp}33].
+
+|https://www.redhat.com/[RHEL] and https://www.suse.com/[SLES]
+|See http://packages.efficios.com/[EfficiOS Enterprise Packages].
+
+|https://buildroot.org/[Buildroot]
+|xref:buildroot[Buildroot{nbsp}2019.11 and Buildroot{nbsp}2020.02].
+|====
+
+
+[[ubuntu-ppa]]
+=== Ubuntu: noch:{LTTng} Stable {revision} PPA
+
+The https://launchpad.net/~lttng/+archive/ubuntu/stable-{revision}[LTTng
+Stable{nbsp}{revision} PPA] offers the latest stable
+LTTng{nbsp}{revision} packages for Ubuntu{nbsp}16.04 _Xenial Xerus_ and
+Ubuntu{nbsp}18.04 _Bionic Beaver_.
+
+To install LTTng{nbsp}{revision} from the LTTng Stable{nbsp}{revision}
+PPA:
+
+. Add the LTTng Stable{nbsp}{revision} PPA repository and update the
+  list of packages:
++
+--
+[role="term"]
+----
+# apt-add-repository ppa:lttng/stable-2.10
+# apt-get update
+----
+--
+
+. Install the main LTTng{nbsp}{revision} packages:
++
+--
+[role="term"]
+----
+# apt-get install lttng-tools
+# apt-get install lttng-modules-dkms
+# apt-get install liblttng-ust-dev
+----
+--
+
+. **If you need to instrument and trace
+  <<java-application,Java applications>>**, install the LTTng-UST
+  Java agent:
++
+--
+[role="term"]
+----
+# apt-get install liblttng-ust-agent-java
+----
+--
+
+. **If you need to instrument and trace
+  <<python-application,Python{nbsp}3 applications>>**, install the
+  LTTng-UST Python agent:
++
+--
+[role="term"]
+----
+# apt-get install python3-lttngust
+----
+--
+
+
+[[debian]]
+=== Debian
+
+To install LTTng{nbsp}{revision} on Debian "bullseye" (testing):
+
+. Install the main LTTng{nbsp}{revision} packages:
++
+--
+[role="term"]
+----
+# apt-get install lttng-modules-dkms
+# apt-get install liblttng-ust-dev
+# apt-get install lttng-tools
+----
+--
+
+. **If you need to instrument and trace <<java-application,Java
+  applications>>**, install the LTTng-UST Java agent:
++
+--
+[role="term"]
+----
+# apt-get install liblttng-ust-agent-java
+----
+--
+
+. **If you need to instrument and trace <<python-application,Python
+  applications>>**, install the LTTng-UST Python agent:
++
+--
+[role="term"]
+----
+# apt-get install python3-lttngust
+----
+--
 
 
 [[arch-linux]]
@@ -390,7 +499,7 @@ LTTng-modules{nbsp}{revision} are available in the
 https://aur.archlinux.org/[AUR].
 
 To install LTTng{nbsp}{revision} on Arch Linux, using
-https://github.com/actionless/pikaur[pikaur] for the AUR packages:
+https://github.com/Jguer/yay[yay] for the AUR packages:
 
 . Install the main LTTng{nbsp}{revision} packages:
 +
@@ -398,8 +507,8 @@ https://github.com/actionless/pikaur[pikaur] for the AUR packages:
 [role="term"]
 ----
 # pacman -Sy lttng-ust
-$ pikaur -Sy lttng-tools
-$ pikaur -Sy lttng-modules
+$ yay -Sy lttng-tools
+$ yay -Sy lttng-modules
 ----
 --
 
@@ -413,6 +522,77 @@ $ pikaur -Sy lttng-modules
 # pacman -Sy python2-lttngust
 ----
 --
+
+
+[[fedora]]
+=== Fedora
+
+To install LTTng{nbsp}{revision} on Fedora{nbsp}32 and Fedora{nbsp}33:
+
+. Install the LTTng-tools{nbsp}{revision} and LTTng-UST{nbsp}{revision}
+  packages:
++
+--
+[role="term"]
+----
+# yum install lttng-tools
+# yum install lttng-ust
+----
+--
+
+. Download, build, and install the latest LTTng-modules{nbsp}{revision}:
++
+--
+[role="term"]
+----
+$ cd $(mktemp -d) &&
+wget http://lttng.org/files/lttng-modules/lttng-modules-latest-2.11.tar.bz2 &&
+tar -xf lttng-modules-latest-2.11.tar.bz2 &&
+cd lttng-modules-2.11.* &&
+make &&
+sudo make modules_install &&
+sudo depmod -a
+----
+--
+
+[IMPORTANT]
+.Java and Python application instrumentation and tracing
+====
+If you need to instrument and trace <<java-application,Java
+applications>> on Fedora, you need to build and install
+LTTng-UST{nbsp}{revision} <<building-from-source,from source>> and pass
+the `--enable-java-agent-jul`, `--enable-java-agent-log4j`, or
+`--enable-java-agent-all` options to the `configure` script, depending
+on which Java logging framework you use.
+
+If you need to instrument and trace <<python-application,Python
+applications>> on Fedora, you need to build and install
+LTTng-UST{nbsp}{revision} from source and pass the
+`--enable-python-agent` option to the `configure` script.
+====
+
+
+[[buildroot]]
+=== Buildroot
+
+To install LTTng{nbsp}{revision} on Buildroot{nbsp}2019.11 and
+Buildroot{nbsp}2020.02:
+
+. Launch the Buildroot configuration tool:
++
+--
+[role="term"]
+----
+$ make menuconfig
+----
+--
+
+. In **Kernel**, check **Linux kernel**.
+. In **Toolchain**, check **Enable WCHAR support**.
+. In **Target packages**{nbsp}&#8594; **Debugging, profiling and benchmark**,
+  check **lttng-modules** and **lttng-tools**.
+. In **Target packages**{nbsp}&#8594; **Libraries**{nbsp}&#8594;
+  **Other**, check **lttng-libust**.
 
 
 [[building-from-source]]
