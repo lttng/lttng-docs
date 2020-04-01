@@ -4307,7 +4307,7 @@ logging frameworks:
 .LTTng-UST Java agent imported by a Java application.
 image::java-app.png[]
 
-Note that the methods described below are new in LTTng{nbsp}{revision}.
+Note that the methods described below are new in LTTng{nbsp}2.8.
 Previous LTTng versions use another technique.
 
 NOTE: We use http://openjdk.java.net/[OpenJDK]{nbsp}8 for development
@@ -6283,7 +6283,7 @@ help you solve a problem faster. Examples of context fields are:
   **process priority** of the thread in which the event occurs.
 * The **hostname** of the system on which the event occurs.
 * The Linux kernel and user call stacks (since
-  LTTng{nbsp}{revision}).
+  LTTng{nbsp}11).
 * The current values of many possible **performance counters** using
   perf, for example:
 ** CPU cycles, stalled cycles, idle cycles, and the other cycle types.

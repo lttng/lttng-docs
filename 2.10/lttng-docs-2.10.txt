@@ -4428,7 +4428,7 @@ logging frameworks:
 .LTTng-UST Java agent imported by a Java application.
 image::java-app.png[]
 
-Note that the methods described below are new in LTTng{nbsp}{revision}.
+Note that the methods described below are new in LTTng{nbsp}2.8.
 Previous LTTng versions use another technique.
 
 NOTE: We use http://openjdk.java.net/[OpenJDK]{nbsp}8 for development
