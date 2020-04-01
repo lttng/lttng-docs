@@ -223,7 +223,7 @@ and viewed once tracing is inactive or in real-time.
 [[installing-lttng]]
 == Installing LTTng
 
-include::../common/warning-installation-outdated.txt[]
+include::../common/warning-no-installation.txt[]
 
 **LTTng** is a set of software components which interact to allow
 instrumenting the Linux kernel and user applications and controlling
@@ -240,151 +240,9 @@ LTTng-UST::
   User space tracing library.
 
 Most distributions mark the LTTng-modules and LTTng-UST packages as
-optional. In the following sections, we always provide the steps to
-install all three, but be aware that LTTng-modules is only required if
-you intend to trace the Linux kernel and LTTng-UST is only required if
-you intend to trace user space applications.
-
-This chapter shows how to install the above packages on a Linux system.
-The easiest way is to use the package manager of the system's
-distribution (<<desktop-distributions,desktop>> or
-<<embedded-distributions,embedded>>). Support is also available for
-<<enterprise-distributions,enterprise distributions>>, such as Red Hat
-Enterprise Linux (RHEL) and SUSE Linux Enterprise Server (SLES).
-Otherwise, you can
-<<building-from-source,build the LTTng packages from source>>.
-
-
-[[desktop-distributions]]
-=== Desktop distributions
-
-Official LTTng {revision} packages are available for <<ubuntu,Ubuntu>> and
-<<debian,Debian>>.
-
-More recent versions of LTTng are available for Fedora, openSUSE,
-as well as Arch Linux.
-
-Should any issue arise when following the procedures below, please
-inform the http://lttng.org/community[community] about it.
-
-
-[[ubuntu]]
-==== Ubuntu
-
-LTTng {revision} is packaged in Ubuntu 15.04 _Vivid Vervet_. For other
-releases of Ubuntu, you need to build and install LTTng
-<<building-from-source,from source>>. Ubuntu 15.10 _Wily Werewolf_
-ships with link:/docs/v2.6/[LTTng 2.6].
-
-To install LTTng {revision} from the official Ubuntu repositories,
-simply use `apt-get`:
-
-[role="term"]
-----
-sudo apt-get install lttng-tools
-sudo apt-get install lttng-modules-dkms
-sudo apt-get install liblttng-ust-dev
-----
-
-
-[[debian]]
-==== Debian
-
-Debian "jessie" has official packages of LTTng {revision}:
-
-[role="term"]
-----
-sudo apt-get install lttng-tools
-sudo apt-get install lttng-modules-dkms
-sudo apt-get install liblttng-ust-dev
-----
-
-
-[[embedded-distributions]]
-=== Embedded distributions
-
-Some developers may be interested in tracing the Linux kernel and user space
-applications running on embedded systems. LTTng is packaged by two popular
-embedded Linux distributions: <<buildroot,Buildroot>> and
-<<oe-yocto,OpenEmbedded/Yocto>>.
-
-
-[[buildroot]]
-==== Buildroot
-
-LTTng {revision} packages in Buildroot 2014.11 and 2015.02 are named
-`lttng-tools`, `lttng-modules`, and `lttng-libust`.
-
-To enable them, start the Buildroot configuration menu as usual:
-
-[role="term"]
-----
-make menuconfig
-----
-
-In:
-
-* _Kernel_: make sure _Linux kernel_ is enabled
-* _Toolchain_: make sure the following options are enabled:
-** _Enable large file (files > 2GB) support_
-** _Enable WCHAR support_
-
-In _Target packages_/_Debugging, profiling and benchmark_, enable
-_lttng-modules_ and _lttng-tools_. In
-_Target packages_/_Libraries_/_Other_, enable _lttng-libust_.
-
-
-[[oe-yocto]]
-==== OpenEmbedded/Yocto
-
-LTTng {revision} recipes are available in the `openembedded-core` layer of
-OpenEmbedded from August 15th, 2014 to February 8th, 2015 under the
-following names:
-
-* `lttng-tools`
-* `lttng-modules`
-* `lttng-ust`
-
-Using BitBake, the simplest way to include LTTng recipes in your
-target image is to add them to `IMAGE_INSTALL_append` in
-path:{conf/local.conf}:
-
-----
-IMAGE_INSTALL_append = " lttng-tools lttng-modules lttng-ust"
-----
-
-If you're using Hob, click _Edit image recipe_ once you have selected
-a machine and an image recipe. Then, in the _All recipes_ tab, search
-for `lttng` and you should find and be able to include the three LTTng
-recipes.
-
-
-[[enterprise-distributions]]
-=== Enterprise distributions (RHEL, SLES)
-
-To install LTTng on enterprise Linux distributions
-(such as RHEL and SLES), please see
-http://packages.efficios.com/[EfficiOS Enterprise Packages].
-
-
-[[building-from-source]]
-=== Building from source
-
-As <<installing-lttng,previously stated>>, LTTng is shipped as three
-packages: LTTng-tools, LTTng-modules and LTTng-UST. LTTng-tools contains
-everything needed to control tracing sessions, while LTTng-modules is
-only needed for Linux kernel tracing and LTTng-UST is only needed for
-user space tracing.
-
-The tarballs are available in the
-http://lttng.org/download#build-from-source[Download section]
-of the LTTng website.
-
-Please refer to the path:{README.md} files provided by each package to
-properly build and install them.
-
-TIP: The aforementioned path:{README.md} files are rendered as
-rich text when https://github.com/lttng[viewed on GitHub].
+optional. Note that LTTng-modules is only required if you intend to
+trace the Linux kernel and LTTng-UST is only required if you intend to
+trace user space applications.
 
 
 [[getting-started]]
