@@ -1,7 +1,7 @@
 The LTTng Documentation
 =======================
 Philippe Proulx <pproulx@efficios.com>
-v2.11, 30 March 2020
+v2.11, 2 April 2020
 
 
 include::../common/copyright.txt[]
@@ -201,6 +201,14 @@ address.
   https://en.wikipedia.org/wiki/Non-uniform_memory_access[NUMA] node.
 +
 This change makes the tracer more efficient on NUMA systems.
+
+* The <<proc-lttng-logger-abi,LTTng logger>> kernel module now also
+  creates a ``misc'' device named `lttng-logger`, which udev will
+  make accessible as the path:{/dev/lttng-logger} special file.
++
+The `lttng-logger` device shares the `/proc/lttng-logger` file's ABI,
+but it works from within containers when the path is made accessible to
+them.
 
 
 [[nuts-and-bolts]]
@@ -1893,8 +1901,9 @@ kernel tracer writes to the ring buffer; a
 * The _LTTng logger_ module.
 +
 The LTTng logger module implements the special path:{/proc/lttng-logger}
-file so that any executable can generate LTTng events by opening and
-writing to this file.
+(and path:{/dev/lttng-logger} since LTTng{nbsp}2.11) files so that any
+executable can generate LTTng events by opening and writing to those
+files.
 +
 See <<proc-lttng-logger-abi,LTTng logger>>.
 
@@ -5034,9 +5043,10 @@ variable.
 === LTTng logger
 
 The `lttng-tracer` Linux kernel module, part of
-<<lttng-modules,LTTng-modules>>, creates the special LTTng logger file
-path:{/proc/lttng-logger} when it's loaded. Any application can write
-text data to this file to emit an LTTng event.
+<<lttng-modules,LTTng-modules>>, creates the special LTTng logger files
+path:{/proc/lttng-logger} and path:{/dev/lttng-logger} (since
+LTTng{nbsp}2.11) when it's loaded. Any application can write text data
+to any of those files to emit an LTTng event.
 
 [role="img-100"]
 .An application writes to the LTTng logger file to emit an LTTng event.
@@ -5048,7 +5058,7 @@ mostly to instrument shell scripts:
 
 [role="term"]
 ----
-$ echo "Some message, some $variable" > /proc/lttng-logger
+$ echo "Some message, some $variable" > /dev/lttng-logger
 ----
 
 Any event that the LTTng logger emits is named `lttng_logger` and
@@ -5060,7 +5070,7 @@ matches its event name, not only the root user or users in the
 
 To use the LTTng logger:
 
-* From any application, write text data to the path:{/proc/lttng-logger}
+* From any application, write text data to the path:{/dev/lttng-logger}
   file.
 
 The `msg` field of `lttng_logger` event records contains the
@@ -5082,9 +5092,9 @@ can be instrumented in a more efficient way, namely:
 [source,bash]
 .path:{test.bash}
 ----
-echo 'Hello, World!' > /proc/lttng-logger
+echo 'Hello, World!' > /dev/lttng-logger
 sleep 2
-df --human-readable --print-type / > /proc/lttng-logger
+df --human-readable --print-type / > /dev/lttng-logger
 ----
 
 <<creating-destroying-tracing-sessions,Create a tracing session>>,
