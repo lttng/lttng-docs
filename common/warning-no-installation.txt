@@ -1,5 +1,5 @@
 [WARNING]
-.Obsolete information
+.Not available
 =====
 The installation documentation for distributions is not available
 because this version of the LTTng Documentation is **not maintained
