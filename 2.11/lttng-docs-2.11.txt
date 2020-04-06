@@ -1,7 +1,7 @@
 The LTTng Documentation
 =======================
 Philippe Proulx <pproulx@efficios.com>
-v2.11, 2 April 2020
+v2.11, 6 April 2020
 
 
 include::../common/copyright.txt[]
@@ -422,7 +422,7 @@ PPA:
 --
 [role="term"]
 ----
-# apt-add-repository ppa:lttng/stable-2.10
+# apt-add-repository ppa:lttng/stable-2.11
 # apt-get update
 ----
 --
