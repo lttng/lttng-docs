@@ -6892,7 +6892,7 @@ $ lttng --mi=xml enable-event --kernel --syscall open
 ----
 
 A schema definition (XSD) is
-https://github.com/lttng/lttng-tools/blob/stable-2.12/src/common/mi-lttng-3.0.xsd[available]
+https://github.com/lttng/lttng-tools/blob/stable-{revision}/src/common/src/common/mi-lttng-4.0.xsd[available]
 to ease the integration with external tools as much as possible.
 
 
