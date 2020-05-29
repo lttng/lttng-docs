@@ -6180,7 +6180,7 @@ Examples of context fields are:
   **process priority** of the thread in which the event occurs.
 * The **hostname** of the system on which the event occurs.
 * The Linux kernel and user call stacks (since
-  LTTng{nbsp}11).
+  LTTng{nbsp}2.11).
 * The current values of many possible **performance counters** using
   perf, for example:
 ** CPU cycles, stalled cycles, idle cycles, and the other cycle types.
