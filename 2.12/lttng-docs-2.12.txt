@@ -397,8 +397,7 @@ but note that:
   applications.
 
 [role="growable"]
-.Availability of LTTng{nbsp}{revision} for major Linux distributions as
-of 5{nbsp}August{nbsp}2020.
+.Availability of LTTng{nbsp}{revision} for major Linux distributions as of 5{nbsp}August{nbsp}2020.
 |====
 |Distribution |Available in releases
 
