@@ -1,7 +1,7 @@
 The LTTng Documentation
 =======================
 Philippe Proulx <pproulx@efficios.com>
-v2.12, 6 April 2020
+v2.12, 5 August 2020
 
 
 include::../common/copyright.txt[]
@@ -396,14 +396,122 @@ but note that:
 * You only need to install LTTng-UST if you intend to trace user
   applications.
 
-[IMPORTANT]
-====
-As of 1 April 2020, LTTng{nbsp}{revision} isn't available
-as distribution packages, except for <<arch-linux,Arch Linux>>.
+[role="growable"]
+.Availability of LTTng{nbsp}{revision} for major Linux distributions as
+of 5{nbsp}August{nbsp}2020.
+|====
+|Distribution |Available in releases
 
-<<building-from-source,Build LTTng{nbsp}{revision} from source>>
-to install and use it.
-====
+|https://www.ubuntu.com/[Ubuntu]
+|Ubuntu{nbsp}16.04 _Xenial Xerus_, Ubuntu{nbsp}18.04 _Bionic Beaver_,
+and Ubuntu{nbsp}20.04 _Focal Fossa_:
+<<ubuntu-ppa,use the LTTng Stable{nbsp}{revision} PPA>>.
+
+|https://www.debian.org/[Debian]
+|<<debian,Debian "bullseye" (testing)>>.
+
+|https://www.archlinux.org/[Arch Linux]
+|<<arch-linux,_Community_ repository and AUR>>.
+
+|https://alpinelinux.org/[Alpine Linux]
+|<<alpine-linux,Alpine Linux{nbsp}3.12>>.
+
+|https://www.redhat.com/[RHEL] and https://www.suse.com/[SLES]
+|See http://packages.efficios.com/[EfficiOS Enterprise Packages].
+|====
+
+
+[[ubuntu-ppa]]
+=== Ubuntu: noch:{LTTng} Stable {revision} PPA
+
+The https://launchpad.net/~lttng/+archive/ubuntu/stable-{revision}[LTTng
+Stable{nbsp}{revision} PPA] offers the latest stable
+LTTng{nbsp}{revision} packages for Ubuntu{nbsp}16.04 _Xenial Xerus_,
+Ubuntu{nbsp}18.04 _Bionic Beaver_, and Ubuntu{nbsp}20.04 _Focal Fossa_.
+
+To install LTTng{nbsp}{revision} from the LTTng Stable{nbsp}{revision}
+PPA:
+
+. Add the LTTng Stable{nbsp}{revision} PPA repository and update the
+  list of packages:
++
+--
+[role="term"]
+----
+# apt-add-repository ppa:lttng/stable-2.12
+# apt-get update
+----
+--
+
+. Install the main LTTng{nbsp}{revision} packages:
++
+--
+[role="term"]
+----
+# apt-get install lttng-tools
+# apt-get install lttng-modules-dkms
+# apt-get install liblttng-ust-dev
+----
+--
+
+. **If you need to instrument and trace
+  <<java-application,Java applications>>**, install the LTTng-UST
+  Java agent:
++
+--
+[role="term"]
+----
+# apt-get install liblttng-ust-agent-java
+----
+--
+
+. **If you need to instrument and trace
+  <<python-application,Python{nbsp}3 applications>>**, install the
+  LTTng-UST Python agent:
++
+--
+[role="term"]
+----
+# apt-get install python3-lttngust
+----
+--
+
+
+[[debian]]
+=== Debian
+
+To install LTTng{nbsp}{revision} on Debian "bullseye" (testing):
+
+. Install the main LTTng{nbsp}{revision} packages:
++
+--
+[role="term"]
+----
+# apt-get install lttng-modules-dkms
+# apt-get install liblttng-ust-dev
+# apt-get install lttng-tools
+----
+--
+
+. **If you need to instrument and trace <<java-application,Java
+  applications>>**, install the LTTng-UST Java agent:
++
+--
+[role="term"]
+----
+# apt-get install liblttng-ust-agent-java
+----
+--
+
+. **If you need to instrument and trace <<python-application,Python
+  applications>>**, install the LTTng-UST Python agent:
++
+--
+[role="term"]
+----
+# apt-get install python3-lttngust
+----
+--
 
 
 [[arch-linux]]
@@ -436,6 +544,38 @@ $ yay -Sy lttng-modules
 ----
 # pacman -Sy python-lttngust
 # pacman -Sy python2-lttngust
+----
+--
+
+
+[[alpine-linux]]
+=== Alpine Linux
+
+To install LTTng-tools{nbsp}{revision} and LTTng-UST{nbsp}{revision} on
+Alpine Linux{nbsp}3.12:
+
+. Add the LTTng packages:
++
+--
+[role="term"]
+----
+# apk add lttng-tools
+# apk add lttng-ust-dev
+----
+--
+
+. Download, build, and install the latest LTTng-modules{nbsp}{revision}:
++
+--
+[role="term"]
+----
+$ cd $(mktemp -d) &&
+wget http://lttng.org/files/lttng-modules/lttng-modules-latest-2.12.tar.bz2 &&
+tar -xf lttng-modules-latest-2.12.tar.bz2 &&
+cd lttng-modules-2.12.* &&
+make &&
+sudo make modules_install &&
+sudo depmod -a
 ----
 --
 
