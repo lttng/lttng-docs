@@ -1,7 +1,7 @@
 The LTTng Documentation
 =======================
 Philippe Proulx <pproulx@efficios.com>
-v2.12, 5 August 2020
+v2.12, 14 January 2021
 
 
 include::../common/copyright.txt[]
@@ -88,7 +88,7 @@ Tracing control::
   without having to destroy and reconfigure them
   with the new man:lttng-clear(1) command.
 +
-This is especially useful to clear a tracing session's tracing data
+This is especially useful to clear the tracing data of a tracing session
 between attempts to reproduce a problem.
 +
 See <<clear,Clear a tracing session>>.
@@ -147,7 +147,8 @@ default; see man:getrlimit(2)).
 Change this hierarchy to group traces by tracing session name rather
 than by hostname
 (+$LTTNG_HOME/lttng-traces/__session__/__host__/__domain__+) with the
-new relay daemon's opt:lttng-relayd(8):--group-output-by-session option.
+new opt:lttng-relayd(8):--group-output-by-session option of the
+relay daemon.
 +
 This feature is especially useful if you're tracing two or more hosts,
 having different hostnames, which share the same tracing session name as
@@ -166,9 +167,9 @@ Linux kernel tracing::
 Use the resulting event records to identify the bounds of a network
 reception and link the events that occur in the interim (for example,
 wake-ups) to a specific network reception instance. You can also
-analyze the network stack's latency thanks to those event records.
+analyze the latency of the network stack thanks to those event records.
 
-* The `irqaction` structure's `thread` field, which specifies the
+* The `thread` field of the `irqaction` structure, which specifies the
   process to wake up when a threaded interrupt request (IRQ) occurs, is
   now part of the `lttng_statedump_interrupt` event record.
 +
@@ -184,9 +185,9 @@ the same socket. As of LTTng{nbsp}{revision}, only the x86 architecture
 is supported since all architectures describe their topologies
 differently.
 +
-The tracepoint's `architecture` field is statically defined and exists
-for all architecture implementations. Analysis tools can therefore
-anticipate the event record's layout.
+The `architecture` field of the tracepoint is statically defined and
+exists for all architecture implementations. Analysis tools can
+therefore anticipate the layout of the event record.
 +
 Event record example:
 +
@@ -294,7 +295,7 @@ Excluding proprietary solutions, a few competing software tracers
 exist for Linux:
 
 https://github.com/dtrace4linux/linux[dtrace4linux]::
-    A port of Sun Microsystems's DTrace to Linux.
+    A port of Sun Microsystems' DTrace to Linux.
 +
 The cmd:dtrace tool interprets user scripts and is responsible for
 loading code into the Linux kernel for further execution and collecting
@@ -319,7 +320,8 @@ https://perf.wiki.kernel.org/[perf]::
     performance counters, tracepoints, as well as other counters and
     types of probes.
 +
-perf's controlling utility is the cmd:perf command line/text UI tool.
+The controlling utility of perf is the cmd:perf command line/text UI
+tool.
 
 http://linux.die.net/man/1/strace[strace]::
     A command-line utility which records system calls made by a
@@ -332,18 +334,18 @@ fulfill its function.
 http://www.sysdig.org/[sysdig]::
     Like SystemTap, uses scripts to analyze Linux kernel events.
 +
-You write scripts, or _chisels_ in sysdig's jargon, in Lua and sysdig
-executes them while it traces the system or afterwards. sysdig's
-interface is the cmd:sysdig command-line tool as well as the text
-UI-based cmd:csysdig tool.
+You write scripts, or _chisels_ in the jargon of sysdig, in Lua and
+sysdig executes them while it traces the system or afterwards. The
+interface of sysdig is the cmd:sysdig command-line tool as well as the
+text UI-based cmd:csysdig tool.
 
 https://sourceware.org/systemtap/[SystemTap]::
     A Linux kernel and user space tracer which uses custom user scripts
     to produce plain text traces.
 +
 SystemTap converts the scripts to the C language, and then compiles them
-as Linux kernel modules which are loaded to produce trace data.
-SystemTap's primary user interface is the cmd:stap command-line tool.
+as Linux kernel modules which are loaded to produce trace data. The
+primary user interface of SystemTap is the cmd:stap command-line tool.
 
 The main distinctive features of LTTng is that it produces correlated
 kernel and user space traces, as well as doing so with the lowest
@@ -516,8 +518,8 @@ To install LTTng{nbsp}{revision} on Debian "bullseye" (testing):
 [[arch-linux]]
 === Arch Linux
 
-LTTng-UST{nbsp}{revision} is available in Arch Linux's _community_
-repository, while LTTng-tools{nbsp}{revision} and
+LTTng-UST{nbsp}{revision} is available in the _community_
+repository of Arch Linux, while LTTng-tools{nbsp}{revision} and
 LTTng-modules{nbsp}{revision} are available in the
 https://aur.archlinux.org/[AUR].
 
@@ -584,8 +586,8 @@ sudo depmod -a
 
 To build and install LTTng{nbsp}{revision} from source:
 
-. Using your distribution's package manager, or from source, install
-  the following dependencies of LTTng-tools and LTTng-UST:
+. Using the package manager of your distribution, or from source,
+  install the following dependencies of LTTng-tools and LTTng-UST:
 +
 --
 * https://sourceforge.net/projects/libuuid/[libuuid]
@@ -937,7 +939,7 @@ $ gcc -o hello hello.o hello-tp.o -llttng-ust -ldl
 Here's the whole build process:
 
 [role="img-100"]
-.User space tracing tutorial's build steps.
+.Build steps of the user space tracing tutorial.
 image::ust-flow.png[]
 
 To trace the user application:
@@ -969,8 +971,8 @@ $ lttng-sessiond --daemonize
 ----
 --
 +
-Note that a session daemon might already be running, for example as
-a service that the distribution's service manager started.
+Note that a session daemon might already be running, for example as a
+service that the service manager of the distribution started.
 
 . List the available user space tracepoints:
 +
@@ -1066,7 +1068,7 @@ https://diamon.org/ctf/[CTF].
 
 http://tracecompass.org/[Trace Compass]::
     A graphical user interface for viewing and analyzing any type of
-    logs or traces, including LTTng's.
+    logs or traces, including those of LTTng.
 
 https://github.com/lttng/lttng-analyses[**LTTng analyses**]::
     An experimental project which includes many high-level analyses of
@@ -1156,7 +1158,7 @@ def top5proc():
         if type(msg) is not bt2._EventMessageConst:
             continue
 
-        # Event message's event.
+        # Event of the event message.
         event = msg.event
 
         # Keep only `sched_switch` events.
@@ -1174,7 +1176,7 @@ def top5proc():
             # We start here.
             last_ts = cur_ts
 
-        # Previous task command's (short) name.
+        # (Short) name of the previous task command.
         prev_comm = str(event.payload_field['prev_comm'])
 
         # Initialize an entry in our dictionary if not yet done.
@@ -1297,9 +1299,9 @@ Snapshot mode::
   LTTng doesn't write the traces by default.
 +
 Instead, you can request LTTng to <<taking-a-snapshot,take a snapshot>>,
-that is, a copy of the tracing session's current sub-buffers, and to
-write it to the target's file system or to send it over the network to a
-<<lttng-relayd,relay daemon>> running on a remote system.
+that is, a copy of the current sub-buffers of the tracing session, and
+to write it to the file system of the target or to send it over the
+network to a <<lttng-relayd,relay daemon>> running on a remote system.
 
 Live mode::
   This mode is similar to the network streaming mode, but a live
@@ -1401,9 +1403,9 @@ user ``running'' the kernel.
 ==== Overwrite vs. discard event record loss modes
 
 When an event occurs, LTTng records it to a specific sub-buffer (yellow
-arc in the following animations) of a specific channel's ring buffer.
-When there's no space left in a sub-buffer, the tracer marks it as
-consumable (red) and another, empty sub-buffer starts receiving the
+arc in the following animations) of the ring buffer of a specific
+channel. When there's no space left in a sub-buffer, the tracer marks it
+as consumable (red) and another, empty sub-buffer starts receiving the
 following event records. A <<lttng-consumerd,consumer daemon>>
 eventually consumes the marked sub-buffer (returns to white).
 
@@ -1421,10 +1423,10 @@ record the following events.
 By default, LTTng-modules and LTTng-UST are _non-blocking_ tracers: when
 no empty sub-buffer is available, it is acceptable to lose event records
 when the alternative would be to cause substantial delays in the
-instrumented application's execution. LTTng privileges performance over
-integrity; it aims at perturbing the target system as little as possible
-in order to make tracing of subtle race conditions and rare interrupt
-cascades possible.
+execution of the instrumented application. LTTng privileges performance
+over integrity; it aims at perturbing the target system as little as
+possible in order to make tracing of subtle race conditions and rare
+interrupt cascades possible.
 
 Since LTTng{nbsp}2.10, the LTTng user space tracer, LTTng-UST, supports
 a _blocking mode_. See the <<blocking-timeout-example,blocking timeout
@@ -1432,8 +1434,8 @@ example>> to learn how to use the blocking mode.
 
 When it comes to losing event records because no empty sub-buffer is
 available, or because the <<opt-blocking-timeout,blocking timeout>> is
-reached, the channel's _event record loss mode_ determines what to do.
-The available event record loss modes are:
+reached, the _event record loss mode_ of the channel determines what to
+do. The available event record loss modes are:
 
 Discard mode::
   Drop the newest event records until the tracer releases a sub-buffer.
@@ -1463,9 +1465,10 @@ event record is lost and saves this count to the trace. In overwrite
 mode, since LTTng{nbsp}2.8, LTTng increments a count of lost sub-buffers
 when a sub-buffer is lost and saves this count to the trace. In this
 mode, LTTng doesn't write to the trace the exact number of lost event
-records in those lost sub-buffers. Trace analyses can use the trace's
-saved discarded event record and sub-buffer counts to decide whether or
-not to perform the analyses even if trace data is known to be missing.
+records in those lost sub-buffers. Trace analyses can use saved
+discarded event record and sub-buffer counts of the trace to decide
+whether or not to perform the analyses even if trace data is known to be
+missing.
 
 There are a few ways to decrease your probability of losing event
 records.
@@ -1500,7 +1503,7 @@ other sub-buffers are left unaltered.
   since the risk of losing event records is low.
 +
 Because events occur less frequently, the sub-buffer switching frequency
-should remain low and thus the tracer's overhead shouldn't be a
+should remain low and thus the overhead of the tracer shouldn't be a
 problem.
 
 * **Low memory system**: If your target system has a low memory
@@ -1530,10 +1533,10 @@ following configurations have the same ring buffer total size:
 * **Two sub-buffers of 4{nbsp}MiB each**: Expect a very low sub-buffer
   switching frequency, but if a sub-buffer overwrite happens, half of
   the event records so far (4{nbsp}MiB) are definitely lost.
-* **Eight sub-buffers of 1{nbsp}MiB each**: Expect four times the tracer's
-  overhead as the previous configuration, but if a sub-buffer
-  overwrite happens, only the eighth of event records so far are
-  definitely lost.
+* **Eight sub-buffers of 1{nbsp}MiB each**: Expect four times the
+  overhead of the tracer as the previous configuration, but if a
+  sub-buffer overwrite happens, only the eighth of event records so far
+  are definitely lost.
 
 In discard mode, the sub-buffers count parameter is pointless: use two
 sub-buffers and set their size according to the requirements of your
@@ -1569,27 +1572,27 @@ normally low.
 By default, the LTTng tracers use a notification mechanism to signal a
 full sub-buffer so that a consumer daemon can consume it. When such
 notifications must be avoided, for example in real-time applications,
-use the channel's _read timer_ instead. When the read timer fires, the
-<<lttng-consumerd,consumer daemon>> checks for full, consumable
+use the _read timer_ of the channel instead. When the read timer fires,
+the <<lttng-consumerd,consumer daemon>> checks for full, consumable
 sub-buffers.
 
 
 [[tracefile-rotation]]
 ==== Trace file count and size
 
-By default, trace files can grow as large as needed. Set the
-maximum size of each trace file that a channel writes when you
-<<enabling-disabling-channels,create a channel>>. When the size of
-a trace file reaches the channel's fixed maximum size, LTTng creates
+By default, trace files can grow as large as needed. Set the maximum
+size of each trace file that a channel writes when you
+<<enabling-disabling-channels,create a channel>>. When the size of a
+trace file reaches the fixed maximum size of the channel, LTTng creates
 another file to contain the next event records. LTTng appends a file
 count to each trace file name in this case.
 
 If you set the trace file size attribute when you create a channel, the
 maximum number of trace files that LTTng creates is _unlimited_ by
 default. To limit them, set a maximum number of trace files. When the
-number of trace files reaches the channel's fixed maximum count, the
-oldest trace file is overwritten. This mechanism is called _trace file
-rotation_.
+number of trace files reaches the fixed maximum count of the channel,
+the oldest trace file is overwritten. This mechanism is called _trace
+file rotation_.
 
 [IMPORTANT]
 ====
@@ -1619,21 +1622,21 @@ You always attach an event rule to a <<channel,channel>> when you create
 it.
 
 When an event passes the conditions of an event rule, LTTng records it
-in one of the attached channel's sub-buffers.
+in one of the sub-buffers of the attached channel.
 
 The available conditions, as of LTTng{nbsp}{revision}, are:
 
 * The event rule _is enabled_.
-* The instrumentation point's type _is{nbsp}T_.
-* The instrumentation point's name (sometimes called _event name_)
+* The type of the instrumentation point _is{nbsp}T_.
+* The name of the instrumentation point (sometimes called _event name_)
   _matches{nbsp}N_, but _isn't{nbsp}E_.
-* The instrumentation point's log level _is as severe as{nbsp}L_, or
+* The log level of the instrumentation point _is as severe as{nbsp}L_, or
   _is exactly{nbsp}L_.
-* The fields of the event's payload _satisfy_ a filter
+* The fields of the payload of the event _satisfy_ a filter
   expression{nbsp}__F__.
 
 As you can see, all the conditions but the dynamic filter are related to
-the event rule's status or to the instrumentation point, not to the
+the status of the event rule or to the instrumentation point, not to the
 occurring events. This is why, without a filter, checking if an event
 passes an event rule isn't a dynamic task: when you create or modify an
 event rule, all the tracers of its tracing domain enable or disable the
@@ -1660,11 +1663,11 @@ An **event** is the consequence of the execution of an _instrumentation
 point_, like a tracepoint that you manually place in some source code,
 or a Linux kernel kprobe. An event is said to _occur_ at a specific
 time. Different actions can be taken upon the occurrence of an event,
-like record the event's payload to a buffer.
+like record the payload of the event to a buffer.
 
 An **event record** is the representation of an event in a sub-buffer. A
 tracer is responsible for capturing the payload of an event, current
-context variables, the event's ID, and the event's timestamp. LTTng
+context variables, the ID of the event, and its timestamp. LTTng
 can append this sub-buffer to a trace file.
 
 An **event rule** is a set of conditions which must _all_ be satisfied
@@ -1758,7 +1761,7 @@ image::plumbing-liblttng-ctl.png[]
 
 The _LTTng control library_, `liblttng-ctl`, is used to communicate
 with a <<lttng-sessiond,session daemon>> using a C API that hides the
-underlying protocol's details. `liblttng-ctl` is part of LTTng-tools.
+underlying details of the protocol. `liblttng-ctl` is part of LTTng-tools.
 
 The <<lttng-cli,cmd:lttng command-line tool>>
 is linked with `liblttng-ctl`.
@@ -1839,9 +1842,9 @@ Both agents use the same mechanism to trace the log statements. When an
 agent initializes, it creates a log handler that attaches to the root
 logger. The agent also registers to a <<lttng-sessiond,session daemon>>.
 When the application executes a log statement, the root logger passes it
-to the agent's log handler. The agent's log handler calls a native
-function in a tracepoint provider package shared library linked with
-<<lttng-ust,`liblttng-ust`>>, passing the formatted log message and
+to the log handler of the agent. The log handler of the agent calls a
+native function in a tracepoint provider package shared library linked
+with <<lttng-ust,`liblttng-ust`>>, passing the formatted log message and
 other fields, like its logger name and its log level. This native
 function contains a user space instrumentation point, hence tracing the
 log statement.
@@ -2001,7 +2004,7 @@ You don't start a consumer daemon manually: a consumer daemon is always
 spawned by a <<lttng-sessiond,session daemon>> as soon as you create an
 <<event,event rule>>, that is, before you start tracing. When you kill
 its owner session daemon, the consumer daemon also exits because it is
-the session daemon's child process. Command-line options of
+the child process of the session daemon. Command-line options of
 man:lttng-sessiond(8) target the consumer daemon process.
 
 There are up to two running consumer daemons per Unix user, whereas only
@@ -2055,7 +2058,7 @@ There are many examples of tracing and monitoring in our everyday life:
 
 All the previous examples have something in common: they rely on
 **instruments**. Without the electrodes attached to the surface of your
-body's skin, cardiac monitoring is futile.
+body skin, cardiac monitoring is futile.
 
 LTTng, as a tracer, is no different from those real life examples. If
 you're about to trace a software system or, in other words, record its
@@ -2064,15 +2067,15 @@ subject you're tracing, that is, the actual software.
 
 Various ways were developed to instrument a piece of software for LTTng
 tracing. The most straightforward one is to manually place
-instrumentation points, called _tracepoints_, in the software's source
-code. It is also possible to add instrumentation points dynamically in
-the Linux kernel <<domain,tracing domain>>.
+instrumentation points, called _tracepoints_, in the source code of the
+software. It is also possible to add instrumentation points dynamically
+in the Linux kernel <<domain,tracing domain>>.
 
 If you're only interested in tracing the Linux kernel, your
-instrumentation needs are probably already covered by LTTng's built-in
-<<lttng-modules,Linux kernel tracepoints>>. You may also wish to trace a
-user application which is already instrumented for LTTng tracing.
-In such cases, skip this whole section and read the topics of
+instrumentation needs are probably already covered by the built-in
+<<lttng-modules,Linux kernel tracepoints>> of LTTng. You may also wish
+to trace a user application which is already instrumented for LTTng
+tracing. In such cases, skip this whole section and read the topics of
 the <<controlling-tracing,Tracing control>> section.
 
 Many methods are available to instrument a piece of software for LTTng
@@ -2096,7 +2099,7 @@ the <<lttng-ust,LTTng user space tracing library>>, `liblttng-ust`, is:
 . <<tracepoint-provider,Create the source files of a tracepoint provider
   package>>.
 . <<probing-the-application-source-code,Add tracepoints to
-  the application's source code>>.
+  the source code of the application>>.
 . <<building-tracepoint-providers-and-user-application,Build and link
   a tracepoint provider package and the user application>>.
 
@@ -2116,8 +2119,8 @@ A _tracepoint provider_ is a set of compiled functions which provide
 supported by LTTng-UST. Those functions can emit events with
 user-defined fields and serialize those events as event records to one
 or more LTTng-UST <<channel,channel>> sub-buffers. The `tracepoint()`
-macro, which you <<probing-the-application-source-code,insert in a user
-application's source code>>, calls those functions.
+macro, which you <<probing-the-application-source-code,insert in the
+source code of a user application>>, calls those functions.
 
 A _tracepoint provider package_ is an object file (`.o`) or a shared
 library (`.so`) which contains one or more tracepoint providers.
@@ -2199,7 +2202,7 @@ A _tracepoint definition_ defines, for a given tracepoint:
 
 * Its **input arguments**. They are the macro parameters that the
   `tracepoint()` macro accepts for this particular tracepoint
-  in the user application's source code.
+  in the source code of the user application.
 * Its **output event fields**. They are the sources of event fields
   that form the payload of any event that the execution of the
   `tracepoint()` macro emits for this particular tracepoint.
@@ -2244,7 +2247,7 @@ Replace:
 This tracepoint emits events named `provider_name:tracepoint_name`.
 
 [IMPORTANT]
-.Event name's length limitation
+.Event name length limitation
 ====
 The concatenation of the tracepoint provider name and the
 tracepoint name must not exceed **254{nbsp}characters**. If it does, the
@@ -2293,9 +2296,9 @@ one event field.
 
 Each `ctf_*()` macro takes an _argument expression_ parameter. This is a
 C expression that the tracer evalutes at the `tracepoint()` macro site
-in the application's source code. This expression provides a field's
-source of data. The argument expression can include input argument names
-listed in the `TP_ARGS()` macro.
+in the source code of the application. This expression provides the
+source of data of a field. The argument expression can include input
+argument names listed in the `TP_ARGS()` macro.
 
 Each `ctf_*()` macro also takes a _field name_ parameter. Field names
 must be unique within a given tracepoint definition.
@@ -2329,7 +2332,7 @@ TRACEPOINT_EVENT(
 ----
 
 Refer to this tracepoint definition with the `tracepoint()` macro in
-your application's source code like this:
+the source code of your application like this:
 
 [source,c]
 ----
@@ -2577,11 +2580,12 @@ holding more than one tracepoint providers.
 
 
 [[probing-the-application-source-code]]
-==== Add tracepoints to an application's source code
+==== Add tracepoints to the source code of an application
 
-Once you <<tpp-header,create a tracepoint provider header file>>,
-use the `tracepoint()` macro in your application's source code to insert
-the tracepoints that this header <<defining-tracepoints,defines>>.
+Once you <<tpp-header,create a tracepoint provider header file>>, use
+the `tracepoint()` macro in the source code of your application to
+insert the tracepoints that this header
+<<defining-tracepoints,defines>>.
 
 The `tracepoint()` macro takes at least two parameters: the tracepoint
 provider name and the tracepoint name. The corresponding tracepoint
@@ -2613,10 +2617,10 @@ TRACEPOINT_EVENT(
 ----
 
 Refer to this tracepoint definition with the `tracepoint()` macro in
-your application's source code like this:
+the source code of your application like this:
 
 [source,c]
-.Application's source file.
+.Application source file.
 ----
 #include "tp.h"
 
@@ -2628,7 +2632,7 @@ int main(int argc, char* argv[])
 }
 ----
 
-Note how the application's source code includes
+Note how the source code of the application includes
 the tracepoint provider header file containing the tracepoint
 definitions to use, path:{tp.h}.
 ====
@@ -2671,10 +2675,10 @@ TRACEPOINT_EVENT(
 ----
 
 Refer to this tracepoint definition with the `tracepoint()` macro in
-your application's source code like this:
+the source code of your application like this:
 
 [source,c]
-.Application's source file.
+.Application source file.
 ----
 #define TRACEPOINT_DEFINE
 #include "tp.h"
@@ -2696,7 +2700,7 @@ it should look like this:
 
 .Event record fields
 |====
-|Field's name            |Field's value
+|Field name              |Field value
 |`my_constant_field`     |40
 |`my_int_arg_field`      |23
 |`my_int_arg_field2`     |529
@@ -2773,7 +2777,7 @@ In the following diagrams, we use the following file names:
   Executable application.
 
 `app.o`::
-  Application's object file.
+  Application object file.
 
 `tpp.o`::
   Tracepoint provider package object file.
@@ -3852,8 +3856,8 @@ sudo ldconfig
 ----
 --
 
-. Using your distribution's package manager, or from source, install
-  the following 32-bit versions of the following dependencies of
+. Using the package manager of your distribution, or from source,
+  install the following 32-bit versions of the following dependencies of
   LTTng-tools and LTTng-UST:
 +
 --
@@ -3989,8 +3993,8 @@ To use `tracef()` in your application:
 ----
 --
 
-. In the application's source code, use `tracef()` like you would use
-  man:printf(3):
+. In the source code of the application, use `tracef()` like you would
+  use man:printf(3):
 +
 --
 [source,c]
@@ -4039,10 +4043,10 @@ super simple, albeit with notable disadvantages compared to
   using your own format string. This also means that you can't filter
   events with a custom expression at run time because there are no
   isolated fields.
-* Since `tracef()` uses the C standard library's man:vasprintf(3)
-  function behind the scenes to format the strings at run time, its
-  expected performance is lower than with user-defined tracepoints,
-  which don't require a conversion to a string.
+* Since `tracef()` uses the man:vasprintf(3) function of the
+  C{nbsp}standard library behind the scenes to format the strings at run
+  time, its expected performance is lower than with user-defined
+  tracepoints, which don't require a conversion to a string.
 
 Taking this into consideration, `tracef()` is useful for some quick
 prototyping and debugging, but you shouldn't consider it for any
@@ -4072,8 +4076,8 @@ To use `tracelog()` in your application:
 ----
 --
 
-. In the application's source code, use `tracelog()` like you would use
-  man:printf(3), except for the first parameter which is the log
+. In the source code of the application, use `tracelog()` like you would
+  use man:printf(3), except for the first parameter which is the log
   level:
 +
 --
@@ -4227,7 +4231,7 @@ The LTTng-UST function tracing helpers,
 path:{liblttng-ust-cyg-profile.so} and
 path:{liblttng-ust-cyg-profile-fast.so}, take advantage of this feature
 to add tracepoints to the two generated functions (which contain
-`cyg_profile` in their names, hence the helper's name).
+`cyg_profile` in their names, hence the name of the helper).
 
 To use the LTTng-UST function tracing helper, the source files to
 instrument must be built using the `-finstrument-functions` compiler
@@ -4310,8 +4314,8 @@ with OpenJDK{nbsp}7.
 To use the LTTng-UST Java agent in a Java application which uses
 `java.util.logging` (JUL):
 
-. In the Java application's source code, import the LTTng-UST
-  log handler package for `java.util.logging`:
+. In the source code of the Java application, import the LTTng-UST log
+  handler package for `java.util.logging`:
 +
 --
 [source,java]
@@ -4356,9 +4360,9 @@ lttngUstLogHandler.close();
 --
 +
 This isn't strictly necessary, but it is recommended for a clean
-disposal of the handler's resources.
+disposal of the resources of the handler.
 
-. Include the LTTng-UST Java agent's common and JUL-specific JAR files,
+. Include the common and JUL-specific JAR files of the LTTng-UST Java agent,
   path:{lttng-ust-agent-common.jar} and path:{lttng-ust-agent-jul.jar},
   in the
   https://docs.oracle.com/javase/tutorial/essential/environment/paths.html[class
@@ -4450,7 +4454,7 @@ application using `java.util.logging` is named `lttng_jul:event` and
 has the following fields:
 
 `msg`::
-  Log record's message.
+  Log record message.
 
 `logger_name`::
   Logger name.
@@ -4483,8 +4487,8 @@ or a specific JUL log level.
 To use the LTTng-UST Java agent in a Java application which uses
 Apache log4j{nbsp}1.2:
 
-. In the Java application's source code, import the LTTng-UST
-  log appender package for Apache log4j:
+. In the source code of the Java application, import the LTTng-UST log
+  appender package for Apache log4j:
 +
 --
 [source,java]
@@ -4528,10 +4532,10 @@ lttngUstLogAppender.close();
 --
 +
 This isn't strictly necessary, but it is recommended for a clean
-disposal of the appender's resources.
+disposal of the resources of the appender.
 
-. Include the LTTng-UST Java agent's common and log4j-specific JAR
-  files, path:{lttng-ust-agent-common.jar} and
+. Include the common and log4j-specific JAR
+  files of the LTTng-UST Java agent, path:{lttng-ust-agent-common.jar} and
   path:{lttng-ust-agent-log4j.jar}, in the
   https://docs.oracle.com/javase/tutorial/essential/environment/paths.html[class
   path] when you build the Java application.
@@ -4623,7 +4627,7 @@ application using log4j is named `lttng_log4j:event` and
 has the following fields:
 
 `msg`::
-  Log record's message.
+  Log record message.
 
 `logger_name`::
   Logger name.
@@ -4672,7 +4676,7 @@ the JUL or log4j <<channel,channel>>.
 
 To provide application-specific context fields in a Java application:
 
-. In the Java application's source code, import the LTTng-UST
+. In the source code of the Java application, import the LTTng-UST
   Java agent context classes and interfaces:
 +
 --
@@ -4742,7 +4746,7 @@ cim.unregisterContextInfoRetriever("retrieverName");
 --
 +
 This isn't strictly necessary, but it is recommended for a clean
-disposal of some manager's resources.
+disposal of some resources of the manager.
 
 . Build your Java application with LTTng-UST Java agent support as
   usual, following the procedure for either the <<jul,JUL>> or
@@ -4883,8 +4887,8 @@ image::python-app.png[]
 
 To use the LTTng-UST Python agent:
 
-. In the Python application's source code, import the LTTng-UST Python
-  agent:
+. In the source code of the Python application, import the LTTng-UST
+  Python agent:
 +
 --
 [source,python]
@@ -4975,7 +4979,7 @@ application is named `lttng_python:event` and has the following fields:
   Logging time (string).
 
 `msg`::
-  Log record's message.
+  Log record message.
 
 `logger_name`::
   Logger name.
@@ -5109,7 +5113,7 @@ $ lttng view
 === LTTng kernel tracepoints
 
 NOTE: This section shows how to _add_ instrumentation points to the
-Linux kernel. The kernel's subsystems are already thoroughly
+Linux kernel. The subsystems of the kernel are already thoroughly
 instrumented at strategic places for LTTng when you
 <<installing-lttng,install>> the <<lttng-modules,LTTng-modules>>
 package.
@@ -5164,7 +5168,7 @@ To add an LTTng layer over an existing ftrace tracepoint:
 +
 Confirm that the tracepoints exist by looking for their names in the
 dir:{/sys/kernel/debug/tracing/events/subsys} directory, where `subsys`
-is your subsystem's name.
+is your subsystem name.
 
 . Get a copy of the latest LTTng-modules{nbsp}{revision}:
 +
@@ -5201,7 +5205,7 @@ Start with this template:
 
 LTTNG_TRACEPOINT_EVENT(
     /*
-     * Format is identical to TRACE_EVENT()'s version for the three
+     * Format is identical to the TRACE_EVENT() version for the three
      * following macro parameters:
      */
     my_subsys_my_event,
@@ -5223,13 +5227,13 @@ LTTNG_TRACEPOINT_EVENT(
 +
 The entries in the `TP_FIELDS()` section are the list of fields for the
 LTTng tracepoint. This is similar to the `TP_STRUCT__entry()` part of
-ftrace's `TRACE_EVENT()` macro.
+the `TRACE_EVENT()` ftrace macro.
 +
 See <<lttng-modules-tp-fields,Tracepoint fields macros>> for a
 complete description of the available `ctf_*()` macros.
 
-. Create the LTTng-modules probe's kernel module C source file,
-  +probes/lttng-probe-__subsys__.c+, where +__subsys__+ is your
+. Create the kernel module C{nbsp}source file of the LTTng-modules
+  probe, +probes/lttng-probe-__subsys__.c+, where +__subsys__+ is your
   subsystem name:
 +
 --
@@ -5292,7 +5296,7 @@ $ make KERNELDIR=/path/to/linux
 --
 +
 Replace `/path/to/linux` with the path to the Linux source tree where
-you defined and used tracepoints with ftrace's `TRACE_EVENT()` macro.
+you defined and used tracepoints with the `TRACE_EVENT()` ftrace macro.
 
 Note that you can also use the
 <<lttng-tracepoint-event-code,`LTTNG_TRACEPOINT_EVENT_CODE()` macro>>
@@ -5449,7 +5453,7 @@ To unload the loaded probe modules:
 ----
 --
 +
-You can also use man:modprobe(8)'s `--remove` option if the session
+You can also use the man:modprobe(8) `--remove` option if the session
 daemon terminates abnormally.
 
 
@@ -5551,7 +5555,7 @@ $ lttng create
 ----
 --
 
-The created tracing session's name is `auto` followed by the
+The name of the created tracing session is `auto` followed by the
 creation date.
 
 To create a tracing session with a specific name:
@@ -5567,7 +5571,8 @@ $ lttng create my-session
 +
 Replace `my-session` with the specific tracing session name.
 
-LTTng appends the creation date to the created tracing session's name.
+LTTng appends the creation date to the name of the created tracing
+session.
 
 LTTng writes the traces of a tracing session in
 +$LTTNG_HOME/lttng-trace/__name__+ by default, where +__name__+ is the
@@ -5671,8 +5676,8 @@ logger names.
 
 To list the available instrumentation points:
 
-* Use the man:lttng-list(1) command with the requested tracing domain's
-  option amongst:
+* Use the man:lttng-list(1) command with the option of the requested
+  tracing domain amongst:
 +
 --
 opt:lttng-list(1):--kernel::
@@ -5996,7 +6001,8 @@ $ lttng status
 
 To get the status of any tracing session:
 
-* Use the man:lttng-list(1) command with the tracing session's name:
+* Use the man:lttng-list(1) command with the name of the tracing
+  session:
 +
 --
 [role="term"]
@@ -6005,7 +6011,7 @@ $ lttng list my-session
 ----
 --
 +
-Replace `my-session` with the desired tracing session's name.
+Replace `my-session` with the desired tracing session name.
 
 
 [[basic-tracing-session-control]]
@@ -6189,7 +6195,8 @@ env:LTTNG_UST_ALLOW_BLOCKING environment variable.
 |+--output=__TYPE__+ (Linux kernel tracing domain only)
 
 |
-Set the channel's output type to +__TYPE__+, either `mmap` or `splice`.
+Set the output type of the channel to +__TYPE__+, either `mmap` or
+`splice`.
 
 |====
 
@@ -6446,7 +6453,7 @@ domain has three.
 
 For a given event which passes an enabled <<event,event rule>> to be
 recorded, _all_ the attributes of its executing process must be part of
-the inclusion sets of the event rule's tracing domain.
+the inclusion sets of the tracing domain of the event rule.
 
 Add entries to an inclusion set with the man:lttng-track(1) command and
 remove entries with the man:lttng-untrack(1) command. A process
@@ -6679,10 +6686,10 @@ Replace `remote-system` by the host name or IP address of the
 remote system. See man:lttng-create(1) for the exact URL format.
 
 . On the target system, use the man:lttng(1) command-line tool as usual.
-  When tracing is active, the target's consumer daemon sends sub-buffers
-  to the relay daemon running on the remote system instead of flushing
-  them to the local file system. The relay daemon writes the received
-  packets to the local file system.
+  When tracing is active, the consumer daemon of the target sends
+  sub-buffers to the relay daemon running on the remote system instead
+  of flushing them to the local file system. The relay daemon writes the
+  received packets to the local file system.
 
 The relay daemon writes trace files to
 +$LTTNG_HOME/lttng-traces/__hostname__/__session__+ by default, where
@@ -6752,10 +6759,10 @@ $ babeltrace2 net://localhost
 ----
 
 You can start the relay daemon on another system. In this case, you need
-to specify the relay daemon's URL when you create the tracing session
-with the opt:lttng-create(1):--set-url option. You also need to replace
-`localhost` in the procedure above with the host name of the system on
-which the relay daemon is running.
+to specify the URL of the relay daemon when you create the tracing
+session with the opt:lttng-create(1):--set-url option. You also need to
+replace `localhost` in the procedure above with the host name of the
+system on which the relay daemon is running.
 
 See man:lttng-create(1) and man:lttng-relayd(8) for the complete list of
 command-line options.
@@ -6821,8 +6828,8 @@ $ lttng snapshot record --name=my-first-snapshot
 ----
 --
 +
-LTTng writes the current sub-buffers of all the
-<<cur-tracing-session,current tracing session>>'s channels to
+LTTng writes the current sub-buffers of all the channels of the
+<<cur-tracing-session,current tracing session>> to
 trace files on the local file system. Those trace files have
 `my-first-snapshot` in their name.
 
@@ -6851,16 +6858,16 @@ network>>).
 [[session-rotation]]
 === Archive the current trace chunk (rotate a tracing session)
 
-The <<taking-a-snapshot,snapshot user guide>> shows how to dump
-a tracing session's current sub-buffers to the file system or send them
-over the network. When you take a snapshot, LTTng doesn't clear the
-tracing session's ring buffers: if you take another snapshot immediately
+The <<taking-a-snapshot,snapshot user guide>> shows how to dump the
+current sub-buffers of a tracing session to the file system or send them
+over the network. When you take a snapshot, LTTng doesn't clear the ring
+buffers of the tracing session: if you take another snapshot immediately
 after, both snapshots could contain overlapping trace data.
 
 Inspired by https://en.wikipedia.org/wiki/Log_rotation[log rotation],
 _tracing session rotation_ is a feature which appends the content of the
 ring buffers to what's already on the file system or sent over the
-network since the tracing session's creation or since the last
+network since the creation of the tracing session or since the last
 rotation, and then clears those ring buffers to avoid trace data
 overlaps.
 
@@ -7047,7 +7054,7 @@ used to timestamp <<event,event records>> when tracing.
 If, once a <<tracing-session,tracing session>> is
 <<basic-tracing-session-control,started>>, a major
 https://en.wikipedia.org/wiki/Network_Time_Protocol[NTP] correction
-happens, the trace's clock offset also needs to be updated. Use
+happens, the clock offset of the trace also needs to be updated. Use
 the `metadata` item of the man:lttng-regenerate(1) command to do so.
 
 The main use case of this command is to allow a system to boot with
@@ -7203,15 +7210,15 @@ $ lttng-crash --extract=/path/to/trace /path/to/shm
 
 [role="since-2.10"]
 [[notif-trigger-api]]
-=== Get notified when a channel's buffer usage is too high or too low
+=== Get notified when the buffer usage of a channel is too high or too low
 
-With LTTng's $$C/C++$$ notification and trigger API, your user
+With the $$C/C++$$ notification and trigger API of LTTng, your user
 application can get notified when the buffer usage of one or more
 <<channel,channels>> becomes too low or too high. Use this API
 and enable or disable <<event,event rules>> during tracing to avoid
 <<channel-overwrite-mode-vs-discard-mode,discarded event records>>.
 
-.Have a user application get notified when an LTTng channel's buffer usage is too high.
+.Have a user application get notified when the buffer usage of an LTTng channel is too high.
 ====
 In this example, we create and build an application which gets notified
 when the buffer usage of a specific LTTng channel is higher than
@@ -7219,7 +7226,7 @@ when the buffer usage of a specific LTTng channel is higher than
 could as well use the API of <<liblttng-ctl-lttng,`liblttng-ctl`>> to
 disable event rules when this happens.
 
-. Create the application's C source file:
+. Create the C{nbsp}source file of application:
 +
 --
 [source,c]
@@ -7371,8 +7378,8 @@ int main(int argc, char *argv[])
 
         /*
          * At this point, instead of printing a message, we
-         * could do something to reduce the channel's buffer
-         * usage, like disable specific events.
+         * could do something to reduce the buffer usage of the channel,
+         * like disable specific events.
          */
         printf("Buffer usage is %f %% in tracing session \"%s\", "
             "user space channel \"%s\".\n", buffer_usage * 100,
@@ -7414,8 +7421,8 @@ $ lttng start
 --
 +
 If you create the channel manually with the man:lttng-enable-channel(1)
-command, control how frequently are the current values of the
-channel's properties sampled to evaluate user conditions with the
+command, control how frequently LTTng samples the current values of the
+channel properties to evaluate user conditions with the
 opt:lttng-enable-channel(1):--monitor-timer option.
 
 . Run the `notif-app` application. This program accepts the
@@ -7482,7 +7489,7 @@ The available enumeration entry macros are:
 
 +ctf_enum_auto(__name__)+::
   Entry named +__name__+ mapped to the integral value following the
-  last mapping's value.
+  last mapping value.
 +
 The last value of a `ctf_enum_value()` entry is its +__value__+
 parameter.
@@ -7909,9 +7916,9 @@ clock::
 
 [[def-current-trace-chunk]]current trace chunk::
   A <<def-trace-chunk,trace chunk>> which includes the current content
-  of all the <<def-tracing-session-rotation,tracing session>>'s
-  <<def-sub-buffer,sub-buffers>> and the stream files produced since the
-  latest event amongst:
+  of all the <<def-sub-buffer,sub-buffers>> of the
+  <<def-tracing-session-rotation,tracing session>> and the stream files
+  produced since the latest event amongst:
 +
 * The creation of the <<def-tracing-session,tracing session>>.
 * The last tracing session rotation, if any.
@@ -7928,8 +7935,8 @@ clock::
   code, or a Linux kernel kprobe.
 +
 An event is said to _occur_ at a specific time. <<def-lttng,LTTng>> can
-take various actions upon the occurrence of an event, like record the
-event's payload to a <<def-sub-buffer,sub-buffer>>.
+take various actions upon the occurrence of an event, like record its
+payload to a <<def-sub-buffer,sub-buffer>>.
 
 [[def-event-name]]event name::
   The name of an <<def-event,event>>, which is also the name of the
@@ -7966,8 +7973,9 @@ instrumentation point name::
   See _<<def-event-name,event name>>_.
 
 `java.util.logging`::
-  Java platform's
-  https://docs.oracle.com/javase/7/docs/api/java/util/logging/package-summary.html[core logging facilities].
+  The
+  https://docs.oracle.com/javase/7/docs/api/java/util/logging/package-summary.html[core logging facilities]
+  of the Java platform.
 
 log4j::
   A http://logging.apache.org/log4j/1.2/[logging library] for Java
