@@ -1,7 +1,9 @@
 The LTTng Documentation
 =======================
 Philippe Proulx <pproulx@efficios.com>
-v2.12, 14 January 2021
+<<<<<<< HEAD
+v2.12, 10 February 2021
+>>>>>>> 7e86ae4 (2.12: add openSUSE installation instructions)
 
 
 include::../common/copyright.txt[]
@@ -417,6 +419,9 @@ and Ubuntu{nbsp}20.04 _Focal Fossa_:
 |https://alpinelinux.org/[Alpine Linux]
 |<<alpine-linux,Alpine Linux{nbsp}3.12>>.
 
+|https://www.opensuse.org/[openSUSE]
+|<<openSUSE,openSUSE Tumbleweed and openSUSE Leap{nbsp}15.2>>.
+
 |https://www.redhat.com/[RHEL] and https://www.suse.com/[SLES]
 |See http://packages.efficios.com/[EfficiOS Enterprise Packages].
 |====
@@ -577,6 +582,46 @@ cd lttng-modules-2.12.* &&
 make &&
 sudo make modules_install &&
 sudo depmod -a
+----
+--
+
+
+[[openSUSE]]
+=== openSUSE
+
+To install LTTng{nbsp}{revision} on openSUSE Tumbleweed:
+
+. Install the main LTTng{nbsp}{revision} packages:
++
+--
+[role="term"]
+----
+# zypper in lttng-ust-devel
+# zypper in lttng-modules
+# zypper in lttng-tools
+----
+--
+
+. **If you need to instrument and trace <<python-application,Python
+  3 applications>>**, install the LTTng-UST Python agent:
++
+--
+[role="term"]
+----
+# zypper in python3-lttngust
+----
+--
+
+To install LTTng{nbsp}{revision} on openSUSE Leap{nbsp}15.2:
+
+* Install the main LTTng{nbsp}{revision} packages:
++
+--
+[role="term"]
+----
+# zypper in lttng-ust-devel
+# zypper in lttng-modules
+# zypper in lttng-tools
 ----
 --
 
