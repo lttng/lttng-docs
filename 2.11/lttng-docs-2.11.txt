@@ -1,7 +1,7 @@
 The LTTng Documentation
 =======================
 Philippe Proulx <pproulx@efficios.com>
-v2.11, 5 August 2020
+v2.11, 25 February 2021
 
 
 include::../common/copyright.txt[]
@@ -1303,11 +1303,11 @@ LTTng can send the generated trace data to different locations. The
 _tracing session mode_ dictates where to send it. The following modes
 are available in LTTng{nbsp}{revision}:
 
-Local mode::
+[[local-mode]]Local mode::
   LTTng writes the traces to the file system of the machine it traces
   (target system).
 
-Network streaming mode::
+[[net-streaming-mode]]Network streaming mode::
   LTTng sends the traces over the network to a
   <<lttng-relayd,relay daemon>> running on a remote system.
 
@@ -1318,7 +1318,7 @@ Snapshot mode::
   target's file system or to send it over the network to a
   <<lttng-relayd,relay daemon>> running on a remote system.
 
-Live mode::
+[[live-mode]]Live mode::
   This mode is similar to the network streaming mode, but a live
   trace viewer can connect to the distant relay daemon to
   <<lttng-live,view event records as LTTng generates them>>.
@@ -1476,13 +1476,18 @@ discard mode, the tracer only discards the event record that doesn't
 fit.
 
 In discard mode, LTTng increments a count of lost event records when an
-event record is lost and saves this count to the trace. In overwrite
-mode, since LTTng{nbsp}2.8, LTTng increments a count of lost sub-buffers
-when a sub-buffer is lost and saves this count to the trace. In this
-mode, LTTng does not write to the trace the exact number of lost event
-records in those lost sub-buffers. Trace analyses can use the trace's
-saved discarded event record and sub-buffer counts to decide whether or
-not to perform the analyses even if trace data is known to be missing.
+event record is lost and saves this count to the trace. Since
+LTTng{nbsp}2.8, in overwrite mode, LTTng writes to a given sub-buffer
+its sequence number within its data stream. With a <<local-mode,local>>,
+<<net-streaming-mode,network streaming>>, or <<live-mode,live>>
+<<tracing-session,tracing session>>, a trace reader can use such
+sequence numbers to report lost packets. In overwrite mode, LTTng
+doesn't write to the trace the exact number of lost event records in
+those lost sub-buffers.
+
+Trace analyses can use saved discarded event record and sub-buffer
+(packet) counts of the trace to decide whether or not to perform the
+analyses even if trace data is known to be missing.
 
 There are a few ways to decrease your probability of losing event
 records.
