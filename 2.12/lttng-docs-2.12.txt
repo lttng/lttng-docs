@@ -4004,9 +4004,9 @@ or LTTng packages:
 [role="term"]
 ----
 $ cd $(mktemp -d) &&
-wget http://lttng.org/files/urcu/userspace-rcu-latest-0.9.tar.bz2 &&
-tar -xf userspace-rcu-latest-0.9.tar.bz2 &&
-cd userspace-rcu-0.9.* &&
+wget http://lttng.org/files/urcu/userspace-rcu-latest-0.11.tar.bz2 &&
+tar -xf userspace-rcu-latest-0.11.tar.bz2 &&
+cd userspace-rcu-0.11.* &&
 ./configure --libdir=/usr/local/lib32 CFLAGS=-m32 &&
 make &&
 sudo make install &&
