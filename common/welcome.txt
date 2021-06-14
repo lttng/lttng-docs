@@ -4,13 +4,13 @@
 Welcome to the **LTTng Documentation**!
 
 The _Linux Trace Toolkit: next generation_ is an open source software
-toolkit which you can use to simultaneously trace the Linux kernel, user
-applications, and user libraries.
+toolkit which you can use to trace the Linux kernel, user applications,
+and user libraries at the same time.
 
 LTTng consists of:
 
 * Kernel modules to trace the Linux kernel.
-* Shared libraries to trace user applications written in C or C++.
+* Shared libraries to trace C/$$C++$$ user applications.
 * Java packages to trace Java applications which use `java.util.logging`
   or Apache log4j 1.2.
 * A Python package to trace Python applications which use the standard

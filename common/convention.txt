@@ -10,14 +10,14 @@ following sentence.
 Practical tips and notes are given throughout the document using the
 following style:
 
-TIP: Make sure you read the tips.
+TIP: Read the tips.
 
 Terminal boxes are used to show command lines:
 
 [role="term"]
 ----
 $ echo Command line as a regular user
-# echo Command line as a priviledged user
+# echo Command line as a the `root` user
 ----
 
 Command lines which you need to execute as a priviledged user start with

@@ -4,16 +4,15 @@
 A few people made the online LTTng Documentation possible.
 
 http://eepp.ca/[Philippe Proulx] wrote most of the content, created
-the diagrams, and formatted the document. He is the current maintainer
+the diagrams, and formatted the document. He's the current maintainer
 of the LTTng Documentation.
 
 Daniel U. Thibault, from the DRDC, wrote
-http://cradpdf.drdc-rddc.gc.ca/PDFS/unc246/p804561_A1b.pdf[LTTng:
-The Linux Trace Toolkit Next Generation{nbsp}&#8212;{nbsp}A
-Comprehensive User's Guide (version 2.3 edition)] which was used
-to complete parts of the <<core-concepts,Core concepts>> and
-<<plumbing,Components of LTTng>> sections and for a few passages here
-and there.
+``http://cradpdf.drdc-rddc.gc.ca/PDFS/unc246/p804561_A1b.pdf[LTTng: The
+Linux Trace Toolkit Next Generation{nbsp}&#8212;{nbsp}A Comprehensive
+User's Guide (version 2.3 edition)]'' which was used to complete parts
+of the ``<<core-concepts,Core concepts>>'' and ``<<plumbing,Components
+of LTTng>>'' sections and for a few passages here and there.
 
 The entire http://www.efficios.com/[EfficiOS] team made essential reviews
 of the whole document.
