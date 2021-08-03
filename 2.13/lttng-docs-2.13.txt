@@ -79,7 +79,7 @@ include::../common/acknowledgements.txt[]
 
 LTTng{nbsp}{revision} bears the name _Nordicité_, the product of a
 collaboration between https://champlibre.co/[Champ Libre] and
-https://champlibre.co/[Boréale]. This farmhouse IPA is brewed with
+https://www.boreale.com/[Boréale]. This farmhouse IPA is brewed with
 https://en.wikipedia.org/wiki/Kveik[Kveik] yeast and Québec-grown
 barley, oats, and juniper branches. The result is a remarkable, fruity,
 hazy golden IPA that offers a balanced touch of resinous and woodsy
