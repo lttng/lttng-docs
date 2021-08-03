@@ -2748,8 +2748,7 @@ Replace:
 +
 See man:lttng-ust(3) for a list of available log level names.
 
-.Assign the `LTTNG_UST_TRACEPOINT_LOGLEVEL_DEBUG_UNIT` log level to a
-tracepoint definition.
+.Assign the `LTTNG_UST_TRACEPOINT_LOGLEVEL_DEBUG_UNIT` log level to a tracepoint definition.
 ====
 [source,c]
 ----
