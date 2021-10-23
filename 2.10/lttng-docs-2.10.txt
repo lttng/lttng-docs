@@ -4682,19 +4682,26 @@ import lttngust
 import logging
 import time
 
+def add_handler_if_not_exist(logger, handler_class):
+    handlers = []
+    handlers += logger.handlers
+    handlers += logger.parent.handlers if logger.parent else []
 
+    if not any([handler for handler in handlers if isinstance(handler, handler_class)]):
+        logger.addHandler(handler_class())
+        
 def example():
     logging.basicConfig()
     logger = logging.getLogger('my-logger')
-
-    while True:
-        logger.debug('debug message')
-        logger.info('info message')
-        logger.warn('warn message')
-        logger.error('error message')
-        logger.critical('critical message')
-        time.sleep(1)
-
+    # keep logging to stderr even with tracing enabled
+    add_handler_if_not_exist(logger, logging.StreamHandler)
+    
+    logger.debug('debug message')
+    logger.info('info message')
+    logger.warn('warn message')
+    logger.error('error message')
+    logger.critical('critical message')
+    time.sleep(1)
 
 if __name__ == '__main__':
     example()
