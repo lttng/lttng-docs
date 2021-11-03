@@ -1636,7 +1636,7 @@ frequency.
 
 Note that LTTng uses https://diamon.org/ctf/[CTF] as its trace format,
 which means event record data is very compact. For example, the average
-LTTng kernel event record weights about 32{nbsp}bytes. Therefore, a
+LTTng kernel event record weighs about 32{nbsp}bytes. Therefore, a
 sub-buffer size of 1{nbsp}MiB is considered large.
 
 The previous scenarios highlight the major trade-off between a few large
