@@ -1,7 +1,7 @@
 The LTTng Documentation
 =======================
 Philippe Proulx <pproulx@efficios.com>
-v2.13, 15 June 2021
+v2.13, 10 November 2022
 
 
 include::../common/copyright.txt[]
@@ -381,16 +381,112 @@ but note that:
 
 [NOTE]
 ====
-As of 10{nbsp}June{nbsp}2021, LTTng{nbsp}{revision} is not yet available
-in any major non-enterprise Linux distribution.
-
 For https://www.redhat.com/[RHEL] and https://www.suse.com/[SLES]
 packages, see https://packages.efficios.com/[EfficiOS Enterprise
 Packages].
 
-For other distributions, <<building-from-source,build LTTng from
-source>>.
+For distributions other than <<ubuntu,Ubuntu 22.04 _Jammy Jellyfish_>>,
+<<building-from-source,build LTTng from source>>.
 ====
+
+
+[[ubuntu]]
+=== [[ubuntu-official-repositories]]Ubuntu
+
+LTTng{nbsp}{revision} is available on Ubuntu{nbsp}22.04 _Jammy
+Jellyfish_. For previous supported releases of Ubuntu, <<ubuntu-ppa,use
+the LTTng Stable{nbsp}{revision} PPA>>.
+
+To install LTTng{nbsp}{revision} on Ubuntu{nbsp}22.04 _Jammy Jellyfish_:
+
+. Install the main LTTng{nbsp}{revision} packages:
++
+--
+[role="term"]
+----
+# apt-get install lttng-tools
+# apt-get install lttng-modules-dkms
+# apt-get install liblttng-ust-dev
+----
+--
+
+. **If you need to instrument and trace
+  <<java-application,Java applications>>**, install the LTTng-UST
+  Java agent:
++
+--
+[role="term"]
+----
+# apt-get install liblttng-ust-agent-java
+----
+--
+
+. **If you need to instrument and trace
+  <<python-application,Python{nbsp}3 applications>>**, install the
+  LTTng-UST Python agent:
++
+--
+[role="term"]
+----
+# apt-get install python3-lttngust
+----
+--
+
+
+[[ubuntu-ppa]]
+=== Ubuntu: noch:{LTTng} Stable {revision} PPA
+
+The https://launchpad.net/~lttng/+archive/ubuntu/stable-{revision}[LTTng
+Stable{nbsp}{revision} PPA] offers the latest stable
+LTTng{nbsp}{revision} packages for Ubuntu{nbsp}18.04 _Bionic Beaver_,
+Ubuntu{nbsp}20.04 _Focal Fossa_, and Ubuntu{nbsp}22.04 _Jammy Jellyfish_.
+
+To install LTTng{nbsp}{revision} from the LTTng Stable{nbsp}{revision}
+PPA:
+
+. Add the LTTng Stable{nbsp}{revision} PPA repository and update the
+  list of packages:
++
+--
+[role="term"]
+----
+# apt-add-repository ppa:lttng/stable-2.13
+# apt-get update
+----
+--
+
+. Install the main LTTng{nbsp}{revision} packages:
++
+--
+[role="term"]
+----
+# apt-get install lttng-tools
+# apt-get install lttng-modules-dkms
+# apt-get install liblttng-ust-dev
+----
+--
+
+. **If you need to instrument and trace
+  <<java-application,Java applications>>**, install the LTTng-UST
+  Java agent:
++
+--
+[role="term"]
+----
+# apt-get install liblttng-ust-agent-java
+----
+--
+
+. **If you need to instrument and trace
+  <<python-application,Python{nbsp}3 applications>>**, install the
+  LTTng-UST Python agent:
++
+--
+[role="term"]
+----
+# apt-get install python3-lttngust
+----
+--
 
 
 [[building-from-source]]
