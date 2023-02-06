@@ -28,7 +28,7 @@ available in the generated version.
 
 You need the following tools to generate the LTTng Documentation:
 
-* http://www.methods.co.nz/asciidoc/[AsciiDoc] >= 8.6.5
+* https://asciidoc.org/[AsciiDoc] >= 8.6.5
 * http://pygments.org/[Pygments] and the `pygmentize` command
 
 
