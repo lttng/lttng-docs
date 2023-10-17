@@ -1,0 +1,6 @@
+[gerrit]
+host=review.lttng.org
+port=29418
+project=lttng-docs.git
+defaultbranch=master
+defaultremote=review
