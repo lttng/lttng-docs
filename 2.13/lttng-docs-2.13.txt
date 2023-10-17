@@ -1,7 +1,7 @@
 The LTTng Documentation
 =======================
 Philippe Proulx <pproulx@efficios.com>
-v2.13, 15 June 2021
+v2.13, 17 October 2023
 
 
 include::../common/copyright.txt[]
@@ -379,11 +379,45 @@ but note that:
 * You only need to install LTTng-UST if you intend to use the user
   space LTTng tracer.
 
+[role="growable"]
+.Availability of LTTng{nbsp}{revision} for major Linux distributions as of 17{nbsp}October{nbsp}2023.
+
+|===
+|Distribution |Available in releases
+
+|https://www.ubuntu.com/[Ubuntu]
+|xref:ubuntu[Ubuntu 22.04 LTS _Jammy Jellyfish_, Ubuntu 23.04 _Lunar Lobster_, and Ubuntu 23.10 _Mantic Minotaur_].
+
+Ubuntu{nbsp}18.04 LTS _Bionic Beaver_ and Ubuntu{nbsp}20.04 LTS _Focal Fossa_:
+<<ubuntu-ppa,use the LTTng Stable{nbsp}{revision} PPA>>.
+
+|https://www.debian.org/[Debian]
+|<<debian,Debian{nbsp}12 _bookworm_>>.
+
+|https://getfedora.org/[Fedora]
+|xref:fedora[Fedora{nbsp}37, Fedora{nbsp}38, and Fedora{nbsp}39].
+
+|https://www.archlinux.org/[Arch Linux]
+|<<arch-linux,_extra_ repository and AUR>>.
+
+|https://alpinelinux.org/[Alpine Linux]
+|xref:alpine-linux[Alpine Linux{nbsp}3.16, Alpine Linux{nbsp}3.17, and Alpine Linux{nbsp}3.18].
+
+|https://buildroot.org/[Buildroot]
+|xref:buildroot[Buildroot{nbsp}2022.02, Buildroot{nbsp}2022.05,
+Buildroot{nbsp}2022.08, Buildroot{nbsp}2022.11, Buildroot{nbsp}2023.02,
+Buildroot{nbsp}2023.05, and Buildroot{nbsp}2023.08].
+
+|https://www.openembedded.org/wiki/Main_Page[OpenEmbedded] and
+https://www.yoctoproject.org/[Yocto]
+|xref:oe-yocto[Yocto Project{nbsp}3.3 _Honister_, Yocto Project{nbsp}4.0 _Kirkstone_,
+Yocto Project{nbsp}4.1 _Langdale_, Yocto Project{nbsp}4.2 _Mickledore_, and
+Yocto Project{nbsp}4.3 _Nanbield_].
+
+|====
+
 [NOTE]
 ====
-As of 10{nbsp}June{nbsp}2021, LTTng{nbsp}{revision} is not yet available
-in any major non-enterprise Linux distribution.
-
 For https://www.redhat.com/[RHEL] and https://www.suse.com/[SLES]
 packages, see https://packages.efficios.com/[EfficiOS Enterprise
 Packages].
@@ -391,6 +425,300 @@ Packages].
 For other distributions, <<building-from-source,build LTTng from
 source>>.
 ====
+
+[[ubuntu]]
+=== [[ubuntu-official-repository]]Ubuntu
+
+LTTng{nbsp}{revision} is available on Ubuntu 22.04 LTS _Jammy Jellyfish_, Ubuntu 23.04 _Lunar Lobster_, and Ubuntu 23.10 _Mantic Minotaur_. For previous supported releases of Ubuntu, <<ubuntu-ppa,use the LTTng Stable{nbsp}{revision} PPA>>.
+
+To install LTTng{nbsp}{revision} on Ubuntu{nbsp}22.04 LTS _Jammy Jellyfish_:
+
+. Install the main LTTng{nbsp}{revision} packages:
++
+--
+[role="term"]
+----
+# apt-get install lttng-tools
+# apt-get install lttng-modules-dkms
+# apt-get install liblttng-ust-dev
+----
+--
+
+. **If you need to instrument and trace <<java-application,Java applications>>**,
+install the LTTng-UST Java agent:
++
+--
+[role="term"]
+----
+# apt-get install liblttng-ust-agent-java
+----
+--
+
+. **If you need to instrument and trace <<python-application,Python{nbsp}3
+applications>>**, install the LTTng-UST Python agent:
++
+--
+[role="term"]
+----
+# apt-get install python3-lttngust
+----
+--
+
+[[ubuntu-ppa]]
+=== Ubuntu: noch:{LTTng} Stable {revision} PPA
+
+The https://launchpad.net/~lttng/+archive/ubuntu/stable-{revision}[LTTng
+Stable{nbsp}{revision} PPA] offers the latest stable LTTng{nbsp}{revision}
+packages for Ubuntu{nbsp}18.04 LTS _Bionic Beaver_, Ubuntu{nbsp}20.04 LTS _Focal Fossa_,
+and Ubuntu{nbsp}22.04 LTS _Jammy Jellyfish_.
+
+To install LTTng{nbsp}{revision} from the LTTng Stable{nbsp}{revision}
+PPA:
+
+. Add the LTTng Stable{nbsp}{revision} PPA repository and update the
+  list of packages:
++
+--
+[role="term",subs="attributes"]
+----
+# apt-add-repository ppa:lttng/stable-{revision}
+# apt-get update
+----
+--
+
+. Install the main LTTng{nbsp}{revision} packages:
++
+--
+[role="term"]
+----
+# apt-get install lttng-tools
+# apt-get install lttng-modules-dkms
+# apt-get install liblttng-ust-dev
+----
+--
+
+. **If you need to instrument and trace
+  <<java-application,Java applications>>**, install the LTTng-UST
+  Java agent:
++
+--
+[role="term"]
+----
+# apt-get install liblttng-ust-agent-java
+----
+--
+
+. **If you need to instrument and trace
+  <<python-application,Python{nbsp}3 applications>>**, install the
+  LTTng-UST Python agent:
++
+--
+[role="term"]
+----
+# apt-get install python3-lttngust
+----
+--
+
+[[debian]]
+=== Debian
+
+To install LTTng{nbsp}{revision} on Debian{nbsp}12 _bookworm_:
+
+. Install the main LTTng{nbsp}{revision} packages:
++
+--
+[role="term"]
+----
+# apt install lttng-modules-dkms
+# apt install liblttng-ust-dev
+# apt install lttng-tools
+----
+--
+
+. **If you need to instrument and trace <<java-application,Java
+  applications>>**, install the LTTng-UST Java agent:
++
+--
+[role="term"]
+----
+# apt install liblttng-ust-agent-java
+----
+--
+
+. **If you need to instrument and trace <<python-application,Python
+  applications>>**, install the LTTng-UST Python agent:
++
+--
+[role="term"]
+----
+# apt install python3-lttngust
+----
+--
+
+[[fedora]]
+=== Fedora
+
+To install LTTng{nbsp}{revision} on Fedora{nbsp}37, Fedora{nbsp}38, or
+Fedora{nbsp}39:
+
+. Install the LTTng-tools{nbsp}{revision} and LTTng-UST{nbsp}{revision}
+  packages:
++
+--
+[role="term"]
+----
+# yum install lttng-tools
+# yum install lttng-ust
+----
+--
+
+. Download, build, and install the latest LTTng-modules{nbsp}{revision}:
++
+--
+[role="term",subs="attributes"]
+----
+$ cd $(mktemp -d) &&
+  wget http://lttng.org/files/lttng-modules/lttng-modules-latest-{revision}.tar.bz2 &&
+  tar -xf lttng-modules-latest-{revision}.tar.bz2 &&
+  cd lttng-modules-{revision}.* &&
+  make &&
+  sudo make modules_install &&
+  sudo depmod -a
+----
+--
+
+[IMPORTANT]
+.Java and Python application instrumentation and tracing
+====
+If you need to instrument and trace <<java-application,Java
+applications>> on Fedora, you need to build and install
+LTTng-UST{nbsp}{revision} <<building-from-source,from source>> and pass
+the `--enable-java-agent-jul`, `--enable-java-agent-log4j`, or
+`--enable-java-agent-all` options to the `configure` script, depending
+on which Java logging framework you use.
+
+If you need to instrument and trace <<python-application,Python
+applications>> on Fedora, you need to build and install
+LTTng-UST{nbsp}{revision} from source and pass the
+`--enable-python-agent` option to the `configure` script.
+====
+
+
+[[arch-linux]]
+=== Arch Linux
+
+LTTng-UST{nbsp}{revision} is available in the _extra_
+repository of Arch Linux, while LTTng-tools{nbsp}{revision} and
+LTTng-modules{nbsp}{revision} are available in the
+https://aur.archlinux.org/[AUR].
+
+To install LTTng{nbsp}{revision} on Arch Linux, using
+https://github.com/Jguer/yay[yay] for the AUR packages:
+
+. Install the main LTTng{nbsp}{revision} packages:
++
+--
+[role="term"]
+----
+# pacman -Sy lttng-ust
+$ yay -Sy lttng-tools
+$ yay -Sy lttng-modules
+----
+--
+
+. **If you need to instrument and trace <<python-application,Python
+  applications>>**, install the LTTng-UST Python agent:
++
+--
+[role="term"]
+----
+# pacman -Sy python-lttngust
+----
+--
+
+
+[[alpine-linux]]
+=== Alpine Linux
+
+To install LTTng-tools{nbsp}{revision} and LTTng-UST{nbsp}{revision} on
+Alpine Linux{nbsp}3.16, Alpine Linux{nbsp}3.17, or Alpine Linux{nbsp}3.18:
+
+. Add the LTTng packages:
++
+--
+[role="term"]
+----
+# apk add lttng-tools
+# apk add lttng-ust-dev
+----
+--
+
+. Download, build, and install the latest LTTng-modules{nbsp}{revision}:
++
+--
+[role="term",subs="attributes"]
+----
+$ cd $(mktemp -d) &&
+  wget http://lttng.org/files/lttng-modules/lttng-modules-latest-{revision}.tar.bz2 &&
+  tar -xf lttng-modules-latest-{revision}.tar.bz2 &&
+  cd lttng-modules-{revision}.* &&
+  make &&
+  sudo make modules_install &&
+  sudo depmod -a
+----
+--
+
+
+[[buildroot]]
+=== Buildroot
+
+To install LTTng{nbsp}{revision} on Buildroot{nbsp}2022.02, Buildroot{nbsp}2022.05,
+Buildroot{nbsp}2022.08, Buildroot{nbsp}2022.11, Buildroot{nbsp}2023.02,
+Buildroot{nbsp}2023.05, or Buildroot{nbsp}2023.08:
+
+. Launch the Buildroot configuration tool:
++
+--
+[role="term"]
+----
+$ make menuconfig
+----
+--
+
+. In **Kernel**, check **Linux kernel**.
+. In **Toolchain**, check **Enable WCHAR support**.
+. In **Target packages**{nbsp}&#8594; **Debugging, profiling and benchmark**,
+  check **lttng-modules** and **lttng-tools**.
+. In **Target packages**{nbsp}&#8594; **Libraries**{nbsp}&#8594;
+  **Other**, check **lttng-libust**.
+
+
+[[oe-yocto]]
+=== OpenEmbedded and Yocto
+
+LTTng{nbsp}{revision} recipes are available in the
+https://layers.openembedded.org/layerindex/branch/master/layer/openembedded-core/[`openembedded-core`]
+layer for Yocto Project{nbsp}3.3 _Honister_, Yocto Project{nbsp}4.0 _Kirkstone_,
+Yocto Project{nbsp}4.1 _Langdale_, Yocto Project{nbsp}4.2 _Mickledore_, and
+Yocto Project{nbsp}4.3 _Nanbield_ under the following names:
+
+* `lttng-tools`
+* `lttng-modules`
+* `lttng-ust`
+
+With BitBake, the simplest way to include LTTng recipes in your target
+image is to add them to `IMAGE_INSTALL_append` in path:{conf/local.conf}:
+
+----
+IMAGE_INSTALL_append = " lttng-tools lttng-modules lttng-ust"
+----
+
+If you use Hob:
+
+. Select a machine and an image recipe.
+. Click **Edit image recipe**.
+. Under the **All recipes** tab, search for **lttng**.
+. Check the desired LTTng recipes.
 
 
 [[building-from-source]]
