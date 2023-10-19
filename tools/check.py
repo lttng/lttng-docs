@@ -169,7 +169,7 @@ def _main():
     if checker.has_error:
         return 1
 
-    print(colored('All good!', 'green', attrs=['bold']))
+    print(colored('{}: All good!'.format(args.infile), 'green', attrs=['bold']))
 
     return 0
 
