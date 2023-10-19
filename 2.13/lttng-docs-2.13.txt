@@ -575,7 +575,7 @@ Fedora{nbsp}39:
 . Download, build, and install the latest LTTng-modules{nbsp}{revision}:
 +
 --
-[role="term",subs="attributes"]
+[role="term",subs="attributes,specialcharacters"]
 ----
 $ cd $(mktemp -d) &&
   wget http://lttng.org/files/lttng-modules/lttng-modules-latest-{revision}.tar.bz2 &&
@@ -656,7 +656,7 @@ Alpine Linux{nbsp}3.16, Alpine Linux{nbsp}3.17, or Alpine Linux{nbsp}3.18:
 . Download, build, and install the latest LTTng-modules{nbsp}{revision}:
 +
 --
-[role="term",subs="attributes"]
+[role="term",subs="attributes,specialcharacters"]
 ----
 $ cd $(mktemp -d) &&
   wget http://lttng.org/files/lttng-modules/lttng-modules-latest-{revision}.tar.bz2 &&
