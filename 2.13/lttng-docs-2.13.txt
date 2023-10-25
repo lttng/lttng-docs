@@ -8004,9 +8004,8 @@ memory can store data structures in RAM and retrieve them after a
 reboot, without flushing to typical _storage_.
 
 Linux supports NVRAM file systems thanks to either
-http://pramfs.sourceforge.net/[PRAMFS] or
 https://www.kernel.org/doc/Documentation/filesystems/dax.txt[DAX]{nbsp}+{nbsp}http://lkml.iu.edu/hypermail/linux/kernel/1504.1/03463.html[pmem]
-(requires Linux{nbsp}4.1+).
+(requires Linux{nbsp}4.1+) or http://pramfs.sourceforge.net/[PRAMFS] (requires Linux{nbsp}<{nbsp}4).
 
 This section doesn't describe how to operate such file systems; we
 assume that you have a working persistent memory file system.
