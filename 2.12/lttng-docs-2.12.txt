@@ -1,7 +1,7 @@
 The LTTng Documentation
 =======================
 Philippe Proulx <pproulx@efficios.com>
-v2.12, 25 February 2021
+v2.12, 3 November 2023
 
 
 include::../common/copyright.txt[]
@@ -399,83 +399,34 @@ but note that:
   applications.
 
 [role="growable"]
-.Availability of LTTng{nbsp}{revision} for major Linux distributions as of 25{nbsp}February{nbsp}2021.
+.Availability of LTTng{nbsp}{revision} for major Linux distributions as of 3{nbsp}November{nbsp}2023.
 |====
 |Distribution |Available in releases
 
 |https://www.ubuntu.com/[Ubuntu]
-|<<ubuntu,Ubuntu 20.10 _Groovy Gorilla_>>.
-
-Ubuntu{nbsp}16.04 _Xenial Xerus_, Ubuntu{nbsp}18.04 _Bionic Beaver_,
-and Ubuntu{nbsp}20.04 _Focal Fossa_:
+|Ubuntu{nbsp}16.04 _Xenial Xerus_, Ubuntu{nbsp}18.04 _Bionic Beaver_,
+Ubuntu{nbsp}20.04 _Focal Fossa_, and Ubuntu{nbsp}22.04 _Jammy Jellyfish_:
 <<ubuntu-ppa,use the LTTng Stable{nbsp}{revision} PPA>>.
 
 |https://www.debian.org/[Debian]
-|<<debian,Debian "bullseye" (testing)>>.
-
-|https://getfedora.org/[Fedora]
-|xref:fedora[Fedora{nbsp}33, Fedora{nbsp}34, and Fedora{nbsp}35].
-
-|https://www.archlinux.org/[Arch Linux]
-|<<arch-linux,_Community_ repository and AUR>>.
+|<<debian,Debian{nbsp}11 _bullseye_>>.
 
 |https://www.redhat.com/[RHEL] and https://www.suse.com/[SLES]
 |See http://packages.efficios.com/[EfficiOS Enterprise Packages].
 
 |https://alpinelinux.org/[Alpine Linux]
-|<<alpine-linux,Alpine Linux{nbsp}3.12 and Alpine Linux{nbsp}3.13>>.
+|xref:alpine-linux[Alpine Linux{nbsp}3.12, Alpine Linux{nbsp}3.13,
+Alpine Linux{nbsp}3.14, and Alpine Linux{nbsp}3.15].
 
 |https://buildroot.org/[Buildroot]
-|xref:buildroot[Buildroot{nbsp}2020.08 and Buildroot{nbsp}2020.11].
+|xref:buildroot[Buildroot{nbsp}2020.08, Buildroot{nbsp}2020.11,
+Builroot{nbsp}2021.02, Buildroot{nbsp}2021.05, Buildroot{nbsp}2021.08,
+and Builroot{nbsp}2021.11].
 
 |https://www.openembedded.org/wiki/Main_Page[OpenEmbedded] and
 https://www.yoctoproject.org/[Yocto]
-|<<oe-yocto,Yocto Project{nbsp}3.2 _Gatesgarth_>>
-(`openembedded-core` layer).
+|xref:oe-yocto[Yocto Project{nbsp}3.2 _Gatesgarth_ and Yocto Project{nbsp}3.3 _Hardknott_].
 |====
-
-
-[[ubuntu]]
-=== [[ubuntu-official-repositories]]Ubuntu
-
-LTTng{nbsp}{revision} is available on Ubuntu{nbsp}20.10 _Groovy
-Gorilla_. For previous supported releases of Ubuntu, <<ubuntu-ppa,use
-the LTTng Stable{nbsp}{revision} PPA>>.
-
-To install LTTng{nbsp}{revision} on Ubuntu{nbsp}20.10 _Groovy Gorilla_:
-
-. Install the main LTTng{nbsp}{revision} packages:
-+
---
-[role="term"]
-----
-# apt-get install lttng-tools
-# apt-get install lttng-modules-dkms
-# apt-get install liblttng-ust-dev
-----
---
-
-. **If you need to instrument and trace
-  <<java-application,Java applications>>**, install the LTTng-UST
-  Java agent:
-+
---
-[role="term"]
-----
-# apt-get install liblttng-ust-agent-java
-----
---
-
-. **If you need to instrument and trace
-  <<python-application,Python{nbsp}3 applications>>**, install the
-  LTTng-UST Python agent:
-+
---
-[role="term"]
-----
-# apt-get install python3-lttngust
-----
---
 
 
 [[ubuntu-ppa]]
@@ -484,7 +435,8 @@ To install LTTng{nbsp}{revision} on Ubuntu{nbsp}20.10 _Groovy Gorilla_:
 The https://launchpad.net/~lttng/+archive/ubuntu/stable-{revision}[LTTng
 Stable{nbsp}{revision} PPA] offers the latest stable
 LTTng{nbsp}{revision} packages for Ubuntu{nbsp}16.04 _Xenial Xerus_,
-Ubuntu{nbsp}18.04 _Bionic Beaver_, and Ubuntu{nbsp}20.04 _Focal Fossa_.
+Ubuntu{nbsp}18.04 _Bionic Beaver_, Ubuntu{nbsp}20.04 _Focal Fossa_,
+and Ubuntu{nbsp}22.04 _Jammy Jellyfish_.
 
 To install LTTng{nbsp}{revision} from the LTTng Stable{nbsp}{revision}
 PPA:
@@ -537,7 +489,7 @@ PPA:
 [[debian]]
 === Debian
 
-To install LTTng{nbsp}{revision} on Debian "bullseye" (testing):
+To install LTTng{nbsp}{revision} on Debian{nbsp}11 _bullseye_:
 
 . Install the main LTTng{nbsp}{revision} packages:
 +
@@ -570,95 +522,12 @@ To install LTTng{nbsp}{revision} on Debian "bullseye" (testing):
 ----
 --
 
-
-[[fedora]]
-=== Fedora
-
-To install LTTng{nbsp}{revision} on Fedora{nbsp}33, Fedora{nbsp}34, or
-Fedora{nbsp}35:
-
-. Install the LTTng-tools{nbsp}{revision} and LTTng-UST{nbsp}{revision}
-  packages:
-+
---
-[role="term"]
-----
-# yum install lttng-tools
-# yum install lttng-ust
-----
---
-
-. Download, build, and install the latest LTTng-modules{nbsp}{revision}:
-+
---
-[role="term"]
-----
-$ cd $(mktemp -d) &&
-wget http://lttng.org/files/lttng-modules/lttng-modules-latest-2.12.tar.bz2 &&
-tar -xf lttng-modules-latest-2.12.tar.bz2 &&
-cd lttng-modules-2.12.* &&
-make &&
-sudo make modules_install &&
-sudo depmod -a
-----
---
-
-[IMPORTANT]
-.Java and Python application instrumentation and tracing
-====
-If you need to instrument and trace <<java-application,Java
-applications>> on Fedora, you need to build and install
-LTTng-UST{nbsp}{revision} <<building-from-source,from source>> and pass
-the `--enable-java-agent-jul`, `--enable-java-agent-log4j`, or
-`--enable-java-agent-all` options to the `configure` script, depending
-on which Java logging framework you use.
-
-If you need to instrument and trace <<python-application,Python
-applications>> on Fedora, you need to build and install
-LTTng-UST{nbsp}{revision} from source and pass the
-`--enable-python-agent` option to the `configure` script.
-====
-
-
-[[arch-linux]]
-=== Arch Linux
-
-LTTng-UST{nbsp}{revision} is available in the _community_
-repository of Arch Linux, while LTTng-tools{nbsp}{revision} and
-LTTng-modules{nbsp}{revision} are available in the
-https://aur.archlinux.org/[AUR].
-
-To install LTTng{nbsp}{revision} on Arch Linux, using
-https://github.com/Jguer/yay[yay] for the AUR packages:
-
-. Install the main LTTng{nbsp}{revision} packages:
-+
---
-[role="term"]
-----
-# pacman -Sy lttng-ust
-$ yay -Sy lttng-tools
-$ yay -Sy lttng-modules
-----
---
-
-. **If you need to instrument and trace <<python-application,Python
-  applications>>**, install the LTTng-UST Python agent:
-+
---
-[role="term"]
-----
-# pacman -Sy python-lttngust
-# pacman -Sy python2-lttngust
-----
---
-
-
 [[alpine-linux]]
 === Alpine Linux
 
 To install LTTng-tools{nbsp}{revision} and LTTng-UST{nbsp}{revision} on
-Alpine Linux{nbsp}3.12 or Alpine Linux{nbsp}3.13:
+Alpine Linux{nbsp}3.12, Alpine Linux{nbsp}3.13, Alpine Linux{nbsp}3.14,
+or Alpine Linux{nbsp}3.15:
 
 . Add the LTTng packages:
 +
@@ -689,8 +558,9 @@ sudo depmod -a
 [[buildroot]]
 === Buildroot
 
-To install LTTng{nbsp}{revision} on Buildroot{nbsp}2020.08 or
-Buildroot{nbsp}2020.11:
+To install LTTng{nbsp}{revision} on Buildroot{nbsp}2020.08, Buildroot{nbsp}2020.11,
+Buildroot{nbsp}2021.02, Buildroot{nbsp}2021.05, Buildroot{nbsp}2021.08, or
+Buildroot{nbsp}2021.11:
 
 . Launch the Buildroot configuration tool:
 +
@@ -714,7 +584,8 @@ $ make menuconfig
 
 LTTng{nbsp}{revision} recipes are available in the
 https://layers.openembedded.org/layerindex/branch/master/layer/openembedded-core/[`openembedded-core`]
-layer for Yocto Project{nbsp}3.2 _Gatesgarth_ under the following names:
+layer for Yocto Project{nbsp}3.2 _Gatesgarth_ and Yocto Project{nbsp}3.3 _Hardknott_
+under the following names:
 
 * `lttng-tools`
 * `lttng-modules`
