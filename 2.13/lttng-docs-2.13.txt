@@ -1,7 +1,7 @@
 The LTTng Documentation
 =======================
 Philippe Proulx <pproulx@efficios.com>
-v2.13, 17 October 2023
+v2.13, 28 November 2023
 
 
 include::../common/copyright.txt[]
@@ -827,6 +827,44 @@ previous steps automatically for a given version of LTTng and confine
 the installed files to a specific directory. This can be useful to try
 LTTng without installing it on your system.
 
+[[linux-kernel-sig]]
+=== Linux kernel module signature
+
+Linux kernel modules require trusted signatures in order to be loaded
+when any of the following is true:
+
+* The system boots with
+  https://uefi.org/specs/UEFI/2.10/32_Secure_Boot_and_Driver_Signing.html#secure-boot-and-driver-signing[Secure Boot]
+  enabled.
+
+* The Linux kernel which boots is configured with
+  `CONFIG_MODULE_SIG_FORCE`.
+
+* The Linux kernel boots with a command line containing
+  `module.sig_enforce=1`.
+
+.`root` user running <<lttng-sessiond,`lttng-sessiond`>> which fails to load a required <<lttng-modules,kernel module>> due to the signature enforcement policies.
+====
+[role="term"]
+----
+# lttng-sessiond
+Warning: No tracing group detected
+modprobe: ERROR: could not insert 'lttng_ring_buffer_client_discard': Key was rejected by service
+Error: Unable to load required module lttng-ring-buffer-client-discard
+Warning: No kernel tracer available
+----
+====
+
+There are several methods to enroll trusted keys for signing modules
+that are built from source. The precise details vary from one Linux
+version to another, and distributions may have their own mechanisms. For
+example, https://github.com/dell/dkms[DKMS] may autogenerate a key and
+sign modules, but the key isn't automatically enrolled.
+
+See
+https://www.kernel.org/doc/html/latest/admin-guide/module-signing.html[Kernel
+module signing facility] and the documentation of your distribution
+to learn more about signing Linux kernel modules.
 
 [[getting-started]]
 == Quick start
@@ -2396,7 +2434,8 @@ Generally, you don't have to load the LTTng kernel modules manually
 (using man:modprobe(8), for example): a root session daemon loads the
 necessary modules when starting. If you have extra probe modules, you
 can specify to load them to the session daemon on the command line
-(see the opt:lttng-sessiond(8):--extra-kmod-probes option).
+(see the opt:lttng-sessiond(8):--extra-kmod-probes option). See also
+<<linux-kernel-sig,Linux kernel module signature>>.
 
 The LTTng kernel modules are installed in
 +/usr/lib/modules/__release__/extra+ by default, where +__release__+ is
