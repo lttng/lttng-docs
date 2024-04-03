@@ -1236,7 +1236,7 @@ Once you have completed the <<tracing-the-linux-kernel,Record Linux
 kernel events>> and <<tracing-your-own-user-application,Record user
 application events>> tutorials, you can inspect the recorded events.
 
-There are many tools you can use to read LTTng traces:
+There are tools you can use to read LTTng traces:
 
 https://babeltrace.org/[Babeltrace{nbsp}2]::
     A rich, flexible trace manipulation toolkit which includes
@@ -1254,11 +1254,6 @@ which LTTng produces, https://diamon.org/ctf/[CTF].
 http://tracecompass.org/[Trace Compass]::
     A graphical user interface for viewing and analyzing any type of
     logs or traces, including those of LTTng.
-
-https://github.com/lttng/lttng-analyses[LTTng analyses]::
-    An experimental project which includes many high-level analyses of
-    LTTng kernel traces, like scheduling statistics, interrupt
-    frequency distribution, top CPU usage, and more.
 
 NOTE: This section assumes that LTTng wrote the traces it recorded
 during the previous tutorials to their default location, in the
@@ -7972,9 +7967,8 @@ The LTTng kernel and user space tracers generate state dump
 
 An analysis can use the state dump event records to set an initial state
 before it builds the rest of the state from the subsequent event
-records. http://tracecompass.org/[Trace Compass] and
-https://github.com/lttng/lttng-analyses[LTTng analyses] are notable
-examples of applications which use the state dump of an LTTng trace.
+records. http://tracecompass.org/[Trace Compass] is a notable
+example of an application which uses the state dump of an LTTng trace.
 
 When you <<taking-a-snapshot,take a snapshot>>, it's possible that the
 state dump event records aren't included in the snapshot trace files
@@ -8931,11 +8925,6 @@ log level::
   A command-line tool provided by the <<def-lttng-tools,LTTng-tools>>
   project which you can use to send and receive control messages to and
   from a <<def-session-daemon,session daemon>>.
-
-LTTng analyses::
-  The https://github.com/lttng/lttng-analyses[LTTng analyses] project,
-  which is a set of analyzing programs that you can use to obtain a
-  higher level view of an <<def-lttng,LTTng>> <<def-trace,trace>>.
 
 cmd:lttng-consumerd::
   The name of the <<def-consumer-daemon,consumer daemon>> program.
