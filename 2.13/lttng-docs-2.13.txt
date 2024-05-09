@@ -1876,10 +1876,6 @@ consumes the marked sub-buffer, which returns to the available state.
 {note-no-anim}
 ====
 
-In an ideal world, sub-buffers are consumed faster than they're filled.
-In the real world, however, all sub-buffers can be full at some point,
-leaving no space to record the following events.
-
 In an ideal world, sub-buffers are consumed faster than they're filled,
 as it's the case in the previous animation. In the real world,
 however, all sub-buffers can be full at some point, leaving no space to
