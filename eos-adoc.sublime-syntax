@@ -173,6 +173,7 @@ contexts:
     - include: adoc-attr
     - include: quotes
     - include: code-backtick-start
+    - include: code-plus-plus-start
     - include: code-plus-start
     - include: double-emphasis-start
     - include: emphasis-start
@@ -187,10 +188,10 @@ contexts:
     - match: '(?<!^)--(?!$)'
       scope: comment.block.em-dash.eos-adoc
   word-macro:
-    - match: ':(not|escwc|esccomma|escstar|escdot|bs):'
+    - match: ':(not|esc[a-z0-9]+|bs):'
       scope: entity.name.tag.not.eos-adoc
   internal-link-start:
-    - match: '(<<)([a-zA-Z0-9_-]+),'
+    - match: '(<<)(["a-zA-Z0-9_-]+),'
       captures:
         1: entity.name.function.link.eos-adoc
         2: storage.modifier.c
@@ -309,6 +310,17 @@ contexts:
     - meta_scope: entity.name.function.code.eos-adoc
     - match: '(?<!\s)`'
       pop: true
+  code-plus-plus-start:
+    - match: '\+\+(?!\{)'
+      push: code-plus-plus
+  code-plus-plus:
+    - meta_scope: entity.name.function.code.eos-adoc
+    - match: '(?<!\s)\+\+'
+      pop: true
+    - match: '$'
+      pop: true
+    - match: '__.+?__'
+      scope: storage.modifier.c
   code-plus-start:
     - match: '\+(?!\{)'
       push: code-plus
