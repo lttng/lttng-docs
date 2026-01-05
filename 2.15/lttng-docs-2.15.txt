@@ -272,7 +272,7 @@ channels with a per-user
 * We completely revamped the human-readable output of the
   man:lttng-list(1) command:
 +
-NOTE: Upcoming terminal screenshot!
+image::term-lttng-list.png[Output of `lttng list` showing a recording session with a tree structure displaying domains, channels with buffer configuration and memory usage, and recording event rules.]
 +
 The command now has a clean tree structure. Colors help improve the
 readability of objects and properties when the connected terminal
@@ -304,7 +304,7 @@ The new opt:lttng-list(1):--mem-usage option controls the display mode
 of memory usage: `compact` shows the memory usage for each Unix user or
 process while `full` show the memory usage for each CPU (if available):
 +
-NOTE: Upcoming terminal screenshot!
+image::term-lttng-list-mem-usage.png[Output of `lttng list --mem-usage=fulll` showing detailed per-CPU memory usage with progress bars for 16 CPUs.]
 
 * The man:lttng-status(1) command now accepts the same options as
   man:lttng-list(1):
