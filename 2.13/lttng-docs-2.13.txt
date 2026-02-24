@@ -1,7 +1,7 @@
 The LTTng Documentation
 =======================
 Philippe Proulx <pproulx@efficios.com>
-v2.13, 28 November 2023
+v2.13, 24 February 2026
 
 
 include::../common/copyright.txt[]
@@ -7915,7 +7915,7 @@ $ lttng --mi=xml list my-session
 ----
 
 A schema definition (XSD) is
-https://github.com/lttng/lttng-tools/blob/stable-{revision}/src/common/mi-lttng-4.0.xsd[available]
+https://github.com/lttng/lttng-tools/blob/stable-{revision}/src/common/mi-lttng-4.1.xsd[available]
 to ease the integration with external tools as much as possible.
 
 
