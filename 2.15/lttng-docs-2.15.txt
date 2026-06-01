@@ -1,7 +1,7 @@
 The LTTng Documentation
 =======================
 Philippe Proulx <pproulx@efficios.com>
-v2.15, 24 February 2026
+v2.15, 1 June 2026
 
 
 include::../common/copyright.txt[]
@@ -611,11 +611,21 @@ but note that:
 * You only need to install LTTng-UST if you intend to use the user
   space LTTng tracer.
 
+[role="growable"]
+.Availability of LTTng{nbsp}{revision} for major Linux distributions as of 1{nbsp}June{nbsp}2026.
+
+|===
+|Distribution |Available in releases
+
+|https://www.ubuntu.com/[Ubuntu]
+|Ubuntu{nbsp}22.04 LTS _Jammy Jellyfish_, Ubuntu{nbsp}24.04 LTS _Noble Numbat_,
+and Ubuntu{nbsp}26.04 LTS _Resolute Raccoon_:
+<<ubuntu-ppa,use the LTTng Stable{nbsp}{revision} PPA>>.
+
+|====
+
 [NOTE]
 ====
-As of 2 December 2025, LTTng{nbsp}{revision} is not yet available
-in any major non-enterprise Linux distribution.
-
 For https://www.redhat.com/[RHEL] and https://www.suse.com/[SLES]
 packages, see https://packages.efficios.com/[EfficiOS Enterprise
 Packages].
@@ -623,6 +633,62 @@ Packages].
 For other distributions, <<building-from-source,build LTTng from
 source>>.
 ====
+
+[[ubuntu-ppa]]
+=== Ubuntu: noch:{LTTng} Stable {revision} PPA
+
+The https://launchpad.net/~lttng/+archive/ubuntu/stable-{revision}[LTTng
+Stable{nbsp}{revision} PPA] offers the latest stable
+LTTng{nbsp}{revision} packages for Ubuntu{nbsp}22.04 LTS
+_Jammy Jellyfish_, Ubuntu{nbsp}24.04 LTS _Noble Numbat_, and
+Ubuntu{nbsp}26.04 LTS _Resolute Raccoon_.
+
+To install LTTng{nbsp}{revision} from the LTTng Stable{nbsp}{revision}
+PPA:
+
+. Add the LTTng Stable{nbsp}{revision} PPA repository and update the
+  list of packages:
++
+--
+[role="term",subs="attributes"]
+----
+# apt-add-repository ppa:lttng/stable-{revision}
+# apt-get update
+----
+--
+
+. Install the main LTTng{nbsp}{revision} packages:
++
+--
+[role="term"]
+----
+# apt-get install lttng-tools
+# apt-get install lttng-modules-dkms
+# apt-get install liblttng-ust-dev
+----
+--
+
+. **If you need to instrument and trace
+  <<java-application,Java applications>>**, install the LTTng-UST
+  Java agent:
++
+--
+[role="term"]
+----
+# apt-get install liblttng-ust-agent-java
+----
+--
+
+. **If you need to instrument and trace
+  <<python-application,Python{nbsp}3 applications>>**, install the
+  LTTng-UST Python agent:
++
+--
+[role="term"]
+----
+# apt-get install python3-lttngust
+----
+--
 
 
 [[building-from-source]]
