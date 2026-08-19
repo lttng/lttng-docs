@@ -1,7 +1,7 @@
 The LTTng Documentation
 =======================
 Philippe Proulx <pproulx@efficios.com>
-v2.16, 1 June 2026
+v2.16, 19 August 2026
 
 
 include::../common/copyright.txt[]
@@ -1298,6 +1298,7 @@ The core concepts of LTTng are:
 * <<domain,Tracing domain>>
 * <<channel,Event record channel and ring buffer>>
 * <<event,Recording event rule and event record>>
+* <<map-channel,Map channel and counter>> (since LTTng{nbsp}2.16)
 
 NOTE: The man:lttng-concepts(7) manual page also documents the core
 concepts of LTTng, with more links to other LTTng-tools manual pages.
@@ -2229,9 +2230,6 @@ _counters_: named, signed integer values, keyed by strings, which
 accumulate over time. LTTng groups the counters of a map channel into
 per-CPU key-value stores known as _maps_.
 
-NOTE: Upcoming diagram of a map channel and its per-CPU maps
-of counters.
-
 A map channel is similar to an <<channel,event record channel>>, except
 that, instead of containing <<def-ring-buffer,ring buffers>> to record
 individual <<def-event-record,event records>>, it maintains running
@@ -2342,8 +2340,9 @@ Per-user (default)::
     Allocate one set of maps--one per CPU--shared by all the
     instrumented processes of each Unix user.
 +
-NOTE: Upcoming diagram of the per-user buffer ownership model of a map
-channel.
+[role="img-100"]
+.Per-user buffer ownership model of a map channel (recording session belongs to the `Bob` Unix user).
+image::per-user-buffering-map.png[]
 
 Per-process::
     Allocate one set of maps--one per CPU--for each instrumented
@@ -2353,9 +2352,6 @@ With this model, also set the
 <<map-channel-dead-process-policy,dead process policy>> of the map
 channel to control what happens to the counters of a process when it
 terminates.
-+
-NOTE: Upcoming diagram of the per-process buffer ownership model of a
-map channel.
 
 A <<lttng-modules,Linux kernel>> map channel always allocates a single
 set of maps--one per CPU--for the whole system.
@@ -2395,8 +2391,6 @@ In addition to the per-owner, per-CPU counters which its
 user space map channel has a single, channel-wide map of
 _shared counters_: counters with no Unix user, process, or application
 owner, and no per-CPU partitioning.
-
-NOTE: Upcoming diagram of the shared counters of a map channel.
 
 You can consider that the <<lttng-sessiond,session daemon>> itself owns
 the shared counters, as it increments them directly. This happens in two
